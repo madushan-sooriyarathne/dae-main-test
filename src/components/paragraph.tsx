@@ -13,7 +13,6 @@ import { QuinaryHeading } from "./headings/quinary-heading";
 const paragraphVariants = cva(
   [
     "w-full flex flex-col items-stretch justify-start",
-    "[&_*]:text-base",
     "[&>*:not(:first-child)]:mt-[0.625rem] md:[&>*:not(:first-child)]:mt-4 lg:[&>*:not(:first-child)]:mt-5",
   ],
   {
@@ -64,7 +63,7 @@ const Paragraph: React.FC<Props> = ({
               {...props}
               target="_blank"
               rel="noreferrer"
-              className="cursor-pointer break-words font-medium text-primary no-underline transition-[color] duration-200 ease-in-out [hyphens:auto]"
+              className="cursor-pointer break-words font-semibold text-primary underline underline-offset-2 transition-[color] duration-200 ease-in-out [hyphens:auto]"
             >
               {props.children}
             </a>
