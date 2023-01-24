@@ -15,6 +15,8 @@ import {
   type MultiImageContentSectionType,
   MultiImageHorizontal,
 } from "@layout/common/multi-image-content-horizontal";
+import { ContactFormSection } from "@layout/common/contact-form";
+import { NewsletterSection } from "@layout/common/newsletter-section";
 // import { TestimonialSection } from "@layout/homepage/testimonials-section";
 
 interface Props {
@@ -79,6 +81,8 @@ const Home: NextPage<Props> = ({
           withArrow: true,
         }}
       />
+      <NewsletterSection />
+      <ContactFormSection />
       {/* <TestimonialSection testimonials={testimonials} /> */}
     </Page>
   );
