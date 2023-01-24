@@ -25,4 +25,17 @@
       2xl:grid-cols-[[full-start]_minmax(3.5rem,_1fr)_[content-start]_repeat(8,_[col-start]_minmax(min-content,_9.375rem)_[col-end])_[content-end]_minmax(3.5rem,_1fr)_[full-end]]
       4xl:grid-cols-[[full-start]_minmax(3.5rem,_1fr)_[content-start]_repeat(8,_[col-start]_minmax(min-content,_10.3125rem)_[col-end])_[content-end]_minmax(3.5rem,_1fr)_[full-end]];
   }
+
+  .trim-bottom {
+    @apply -mb-20 2xl:-mb-24 4xl:-mb-36
+  }
+
+  .trim-top {
+    @apply -mt-20 2xl:-mt-24 4xl:-mt-36
+  }
+
+  .trim-both {
+    @apply -my-20 -mb-20 2xl:-my-24 4xl:-my-36
+  }
 }
+
