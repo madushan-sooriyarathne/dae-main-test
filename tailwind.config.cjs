@@ -21,6 +21,7 @@ module.exports = {
       backgroundImage: {
         lightArtifacts: "var(--gradient-bg-artifacts-light)",
         darkWater: "var(--dark-water)",
+        overlayShade: "var(--overlay-shade)",
       }
     },
     colors: {
@@ -98,6 +99,7 @@ module.exports = {
       xsm: "360px",
       sm: "480px",
       md: "640px",
+      mlg: "820px",
       lg: "1024px",
       xl: "1280px",
       "2xl": "1366px",
@@ -106,5 +108,7 @@ module.exports = {
       "xxl": "1920px",
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/container-queries')
+  ],
 };
