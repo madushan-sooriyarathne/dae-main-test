@@ -16,7 +16,10 @@
   },
   "plugins": ["@typescript-eslint"],
   "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
-  "ignorePatterns": ["getContentfulEnvironment.js", "src/cms/generated/types.d.ts"],
+  "ignorePatterns": [
+    "getContentfulEnvironment.js",
+    "src/cms/generated/types.d.ts"
+  ],
   "rules": {
     "@typescript-eslint/consistent-type-imports": "warn"
   }
