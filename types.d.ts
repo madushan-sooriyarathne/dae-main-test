@@ -29,6 +29,13 @@ declare global {
     label: string;
   };
 
+  interface Stat {
+    id: string;
+    icon: string | null;
+    title: string;
+    description: string;
+  }
+
   type Testimonial = {
     customerName: string;
     title: string;
