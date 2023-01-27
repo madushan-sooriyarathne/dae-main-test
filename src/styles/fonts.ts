@@ -1,4 +1,4 @@
-import { Plus_Jakarta_Sans, Playfair_Display } from "@next/font/google";
+import { Playfair_Display, Plus_Jakarta_Sans } from "@next/font/google";
 
 export const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],

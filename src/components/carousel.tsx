@@ -1,6 +1,9 @@
-import type { KeenSliderPlugin, WebOptions } from "keen-slider";
+import { useState } from "react";
+
 import { useKeenSlider } from "keen-slider/react";
-import { type ReactNode, type MouseEvent, useState } from "react";
+
+import type { KeenSliderPlugin, WebOptions } from "keen-slider";
+import type { MouseEvent, ReactNode } from "react";
 
 type BreakpointType = {
   [key: string]: Omit<WebOptions<Record<string, never>>, "breakpoints">;
@@ -11,7 +14,7 @@ interface Props {
   children: ReactNode[];
   breakpoints?: BreakpointType;
   sliderConfig?: SliderConfig;
-  withNavigation?: true;
+  withNavigation?: boolean;
   loop?: boolean;
   freeMode?: boolean;
   withDots?: boolean;
@@ -144,15 +147,15 @@ const Carousel: React.FC<Props> = ({
 
   return (
     <div className="relative z-0 w-full">
-      <div className="relative grid w-full auto-rows-min grid-cols-1 items-start justify-center gap-y-8">
+      <div className="relative grid w-full auto-rows-min grid-cols-1 items-start justify-center gap-y-4">
         {withNavigation && (
           <button
-            className="rounder-full absolute top-1/2 left-0 z-10 h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-content-center self-center bg-white shadow-md"
+            className="absolute top-1/2 left-0 z-10 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-sm shadow-water-500"
             onClick={handleClickPrev}
             aria-label="View previous slide"
           >
-            <svg className="h-3 w-8 fill-primary">
-              <use xlinkHref="/assets/svg/sprites.svg#arrow-left-short" />
+            <svg className="h-6 w-6 fill-primary">
+              <use xlinkHref="/assets/svg/sprites.svg#icon-arrow-left-short" />
             </svg>
           </button>
         )}
@@ -176,8 +179,8 @@ const Carousel: React.FC<Props> = ({
                 (_, index) => (
                   <button
                     className={`${
-                      currentSlide === index ? "h-5 w-5" : "h-4 w-4"
-                    }rounded-full border-0 bg-primary ring-1 ring-primary ring-offset-2`}
+                      currentSlide === index ? "h-3 w-3" : "h-2 w-2"
+                    } rounded-full border-0 bg-primary outline-none  outline-offset-2 focus:outline focus:outline-2 focus:outline-primary`}
                     onClick={() => instanceRef.current?.moveToIdx(index)}
                     key={index}
                   />
@@ -197,12 +200,12 @@ const Carousel: React.FC<Props> = ({
 
         {withNavigation && (
           <button
-            className="rounder-full absolute top-1/2 right-0 z-10 h-20 w-20 translate-x-1/2 -translate-y-1/2 place-content-center self-center bg-white shadow-md"
+            className="absolute top-1/2 right-0 z-10 flex h-16 w-16 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-sm shadow-water-500"
             onClick={handleClickNext}
             aria-label="View next slide"
           >
-            <svg className="h-3 w-8 fill-primary">
-              <use xlinkHref="/assets/svg/sprites.svg#arrow-right-short" />
+            <svg className="h-6 w-6 fill-primary">
+              <use xlinkHref="/assets/svg/sprites.svg#icon-arrow-right-short" />
             </svg>
           </button>
         )}

@@ -1,11 +1,13 @@
-import type { ComponentProps } from "react";
-import {
-  FormProvider,
-  type FieldValues,
-  type UseFormReturn,
-  type SubmitHandler,
-} from "react-hook-form";
+import { FormProvider } from "react-hook-form";
+
 import { twMerge } from "tailwind-merge";
+
+import type { ComponentProps } from "react";
+import type {
+  FieldValues,
+  SubmitHandler,
+  UseFormReturn,
+} from "react-hook-form";
 
 interface Props<T extends FieldValues>
   extends Omit<ComponentProps<"form">, "onSubmit"> {

@@ -1,7 +1,10 @@
-import { Button } from "@components/button";
+import { useCallback, useState } from "react";
+
 import Link from "next/link";
-import { useState, useCallback } from "react";
+
 import { navLinks } from "site-data";
+
+import { Button } from "@components/button";
 
 const NavBar: React.FC = (): JSX.Element => {
   const [sideMenuOpen, setSideMenuOpen] = useState<boolean>(false);

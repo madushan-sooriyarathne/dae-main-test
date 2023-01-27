@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { m } from "framer-motion";
-import { ImageComponent } from "@components/image-component";
+
 import { fadeIn } from "@styles/animations";
-import { DisplayHeading } from "@components/headings/display-heading";
+import { m } from "framer-motion";
+
 import { Button } from "@components/button";
+import { DisplayHeading } from "@components/headings/display-heading";
+import { ImageComponent } from "@components/image-component";
 import { Paragraph } from "@components/paragraph";
 
 interface Props {
@@ -71,7 +73,7 @@ const Hero: React.FC<Props> = ({ video }: Props): JSX.Element => {
       </div>
 
       <div className="bg-water px-4 pb-12 lg:absolute lg:inset-0 lg:flex lg:w-full lg:items-end lg:bg-transparent lg:px-12 3xl:px-16 3xl:py-16">
-        <div className="mx-auto flex w-[min(100%,_37.5rem)] flex-col items-center justify-end gap-y-6 lg:mx-0 lg:mr-auto lg:items-start [&_p]:text-center lg:[&_p]:!text-left [&_h1]:text-center lg:[&_h1]:!text-left">
+        <div className="mx-auto flex w-[min(100%,_50rem)] flex-col items-center justify-end gap-y-6 lg:mx-0 lg:mr-auto lg:items-start [&_p]:text-center lg:[&_p]:!text-left [&_h1]:text-center lg:[&_h1]:!text-left">
           <DisplayHeading intent="white" alignment="left">
             Your gateway to adventure on the lake
           </DisplayHeading>

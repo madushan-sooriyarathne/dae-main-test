@@ -1,5 +1,7 @@
-import { type ComponentProps, forwardRef } from "react";
+import { forwardRef } from "react";
 import { useFormContext } from "react-hook-form";
+
+import type { ComponentProps } from "react";
 
 interface Props extends ComponentProps<"textarea"> {
   name: string;

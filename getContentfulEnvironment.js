@@ -8,5 +8,5 @@ module.exports = function () {
 
   return contentfulClient
     .getSpace(process.env.CONTENTFUL_SPACE_ID)
-    .then((space) => space.getEnvironment('master'));
+    .then((space) => space.getEnvironment("master"));
 };

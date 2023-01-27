@@ -1,7 +1,9 @@
-import { type ButtonType, Button } from "@components/button";
+import { Button } from "@components/button";
 import { PrimaryHeading } from "@components/headings/primary-heading";
-import { Paragraph } from "@components/paragraph";
 import { ImageComponent } from "@components/image-component";
+import { Paragraph } from "@components/paragraph";
+
+import type { ButtonType } from "@components/button";
 
 interface Props {
   image: Image;
@@ -43,4 +45,4 @@ const PageSummerySection: React.FC<Props> = ({
   );
 };
 
-export default PageSummerySection;
+export { PageSummerySection };

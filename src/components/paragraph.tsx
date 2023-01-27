@@ -1,14 +1,18 @@
-import Image from "next/image";
 import ReactMarkdown from "react-markdown";
+
+import Image from "next/image";
+
+import { cva } from "cva";
 import remarkGfm from "remark-gfm";
-import { cva, type VariantProps } from "cva";
 import { twMerge } from "tailwind-merge";
 
 import { PrimaryHeading } from "./headings/primary-heading";
-import { SecondaryHeading } from "./headings/secondary-heading";
-import { TertiaryHeading } from "./headings/tertiary-heading";
 import { QuaternaryHeading } from "./headings/quaternary-heading";
 import { QuinaryHeading } from "./headings/quinary-heading";
+import { SecondaryHeading } from "./headings/secondary-heading";
+import { TertiaryHeading } from "./headings/tertiary-heading";
+
+import type { VariantProps } from "cva";
 
 const paragraphVariants = cva(
   [
@@ -39,11 +43,14 @@ const paragraphVariants = cva(
   }
 );
 
-const paragraph = (props: VariantProps<typeof paragraphVariants>) =>
-  twMerge(paragraphVariants(props));
+const paragraph = (
+  props: VariantProps<typeof paragraphVariants>,
+  className?: string
+) => twMerge(paragraphVariants({ ...props, className }));
 
 interface Props extends VariantProps<typeof paragraphVariants> {
   children: string;
+  className?: string;
 }
 
 const Paragraph: React.FC<Props> = ({
@@ -52,9 +59,15 @@ const Paragraph: React.FC<Props> = ({
   intent,
   small,
   titleParagraph,
+  className,
 }: Props): JSX.Element => {
   return (
-    <div className={paragraph({ alignment, intent, small, titleParagraph })}>
+    <div
+      className={paragraph(
+        { alignment, intent, small, titleParagraph },
+        className
+      )}
+    >
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
@@ -155,7 +168,7 @@ const Paragraph: React.FC<Props> = ({
           ol: (props) => (
             <ol
               {...props}
-              className="flex flex-col items-start justify-start gap-x-3 pl-6 [&>li]:leading-snug"
+              className="flex flex-col items-start justify-start gap-x-3 pl-6 [&>li]:text-sm [&>li]:leading-snug"
             >
               {props.children}
             </ol>
@@ -163,7 +176,7 @@ const Paragraph: React.FC<Props> = ({
           ul: (props) => (
             <ul
               {...props}
-              className="flex flex-col items-start justify-start gap-x-3 pl-6 [&>li]:leading-snug"
+              className="flex list-disc flex-col items-start justify-start gap-y-1 pl-6 [&>li]:leading-snug "
             >
               {props.children}
             </ul>

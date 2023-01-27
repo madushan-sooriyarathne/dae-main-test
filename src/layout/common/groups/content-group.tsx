@@ -1,12 +1,14 @@
-import type { ReactNode } from "react";
-import { cva, type VariantProps } from "cva";
+import { cva } from "cva";
 
-import { Button, type ButtonType } from "@components/button";
+import { HeadingGroup } from "@layout/common/groups/heading-group";
+
+import { Button } from "@components/button";
 import { Paragraph } from "@components/paragraph";
-import {
-  HeadingGroup,
-  type HeadingGroupType,
-} from "@layout/common/groups/heading-group";
+
+import type { ButtonType } from "@components/button";
+import type { HeadingGroupType } from "@layout/common/groups/heading-group";
+import type { VariantProps } from "cva";
+import type { ReactNode } from "react";
 
 const contentWrapper = cva(
   ["w-full flex flex-col justify-start gap-y-6 lg:gap-x-8"],

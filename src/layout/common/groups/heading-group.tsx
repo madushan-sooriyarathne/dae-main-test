@@ -1,11 +1,11 @@
-import { cva, type VariantProps } from "cva";
+import { cva } from "cva";
 
-import {
-  PrimaryHeading,
-  type PrimaryHeadingType,
-} from "@components/headings/primary-heading";
 import { DisplayHeading } from "@components/headings/display-heading";
+import { PrimaryHeading } from "@components/headings/primary-heading";
 import { SubHeading } from "@components/headings/sub-heading";
+
+import type { PrimaryHeadingType } from "@components/headings/primary-heading";
+import type { VariantProps } from "cva";
 
 const headingWrapper = cva(["w-full flex flex-col justify-start"], {
   variants: {

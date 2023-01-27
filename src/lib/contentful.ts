@@ -1,5 +1,7 @@
-import { type ContentfulClientApi, createClient } from "contentful";
 import { env } from "@env/client.mjs";
+import { createClient } from "contentful";
+
+import type { ContentfulClientApi } from "contentful";
 
 const contentfulClient: ContentfulClientApi = createClient({
   space: env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,

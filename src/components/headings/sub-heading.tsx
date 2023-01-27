@@ -1,4 +1,6 @@
-import { cva, type VariantProps } from "cva";
+import { cva } from "cva";
+
+import type { VariantProps } from "cva";
 
 const subHeading = cva(["font-serif italic font-normal tracking-wider"], {
   variants: {

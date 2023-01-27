@@ -1,17 +1,18 @@
 import { contentfulClient } from "@lib/contentful";
+
 import { getBlurHash } from "@utils/blurHashGenerator";
 
-import type { Asset } from "contentful";
-
-import type { ImageContentSectionType } from "@layout/common/image-content-section";
-import type { MultiImageContentSectionType } from "@layout/common/multi-image-content-horizontal";
-
 import type {
-  IBrandFields,
+  IBannerBlockFields,
   IImageContentBlockFields,
   IMultiImageContentBlockFields,
+  IStatFields,
   ITestimonialFields,
 } from "@cms/generated/types";
+import type { BannerType } from "@layout/common/banner-section";
+import type { ImageContentSectionType } from "@layout/common/image-content-section";
+import type { MultiImageContentSectionType } from "@layout/common/multi-image-content-horizontal";
+import type { Asset } from "contentful";
 
 /**
  * format the given asset's url with protocol correction.
@@ -119,10 +120,42 @@ export const getTestimonials = async (): Promise<Testimonial[]> => {
   return data.items.map((testimonial) => ({ ...testimonial.fields }));
 };
 
-export const getBrandData = async (): Promise<IBrandFields> => {
-  const data = await contentfulClient.getEntry<IBrandFields>(
-    "2Tg5k1RFDxk6htATPUtP0W"
-  );
+export const getStats = async (
+  group: string,
+  limit?: number
+): Promise<Stat[]> => {
+  const data = await contentfulClient.getEntries<IStatFields>({
+    content_type: "stat",
+    limit: limit,
+    "fields.group": group,
+  });
 
-  return data.fields;
+  if (data.items.length < 1) throw new Error("No stats found");
+
+  return data.items.map((stat) => ({
+    ...stat.fields,
+    icon: stat.fields.icon ? getAssetUrl(stat.fields.icon) : null,
+  }));
+};
+
+export const getBannerBlock = async (
+  entryId: string
+): Promise<Omit<BannerType, "button">> => {
+  if (entryId.length < 1) throw new Error("Entry ID is empty");
+
+  try {
+    const data = await contentfulClient.getEntry<IBannerBlockFields>(entryId);
+
+    return {
+      heading: data.fields.heading,
+      subHeading: data.fields.subHeading,
+      images: await Promise.all(
+        data.fields.images.map((img) => processContentfulImage(img))
+      ),
+    };
+  } catch (error: unknown) {
+    throw new Error(
+      `Error fetching the Image Content Block with given ID: ${entryId}`
+    );
+  }
 };

@@ -1,5 +1,7 @@
-import Head from "next/head";
 import { type ReactNode } from "react";
+
+import Head from "next/head";
+
 import { Footer } from "./footer";
 import { NavBar } from "./nav-bar";
 

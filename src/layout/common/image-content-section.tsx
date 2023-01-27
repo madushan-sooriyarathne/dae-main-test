@@ -1,9 +1,11 @@
+import { cva } from "cva";
+
+import { ContentGroup } from "@layout/common/groups/content-group";
+
 import { ImageComponent } from "@components/image-component";
-import { type VariantProps, cva } from "cva";
-import {
-  ContentGroup,
-  type ContentGroupType,
-} from "@layout/common/groups/content-group";
+
+import type { ContentGroupType } from "@layout/common/groups/content-group";
+import type { VariantProps } from "cva";
 
 const section = cva(["w-full grid main-grid-columns auto-rows-min gap-y-9"], {
   variants: {

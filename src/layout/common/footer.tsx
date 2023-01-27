@@ -1,8 +1,10 @@
-import { QuaternaryHeading } from "@components/headings/quaternary-heading";
-import { Paragraph } from "@components/paragraph";
 import Link from "next/link";
+
 import { brand, navLinks, socialLinks } from "site-data";
 import { twMerge } from "tailwind-merge";
+
+import { QuaternaryHeading } from "@components/headings/quaternary-heading";
+import { Paragraph } from "@components/paragraph";
 
 const Footer: React.FC = (): JSX.Element => {
   return (

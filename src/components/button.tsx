@@ -1,7 +1,10 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+
+import { cva } from "cva";
 import { twMerge } from "tailwind-merge";
-import { cva, type VariantProps } from "cva";
+
+import type { VariantProps } from "cva";
+import type { ReactNode } from "react";
 
 const buttonVariants = cva(
   [

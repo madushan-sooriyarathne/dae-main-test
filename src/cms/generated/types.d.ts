@@ -2,44 +2,18 @@
 
 import { Asset, Entry } from "contentful";
 
-export interface IBrandFields {
-  /** Company name */
-  companyName: string;
+export interface IBannerBlockFields {
+  /** Heading */
+  heading: string;
 
-  /** Address */
-  address: string;
+  /** Sub Heading */
+  subHeading: string;
 
-  /** VAT No */
-  vatNo: string;
-
-  /** Registration Number */
-  registrationNumber?: string | undefined;
-
-  /** Email */
-  email: string;
-
-  /** Phone # */
-  phone: string[];
-
-  /** Twitter */
-  twitter?: string | undefined;
-
-  /** Facebook */
-  facebook?: string | undefined;
-
-  /** Instagram */
-  instagram?: string | undefined;
-
-  /** Youtube */
-  youtube?: string | undefined;
-
-  /** LinkedIn */
-  linkedIn?: string | undefined;
+  /** Images */
+  images: Asset[];
 }
 
-/** A block to define the manufacturers of your products. */
-
-export interface IBrand extends Entry<IBrandFields> {
+export interface IBannerBlock extends Entry<IBannerBlockFields> {
   sys: {
     id: string;
     type: string;
@@ -48,7 +22,7 @@ export interface IBrand extends Entry<IBrandFields> {
     locale: string;
     contentType: {
       sys: {
-        id: "brand";
+        id: "bannerBlock";
         linkType: "ContentType";
         type: "Link";
       };
@@ -116,6 +90,40 @@ export interface IMultiImageContentBlock
     contentType: {
       sys: {
         id: "multiImageContentBlock";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IStatFields {
+  /** Id */
+  id: string;
+
+  /** Title */
+  title: string;
+
+  /** Description */
+  description: string;
+
+  /** Icon */
+  icon?: Asset | undefined;
+
+  /** Group */
+  group: "berthing-values";
+}
+
+export interface IStat extends Entry<IStatFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "stat";
         linkType: "ContentType";
         type: "Link";
       };
@@ -217,17 +225,19 @@ export interface IVideoBlock extends Entry<IVideoBlockFields> {
 }
 
 export type CONTENT_TYPE =
-  | "brand"
+  | "bannerBlock"
   | "imageContentBlock"
   | "multiImageContentBlock"
+  | "stat"
   | "testimonial"
   | "textContentBlock"
   | "videoBlock";
 
 export type IEntry =
-  | IBrand
+  | IBannerBlock
   | IImageContentBlock
   | IMultiImageContentBlock
+  | IStat
   | ITestimonial
   | ITextContentBlock
   | IVideoBlock;
