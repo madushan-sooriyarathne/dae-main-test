@@ -19,7 +19,7 @@ const Accordion: React.FC<Props> = ({ items, single }: Props): JSX.Element => {
         className="overflow-hidden rounded-sm border border-black-200 [&>*:first-child>button]:border-t-0 [&>*:last-child>button[data-state=closed]]:border-b-0"
         collapsible
       >
-        {items.map((item, index) => (
+        {items.map((item) => (
           <AccordionPrimitive.Item
             key={item.id}
             value={item.id}
