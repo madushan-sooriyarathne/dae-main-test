@@ -43,6 +43,18 @@ declare global {
     customerNote?: string;
   };
 
+  type FAQ = {
+    id: string;
+    question: string;
+    answer: string;
+  };
+
+  interface PageHeader {
+    heading: string;
+    subHeading: string;
+    images: Image[];
+  }
+
   type Video = {
     files: {
       src: string;
