@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  --gradient-bg-primary-light: linear-gradient(to right, #ee0979, #ff6a00);
   --gradient-bg-artifacts-light: radial-gradient(
       at 78% 78%,
       hsla(202, 95%, 65%, 0.3) 0%,

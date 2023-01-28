@@ -21,7 +21,7 @@ interface Props
   extends VariantProps<typeof headingWrapper>,
     Omit<PrimaryHeadingType, "children"> {
   heading: string;
-  subHeading?: string;
+  subHeading: string | null;
   displayHeading?: true;
   bottom?: true;
 }
@@ -37,12 +37,18 @@ const HeadingGroup: React.FC<Props> = ({
   return (
     <div className={headingWrapper({ alignment })}>
       {subHeading && !bottom && (
-        <SubHeading alignment={alignment} intent={intent}>
+        <SubHeading
+          alignment={alignment}
+          intent={intent}
+          type={displayHeading ? "display" : "primary"}
+        >
           {subHeading}
         </SubHeading>
       )}
       {displayHeading ? (
-        <DisplayHeading>{heading}</DisplayHeading>
+        <DisplayHeading alignment={alignment} intent={intent}>
+          {heading}
+        </DisplayHeading>
       ) : (
         <PrimaryHeading alignment={alignment} intent={intent}>
           {heading}

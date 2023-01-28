@@ -21,7 +21,7 @@ const LocationSection: React.FC<Props> = ({
           pos={{ x: "right", y: "center" }}
         />
       </div>
-      <div className="flex flex-col items-start justify-center px-4 py-9 mlg:col-[content-start_/_col-end_4] mlg:row-start-1 mlg:px-0 mlg:py-12">
+      <div className="flex flex-col items-start justify-center px-4 py-9 mlg:col-content-start-half mlg:row-start-1 mlg:px-0 mlg:py-12">
         <ContentGroup {...contentGroupProps} />
       </div>
     </div>

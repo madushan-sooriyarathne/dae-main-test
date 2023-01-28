@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 
+import { sliderVariants } from "@styles/animations";
 import { AnimatePresence, m } from "framer-motion";
 
 import { clamp } from "@utils/base";
 
-import { Button, ButtonType } from "@components/button";
+import { Button } from "@components/button";
 import { ImageComponent } from "@components/image-component";
 
 import { HeadingGroup } from "./groups/heading-group";
 
-import type { Variants } from "framer-motion";
+import type { ButtonType } from "@components/button";
 
 import type { HeadingGroupType } from "./groups/heading-group";
 
@@ -17,26 +18,6 @@ interface Props extends HeadingGroupType {
   images: Image[];
   button?: ButtonType;
 }
-
-const sliderVariants: Variants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      ease: "easeInOut",
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeInOut",
-    },
-  },
-};
 
 const BannerSection: React.FC<Props> = ({
   images,
@@ -75,7 +56,7 @@ const BannerSection: React.FC<Props> = ({
         </AnimatePresence>
       </div>
       <div className="main-grid-columns flex w-full items-end justify-start bg-water py-9 lg:h-full lg:bg-transparent lg:bg-overlayShade lg:px-12 lg:py-12 xl:p-16">
-        <div className="col-[content-start_/_content-end] flex w-[min(100%,_37.5rem)] flex-col items-start justify-end gap-y-8 lg:col-[full-start_/_full-end]">
+        <div className="col-content flex w-[min(100%,_37.5rem)] flex-col items-start justify-end gap-y-8 lg:col-full">
           <HeadingGroup {...headingGroupProps} intent="white" />
           {button && <Button {...button} />}
         </div>

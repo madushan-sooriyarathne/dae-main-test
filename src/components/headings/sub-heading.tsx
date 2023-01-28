@@ -6,9 +6,9 @@ const subHeading = cva(["font-serif italic font-normal tracking-wider"], {
   variants: {
     type: {
       display:
-        "text-[1.125rem] md:text-[1.25rem] lg:text-[1.375rem] 3xl:text-[1.625rem]",
+        "text-[1.40625rem] md:text-[1.5625rem] lg:text-[1.75rem] 3xl:text-[2rem]",
       primary:
-        "text-[0.9375] md:text-[1rem] lg:text-[1.125] 3xl:text-[1.25rem]",
+        "text-[1.25em] md:text-[1.40625rem] lg:text-[1.5625rem] 3xl:text-[1.75rem]",
     },
     intent: {
       primary: "text-black-700",

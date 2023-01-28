@@ -20,7 +20,7 @@ const ContactFormSection: React.FC = (): JSX.Element => {
 
   return (
     <div className="main-grid-columns trim-bottom grid bg-water bg-[url('/assets/svg/bg-waves.svg')] bg-[size:200%] bg-bottom bg-no-repeat py-12 md:bg-contain md:py-16 lg:py-18 xl:py-24 2xl:py-32">
-      <div className="col-[content-start_/_content-end] mx-auto flex w-[min(100%,_37.5rem)] flex-col items-stretch justify-start gap-y-9 ">
+      <div className="col-content mx-auto flex w-[min(100%,_37.5rem)] flex-col items-stretch justify-start gap-y-9 ">
         <HeadingGroup
           heading="Have Any Questions?"
           subHeading="Reach out to us"
@@ -31,7 +31,7 @@ const ContactFormSection: React.FC = (): JSX.Element => {
         <Form
           form={form}
           onSubmit={(data) => alert(JSON.stringify(data))}
-          className="grid md:grid-cols-2 md:gap-x-6 md:[&>*:nth-child(1)]:col-span-2 md:[&>*:nth-child(2)]:col-span-2 md:[&>*:nth-child(3)]:col-span-2"
+          className="grid md:grid-cols-2 md:gap-x-6 md:[&>*:nth-child(2)]:col-span-2 md:[&>*:nth-child(3)]:col-span-2 md:[&>*:nth-child(1)]:col-span-2"
         >
           <InputField
             label="Name"

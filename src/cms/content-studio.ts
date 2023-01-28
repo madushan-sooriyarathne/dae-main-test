@@ -4,14 +4,19 @@ import { getBlurHash } from "@utils/blurHashGenerator";
 
 import type {
   IBannerBlockFields,
+  IFaqFields,
   IImageContentBlockFields,
   IMultiImageContentBlockFields,
+  IPageHeaderBlockFields,
+  IPageSummeryBlockFields,
   IStatFields,
   ITestimonialFields,
 } from "@cms/generated/types";
 import type { BannerType } from "@layout/common/banner-section";
 import type { ImageContentSectionType } from "@layout/common/image-content-section";
 import type { MultiImageContentSectionType } from "@layout/common/multi-image-content-horizontal";
+import type { PageHeaderType } from "@layout/common/page-header";
+import type { PageSummerySectionType } from "@layout/common/page-summery-section";
 import type { Asset } from "contentful";
 
 /**
@@ -73,7 +78,7 @@ export const getImageContentBlock = async (
 
     return {
       heading: data.fields.heading,
-      subHeading: data.fields.subHeading,
+      subHeading: data.fields.subHeading || null,
       content: data.fields.description,
       image: await processContentfulImage(data.fields.image),
     };
@@ -96,7 +101,7 @@ export const getMultiImageContentBlock = async (
 
     return {
       heading: data.fields.heading,
-      subHeading: data.fields.subHeading,
+      subHeading: data.fields.subHeading || null,
       content: data.fields.description,
       images: (await Promise.all(
         data.fields.images.map((image) => processContentfulImage(image))
@@ -158,4 +163,72 @@ export const getBannerBlock = async (
       `Error fetching the Image Content Block with given ID: ${entryId}`
     );
   }
+};
+
+export const getPageHeaderBlock = async (
+  entryId: string
+): Promise<PageHeaderType> => {
+  if (entryId.length < 1) throw new Error("Entry ID is empty");
+
+  try {
+    const data = await contentfulClient.getEntry<IPageHeaderBlockFields>(
+      entryId
+    );
+
+    return {
+      heading: data.fields.heading,
+      subHeading: data.fields.subHeading,
+      images: await Promise.all(
+        data.fields.images.map((img) => processContentfulImage(img))
+      ),
+    };
+  } catch (error: unknown) {
+    throw new Error(
+      `Error fetching the Image Content Block with given ID: ${entryId}`
+    );
+  }
+};
+
+export const getPageSummeryBlock = async (
+  entryId: string
+): Promise<PageSummerySectionType> => {
+  if (entryId.length < 1) throw new Error("Entry ID is empty");
+
+  try {
+    const data = await contentfulClient.getEntry<IPageSummeryBlockFields>(
+      entryId
+    );
+
+    return {
+      heading: data.fields.heading,
+      subHeading: data.fields.subHeading || null,
+      content: data.fields.description,
+      image: data.fields.image
+        ? await processContentfulImage(data.fields.image)
+        : null,
+    };
+  } catch (error: unknown) {
+    throw new Error(
+      `Error fetching the Image Content Block with given ID: ${entryId}`
+    );
+  }
+};
+
+export const getFAQGroup = async (
+  group: string,
+  limit?: number
+): Promise<FAQ[]> => {
+  const data = await contentfulClient.getEntries<IFaqFields>({
+    content_type: "faq",
+    limit: limit,
+    "fields.group": group,
+  });
+
+  if (data.items.length < 1) throw new Error("No FAQs found");
+
+  return data.items.map((faq) => ({
+    question: faq.fields.question,
+    answer: faq.fields.answer,
+    id: faq.fields.id,
+  }));
 };

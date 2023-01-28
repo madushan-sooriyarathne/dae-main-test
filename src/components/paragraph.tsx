@@ -1,18 +1,14 @@
-import ReactMarkdown from "react-markdown";
-
-import Image from "next/image";
-
-import { cva } from "cva";
-import remarkGfm from "remark-gfm";
-import { twMerge } from "tailwind-merge";
-
 import { PrimaryHeading } from "./headings/primary-heading";
 import { QuaternaryHeading } from "./headings/quaternary-heading";
 import { QuinaryHeading } from "./headings/quinary-heading";
 import { SecondaryHeading } from "./headings/secondary-heading";
 import { TertiaryHeading } from "./headings/tertiary-heading";
-
+import { cva } from "cva";
 import type { VariantProps } from "cva";
+import Image from "next/image";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { twMerge } from "tailwind-merge";
 
 const paragraphVariants = cva(
   [
@@ -97,7 +93,7 @@ const Paragraph: React.FC<Props> = ({
               intent={intent}
               alignment={alignment}
               className={twMerge(
-                "mt-6 first:mt-0 md:mt-9 md:first:mt-0 lg:mt-11 lg:first:mt-0"
+                "first:mt-0 mt-6  md:mt-9 md:first:mt-0 lg:mt-11 lg:first:mt-0"
               )}
             >
               {props.children as string}
@@ -156,7 +152,7 @@ const Paragraph: React.FC<Props> = ({
             </p>
           ),
           img: (props) => (
-            <div className="my-6 w-full">
+            <div className="w-full my-6 ">
               <Image
                 width={`${props.width as number}`}
                 height={`${props.height as number}`}

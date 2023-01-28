@@ -11,8 +11,8 @@ const Footer: React.FC = (): JSX.Element => {
     <footer className="main-grid-columns grid w-full auto-rows-min grid-cols-1 items-start justify-items-center gap-y-12 bg-water bg-darkWater pt-12 md:gap-y-0 md:pt-0">
       <div
         className={twMerge(
-          "col-[full-start_/_full-end] flex h-full  w-full place-content-center border-b border-b-water-800 pb-12",
-          "md:col-[full-start_/_col-end_4] md:grid md:border-r md:border-r-water-800 md:py-12",
+          "col-full flex h-full  w-full place-content-center border-b border-b-water-800 pb-12",
+          "md:col-full-start-half md:grid md:border-r md:border-r-water-800 md:py-12",
           "xl:col-[full-start_/_col-end_2]",
           "2xl:row-start-1 2xl:row-end-3"
         )}
@@ -26,13 +26,13 @@ const Footer: React.FC = (): JSX.Element => {
       <div
         className={twMerge(
           "col-[full-start_/full-end] flex h-full w-full flex-col items-center justify-start gap-y-6 border-b border-b-water-800 pb-12",
-          "md:col-[col-start_5_/_full-end] md:items-start md:gap-y-5 md:py-12 md:px-8",
+          "md:col-full-end-half md:items-start md:gap-y-5 md:py-12 md:px-8",
           "lg:px-12",
           "xl:col-[col-start_3_/_col-end_6] xl:border-r xl:border-r-water-800",
           "2xl:col-[col-start_3_/_col-end_5]"
         )}
       >
-        <div className="flex flex-col items-center justify-start gap-y-1 md:items-start md:[&_h5]:text-left md:[&_p]:text-left">
+        <div className="flex flex-col items-center justify-start gap-y-1 md:items-start md:[&_p]:text-left md:[&_h5]:text-left">
           <QuaternaryHeading alignment="center" intent="white">
             {brand.companyName}
           </QuaternaryHeading>
@@ -95,8 +95,8 @@ const Footer: React.FC = (): JSX.Element => {
       </div>
       <div
         className={twMerge(
-          "col-[content-start_/_content-end] flex h-full w-full flex-col items-center justify-start gap-y-4 border-b border-b-water-800 pb-12",
-          "md:col-[full-start_/_full-end] md:flex-row md:justify-center md:gap-x-6 md:border-b-0 md:py-12 md:px-9",
+          "col-content flex h-full w-full flex-col items-center justify-start gap-y-4 border-b border-b-water-800 pb-12",
+          "md:col-full md:flex-row md:justify-center md:gap-x-6 md:border-b-0 md:py-12 md:px-9",
           "xl:col-[col-start_7_/_full-end] xl:flex-col xl:items-start xl:justify-start xl:border-b xl:p-12",
           "2xl:col-[col-start_6_/_col-end_7] 2xl:border-r 2xl:border-r-water-800"
         )}
@@ -113,7 +113,7 @@ const Footer: React.FC = (): JSX.Element => {
       </div>
       <div
         className={twMerge(
-          "col-[full-start_/_full-end] flex h-full w-full flex-row flex-wrap items-center justify-center gap-y-3 gap-x-3 border-b border-b-water-800 pb-12",
+          "col-full flex h-full w-full flex-row flex-wrap items-center justify-center gap-y-3 gap-x-3 border-b border-b-water-800 pb-12",
           "md:border-b-0 md:px-9",
           "xl:py-6",
           "2xl:col-[col-start_8_/_full-end]  2xl:grid 2xl:grid-cols-[repeat(2,_min-content)] 2xl:items-start 2xl:justify-start 2xl:border-b 2xl:p-12"
@@ -135,7 +135,7 @@ const Footer: React.FC = (): JSX.Element => {
       </div>
       <div
         className={twMerge(
-          "col-[full-start_/_full-end] -mt-8 flex w-full flex-col items-center justify-start gap-y-3 px-4 pb-4",
+          "col-full -mt-8 flex w-full flex-col items-center justify-start gap-y-3 px-4 pb-4",
           "md:border-t md:border-t-water-800 md:pt-6",
           "xl:mt-0 xl:flex-row xl:justify-between xl:gap-x-12 xl:px-12",
           "2xl:col-[col-start_3_/_full-end]  2xl:border-t-0"

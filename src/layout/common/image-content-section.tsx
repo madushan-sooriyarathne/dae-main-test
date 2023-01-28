@@ -29,10 +29,10 @@ const ImageContentSection: React.FC<Props> = ({
 }: Props): JSX.Element => {
   return (
     <section className={section({ withBg })}>
-      <div className="col-[full-start_/_full-end] h-full w-full md:col-[content-start_/_content-end] lg:col-[content-start_/col-end_4] lg:py-12 lg:pr-12 xl:py-14 xl:pr-14 2xl:py-24 2xl:pr-16">
+      <div className="col-full h-full w-full md:col-content lg:col-[content-start_/col-end_4] lg:py-12 lg:pr-12 xl:py-14 xl:pr-14 2xl:py-24 2xl:pr-16">
         <ContentGroup {...contentGroupProps} />
       </div>
-      <div className="col-[content-start_/_content-end] aspect-square w-full sm:aspect-[4_/_3] md:aspect-video lg:col-[col-start_5_/_full-end] lg:aspect-auto lg:h-full xxl:col-[col-start_5_/_content-end]">
+      <div className="col-content aspect-square w-full sm:aspect-[4_/_3] md:aspect-video lg:col-full-end-half lg:aspect-auto lg:h-full xxl:col-content-end-half">
         <ImageComponent image={image} />
       </div>
     </section>

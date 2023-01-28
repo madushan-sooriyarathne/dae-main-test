@@ -9,7 +9,7 @@ interface Props {
 const StatsGrid: React.FC<Props> = ({ stats }: Props): JSX.Element => {
   return (
     <section className="main-grid-columns grid w-full">
-      <div className="col-[content-start_/_content-end] mx-auto flex flex-row flex-wrap items-stretch justify-center gap-4 md:w-full">
+      <div className="col-content mx-auto flex flex-row flex-wrap items-stretch justify-center gap-4 md:w-full">
         {stats.map((stat) => (
           <div
             key={stat.id}

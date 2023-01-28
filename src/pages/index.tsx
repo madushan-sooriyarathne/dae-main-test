@@ -4,11 +4,13 @@ import {
   getBannerBlock,
   getImageContentBlock,
   getMultiImageContentBlock,
+  getPageSummeryBlock,
   getStats,
   getTestimonials,
 } from "@cms/content-studio";
 
 import Page from "@layout/common/page";
+import { PageSummerySectionType } from "@layout/common/page-summery-section";
 import { Hero } from "@layout/homepage/hero";
 import { LocationSection } from "@layout/homepage/location-section";
 
@@ -67,7 +69,7 @@ const StatsGrid = dynamic(() =>
 interface Props {
   aboutSection: ImageContentSectionType;
   locationSection: ImageContentSectionType;
-  boatStorageSection: ImageContentSectionType;
+  boatStorageSection: PageSummerySectionType;
   stats: Stat[];
   waterSportsSection: MultiImageContentSectionType;
   diningBanner: Omit<BannerType, "button">;
@@ -166,8 +168,8 @@ const getStaticProps: GetStaticProps = async (): Promise<
   GetStaticPropsResult<Props>
 > => {
   const aboutSection = await getImageContentBlock("vtzVqu4ar9WM8ztkaXeDD");
-  const boatStorageSection = await getImageContentBlock(
-    "673ys7tUS6UwcmbCceSMJl"
+  const boatStorageSection = await getPageSummeryBlock(
+    "76ESyIGEPU40V57T7MeHYw"
   );
   const locationSection = await getImageContentBlock("7aMH2kvF0qY1iHlOUJY1iu");
 

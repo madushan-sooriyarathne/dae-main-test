@@ -30,6 +30,37 @@ export interface IBannerBlock extends Entry<IBannerBlockFields> {
   };
 }
 
+export interface IFaqFields {
+  /** Question */
+  question: string;
+
+  /** Answer */
+  answer: string;
+
+  /** Id */
+  id: string;
+
+  /** Group */
+  group: "membership-faq";
+}
+
+export interface IFaq extends Entry<IFaqFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "faq";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IImageContentBlockFields {
   /** Heading */
   heading: string;
@@ -97,6 +128,67 @@ export interface IMultiImageContentBlock
   };
 }
 
+export interface IPageHeaderBlockFields {
+  /** Heading */
+  heading: string;
+
+  /** Sub Heading */
+  subHeading: string;
+
+  /** Images */
+  images: Asset[];
+}
+
+export interface IPageHeaderBlock extends Entry<IPageHeaderBlockFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "pageHeaderBlock";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IPageSummeryBlockFields {
+  /** Heading */
+  heading: string;
+
+  /** Sub Heading */
+  subHeading?: string | undefined;
+
+  /** Description */
+  description: string;
+
+  /** Image */
+  image?: Asset | undefined;
+}
+
+/** Sections with a single image and a text content block. text content includes a heading, an optional sub-heading, and a description.  */
+
+export interface IPageSummeryBlock extends Entry<IPageSummeryBlockFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "pageSummeryBlock";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IStatFields {
   /** Id */
   id: string;
@@ -111,7 +203,7 @@ export interface IStatFields {
   icon?: Asset | undefined;
 
   /** Group */
-  group: "berthing-values";
+  group: "berthing-values" | "membership-perks";
 }
 
 export interface IStat extends Entry<IStatFields> {
@@ -226,8 +318,11 @@ export interface IVideoBlock extends Entry<IVideoBlockFields> {
 
 export type CONTENT_TYPE =
   | "bannerBlock"
+  | "faq"
   | "imageContentBlock"
   | "multiImageContentBlock"
+  | "pageHeaderBlock"
+  | "pageSummeryBlock"
   | "stat"
   | "testimonial"
   | "textContentBlock"
@@ -235,8 +330,11 @@ export type CONTENT_TYPE =
 
 export type IEntry =
   | IBannerBlock
+  | IFaq
   | IImageContentBlock
   | IMultiImageContentBlock
+  | IPageHeaderBlock
+  | IPageSummeryBlock
   | IStat
   | ITestimonial
   | ITextContentBlock

@@ -19,14 +19,14 @@ const MultiIMageContentVertical: React.FC<Props> = ({
 
   return (
     <section className="main-grid-columns grid auto-rows-min gap-y-9">
-      <div className="col-[content-start_/_content-end] w-[min(56.25rem,100%)] lg:mx-auto">
+      <div className="col-content w-[min(56.25rem,100%)] lg:mx-auto">
         <ContentGroup
           {...contentGroupProps}
           alignment={centered ? "center" : "left"}
         />
       </div>
 
-      <div className="col-[content-start_/_content-end] row-span-1 row-start-2 lg:hidden">
+      <div className="col-content row-span-1 row-start-2 lg:hidden">
         <Carousel
           breakpoints={{
             "(min-width: 320px)": {
@@ -68,7 +68,7 @@ const MultiIMageContentVertical: React.FC<Props> = ({
           ))}
         </Carousel>
       </div>
-      <div className="col-[content-start_/_content-end] hidden w-full grid-cols-3 gap-x-6 lg:grid [&>*:nth-child(2)]:translate-y-12  3xl:[&>*:nth-child(2)]:translate-y-18 [&>*:nth-child(3)]:translate-y-8 3xl:[&>*:nth-child(3)]:translate-y-12">
+      <div className="col-content hidden w-full grid-cols-3 gap-x-6 lg:grid [&>*:nth-child(2)]:translate-y-12  3xl:[&>*:nth-child(2)]:translate-y-18 [&>*:nth-child(3)]:translate-y-8 3xl:[&>*:nth-child(3)]:translate-y-12">
         {images.map((image, index) => (
           <div className="aspect-[3/4] w-full rounded-sm" key={index}>
             <ImageComponent image={image} />
