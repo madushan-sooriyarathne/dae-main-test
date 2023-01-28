@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const { fontFamily } = require('tailwindcss/defaultTheme');
+const { fontFamily } = require("tailwindcss/defaultTheme");
 // const {playfairDisplay, plusJakartaSans} = require('src/styles/fonts');
 
 /** @type {import('tailwindcss').Config} */
@@ -12,7 +12,7 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        "18": "4.5rem",
+        18: "4.5rem",
       },
       fontSize: {
         "2xs": "0.625rem",
@@ -22,7 +22,30 @@ module.exports = {
         lightArtifacts: "var(--gradient-bg-artifacts-light)",
         darkWater: "var(--dark-water)",
         overlayShade: "var(--overlay-shade)",
-      }
+        primaryLight: "var(--gradient-bg-primary-light)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      gridColumn: {
+        content: "content-start / content-end",
+        full: "full-start / full-end",
+        "full-start-half": "full-start / col-end 4",
+        "full-end-half": "col-start 5 / full-end",
+        "content-start-half": "content-start / col-end 4",
+        "content-end-half": "col-start 5 / content-end",
+      },
     },
     colors: {
       transparent: "transparent",
@@ -92,8 +115,8 @@ module.exports = {
       warning: "hsl(34, 100%, 45%)",
     },
     fontFamily: {
-      sans: ['var(--primary-font)', ...fontFamily.sans],
-      serif: ['var(--secondary-font)', ...fontFamily.serif]
+      sans: ["var(--primary-font)", ...fontFamily.sans],
+      serif: ["var(--secondary-font)", ...fontFamily.serif],
     },
     screens: {
       xsm: "360px",
@@ -105,10 +128,8 @@ module.exports = {
       "2xl": "1366px",
       "3xl": "1440px",
       "4xl": "1600px",
-      "xxl": "1920px",
+      xxl: "1920px",
     },
   },
-  plugins: [
-    require('@tailwindcss/container-queries')
-  ],
+  plugins: [require("@tailwindcss/container-queries")],
 };
