@@ -31,7 +31,6 @@ interface Props
   label?: string;
 }
 
-// eslint-disable-next-line react/display-name
 const InputField = forwardRef<HTMLInputElement, Props>(
   (props, ref): JSX.Element => {
     const form = useFormContext();
@@ -66,5 +65,6 @@ const InputField = forwardRef<HTMLInputElement, Props>(
     );
   }
 );
+InputField.displayName = "InputField";
 
 export { InputField };
