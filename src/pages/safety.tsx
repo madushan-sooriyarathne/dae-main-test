@@ -45,10 +45,14 @@ const SafetyPage: NextPage<Props> = ({
 const getStaticProps: GetStaticProps = async (): Promise<
   GetStaticPropsResult<Props>
 > => {
-  const header = await getPageHeaderBlock("");
-  const pageSummery = await getPageSummeryBlock("");
-  const marinaSafetySection = await getMultiImageContentBlock("");
-  const safetyTrainingSection = await getImageContentBlock("");
+  const header = await getPageHeaderBlock("3hGi4Ep99cpbAvf9oCCpgH");
+  const pageSummery = await getPageSummeryBlock("6lQy9IzvDxZA3rpO0FCe3Q");
+  const marinaSafetySection = await getMultiImageContentBlock(
+    "2QRYVhf7ltI6pMoCywdzRl"
+  );
+  const safetyTrainingSection = await getImageContentBlock(
+    "2oH0fTYIuTwdMOgb8Z2Sg1"
+  );
 
   return {
     props: {
