@@ -67,7 +67,7 @@ const BerthingPage: NextPage<Props> = ({
 const getStaticProps: GetStaticProps = async (): Promise<
   GetStaticPropsResult<Props>
 > => {
-  const header = await getPageHeaderBlock("7n5aipQ9O2BSEPF3nYvdd");
+  const header = await getPageHeaderBlock("38SFVquyYxXg9ZnEGUk1rc");
   const pageSummery = await getPageSummeryBlock("5p3FcwgVIJJRzjFqx4rnQV");
 
   const experiencedStaffSection = await getImageContentBlock(
