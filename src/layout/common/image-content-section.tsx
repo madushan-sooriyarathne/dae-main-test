@@ -10,7 +10,7 @@ import type { VariantProps } from "cva";
 const section = cva(["w-full grid main-grid-columns auto-rows-min gap-y-9"], {
   variants: {
     withBg: {
-      true: "2xl:bg-black-100 shadow-[0_0_0_100vmax] shadow-black-100 [clip-path:inset(0_-100vmax)]",
+      true: "bg-lightWater py-12 xxl:py-16",
     },
   },
   defaultVariants: {
