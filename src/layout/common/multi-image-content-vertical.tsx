@@ -1,3 +1,4 @@
+import { m, useScroll, useTransform } from "framer-motion";
 import useMediaQuery from "@hooks/useMediaQuery";
 
 import { Carousel } from "@components/carousel";
@@ -6,6 +7,8 @@ import { ImageComponent } from "@components/image-component";
 import { ContentGroup } from "./groups/content-group";
 
 import type { ContentGroupType } from "./groups/content-group";
+import { useScrollProgress } from "@hooks/useScrollProgress";
+import { useRef } from "react";
 
 interface Props extends ContentGroupType {
   images: [Image, Image, Image];
@@ -17,8 +20,16 @@ const MultiIMageContentVertical: React.FC<Props> = ({
 }: Props): JSX.Element => {
   const centered = useMediaQuery("(min-width: 1024px)");
 
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start center", "center start"],
+  });
+  const imageTwoY = useTransform(scrollYProgress, [0, 1], ["72px", "0px"]);
+  const imageThreeY = useTransform(scrollYProgress, [0, 1], ["48px", "0px"]);
+
   return (
-    <section className="main-grid-columns grid auto-rows-min gap-y-9">
+    <section className="main-grid-columns grid auto-rows-min gap-y-9" ref={ref}>
       <div className="col-content w-[min(56.25rem,100%)] lg:mx-auto">
         <ContentGroup
           {...contentGroupProps}
@@ -70,9 +81,15 @@ const MultiIMageContentVertical: React.FC<Props> = ({
       </div>
       <div className="col-content hidden w-full grid-cols-3 gap-x-6 lg:grid [&>*:nth-child(2)]:translate-y-12  3xl:[&>*:nth-child(2)]:translate-y-18 [&>*:nth-child(3)]:translate-y-8 3xl:[&>*:nth-child(3)]:translate-y-12">
         {images.map((image, index) => (
-          <div className="aspect-[3/4] w-full rounded-sm" key={index}>
+          <m.div
+            className="aspect-[3/4] w-full overflow-hidden rounded-sm"
+            key={index}
+            style={{
+              y: index === 1 ? imageTwoY : index === 2 ? imageThreeY : 0,
+            }}
+          >
             <ImageComponent image={image} />
-          </div>
+          </m.div>
         ))}
       </div>
     </section>
