@@ -27,6 +27,7 @@ declare global {
   type NavLink = {
     route: string;
     label: string;
+    external?: boolean;
   };
 
   interface Stat {
