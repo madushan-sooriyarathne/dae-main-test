@@ -19,7 +19,6 @@ interface Props {
   freeMode?: boolean;
   withDots?: boolean;
   withFraction?: boolean;
-  mobilePagination?: true;
   initial?: number;
   centered?: boolean;
   autoPlay?: boolean;
@@ -65,7 +64,6 @@ const Carousel: React.FC<Props> = ({
   loop = false,
   centered = false,
   autoPlay = false,
-  mobilePagination,
   withNavigation,
 }: Props): JSX.Element => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -147,7 +145,7 @@ const Carousel: React.FC<Props> = ({
 
   return (
     <div className="relative z-0 w-full">
-      <div className="relative grid w-full auto-rows-min grid-cols-1 items-start justify-center gap-y-4">
+      <div className="relative grid w-full auto-rows-min grid-cols-1 items-start justify-center gap-y-6">
         {withNavigation && (
           <button
             className="absolute top-1/2 left-0 z-10 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-sm shadow-water-500"
@@ -172,7 +170,7 @@ const Carousel: React.FC<Props> = ({
           </div>
         </div>
         {withDots && carouselLoaded && (
-          <div className="flex h-4 items-center justify-center gap-x-2 md:hidden">
+          <div className="flex h-4 flex-wrap items-center justify-center gap-x-2 px-8">
             {
               // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
               [...Array(instanceRef.current?.track.details.slides.length)].map(
@@ -190,8 +188,8 @@ const Carousel: React.FC<Props> = ({
           </div>
         )}
         {withFraction && carouselLoaded && instanceRef.current && (
-          <div className="flex h-auto items-center justify-center gap-x-2 md:hidden">
-            <span className="text-center text-base font-bold tracking-wide">
+          <div className="flex h-auto items-center justify-center gap-x-2 ">
+            <span className="flex min-w-[3.75rem] items-center justify-center rounded-md bg-white-200 px-2 py-1 text-center text-sm font-medium tracking-wide text-primary">
               {`${currentSlide + 1} /
               ${instanceRef.current?.track.details.slides.length}`}
             </span>
