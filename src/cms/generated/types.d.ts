@@ -30,6 +30,43 @@ export interface IBannerBlock extends Entry<IBannerBlockFields> {
   };
 }
 
+export interface ICardBlockFields {
+  /** Title */
+  title: string;
+
+  /** Id */
+  id: string;
+
+  /** Sub Title */
+  subTitle?: string | undefined;
+
+  /** Description */
+  description: string;
+
+  /** Image */
+  image: Asset;
+
+  /** Group */
+  group: "storage-facilities" | "activity-types";
+}
+
+export interface ICardBlock extends Entry<ICardBlockFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "cardBlock";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IFaqFields {
   /** Question */
   question: string;
@@ -318,6 +355,7 @@ export interface IVideoBlock extends Entry<IVideoBlockFields> {
 
 export type CONTENT_TYPE =
   | "bannerBlock"
+  | "cardBlock"
   | "faq"
   | "imageContentBlock"
   | "multiImageContentBlock"
@@ -330,6 +368,7 @@ export type CONTENT_TYPE =
 
 export type IEntry =
   | IBannerBlock
+  | ICardBlock
   | IFaq
   | IImageContentBlock
   | IMultiImageContentBlock
