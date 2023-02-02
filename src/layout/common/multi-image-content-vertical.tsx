@@ -7,7 +7,6 @@ import { ImageComponent } from "@components/image-component";
 import { ContentGroup } from "./groups/content-group";
 
 import type { ContentGroupType } from "./groups/content-group";
-import { useScrollProgress } from "@hooks/useScrollProgress";
 import { useRef } from "react";
 
 interface Props extends ContentGroupType {
