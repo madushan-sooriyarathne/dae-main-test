@@ -22,7 +22,13 @@ module.exports = {
         lightArtifacts: "var(--gradient-bg-artifacts-light)",
         darkWater: "var(--dark-water)",
         overlayShade: "var(--overlay-shade)",
+        lightWater: "var(--gradient-bg-water-light)",
         primaryLight: "var(--gradient-bg-primary-light)",
+        blurPrimary: "var(--gradient-blur-primary)",
+        blurWater: "var(--gradient-blur-water)",
+        blurLand: "var(--gradient-blur-land)",
+        blurPrimaryWater: "var(--gradient-blur-primary-water)",
+        blurPrimaryLand: "var(--gradient-blur-primary-land)",
       },
       keyframes: {
         "accordion-down": {
@@ -115,8 +121,8 @@ module.exports = {
       warning: "hsl(34, 100%, 45%)",
     },
     fontFamily: {
-      sans: ["var(--primary-font)", ...fontFamily.sans],
-      serif: ["var(--secondary-font)", ...fontFamily.serif],
+      sans: ["var(--font-plus-jakarta-sans)"],
+      serif: ["var(--font-playfair-display)"],
     },
     screens: {
       xsm: "360px",
