@@ -1,3 +1,5 @@
+import type { MultiImageContentSectionType } from "@layout/common/multi-image-content-horizontal";
+
 declare global {
   type Image = {
     src: string;
@@ -55,6 +57,8 @@ declare global {
     subHeading: string;
     images: Image[];
   }
+
+  type MultiImageContentBlockType = MultiImageContentSectionType;
 
   type Video = {
     files: {
