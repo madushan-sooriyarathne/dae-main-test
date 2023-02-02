@@ -10,13 +10,12 @@ import {
 } from "@cms/content-studio";
 
 import Page from "@layout/common/page";
-import { PageSummerySectionType } from "@layout/common/page-summery-section";
+import { type PageSummerySectionType } from "@layout/common/page-summery-section";
 import { Hero } from "@layout/homepage/hero";
 import { LocationSection } from "@layout/homepage/location-section";
 
 import type { BannerType } from "@layout/common/banner-section";
 import type { ImageContentSectionType } from "@layout/common/image-content-section";
-import type { MultiImageContentSectionType } from "@layout/common/multi-image-content-horizontal";
 import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 const MultiImageHorizontal = dynamic(() =>
@@ -71,7 +70,7 @@ interface Props {
   locationSection: ImageContentSectionType;
   boatStorageSection: PageSummerySectionType;
   stats: Stat[];
-  waterSportsSection: MultiImageContentSectionType;
+  waterSportsSection: MultiImageContentBlockType;
   diningBanner: Omit<BannerType, "button">;
   testimonials: Testimonial[];
 }

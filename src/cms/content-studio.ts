@@ -16,7 +16,6 @@ import type {
 } from "@cms/generated/types";
 import type { BannerType } from "@layout/common/banner-section";
 import type { ImageContentSectionType } from "@layout/common/image-content-section";
-import type { MultiImageContentSectionType } from "@layout/common/multi-image-content-horizontal";
 import type { PageHeaderType } from "@layout/common/page-header";
 import type { PageSummerySectionType } from "@layout/common/page-summery-section";
 import type { Asset } from "contentful";
@@ -95,7 +94,7 @@ export const getImageContentBlock = async (
 
 export const getMultiImageContentBlock = async (
   entryId: string
-): Promise<MultiImageContentSectionType> => {
+): Promise<MultiImageContentBlockType> => {
   if (entryId.length < 1) throw new Error("Entry ID is empty");
 
   try {

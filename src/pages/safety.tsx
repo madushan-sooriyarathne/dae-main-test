@@ -8,7 +8,6 @@ import {
   ImageContentSection,
   type ImageContentSectionType,
 } from "@layout/common/image-content-section";
-import { type MultiImageContentSectionType } from "@layout/common/multi-image-content-horizontal";
 import { MultiIMageContentVertical } from "@layout/common/multi-image-content-vertical";
 import { NewsletterSection } from "@layout/common/newsletter-section";
 import Page from "@layout/common/page";
@@ -22,7 +21,7 @@ import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 interface Props {
   header: PageHeaderType;
   pageSummery: PageSummerySectionType;
-  marinaSafetySection: MultiImageContentSectionType;
+  marinaSafetySection: MultiImageContentBlockType;
   safetyTrainingSection: ImageContentSectionType;
 }
 

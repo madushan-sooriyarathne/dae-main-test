@@ -19,7 +19,6 @@ import { StatsGrid } from "@layout/common/stats-grid";
 import { TestimonialSection } from "@layout/common/testimonials-section";
 
 import type { ImageContentSectionType } from "@layout/common/image-content-section";
-import type { MultiImageContentSectionType } from "@layout/common/multi-image-content-horizontal";
 import type { PageHeaderType } from "@layout/common/page-header";
 import type { PageSummerySectionType } from "@layout/common/page-summery-section";
 import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
@@ -28,7 +27,7 @@ import { CTASection } from "@layout/common/cta-section";
 interface Props {
   header: PageHeaderType;
   pageSummery: PageSummerySectionType;
-  lifestyleSection: MultiImageContentSectionType;
+  lifestyleSection: MultiImageContentBlockType;
   membershipBenefits: ImageContentSectionType;
   membershipPerks: Stat[];
   membershipFAQs: FAQ[];
