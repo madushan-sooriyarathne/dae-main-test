@@ -4,6 +4,7 @@ import { getBlurHash } from "@utils/blurHashGenerator";
 
 import type {
   IBannerBlockFields,
+  ICardBlockFields,
   IFaqFields,
   IImageContentBlockFields,
   IMultiImageContentBlockFields,
@@ -11,6 +12,7 @@ import type {
   IPageSummeryBlockFields,
   IStatFields,
   ITestimonialFields,
+  ITextContentBlockFields,
 } from "@cms/generated/types";
 import type { BannerType } from "@layout/common/banner-section";
 import type { ImageContentSectionType } from "@layout/common/image-content-section";
@@ -18,6 +20,8 @@ import type { MultiImageContentSectionType } from "@layout/common/multi-image-co
 import type { PageHeaderType } from "@layout/common/page-header";
 import type { PageSummerySectionType } from "@layout/common/page-summery-section";
 import type { Asset } from "contentful";
+import type { CardBlockType } from "@components/card-block";
+import { ContentGroupType } from "@layout/common/groups/content-group";
 
 /**
  * format the given asset's url with protocol correction.
@@ -231,4 +235,47 @@ export const getFAQGroup = async (
     answer: faq.fields.answer,
     id: faq.fields.id,
   }));
+};
+
+export const getCardBlockGroup = async (
+  group: string,
+  limit?: number
+): Promise<CardBlockType[]> => {
+  const data = await contentfulClient.getEntries<ICardBlockFields>({
+    content_type: "cardBlock",
+    limit: limit,
+    "fields.group": group,
+  });
+
+  if (data.items.length < 1) throw new Error("No Card Blocks found");
+
+  return await Promise.all(
+    data.items.map(async (card) => ({
+      ...card.fields,
+      subTitle: card.fields.subTitle ? card.fields.subTitle : null,
+      image: await processContentfulImage(card.fields.image),
+    }))
+  );
+};
+
+export const getTextContentBlock = async (
+  entryId: string
+): Promise<ContentGroupType> => {
+  if (entryId.length < 1) throw new Error("Entry ID is empty");
+
+  try {
+    const data = await contentfulClient.getEntry<ITextContentBlockFields>(
+      entryId
+    );
+
+    return {
+      heading: data.fields.heading,
+      subHeading: data.fields.subHeading || null,
+      content: data.fields.description,
+    };
+  } catch {
+    throw new Error(
+      `Error fetching the Text Content Block with given ID: ${entryId}`
+    );
+  }
 };
