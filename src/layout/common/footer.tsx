@@ -11,7 +11,7 @@ const Footer: React.FC = (): JSX.Element => {
     <footer className="main-grid-columns grid w-full auto-rows-min grid-cols-1 items-start justify-items-center gap-y-12 bg-water bg-darkWater pt-12 md:gap-y-0 md:pt-0">
       <div
         className={twMerge(
-          "col-full flex h-full  w-full place-content-center border-b border-b-water-800 pb-12",
+          "col-full flex h-full w-full items-center justify-center border-b border-b-water-800 pb-12",
           "md:col-full-start-half md:grid md:border-r md:border-r-water-800 md:py-12",
           "xl:col-[full-start_/_col-end_2]",
           "2xl:row-start-1 2xl:row-end-3"
@@ -20,7 +20,7 @@ const Footer: React.FC = (): JSX.Element => {
         <object
           data="/assets/logos/dae-logo-full-white.svg"
           type="image/svg+xml"
-          className="2xl:w-[min(100%, 20rem)] w-[min(100%,_15.625rem)]"
+          className="mx-auto h-24 w-64"
         />
       </div>
       <div
