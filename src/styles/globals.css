@@ -27,6 +27,12 @@
     rgba(0, 0, 0, 0) 25%,
     rgba(0, 0, 0, 1) 100%
   );
+  --gradient-bg-water-light: linear-gradient(165deg, #fde7e8, #fce8ed, #fae9f2, #f7ebf7, #f4edfa, #efeffd, #ecf1fe, #e8f3ff, #e6f5fe);
+  --gradient-blur-primary-water: linear-gradient(90deg, #ee2b31, #ee2639, #ee1a50, #e4107b, #cf0daa, #9c0ab7, #51089d, #190685, #04156e, #03275c, #022e50, #02304b);
+  --gradient-blur-primary-land: linear-gradient(90deg, #ee2b31, #ee272a, #ee201b, #ea200f, #d92b0c, #c53409, #b03b06, #9c3f04, #894002, #793f01, #6f3e00, #6b3d00);
+  --gradient-blur-water: linear-gradient(90deg, #02304b, #023451, #033e61, #034d78, #046096, #0575b7, #058ad9, #069ff9, #24aafa, #3bb4fa, #4bbafb, #51bcfb);
+  --gradient-blur-primary:  linear-gradient(90deg, #ee2b31, #ee2d33, #ef3339, #ef3c42, #f0474d, #f15459, #f26065, #f36d72, #f4787c, #f48185, #f5878b, #f5898d);
+  --gradient-blur-land: linear-gradient(90deg, #6b3d00, #704000, #7f4800, #945400, #af6300, #cc7400, #eb8600, #ff9509, #ffa024, #ffaa39, #ffb048, #ffb24d);
 }
 
 @layer utilities {
