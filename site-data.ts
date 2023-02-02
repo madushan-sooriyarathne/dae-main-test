@@ -8,15 +8,21 @@ export const brand: Brand = {
 };
 
 export const navLinks: NavLink[] = [
-  {
-    label: "Home",
-    route: "/",
-  },
   { label: "Club", route: "/club" },
   { label: "Berthing", route: "/berthing" },
   { label: "Activities", route: "/activities" },
   { label: "Restaurant", route: "/restaurant" },
   { label: "Events", route: "/events" },
+];
+
+export const sideBarNavLinks: NavLink[] = [
+  { label: "Club", route: "/club" },
+  { label: "Berthing", route: "/berthing" },
+  { label: "Activities", route: "/activities" },
+  { label: "Restaurant", route: "/restaurant" },
+  { label: "Events", route: "/events" },
+  { label: "Blog", route: "https://dae.fun/blog", external: true },
+  { label: "Contact", route: "/contact" },
 ];
 
 export const socialLinks: SocialLink[] = [
