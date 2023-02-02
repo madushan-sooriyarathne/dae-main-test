@@ -1,3 +1,3 @@
-import { domAnimation } from "framer-motion";
+import { domMax } from "framer-motion";
 
-export { domAnimation };
+export { domMax as animationFeatures };
