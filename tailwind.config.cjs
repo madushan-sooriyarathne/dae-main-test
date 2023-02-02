@@ -1,8 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-
-const { fontFamily } = require("tailwindcss/defaultTheme");
-// const {playfairDisplay, plusJakartaSans} = require('src/styles/fonts');
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   future: {
