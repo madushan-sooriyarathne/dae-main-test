@@ -18,7 +18,7 @@ const NewsletterSection: React.FC = (): JSX.Element => {
   const newsletterForm = useZodForm({ schema: newsletterSchema });
 
   return (
-    <section className=" trim-bottom lg:main-grid-columns w-full">
+    <section className="lg:main-grid-columns w-full bg-lightWater">
       <div className="aspect-square sm:aspect-[4_/_3] md:aspect-video lg:col-full-start-half lg:aspect-[4/3] lg:h-auto lg:w-full">
         <ImageComponent
           image={{
@@ -28,7 +28,7 @@ const NewsletterSection: React.FC = (): JSX.Element => {
           }}
         />
       </div>
-      <div className=" flex w-full flex-col items-stretch gap-y-9 bg-lightArtifacts py-12 px-4 md:px-6 lg:col-full-end-half lg:justify-center lg:p-12 2xl:p-16">
+      <div className="flex w-full flex-col items-stretch gap-y-9 py-12 px-4 md:px-6 lg:col-full-end-half lg:justify-center lg:p-12 2xl:p-16">
         <HeadingGroup
           intent="primary"
           heading="Never miss an update!"
