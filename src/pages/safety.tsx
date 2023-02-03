@@ -3,6 +3,7 @@ import {
   getMultiImageContentBlock,
   getPageHeaderBlock,
   getPageSummeryBlock,
+  getPreviewArticles,
 } from "@cms/content-studio";
 import {
   ImageContentSection,
@@ -16,6 +17,7 @@ import {
   PageSummerySection,
   type PageSummerySectionType,
 } from "@layout/common/page-summery-section";
+import { SafetyGuidesSection } from "@layout/safety-page/guides-section";
 import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 interface Props {
@@ -23,6 +25,7 @@ interface Props {
   pageSummery: PageSummerySectionType;
   marinaSafetySection: MultiImageContentBlockType;
   safetyTrainingSection: ImageContentSectionType;
+  safetyGuides: ArticlePreview[];
 }
 
 const SafetyPage: NextPage<Props> = ({
@@ -30,6 +33,7 @@ const SafetyPage: NextPage<Props> = ({
   pageSummery,
   marinaSafetySection,
   safetyTrainingSection,
+  safetyGuides,
 }: Props): JSX.Element => {
   return (
     <Page title="Safety">
@@ -37,6 +41,7 @@ const SafetyPage: NextPage<Props> = ({
       <PageSummerySection {...pageSummery} />
       <MultiIMageContentVertical {...marinaSafetySection} />
       <ImageContentSection {...safetyTrainingSection} />
+      <SafetyGuidesSection articles={safetyGuides} />
       <NewsletterSection />
     </Page>
   );
@@ -54,12 +59,15 @@ const getStaticProps: GetStaticProps = async (): Promise<
     "2oH0fTYIuTwdMOgb8Z2Sg1"
   );
 
+  const safetyGuides = await getPreviewArticles();
+
   return {
     props: {
       header,
       pageSummery,
       marinaSafetySection,
       safetyTrainingSection,
+      safetyGuides,
     },
   };
 };
