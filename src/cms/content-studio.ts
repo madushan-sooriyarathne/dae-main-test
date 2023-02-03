@@ -3,6 +3,8 @@ import { contentfulClient } from "@lib/contentful";
 import { getBlurHash } from "@utils/blurHashGenerator";
 
 import type {
+  IArticlePreview,
+  IArticlePreviewFields,
   IBannerBlockFields,
   ICardBlockFields,
   IFaqFields,
@@ -277,4 +279,19 @@ export const getTextContentBlock = async (
       `Error fetching the Text Content Block with given ID: ${entryId}`
     );
   }
+};
+
+export const getPreviewArticles = async (): Promise<ArticlePreview[]> => {
+  const data = await contentfulClient.getEntries<IArticlePreviewFields>({
+    content_type: "articlePreview",
+  });
+
+  if (data.items.length < 1) throw new Error("No articles found");
+
+  return await Promise.all(
+    data.items.map(async (article) => ({
+      ...article.fields,
+      image: await processContentfulImage(article.fields.image),
+    }))
+  );
 };
