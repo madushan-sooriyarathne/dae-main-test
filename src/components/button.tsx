@@ -14,19 +14,19 @@ const buttonVariants = cva(
     variants: {
       intent: {
         primary: [
-          "bg-primary text-white border-primary border-2 fill-white hover:bg-transparent hover:text-primary hover:fill-primary",
+          "bg-primary text-white border-primary border-2 fill-white hover:bg-transparent hover:text-primary hover:fill-primary focus-visible:outline focus-visible:outline-2 outline-primary outline-offset-2",
         ],
         secondary: [
-          "bg-water text-white border-water border-2 fill-white hover:bg-transparent hover:text-water hover:fill-water",
+          "bg-water text-white border-water border-2 fill-white hover:bg-transparent hover:text-water hover:fill-water focus-visible:outline focus-visible:outline-2 outline-water outline-offset-2",
         ],
         tertiary: [
-          "bg-land text-white border-land border-2 fill-white hover:bg-transparent hover:text-land hover:fill-land",
+          "bg-land text-white border-land border-2 fill-white hover:bg-transparent hover:text-land hover:fill-land focus-visible:outline focus-visible:outline-2 outline-land outline-offset-2",
         ],
         white: [
-          "bg-white text-black border-white border-2 fill-black hover:bg-transparent hover:text-white hover:fill-white ",
+          "bg-white text-black border-white border-2 fill-black hover:bg-transparent hover:text-white hover:fill-white focus-visible:outline focus-visible:outline-2 outline-white outline-offset-2",
         ],
         black: [
-          "bg-black text-white border-black border-2 fill-white hover:bg-transparent hover:text-black hover:fill-black",
+          "bg-black text-white border-black border-2 fill-white hover:bg-transparent hover:text-black hover:fill-black focus-visible:outline focus-visible:outline-2 outline-black outline-offset-2",
         ],
       },
       outline: {

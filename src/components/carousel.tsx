@@ -178,7 +178,7 @@ const Carousel: React.FC<Props> = ({
                   <button
                     className={`${
                       currentSlide === index ? "h-3 w-3" : "h-2 w-2"
-                    } rounded-full border-0 bg-primary outline-none  outline-offset-2 focus:outline focus:outline-2 focus:outline-primary`}
+                    } rounded-full border-0 bg-primary outline-none  outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary`}
                     onClick={() => instanceRef.current?.moveToIdx(index)}
                     key={index}
                   />
