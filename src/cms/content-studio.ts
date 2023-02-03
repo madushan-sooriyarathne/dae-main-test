@@ -3,7 +3,6 @@ import { contentfulClient } from "@lib/contentful";
 import { getBlurHash } from "@utils/blurHashGenerator";
 
 import type {
-  IArticlePreview,
   IArticlePreviewFields,
   IBannerBlockFields,
   ICardBlockFields,
