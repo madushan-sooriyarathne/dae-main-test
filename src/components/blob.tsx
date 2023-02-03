@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 
 import { generateRandomPath } from "@utils/base";
 
-const clipPath = cva(["w-[400px] h-[400px] "], {
+const clipPath = cva(["w-[350px] h-[350px] sm:!w-[400px] sm:!h-[400px]"], {
   variants: {
     intent: {
       primary: "bg-blurPrimary",
@@ -31,17 +31,14 @@ const Blob = forwardRef<HTMLDivElement, Props>(
       <m.div
         ref={ref}
         {...props}
-        className={twMerge(
-          "absolute top-1/3 right-1/3 blur-[120px]",
-          className
-        )}
+        className={twMerge("absolute blur-[120px]", className)}
       >
         <div
           className={clipPath({ intent })}
           style={{
             clipPath: `polygon(${generateRandomPath(points)})`,
-            width: `min(100%, ${size}px)`,
-            height: size,
+            width: size || "350px",
+            height: size || "350px",
           }}
         ></div>
       </m.div>
