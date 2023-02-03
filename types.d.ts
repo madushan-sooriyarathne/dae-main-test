@@ -52,6 +52,15 @@ declare global {
     answer: string;
   };
 
+  interface ArticlePreview {
+    title: string;
+    id: string;
+    date: string;
+    previewText: string;
+    url: string;
+    image: Image;
+  }
+
   interface PageHeader {
     heading: string;
     subHeading: string;
