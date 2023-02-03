@@ -2,6 +2,43 @@
 
 import { Asset, Entry } from "contentful";
 
+export interface IArticlePreviewFields {
+  /** Title */
+  title: string;
+
+  /** Id */
+  id: string;
+
+  /** Date */
+  date: string;
+
+  /** Preview Text */
+  previewText: string;
+
+  /** URL */
+  url: string;
+
+  /** Image */
+  image: Asset;
+}
+
+export interface IArticlePreview extends Entry<IArticlePreviewFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "articlePreview";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IBannerBlockFields {
   /** Heading */
   heading: string;
@@ -78,7 +115,7 @@ export interface IFaqFields {
   id: string;
 
   /** Group */
-  group: "membership-faq";
+  group: "membership-faq" | "dining-faq";
 }
 
 export interface IFaq extends Entry<IFaqFields> {
@@ -240,7 +277,7 @@ export interface IStatFields {
   icon?: Asset | undefined;
 
   /** Group */
-  group: "berthing-values" | "membership-perks";
+  group: "berthing-values" | "membership-perks" | "activities-perks";
 }
 
 export interface IStat extends Entry<IStatFields> {
@@ -354,6 +391,7 @@ export interface IVideoBlock extends Entry<IVideoBlockFields> {
 }
 
 export type CONTENT_TYPE =
+  | "articlePreview"
   | "bannerBlock"
   | "cardBlock"
   | "faq"
@@ -367,6 +405,7 @@ export type CONTENT_TYPE =
   | "videoBlock";
 
 export type IEntry =
+  | IArticlePreview
   | IBannerBlock
   | ICardBlock
   | IFaq
