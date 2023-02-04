@@ -26,6 +26,7 @@ export const serverEnv = {
 export const clientSchema = z.object({
   NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN: z.string(),
   NEXT_PUBLIC_CONTENTFUL_SPACE_ID: z.string(),
+  NEXT_PUBLIC_MAPBOX_API_KEY: z.string(),
 });
 
 /**
@@ -34,7 +35,10 @@ export const clientSchema = z.object({
  * and only used environment variables are included in the build.
  * @type {{ [k in keyof z.infer<typeof clientSchema>]: z.infer<typeof clientSchema>[k] | undefined }}
  */
+
 export const clientEnv = {
-  NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN: process.env.CONTENTFUL_DELIVERY_TOKEN,
-  NEXT_PUBLIC_CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
+  NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN:
+    process.env.NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN,
+  NEXT_PUBLIC_CONTENTFUL_SPACE_ID: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+  NEXT_PUBLIC_MAPBOX_API_KEY: process.env.NEXT_PUBLIC_MAPBOX_API_KEY,
 };
