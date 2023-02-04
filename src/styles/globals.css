@@ -58,3 +58,19 @@
     @apply -my-20 -mb-20 2xl:-my-24 4xl:-my-36;
   }
 }
+
+/* mapbox map resets */
+.mapboxgl-ctrl-bottom-right {
+  display: none;
+}
+
+.mapboxgl-ctrl-logo {
+  display: none !important;
+}
+
+/* Mapbox Marker */
+.marker {
+  @apply w-12 h-12 relative
+  after:bottom-full after:absolute after:content-[""] after:block after:w-12 after:h-12 after:bg-[image:url('/assets/svg/jetski.svg')]  after:bg-contain after:bg-no-repeat after:bg-center after:rounded-full  after:border-4 after:border-primary
+  before:absolute before:bottom-1/2 before:left-[calc(50%-2px)] before:block before:h-1/2 before:w-[4px] before:rounded-full before:bg-primary
+}
