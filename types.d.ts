@@ -18,6 +18,7 @@ declare global {
     registrationNumber?: string;
     email: string;
     phone: string;
+    location: { lat: number; lng: number };
   };
 
   type SocialLink = {
