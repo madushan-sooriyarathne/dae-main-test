@@ -5,6 +5,7 @@ export const brand: Brand = {
   registrationNumber: "PV17108040",
   email: "sales@dae.fun",
   phone: "+94 76 36 52 456",
+  location: { lat: 6.755922562786295, lng: 79.9280520585388 },
 };
 
 export const navLinks: NavLink[] = [
