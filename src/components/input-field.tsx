@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { useFormContext } from "react-hook-form";
 
-import { cva, VariantProps } from "cva";
+import { cva, type VariantProps } from "cva";
 
 import type { ComponentProps } from "react";
 
