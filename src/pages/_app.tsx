@@ -8,6 +8,7 @@ import { api } from "../utils/api";
 
 import "@styles/globals.css";
 import "keen-slider/keen-slider.min.css";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { queryClient } from "@lib/react-query";
