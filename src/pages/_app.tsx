@@ -24,6 +24,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       <QueryClientProvider client={queryClient}>
         <div
           className={`${plusJakartaSans.variable} ${playfairDisplay.variable} font-sans`}
+          id="app"
         >
           <Component {...pageProps} />
         </div>
