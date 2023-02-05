@@ -25,7 +25,7 @@ const Form = <T extends FieldValues>({
 }: Props<T>) => (
   <FormProvider {...form}>
     {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-    <form onSubmit={form.handleSubmit(onSubmit)} {...props}>
+    <form onSubmit={form.handleSubmit(onSubmit)} {...props} className="w-full">
       <fieldset
         disabled={form.formState.isSubmitting}
         className={twMerge("flex flex-col gap-y-6", className)}
