@@ -78,7 +78,7 @@ const MapsSection: React.FC = (): JSX.Element => {
         href="https://goo.gl/maps/g2YWra2dwyE4ysEk7"
         target="_blank"
         rel="noreferrer"
-        className="absolute bottom-6 right-6 flex items-center justify-end gap-x-2 rounded-sm bg-water px-3 py-2 md:bottom-8 md:left-8"
+        className="absolute bottom-6  right-6 flex w-max items-center justify-end gap-x-2 rounded-sm bg-water px-3 py-2 md:bottom-8 md:right-8"
       >
         <span className="font-sans text-sm font-semibold text-white ">
           View on Google Maps
