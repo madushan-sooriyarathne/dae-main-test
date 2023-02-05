@@ -1,6 +1,8 @@
 import type { MultiImageContentSectionType } from "@layout/common/multi-image-content-horizontal";
 
 declare global {
+  type NonEmptyArray<T> = [T, ...T[]];
+
   type Image = {
     src: string;
     alt: string;
@@ -18,6 +20,10 @@ declare global {
     registrationNumber?: string;
     email: string;
     phone: string;
+    whatsapp: {
+      url: string;
+      number: string;
+    };
     location: { lat: number; lng: number };
   };
 
