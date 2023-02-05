@@ -1,7 +1,8 @@
 import Link from "next/link";
 
+import { cn } from "@lib/clsx";
+
 import { brand, navLinks, socialLinks } from "site-data";
-import { twMerge } from "tailwind-merge";
 
 import { QuaternaryHeading } from "@components/headings/quaternary-heading";
 import { Paragraph } from "@components/paragraph";
@@ -10,7 +11,7 @@ const Footer: React.FC = (): JSX.Element => {
   return (
     <footer className="main-grid-columns grid w-full auto-rows-min grid-cols-1 items-start justify-items-center gap-y-12 bg-water bg-darkWater pt-12 md:gap-y-0 md:pt-0">
       <div
-        className={twMerge(
+        className={cn(
           "col-full flex h-full w-full items-center justify-center border-b border-b-water-800 pb-12",
           "md:col-full-start-half md:grid md:border-r md:border-r-water-800 md:py-12",
           "xl:col-[full-start_/_col-end_2]",
@@ -24,7 +25,7 @@ const Footer: React.FC = (): JSX.Element => {
         />
       </div>
       <div
-        className={twMerge(
+        className={cn(
           "col-[full-start_/full-end] flex h-full w-full flex-col items-center justify-start gap-y-6 border-b border-b-water-800 pb-12",
           "md:col-full-end-half md:items-start md:gap-y-5 md:py-12 md:px-8",
           "lg:px-12",
@@ -94,7 +95,7 @@ const Footer: React.FC = (): JSX.Element => {
         </div>
       </div>
       <div
-        className={twMerge(
+        className={cn(
           "col-content flex h-full w-full flex-col items-center justify-start gap-y-4 border-b border-b-water-800 pb-12",
           "md:col-full md:flex-row md:justify-center md:gap-x-6 md:border-b-0 md:py-12 md:px-9",
           "xl:col-[col-start_7_/_full-end] xl:flex-col xl:items-start xl:justify-start xl:border-b xl:p-12",
@@ -112,7 +113,7 @@ const Footer: React.FC = (): JSX.Element => {
         ))}
       </div>
       <div
-        className={twMerge(
+        className={cn(
           "col-full flex h-full w-full flex-row flex-wrap items-center justify-center gap-y-3 gap-x-3 border-b border-b-water-800 pb-12",
           "md:border-b-0 md:px-9",
           "xl:py-6",
@@ -134,7 +135,7 @@ const Footer: React.FC = (): JSX.Element => {
         ))}
       </div>
       <div
-        className={twMerge(
+        className={cn(
           "col-full -mt-8 flex w-full flex-col items-center justify-start gap-y-3 px-4 pb-4",
           "md:border-t md:border-t-water-800 md:pt-6",
           "xl:mt-0 xl:flex-row xl:justify-between xl:gap-x-12 xl:px-12",

@@ -1,9 +1,9 @@
 import { forwardRef } from "react";
 import { cva, type VariantProps } from "cva";
 import { type HTMLMotionProps, m } from "framer-motion";
-import { twMerge } from "tailwind-merge";
 
 import { generateRandomPath } from "@utils/base";
+import { cn } from "@lib/clsx";
 
 const clipPath = cva(["w-[350px] h-[350px] sm:!w-[400px] sm:!h-[400px]"], {
   variants: {
@@ -31,7 +31,7 @@ const Blob = forwardRef<HTMLDivElement, Props>(
       <m.div
         ref={ref}
         {...props}
-        className={twMerge("absolute blur-[120px]", className)}
+        className={cn("absolute blur-[120px]", className)}
       >
         <div
           className={clipPath({ intent })}

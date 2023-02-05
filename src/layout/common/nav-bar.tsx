@@ -1,13 +1,13 @@
 import { useCallback, useState } from "react";
-
 import Link from "next/link";
+import { AnimatePresence, m, type Variants } from "framer-motion";
+import { useRouter } from "next/router";
+
+import { cn } from "@lib/clsx";
 
 import { navLinks, sideBarNavLinks } from "site-data";
 
 import { Button } from "@components/button";
-import { AnimatePresence, m, type Variants } from "framer-motion";
-import { twMerge } from "tailwind-merge";
-import { useRouter } from "next/router";
 
 const sidebarVariants: Variants = {
   initial: {
@@ -148,7 +148,7 @@ const NavBar: React.FC = (): JSX.Element => {
             initial="initial"
             animate="animate"
             exit="exit"
-            className={twMerge(
+            className={cn(
               "fixed top-0 right-0 bottom-0 z-[210] grid h-screen w-[min(30rem,100%)] grid-cols-1 grid-rows-[min-content_1fr_min-content] gap-y-6 bg-white p-2 shadow-md will-change-transform",
               "lg:px-4 lg:py-3"
             )}
@@ -236,7 +236,7 @@ const NavBar: React.FC = (): JSX.Element => {
                   <Link
                     href={link.route}
                     key={link.route}
-                    className={twMerge(
+                    className={cn(
                       "rounded-lg px-6  py-4 text-right text-xl font-bold tracking-wider text-black-800 outline-primary-400 hover:bg-primary-100 hover:text-primary focus-visible:outline focus-visible:outline-2",
                       "transition-colors duration-200 ease-in-out",
                       router.pathname.startsWith(link.route)

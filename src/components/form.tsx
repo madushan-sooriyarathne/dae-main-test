@@ -1,13 +1,12 @@
 import { FormProvider } from "react-hook-form";
 
-import { twMerge } from "tailwind-merge";
-
 import type { ComponentProps } from "react";
 import type {
   FieldValues,
   SubmitHandler,
   UseFormReturn,
 } from "react-hook-form";
+import { cn } from "@lib/clsx";
 
 interface Props<T extends FieldValues>
   extends Omit<ComponentProps<"form">, "onSubmit"> {
@@ -28,7 +27,7 @@ const Form = <T extends FieldValues>({
     <form onSubmit={form.handleSubmit(onSubmit)} {...props} className="w-full">
       <fieldset
         disabled={form.formState.isSubmitting}
-        className={twMerge("flex flex-col gap-y-6", className)}
+        className={cn("flex flex-col gap-y-6", className)}
       >
         {children}
       </fieldset>

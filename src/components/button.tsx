@@ -1,7 +1,7 @@
 import Link from "next/link";
-
 import { cva } from "cva";
-import { twMerge } from "tailwind-merge";
+
+import { cn } from "@lib/clsx";
 
 import type { VariantProps } from "cva";
 import type { ReactNode } from "react";
@@ -191,7 +191,7 @@ type ButtonType =
   | LinkButtonType;
 
 const button = (props: VariantProps<typeof buttonVariants>) =>
-  twMerge(buttonVariants(props));
+  cn(buttonVariants(props));
 
 const Button: React.FC<ButtonType> = (props): JSX.Element => {
   const {

@@ -10,14 +10,14 @@ const CTASection: React.FC<Props> = ({
   ...headingGroupProps
 }: Props): JSX.Element => {
   return (
-    <section className="main-grid-columns grid bg-water  py-12 md:py-14 lg:py-16 xl:py-24">
+    <section className="main-grid-columns trim-bottom grid  bg-lightWater py-12 md:py-14 lg:py-16 xl:py-24">
       <div className="col-content flex flex-col items-center justify-start gap-y-6">
         <HeadingGroup
           {...headingGroupProps}
-          intent="white"
+          intent="primary"
           alignment="center"
         />
-        {button && <Button {...button} withArrow intent="white" />}
+        {button && <Button {...button} withArrow intent="primary" />}
       </div>
     </section>
   );

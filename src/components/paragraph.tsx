@@ -1,14 +1,17 @@
+import Image from "next/image";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { cva } from "cva";
+
+import { cn } from "@lib/clsx";
+
+import type { VariantProps } from "cva";
+
 import { PrimaryHeading } from "./headings/primary-heading";
 import { QuaternaryHeading } from "./headings/quaternary-heading";
 import { QuinaryHeading } from "./headings/quinary-heading";
 import { SecondaryHeading } from "./headings/secondary-heading";
 import { TertiaryHeading } from "./headings/tertiary-heading";
-import { cva } from "cva";
-import type { VariantProps } from "cva";
-import Image from "next/image";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import { twMerge } from "tailwind-merge";
 
 const paragraphVariants = cva(
   [
@@ -42,7 +45,7 @@ const paragraphVariants = cva(
 const paragraph = (
   props: VariantProps<typeof paragraphVariants>,
   className?: string
-) => twMerge(paragraphVariants({ ...props, className }));
+) => cn(paragraphVariants({ ...props, className }));
 
 interface Props extends VariantProps<typeof paragraphVariants> {
   children: string;
@@ -81,7 +84,7 @@ const Paragraph: React.FC<Props> = ({
             <PrimaryHeading
               intent={intent}
               alignment={alignment}
-              className={twMerge(
+              className={cn(
                 "mt-8 first:mt-0 md:mt-10 md:first:mt-0 lg:mt-12 lg:first:mt-0"
               )}
             >
@@ -92,8 +95,8 @@ const Paragraph: React.FC<Props> = ({
             <SecondaryHeading
               intent={intent}
               alignment={alignment}
-              className={twMerge(
-                "first:mt-0 mt-6  md:mt-9 md:first:mt-0 lg:mt-11 lg:first:mt-0"
+              className={cn(
+                "mt-6 first:mt-0  md:mt-9 md:first:mt-0 lg:mt-11 lg:first:mt-0"
               )}
             >
               {props.children as string}
@@ -103,7 +106,7 @@ const Paragraph: React.FC<Props> = ({
             <TertiaryHeading
               intent={intent}
               alignment={alignment}
-              className={twMerge(
+              className={cn(
                 "mt-5 first:mt-0 md:mt-8 md:first:mt-0 lg:mt-10 lg:first:mt-0"
               )}
             >
@@ -114,7 +117,7 @@ const Paragraph: React.FC<Props> = ({
             <QuaternaryHeading
               intent={intent}
               alignment={alignment}
-              className={twMerge(
+              className={cn(
                 "mt-4 first:mt-0 md:mt-5 md:first:mt-0 lg:mt-6 lg:first:mt-0"
               )}
             >
@@ -125,7 +128,7 @@ const Paragraph: React.FC<Props> = ({
             <QuinaryHeading
               intent={intent}
               alignment={alignment}
-              className={twMerge(
+              className={cn(
                 "mt-4 first:mt-0 md:mt-5 md:first:mt-0 lg:mt-6 lg:first:mt-0"
               )}
             >
@@ -136,7 +139,7 @@ const Paragraph: React.FC<Props> = ({
             <QuinaryHeading
               intent={intent}
               alignment={alignment}
-              className={twMerge(
+              className={cn(
                 "mt-4 first:mt-0 md:mt-5 md:first:mt-0 lg:mt-6 lg:first:mt-0"
               )}
             >
@@ -152,7 +155,7 @@ const Paragraph: React.FC<Props> = ({
             </p>
           ),
           img: (props) => (
-            <div className="w-full my-6 ">
+            <div className="my-6 w-full ">
               <Image
                 width={`${props.width as number}`}
                 height={`${props.height as number}`}

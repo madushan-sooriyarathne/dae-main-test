@@ -1,6 +1,7 @@
-import { Paragraph } from "./paragraph";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { twMerge } from "tailwind-merge";
+import { cn } from "@lib/clsx";
+
+import { Paragraph } from "./paragraph";
 
 interface Props {
   items: {
@@ -26,7 +27,7 @@ const Accordion: React.FC<Props> = ({ items, single }: Props): JSX.Element => {
             className={`w-full`}
           >
             <AccordionPrimitive.Trigger
-              className={twMerge(
+              className={cn(
                 `flex w-full items-center justify-between gap-x-4 border-b border-t border-t-black-200 border-b-black-200 bg-white-100 py-3 px-2 transition-all`,
                 "md:py-4 md:px-4  [&[data-state=open]>svg]:rotate-180 [&[data-state=closed]]:border-b-0"
               )}
