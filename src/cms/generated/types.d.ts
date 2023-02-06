@@ -202,6 +202,49 @@ export interface IMultiImageContentBlock
   };
 }
 
+export interface IOfferFields {
+  /** Name */
+  name: string;
+
+  /** Id */
+  id: string;
+
+  /** Description */
+  description: string;
+
+  /** Pricing */
+  pricing: number;
+
+  /** Pricing Type */
+  pricingType: "percentage" | "fixed";
+
+  /** Currency */
+  currency: string;
+
+  /** Expire Date */
+  expireDate?: string | undefined;
+
+  /** Images */
+  images: Asset[];
+}
+
+export interface IOffer extends Entry<IOfferFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "offer";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IPageHeaderBlockFields {
   /** Heading */
   heading: string;
@@ -397,6 +440,7 @@ export type CONTENT_TYPE =
   | "faq"
   | "imageContentBlock"
   | "multiImageContentBlock"
+  | "offer"
   | "pageHeaderBlock"
   | "pageSummeryBlock"
   | "stat"
@@ -411,6 +455,7 @@ export type IEntry =
   | IFaq
   | IImageContentBlock
   | IMultiImageContentBlock
+  | IOffer
   | IPageHeaderBlock
   | IPageSummeryBlock
   | IStat
