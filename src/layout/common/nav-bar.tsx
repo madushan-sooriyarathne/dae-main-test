@@ -126,13 +126,13 @@ const NavBar: React.FC = (): JSX.Element => {
             <div className={`h-[2px] w-full rounded-sm bg-black-700 `} />
           </div> */}
           <button
-            className="flex aspect-square h-full items-center justify-center p-2 outline-primary-400 focus-visible:outline focus-visible:outline-2"
+            className="flex aspect-square h-14 w-14 items-center justify-center p-2 outline-primary-400 focus-visible:outline focus-visible:outline-2"
             onClick={toggleSideMenu}
           >
             <svg
               viewBox="0 0 33 20"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-[40px] fill-black-700"
+              className="h-[40px] w-[40px] fill-black-700"
             >
               <rect x="0.215088" y="0.258789" width="32" height="1.5" />
               <rect x="16.2151" y="9.25879" width="16" height="1.5" />
