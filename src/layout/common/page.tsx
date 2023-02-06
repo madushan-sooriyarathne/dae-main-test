@@ -1,9 +1,13 @@
 import { type ReactNode } from "react";
 
 import Head from "next/head";
+import { m } from "framer-motion";
 
 import { Footer } from "./footer";
 import { NavBar } from "./nav-bar";
+import { Floater } from "@components/floater";
+// import { Toast } from "@components/toast";
+import { pageTransition } from "@styles/animations";
 
 interface Props {
   title: string;
@@ -12,7 +16,13 @@ interface Props {
 
 const Page: React.FC<Props> = ({ title, children }: Props): JSX.Element => {
   return (
-    <>
+    <m.div
+      variants={pageTransition}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      key={title.replace(" ", "-")}
+    >
       <Head>
         <title>{`${title} - DAE Starter`}</title>
       </Head>
@@ -21,7 +31,9 @@ const Page: React.FC<Props> = ({ title, children }: Props): JSX.Element => {
         {children}
       </main>
       <Footer />
-    </>
+      <Floater />
+      {/* <Toast /> */}
+    </m.div>
   );
 };
 
