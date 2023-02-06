@@ -1,11 +1,10 @@
 import { type AppType } from "next/app";
 
-// 3rd Party styles
-
 import { playfairDisplay, plusJakartaSans } from "@styles/fonts";
 
 import { api } from "../utils/api";
 
+// 3rd Party styles
 import "@styles/globals.css";
 import "keen-slider/keen-slider.min.css";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -16,6 +15,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { AnimatePresence, LazyMotion } from "framer-motion";
 import { LoadingScreen } from "@layout/common/loading-screen";
 import { useEffect, useState } from "react";
+import { NotificationProvider } from "@context/notification";
 
 const loadMotionFeatures = () =>
   import("@styles/motion-features").then((res) => res.animationFeatures);
@@ -48,7 +48,11 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           <AnimatePresence>
             {loading && <LoadingScreen key="loading-screen" />}
           </AnimatePresence>
-          <Component {...pageProps} />
+          <NotificationProvider>
+            <AnimatePresence>
+              <Component {...pageProps} />
+            </AnimatePresence>
+          </NotificationProvider>
         </div>
         {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
