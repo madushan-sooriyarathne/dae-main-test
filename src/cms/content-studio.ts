@@ -9,6 +9,7 @@ import type {
   IFaqFields,
   IImageContentBlockFields,
   IMultiImageContentBlockFields,
+  IOfferFields,
   IPageHeaderBlockFields,
   IPageSummeryBlockFields,
   IStatFields,
@@ -291,6 +292,23 @@ export const getPreviewArticles = async (): Promise<ArticlePreview[]> => {
     data.items.map(async (article) => ({
       ...article.fields,
       image: await processContentfulImage(article.fields.image),
+    }))
+  );
+};
+
+export const getOffers = async (): Promise<Offer[]> => {
+  const data = await contentfulClient.getEntries<IOfferFields>({
+    content_type: "offer",
+  });
+
+  return await Promise.all(
+    data.items.map(async (offer) => ({
+      ...offer.fields,
+      images: await Promise.all(
+        offer.fields.images.map(
+          async (img) => await processContentfulImage(img)
+        )
+      ),
     }))
   );
 };
