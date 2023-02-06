@@ -3,6 +3,11 @@ import type { MultiImageContentSectionType } from "@layout/common/multi-image-co
 declare global {
   type NonEmptyArray<T> = [T, ...T[]];
 
+  type NotificationType = {
+    title: string;
+    message: string;
+  };
+
   type Image = {
     src: string;
     alt: string;
