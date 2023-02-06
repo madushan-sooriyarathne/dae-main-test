@@ -68,6 +68,17 @@ declare global {
     image: Image;
   }
 
+  interface Offer {
+    id: string;
+    name: string;
+    description: string;
+    images: Image[];
+    pricing: number;
+    currency: string;
+    expireDate?: string;
+    pricingType: "percentage" | "fixed";
+  }
+
   interface PageHeader {
     heading: string;
     subHeading: string;
