@@ -74,3 +74,51 @@
   after:bottom-full after:absolute after:content-[""] after:block after:w-12 after:h-12 after:bg-[image:url('/assets/svg/jetski.svg')]  after:bg-contain after:bg-no-repeat after:bg-center after:rounded-full  after:border-4 after:border-primary
   before:absolute before:bottom-1/2 before:left-[calc(50%-2px)] before:block before:h-1/2 before:w-[4px] before:rounded-full before:bg-primary
 }
+
+
+/* loaded animation keyframes */
+
+@keyframes lineOneScale {
+  0% {
+    scale: 0% 100%;
+  }
+  50% {
+    scale: 100% 100%;
+  }
+  100% {
+    scale: 100% 100%;
+  }
+}
+
+@keyframes lineTwoScale {
+  0% {
+    scale: 0% 100%;
+  }
+  25% {
+    scale: 0% 100%;
+  }
+  60% {
+    scale: 100% 100%;
+  }
+  100% {
+    scale: 100% 100%;
+  }
+}
+
+@keyframes lineThreeScale {
+  0% {
+    scale: 0% 100%;
+  }
+  50% {
+    scale: 0% 100%;
+  }
+  70% {
+    scale: 100% 100%;
+  }
+  100% {
+    scale: 100% 100%;
+  }
+}
+
+
+
