@@ -5,7 +5,7 @@ import { type HTMLMotionProps, m } from "framer-motion";
 import { generateRandomPath } from "@utils/base";
 import { cn } from "@lib/clsx";
 
-const clipPath = cva(["w-[350px] h-[350px] sm:!w-[400px] sm:!h-[400px]"], {
+const clipPath = cva(["w-[320px] h-[320px] sm:!w-[400px] sm:!h-[400px]"], {
   variants: {
     intent: {
       primary: "bg-blurPrimary",
@@ -22,11 +22,10 @@ const clipPath = cva(["w-[350px] h-[350px] sm:!w-[400px] sm:!h-[400px]"], {
 
 interface Props extends VariantProps<typeof clipPath>, HTMLMotionProps<"div"> {
   points?: number;
-  size?: number; // size in pixels
 }
 
 const Blob = forwardRef<HTMLDivElement, Props>(
-  ({ intent, points = 10, className, size = 400, ...props }, ref) => {
+  ({ intent, points = 10, className, ...props }, ref) => {
     return (
       <m.div
         ref={ref}
@@ -37,8 +36,6 @@ const Blob = forwardRef<HTMLDivElement, Props>(
           className={clipPath({ intent })}
           style={{
             clipPath: `polygon(${generateRandomPath(points)})`,
-            width: size || "350px",
-            height: size || "350px",
           }}
         ></div>
       </m.div>
