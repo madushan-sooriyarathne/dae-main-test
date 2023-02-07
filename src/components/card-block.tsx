@@ -15,7 +15,7 @@ const CardBlock: React.FC<Props> = ({
   description,
 }: Props): JSX.Element => {
   return (
-    <figure className="flex w-full flex-col items-stretch justify-start gap-y-3 lg:w-[min(20rem,_100%)]">
+    <figure className="flex h-full w-full flex-col items-stretch justify-start gap-y-3 lg:w-[min(20rem,_100%)]">
       <div className="aspect-square w-full overflow-hidden rounded-sm">
         <ImageComponent image={image} />
       </div>

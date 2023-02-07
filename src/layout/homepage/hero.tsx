@@ -73,13 +73,15 @@ const Hero: React.FC<Props> = ({ video }: Props): JSX.Element => {
       </div>
 
       <div className="bg-water px-4 pb-12 lg:absolute lg:inset-0 lg:flex lg:w-full lg:items-end lg:bg-transparent lg:px-12 3xl:px-16 3xl:py-16">
-        <div className="mx-auto flex w-[min(100%,_50rem)] flex-col items-center justify-end gap-y-6 lg:mx-0 lg:mr-auto lg:items-start [&_p]:text-center lg:[&_p]:!text-left [&_h1]:text-center lg:[&_h1]:!text-left">
-          <DisplayHeading intent="white" alignment="left">
-            Your gateway to adventure on the lake
-          </DisplayHeading>
-          <Paragraph intent="white" alignment="left" titleParagraph>
-            Experience the Joy of Water with Marina by D.A.E
-          </Paragraph>
+        <div className="mx-auto flex w-[min(100%,_50rem)] flex-col items-center justify-end gap-y-9 lg:mx-0 lg:mr-auto lg:items-start [&_p]:text-center lg:[&_p]:!text-left [&_h1]:text-center lg:[&_h1]:!text-left">
+          <div className="flex flex-col items-start justify-end gap-y-2">
+            <DisplayHeading intent="white" alignment="left">
+              Your Gateway to Adventure on the Lake
+            </DisplayHeading>
+            <Paragraph intent="white" alignment="left" titleParagraph>
+              Experience the Joy of Water with Marina by Debug Auto Exclusive.
+            </Paragraph>
+          </div>
           <Button type="route" route="/reservation" solid mobileAdapt withArrow>
             Reserve Now
           </Button>

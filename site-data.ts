@@ -1,5 +1,5 @@
 export const brand: Brand = {
-  companyName: "The Marina by D. A. E",
+  companyName: "The Marina",
   address: "58, 42nd Lane, Wellawatte, Colombo 06, Sri Lanka.",
   vatNo: "501030670",
   registrationNumber: "PV17108040",

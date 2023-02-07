@@ -30,7 +30,7 @@ const PageSummerySection: React.FC<Props> = ({
 
   return (
     <section
-      className="main-grid-columns relative isolate grid w-full items-stretch justify-start gap-y-9 md:gap-y-12 lg:gap-y-16"
+      className="main-grid-columns relative isolate grid w-full items-stretch justify-start gap-y-4 md:gap-y-12 lg:gap-y-16"
       ref={ref}
     >
       {image && (
@@ -42,7 +42,7 @@ const PageSummerySection: React.FC<Props> = ({
           />
           <Blob
             className="right-0 top-6 -z-10"
-            intent="primaryWater"
+            intent="water"
             style={{ y: blobTwoY }}
           />
         </>

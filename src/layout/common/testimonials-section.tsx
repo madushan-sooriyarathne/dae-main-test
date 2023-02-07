@@ -22,6 +22,7 @@ const TestimonialSection: React.FC<Props> = ({
           heading="What Our Guests Are Saying"
           subHeading="Customer Testimonials"
           intent="white"
+          alignment="center"
         />
       </div>
       <div className="col-content w-full lg:col-full-end-half lg:row-start-1 lg:flex lg:h-full lg:items-center lg:p-9 xl:col-[col-start_4_/_full-end] xl:px-16 2xl:px-24 3xl:px-48">
@@ -67,16 +68,16 @@ const TestimonialSection: React.FC<Props> = ({
               className="flex h-full w-full max-w-[31.25rem] flex-col items-center gap-y-6 rounded-sm bg-white p-4 shadow-md @container lg:shadow-none"
             >
               <QuaternaryHeading
-                alignment="left"
+                alignment="center"
                 intent="black"
                 className="@md:text-center"
               >
                 {testimonial.title}
               </QuaternaryHeading>
-              <Paragraph alignment="left" className="@md:[&_p]:text-center">
+              <Paragraph alignment="center" className="@md:[&_p]:text-center">
                 {testimonial.content}
               </Paragraph>
-              <div className="flex flex-col items-start @md:items-center">
+              <div className="flex flex-col items-center @md:items-center">
                 <svg
                   viewBox="0 0 456 10"
                   fill="none"
@@ -90,11 +91,11 @@ const TestimonialSection: React.FC<Props> = ({
                   />
                 </svg>
                 <Paragraph
-                  alignment="left"
+                  alignment="center"
                   className="@md:[&_p]:text-center"
                 >{`__${testimonial.customerName}__`}</Paragraph>
                 {testimonial.customerNote && (
-                  <span className="text-left text-xs tracking-wide text-black-700 @md:text-center">
+                  <span className="text-center text-xs tracking-wide text-black-700 @md:text-center">
                     {testimonial.customerNote}
                   </span>
                 )}

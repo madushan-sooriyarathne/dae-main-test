@@ -53,8 +53,8 @@ const OffersPage: NextPage<Props> = ({
 const getStaticProps: GetStaticProps = async (): Promise<
   GetStaticPropsResult<Props>
 > => {
-  const header = await getPageHeaderBlock("7n5aipQ9O2BSEPF3nYvdd");
-  const pageSummery = await getPageSummeryBlock("5p3FcwgVIJJRzjFqx4rnQV");
+  const header = await getPageHeaderBlock("675W8snu8BpjY6qyadCzxR");
+  const pageSummery = await getPageSummeryBlock("4D4UiqwBvMBw7yX0IwGsI6");
   const offers: Offer[] = await getOffers();
 
   return {

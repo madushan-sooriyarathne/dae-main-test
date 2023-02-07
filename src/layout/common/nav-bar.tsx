@@ -220,7 +220,7 @@ const NavBar: React.FC = (): JSX.Element => {
                 </svg>
               </button>
             </div>
-            <div className="flex flex-col items-stretch justify-start gap-y-1 md:gap-y-2 lg:gap-y-3">
+            <div className="flex flex-col items-stretch justify-start gap-y-1 overflow-y-auto overflow-x-hidden md:gap-y-2 lg:gap-y-3">
               {sideBarNavLinks.map((link) =>
                 link.external ? (
                   <a
@@ -237,7 +237,7 @@ const NavBar: React.FC = (): JSX.Element => {
                     href={link.route}
                     key={link.route}
                     className={cn(
-                      "rounded-lg px-6  py-4 text-right text-xl font-bold tracking-wider text-black-800 outline-primary-400 hover:bg-primary-100 hover:text-primary focus-visible:outline focus-visible:outline-2",
+                      "rounded-lg px-3 py-2 text-right text-lg font-bold tracking-wider text-black-800 outline-primary-400 hover:bg-primary-100 hover:text-primary focus-visible:outline focus-visible:outline-2 lg:px-6 lg:py-4 lg:text-xl",
                       "transition-colors duration-200 ease-in-out",
                       router.pathname.startsWith(link.route)
                         ? "bg-white-100"

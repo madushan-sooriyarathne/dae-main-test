@@ -9,16 +9,25 @@ import { InputField } from "@components/input-field";
 import { Paragraph } from "@components/paragraph";
 
 import { HeadingGroup } from "./groups/heading-group";
+import { cn } from "@lib/clsx";
+
+interface Props {
+  trim?: true;
+}
 
 const newsletterSchema = z.object({
   email: z.string().email(),
 });
 
-const NewsletterSection: React.FC = (): JSX.Element => {
+const NewsletterSection: React.FC<Props> = ({ trim }): JSX.Element => {
   const newsletterForm = useZodForm({ schema: newsletterSchema });
 
   return (
-    <section className="lg:main-grid-columns w-full bg-lightWater">
+    <section
+      className={cn("lg:main-grid-columns w-full bg-lightWater", {
+        "trim-bottom": trim,
+      })}
+    >
       <div className="aspect-square sm:aspect-[4_/_3] md:aspect-video lg:col-full-start-half lg:aspect-[4/3] lg:h-auto lg:w-full">
         <ImageComponent
           image={{

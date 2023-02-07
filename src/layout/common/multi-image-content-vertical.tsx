@@ -3,6 +3,7 @@ import useMediaQuery from "@hooks/useMediaQuery";
 
 import { Carousel } from "@components/carousel";
 import { ImageComponent } from "@components/image-component";
+import { Blob } from "@components/blob";
 
 import { ContentGroup } from "./groups/content-group";
 
@@ -26,9 +27,18 @@ const MultiIMageContentVertical: React.FC<Props> = ({
   });
   const imageTwoY = useTransform(scrollYProgress, [0, 1], ["72px", "0px"]);
   const imageThreeY = useTransform(scrollYProgress, [0, 1], ["48px", "0px"]);
+  const blobY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section className="main-grid-columns grid auto-rows-min gap-y-9" ref={ref}>
+    <section
+      className="main-grid-columns relative grid auto-rows-min gap-y-9"
+      ref={ref}
+    >
+      <Blob
+        className="right-10 top-52 -z-10"
+        intent="primaryWater"
+        style={{ y: blobY }}
+      />
       <div className="col-content w-[min(56.25rem,100%)] lg:mx-auto">
         <ContentGroup
           {...contentGroupProps}

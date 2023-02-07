@@ -49,7 +49,7 @@ const BannerSection: React.FC<Props> = ({
                   exit="exit"
                   key={`slide-${index}`}
                 >
-                  <ImageComponent image={image} />
+                  <ImageComponent image={image} sizes="100vw" />
                 </m.div>
               )
           )}

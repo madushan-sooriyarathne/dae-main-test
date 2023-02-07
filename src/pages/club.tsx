@@ -48,9 +48,10 @@ const AboutPage: NextPage<Props> = ({
       <PageHeader {...header} />
       <PageSummerySection {...pageSummery} />
       <MultiIMageContentVertical {...lifestyleSection} />
-      <ImageContentSection {...membershipBenefits} />
-      <StatsGrid stats={membershipPerks} />
+      <ImageContentSection {...membershipBenefits} withBg />
+      <StatsGrid stats={membershipPerks} className="-mt-10 4xl:-mt-20" />
       <TestimonialSection testimonials={testimonials} />
+      <FAQSection faqs={membershipFAQs} />
       <CTASection
         heading="Get your membership today!"
         subHeading="Ready to join?"
@@ -61,7 +62,6 @@ const AboutPage: NextPage<Props> = ({
           intent: "primary",
         }}
       />
-      <FAQSection faqs={membershipFAQs} />
       <NewsletterSection />
     </Page>
   );

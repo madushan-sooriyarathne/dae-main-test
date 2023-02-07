@@ -24,9 +24,11 @@ const ArticleCard: React.FC<Props> = ({ article }: Props): JSX.Element => {
           </QuaternaryHeading>
         </div>
         <div className="flex flex-col items-stretch justify-start gap-y-4">
-          <Paragraph alignment="left" intent="black">
-            {article.previewText}
-          </Paragraph>
+          <div className="hidden @xs:block">
+            <Paragraph alignment="left" intent="black">
+              {article.previewText}
+            </Paragraph>
+          </div>
           <Button
             type="link"
             link={article.url}

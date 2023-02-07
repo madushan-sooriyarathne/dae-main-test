@@ -72,6 +72,7 @@ interface Props {
   stats: Stat[];
   waterSportsSection: MultiImageContentBlockType;
   diningBanner: Omit<BannerType, "button">;
+  eventsSection: MultiImageContentBlockType;
   testimonials: Testimonial[];
 }
 
@@ -82,6 +83,7 @@ const Home: NextPage<Props> = ({
   stats,
   waterSportsSection,
   diningBanner,
+  eventsSection,
   testimonials,
 }) => {
   return (
@@ -138,18 +140,19 @@ const Home: NextPage<Props> = ({
       <BannerSection
         {...diningBanner}
         button={{
-          children: "Explore Water Sports",
-          route: "/water-sports",
+          children: "Explore The Restaurant",
+          route: "/restaurant",
           intent: "primary",
           type: "route",
+          solid: true,
           withArrow: true,
         }}
       />
       <MultiImageHorizontal
-        {...waterSportsSection}
+        {...eventsSection}
         button={{
-          children: "Explore Water Sports",
-          route: "/water-sports",
+          children: "Explore Events",
+          route: "/events",
           intent: "primary",
           type: "route",
           withArrow: true,
@@ -157,7 +160,7 @@ const Home: NextPage<Props> = ({
       />
 
       <TestimonialSection testimonials={testimonials} />
-      <NewsletterSection />
+      <NewsletterSection trim />
       <ContactFormSection />
     </Page>
   );
@@ -180,6 +183,10 @@ const getStaticProps: GetStaticProps = async (): Promise<
 
   const diningBanner = await getBannerBlock("6z4iVnl6j0QCU39LXgXGQa");
 
+  const eventsSection = await getMultiImageContentBlock(
+    "42JacW2uUz3yzm5IigC5zL"
+  );
+
   const testimonials = await getTestimonials();
   return {
     props: {
@@ -189,6 +196,7 @@ const getStaticProps: GetStaticProps = async (): Promise<
       stats,
       diningBanner,
       waterSportsSection,
+      eventsSection,
       testimonials,
     },
   };

@@ -7,7 +7,7 @@ import type { ComponentProps } from "react";
 
 const inputField = cva(
   [
-    "block w-full rounded-sm border bg-transparent px-2 py-3 font-sans text-base font-normal outline-none placeholder:font-sans placeholder:text-base placeholder:font-normal placeholder:text-white-400  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+    "block w-full rounded-sm border bg-transparent px-2 py-3 font-sans text-sm  lg:text-base font-normal outline-none placeholder:font-sans placeholder:text-sm lg:placeholder:text-base placeholder:font-normal placeholder:text-white-400  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
   ],
   {
     variants: {

@@ -34,9 +34,18 @@ const Footer: React.FC = (): JSX.Element => {
         )}
       >
         <div className="flex flex-col items-center justify-start gap-y-1 md:items-start md:[&_p]:text-left md:[&_h5]:text-left">
-          <QuaternaryHeading alignment="center" intent="white">
-            {brand.companyName}
-          </QuaternaryHeading>
+          <div className="flex flex-col items-center">
+            <QuaternaryHeading
+              alignment="center"
+              intent="white"
+              className="text-2xl"
+            >
+              {brand.companyName}
+            </QuaternaryHeading>
+            <span className="font-sans text-[10px] font-semibold uppercase tracking-wide text-white">
+              by Debug Auto Exclusive
+            </span>
+          </div>
           <Paragraph alignment="center" intent="white" small>
             {brand.address}
           </Paragraph>

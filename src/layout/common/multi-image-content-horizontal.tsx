@@ -4,14 +4,15 @@ import { ContentGroup } from "@layout/common/groups/content-group";
 
 import { Carousel } from "@components/carousel";
 import { ImageComponent } from "@components/image-component";
+import { Blob } from "@components/blob";
 
 import type { ContentGroupType } from "@layout/common/groups/content-group";
 import type { VariantProps } from "cva";
+import { useRef } from "react";
+import { useScroll, useTransform } from "framer-motion";
 
 const section = cva(
-  [
-    "w-full grid main-grid-columns gap-y-9 bg-white  lg:items-center bg-lightArtifacts",
-  ],
+  ["w-full grid main-grid-columns gap-y-9 lg:items-center relative"],
 
   {
     variants: {
@@ -31,8 +32,26 @@ const MultiImageHorizontal: React.FC<Props> = ({
   withBg,
   ...contentGroupProps
 }): JSX.Element => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start center", "end center"],
+  });
+  const blobOneY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const blobTwoY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
-    <section className={section({ withBg })}>
+    <section className={section({ withBg })} ref={ref}>
+      <Blob
+        className="right-1/3 top-0 -z-10"
+        intent="primary"
+        style={{ y: blobOneY }}
+      />
+      <Blob
+        className="right-0 bottom-1/3 -z-10"
+        intent="water"
+        style={{ y: blobTwoY }}
+      />
       <div className="col-content row-span-1 row-start-1 lg:col-content-end-half">
         <ContentGroup
           {...contentGroupProps}
