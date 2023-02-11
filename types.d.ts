@@ -8,6 +8,12 @@ declare global {
     message: string;
   };
 
+  type ReservationType = {
+    image: Image;
+    id: string;
+    name: string;
+  };
+
   type Image = {
     src: string;
     alt: string;
