@@ -1,5 +1,5 @@
 export const brand: Brand = {
-  companyName: "The Marina",
+  companyName: "Marina by D.A.E",
   address: "58, 42nd Lane, Wellawatte, Colombo 06, Sri Lanka.",
   vatNo: "501030670",
   registrationNumber: "PV17108040",
@@ -54,5 +54,44 @@ export const socialLinks: SocialLink[] = [
     id: "linkedin",
     url: "https://www.linkedin.com/company/d-a-e-yacht-club/",
     label: "LinkedIn",
+  },
+];
+
+export const reservationTypes: ReservationType[] = [
+  {
+    image: {
+      src: "https://images.ctfassets.net/5uyx9ygtaaqf/3K53muxwYjbNidlZNpoqES/7398ee1901d9f9f8a9bc22b5039eea61/reservation-type-restaurant.jpg",
+      alt: "Restaurant Reservation selector image - Food Plates at Marina by D.A.E restaurant",
+      blurUrl: "",
+    },
+    id: "restaurant",
+    name: "Restaurant",
+  },
+  {
+    image: {
+      src: "https://images.ctfassets.net/5uyx9ygtaaqf/6Jkvb8n9n3ThE9lKKWOVOF/1be8cdae3dd7688cd8a94f8cdae794dd/reservation-type-watersports.jpg",
+      alt: "Water-sports Reservation selector image - A couple on a Sea-Doo jet ski at Marina by D.A.E",
+      blurUrl: "",
+    },
+    id: "water-sports",
+    name: "Water Sports",
+  },
+  {
+    image: {
+      src: "https://images.ctfassets.net/5uyx9ygtaaqf/1c9xJC7BghZXzglXtuQh7s/abf50481f46084b908f2af1843b27d50/reservation-type-offers.jpg",
+      alt: "Packages and Offers Reservation selector image - A girl relaxing in the swimming pool at Marina by D.A.E",
+      blurUrl: "",
+    },
+    id: "package-and-offers",
+    name: "Packages and Offers",
+  },
+  {
+    image: {
+      src: "https://images.ctfassets.net/5uyx9ygtaaqf/Xt6BBRs0pPM5SEPIHVerb/787e216fd9b7fab87c540124a623682a/reservation-type-events.jpg",
+      alt: "Events Reservation selector image - A dining table of event at Marina by D.A.E",
+      blurUrl: "",
+    },
+    id: "events",
+    name: "Events",
   },
 ];
