@@ -7,7 +7,7 @@ import type { ComponentProps } from "react";
 
 const inputField = cva(
   [
-    "block w-full resize-y min-h-[12.5rem] lg:min-h-[18.75rem] rounded-sm border bg-transparent px-2 py-3 font-sans text-base font-normal outline-none placeholder:font-sans placeholder:text-base placeholder:font-normal placeholder:text-white-400  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+    "block w-full resize-y min-h-[9.375rem] lg:min-h-[12.5rem] rounded-sm border bg-transparent px-2 py-3 font-sans text-base font-normal outline-none placeholder:font-sans placeholder:text-base placeholder:font-normal placeholder:text-white-400  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
   ],
   {
     variants: {
@@ -46,6 +46,11 @@ const TextAreaField = forwardRef<HTMLTextAreaElement, Props>(
             } text-sm font-semibold tracking-wider`}
           >
             {props.label}
+            {props.required && (
+              <svg className="ml-1 inline h-2 w-2 fill-primary">
+                <use xlinkHref="/assets/svg/sprites.svg#icon-asterisk" />
+              </svg>
+            )}
           </label>
         )}
         <textarea

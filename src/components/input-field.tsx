@@ -4,10 +4,11 @@ import { useFormContext } from "react-hook-form";
 import { cva, type VariantProps } from "cva";
 
 import type { ComponentProps } from "react";
+import { cn } from "@lib/clsx";
 
 const inputField = cva(
   [
-    "block w-full rounded-sm border bg-transparent px-2 py-3 font-sans text-sm  lg:text-base font-normal outline-none placeholder:font-sans placeholder:text-sm lg:placeholder:text-base placeholder:font-normal placeholder:text-white-400  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+    "block w-full rounded-sm border bg-transparent px-2 py-3 font-sans text-sm  lg:text-base font-normal outline-none placeholder:font-sans placeholder:text-sm lg:placeholder:text-base placeholder:font-normal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
   ],
   {
     variants: {
@@ -15,7 +16,7 @@ const inputField = cva(
         white:
           "text-white border-white placeholder:text-white-700 focus-visible:outline-white",
         black:
-          "text-black border-black-900 placeholder:text-black-800 focus-visible:outline-black",
+          "text-black border-black-900 placeholder:text-black-400 focus-visible:outline-black",
       },
     },
     defaultVariants: {
@@ -41,11 +42,17 @@ const InputField = forwardRef<HTMLInputElement, Props>(
         {props.label && (
           <label
             htmlFor={props.name}
-            className={`block ${
+            className={cn(
+              "block text-sm font-semibold tracking-wider",
               props.intent === "white" ? "text-white" : "text-black"
-            } text-sm font-semibold tracking-wider`}
+            )}
           >
             {props.label}
+            {props.required && (
+              <svg className="ml-1 inline h-2 w-2 fill-primary">
+                <use xlinkHref="/assets/svg/sprites.svg#icon-asterisk" />
+              </svg>
+            )}
           </label>
         )}
         <input

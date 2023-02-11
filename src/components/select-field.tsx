@@ -7,6 +7,7 @@ import {
   type ComponentPropsWithoutRef,
 } from "react";
 import { cva, type VariantProps } from "cva";
+import { ChangeHandler } from "react-hook-form";
 
 // Root
 const Select = SelectPrimitive.Root;
@@ -14,15 +15,15 @@ const Select = SelectPrimitive.Root;
 // Trigger
 const triggerVariants = cva(
   [
-    "flex items-center min-h-[50px] justify-between gap-x-2 placeholder:text-base placeholder:text-white-400 border w-full rounded-sm bg-transparent px-2 py-2 font-sans text-base font-normal outline-none focus:outline focus:outline-2 outline-offset-2 placeholder:font-normal placeholder:font-sans",
+    "flex items-center min-h-[50px] justify-between gap-x-2 placeholder:text-base border w-full rounded-sm bg-transparent px-2 py-2 font-sans text-base font-normal outline-none focus:outline focus:outline-2 outline-offset-2 placeholder:font-normal placeholder:font-sans ",
   ],
   {
     variants: {
       intent: {
         white:
-          "border-white text-white placeholder:text-white focus:outline-white ",
+          "border-white text-white placeholder:text-white focus:outline-white data-[placeholder]:text-white-700",
         black:
-          "text-black border-black-900 placeholder:text-black-800 focus:outline-black-800",
+          "text-black border-black-900 placeholder:text-black-800 focus:outline-black-800 data-[placeholder]:text-black-400",
       },
     },
     defaultVariants: {
@@ -65,12 +66,12 @@ const SelectContent = forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        "animate-in relative z-50 min-w-[8rem] overflow-hidden rounded-sm bg-white text-black-800 shadow-md",
+        "animate-in relative z-50 mx-4 min-w-[8rem] overflow-hidden rounded-sm border border-black-300 bg-white text-black-800 shadow-md",
         className
       )}
       {...props}
     >
-      <SelectPrimitive.Viewport className="p-1">
+      <SelectPrimitive.Viewport className=" p-1">
         {children}
       </SelectPrimitive.Viewport>
     </SelectPrimitive.Content>
@@ -94,7 +95,7 @@ const SelectItem = forwardRef<
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
       <SelectPrimitive.ItemIndicator>
         <svg className="h-4 w-4 fill-black-600">
-          <use xlinkHref="/assets/svg/sprites.svg#icon-checkmark" />
+          <use xlinkHref="/assets/svg/sprites.svg#icon-check" />
         </svg>
       </SelectPrimitive.ItemIndicator>
     </span>
@@ -109,32 +110,41 @@ interface Props extends ComponentPropsWithoutRef<typeof SelectTrigger> {
   options: string[];
   label: string;
   name: string;
+  value: string | undefined;
   error?: string;
   placeholder?: string;
+  required?: boolean;
+  onValueChange: (val: string) => void;
 }
 
 const SelectField: React.FC<Props> = ({
   label,
   name,
   intent,
+  value,
   error,
   placeholder,
   options,
+  required,
+  onValueChange,
 }: Props): JSX.Element => {
   return (
     <div className="flex flex-col items-start justify-start gap-y-1">
-      {label && (
-        <label
-          htmlFor={name}
-          className={`block ${
-            intent === "white" ? "text-white" : "text-black"
-          } text-sm font-semibold tracking-wider`}
-        >
-          {label}
-        </label>
-      )}
-      <Select>
-        <SelectTrigger placeholder={placeholder} />
+      <label
+        htmlFor={name}
+        className={`block ${
+          intent === "white" ? "text-white" : "text-black"
+        } text-sm font-semibold tracking-wider`}
+      >
+        {label}
+        {required && (
+          <svg className="ml-1 inline h-2 w-2 fill-primary">
+            <use xlinkHref="/assets/svg/sprites.svg#icon-asterisk" />
+          </svg>
+        )}
+      </label>
+      <Select onValueChange={onValueChange} value={value}>
+        <SelectTrigger placeholder={placeholder} intent={intent} />
         <SelectContent>
           {options.map((option) => (
             <SelectItem
