@@ -35,4 +35,4 @@ const Form = <T extends FieldValues>({
   </FormProvider>
 );
 
-export default Form;
+export { Form };

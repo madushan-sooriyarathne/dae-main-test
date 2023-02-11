@@ -3,7 +3,7 @@ import { z } from "zod";
 import { useZodForm } from "@hooks/useZodForm";
 
 import { Button } from "@components/button";
-import Form from "@components/form";
+import { Form } from "@components/form";
 import { InputField } from "@components/input-field";
 import { Paragraph } from "@components/paragraph";
 
@@ -31,7 +31,7 @@ const ContactFormSection: React.FC = (): JSX.Element => {
         <Form
           form={form}
           onSubmit={(data) => alert(JSON.stringify(data))}
-          className="grid grid-cols-1 items-center  md:grid-cols-[minmax(min-content,_1fr)_min-content] md:gap-x-8 md:[&>*:nth-child(2)]:col-span-2 md:[&>*:nth-child(3)]:col-span-2 md:[&>*:nth-child(1)]:col-span-2"
+          className="grid grid-cols-1 items-center  md:grid-cols-[minmax(min-content,_1fr)_min-content] md:gap-x-8 md:[&>*:nth-child(1)]:col-span-2 md:[&>*:nth-child(2)]:col-span-2 md:[&>*:nth-child(3)]:col-span-2"
         >
           <InputField
             label="Name"

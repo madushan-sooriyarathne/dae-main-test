@@ -2,7 +2,7 @@ import { z } from "zod";
 import dynamic from "next/dynamic";
 
 import { Button } from "@components/button";
-import Form from "@components/form";
+import { Form } from "@components/form";
 import { PrimaryHeading } from "@components/headings/primary-heading";
 import { ImageComponent } from "@components/image-component";
 import { InputField } from "@components/input-field";
@@ -10,6 +10,7 @@ import { Paragraph } from "@components/paragraph";
 import { TextAreaField } from "@components/text-area-field";
 import { useZodForm } from "@hooks/useZodForm";
 import type { ImageContentSectionType } from "@layout/common/image-content-section";
+import { Controller } from "react-hook-form";
 
 const SelectField = dynamic(
   () => import("@components/select-field").then((mod) => mod.SelectField),
@@ -87,12 +88,24 @@ const ContactForm: React.FC<ImageContentSectionType> = ({
             required
             aria-required
           />
-          <SelectField
-            options={["Water Sports", "Restaurant"]}
-            label="Reason"
-            placeholder="I'm Interested in"
-            intent="white"
-            {...form.register("interest")}
+          <Controller
+            control={form.control}
+            name="interest"
+            render={({
+              field: { name, onChange, value },
+              formState: { errors },
+            }) => (
+              <SelectField
+                options={["Water Sports", "Restaurant"]}
+                onValueChange={onChange}
+                value={value}
+                name={name}
+                label="Reason"
+                placeholder="I'm Interested in"
+                intent="white"
+                error={errors.interest?.message}
+              />
+            )}
           />
 
           <TextAreaField
