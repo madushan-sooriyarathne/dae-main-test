@@ -46,8 +46,8 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           id="app"
         >
           {/* <AnimatePresence>
-            {loading && <LoadingScreen key="loading-screen" />}
-          </AnimatePresence> */}
+            {loading &&   <LoadingScreen key="loading-screen" />}
+            </AnimatePresence> */}
           <NotificationProvider>
             <AnimatePresence>
               <Component {...pageProps} />
