@@ -9,7 +9,7 @@ import { Paragraph } from "@components/paragraph";
 
 const Footer: React.FC = (): JSX.Element => {
   return (
-    <footer className="main-grid-columns grid w-full auto-rows-min grid-cols-1 items-start justify-items-center gap-y-12 bg-water bg-darkWater pt-12 md:gap-y-0 md:pt-0">
+    <footer className="main-grid-columns row-start-2 grid w-full auto-rows-min grid-cols-1 items-start justify-items-center gap-y-12 bg-water bg-darkWater pt-12 md:gap-y-0 md:pt-0">
       <div
         className={cn(
           "col-full flex h-full w-full items-center justify-center border-b border-b-water-800 pb-12",
@@ -34,18 +34,13 @@ const Footer: React.FC = (): JSX.Element => {
         )}
       >
         <div className="flex flex-col items-center justify-start gap-y-1 md:items-start md:[&_p]:text-left md:[&_h5]:text-left">
-          <div className="flex flex-col items-center">
-            <QuaternaryHeading
-              alignment="center"
-              intent="white"
-              className="text-2xl"
-            >
-              {brand.companyName}
-            </QuaternaryHeading>
-            <span className="font-sans text-[10px] font-semibold uppercase tracking-wide text-white">
-              by Debug Auto Exclusive
-            </span>
-          </div>
+          <QuaternaryHeading
+            alignment="center"
+            intent="white"
+            className="text-2xl"
+          >
+            {brand.companyName}
+          </QuaternaryHeading>
           <Paragraph alignment="center" intent="white" small>
             {brand.address}
           </Paragraph>

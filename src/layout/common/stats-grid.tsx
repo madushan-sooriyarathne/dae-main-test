@@ -10,11 +10,12 @@ interface Props extends ComponentPropsWithRef<"section"> {
 }
 
 const StatsGrid = forwardRef<HTMLElement, Props>(
-  ({ stats, className, ...props }: Props): JSX.Element => {
+  ({ stats, className, ...props }, ref): JSX.Element => {
     return (
       <section
         className={cn("main-grid-columns grid w-full", className)}
         {...props}
+        ref={ref}
       >
         <div className="col-content mx-auto flex flex-row flex-wrap items-stretch justify-center gap-4 md:w-full">
           {stats.map((stat) => (

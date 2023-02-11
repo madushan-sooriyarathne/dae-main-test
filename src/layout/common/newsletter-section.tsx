@@ -3,7 +3,7 @@ import { z } from "zod";
 import { useZodForm } from "@hooks/useZodForm";
 
 import { Button } from "@components/button";
-import Form from "@components/form";
+import { Form } from "@components/form";
 import { ImageComponent } from "@components/image-component";
 import { InputField } from "@components/input-field";
 import { Paragraph } from "@components/paragraph";
