@@ -23,7 +23,7 @@ export const generateRandomPath = (points: number) => {
 };
 
 export const formatDate = (date: string) => {
-  return new Date(date).toLocaleDateString("en-US", {
+  return new Date(date).toLocaleDateString("en-lk", {
     year: "numeric",
     month: "long",
     day: "numeric",
