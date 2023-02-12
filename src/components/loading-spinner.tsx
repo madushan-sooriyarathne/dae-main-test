@@ -1,4 +1,4 @@
-import { cva, type VariantProps } from "cva";
+import { cva, type VariantProps } from "class-variance-authority";
 
 const spinnerVariants = cva(
   "mx-auto h-12 w-12 animate-spin rounded-full border-2 border-white-600  bg-transparent",

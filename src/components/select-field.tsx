@@ -6,7 +6,7 @@ import {
   type ElementRef,
   type ComponentPropsWithoutRef,
 } from "react";
-import { cva, type VariantProps } from "cva";
+import { cva, type VariantProps } from "class-variance-authority";
 import { ChangeHandler } from "react-hook-form";
 
 // Root

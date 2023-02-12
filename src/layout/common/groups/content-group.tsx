@@ -1,4 +1,4 @@
-import { cva } from "cva";
+import { cva } from "class-variance-authority";
 
 import { HeadingGroup } from "@layout/common/groups/heading-group";
 
@@ -7,7 +7,7 @@ import { Paragraph } from "@components/paragraph";
 
 import type { ButtonType } from "@components/button";
 import type { HeadingGroupType } from "@layout/common/groups/heading-group";
-import type { VariantProps } from "cva";
+import type { VariantProps } from "class-variance-authority";
 import type { ReactNode } from "react";
 
 const contentWrapper = cva(

@@ -19,7 +19,7 @@ import {
   useDatepicker,
 } from "@datepicker-react/hooks";
 import { cn } from "@lib/clsx";
-import { cva, type VariantProps } from "cva";
+import { cva, type VariantProps } from "class-variance-authority";
 import { m, AnimatePresence } from "framer-motion";
 import { fadeInBottom } from "@styles/animations";
 import { OutsideClickHandler } from "./outside-click-handler";

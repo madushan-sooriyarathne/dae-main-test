@@ -1,4 +1,4 @@
-import { cva } from "cva";
+import { cva } from "class-variance-authority";
 
 import { ContentGroup } from "@layout/common/groups/content-group";
 
@@ -7,7 +7,7 @@ import { ImageComponent } from "@components/image-component";
 import { Blob } from "@components/blob";
 
 import type { ContentGroupType } from "@layout/common/groups/content-group";
-import type { VariantProps } from "cva";
+import type { VariantProps } from "class-variance-authority";
 import { useRef } from "react";
 import { useScroll, useTransform } from "framer-motion";
 

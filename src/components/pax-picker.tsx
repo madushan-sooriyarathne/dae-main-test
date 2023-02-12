@@ -1,5 +1,5 @@
 import { fadeInBottom } from "@styles/animations";
-import { cva, type VariantProps } from "cva";
+import { cva, type VariantProps } from "class-variance-authority";
 import { AnimatePresence, m } from "framer-motion";
 import { useCallback, useState } from "react";
 import { Button } from "./button";

@@ -1,6 +1,6 @@
-import { cva } from "cva";
+import { cva } from "class-variance-authority";
 
-import type { VariantProps } from "cva";
+import type { VariantProps } from "class-variance-authority";
 
 const heading = cva(
   [
