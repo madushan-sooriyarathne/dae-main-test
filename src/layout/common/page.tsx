@@ -8,6 +8,7 @@ import { NavBar } from "./nav-bar";
 import { Floater } from "@components/floater";
 // import { Toast } from "@components/toast";
 import { pageTransition } from "@styles/animations";
+import WhatsappWidget from "@components/whatsapp-widget";
 
 interface Props {
   title: string;
@@ -33,6 +34,7 @@ const Page: React.FC<Props> = ({ title, children }: Props): JSX.Element => {
       </main>
       <Footer />
       <Floater />
+      <WhatsappWidget />
       {/* <Toast /> */}
     </m.div>
   );
