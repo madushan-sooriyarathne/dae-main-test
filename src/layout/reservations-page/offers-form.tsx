@@ -1,7 +1,14 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Controller } from "react-hook-form";
 import { z } from "zod";
+import { m } from "framer-motion";
+import Link from "next/link";
+
+import { api } from "@utils/api";
+import { useZodForm } from "@hooks/useZodForm";
+import { cn } from "@lib/clsx";
+import { contentfulClient } from "@lib/contentful";
 
 import { type IOfferFields } from "@cms/generated/types";
 
@@ -14,10 +21,7 @@ import { LoadingSpinner } from "@components/loading-spinner";
 import { PaxPicker } from "@components/pax-picker";
 import { SelectField } from "@components/select-field";
 import { TextAreaField } from "@components/text-area-field";
-import { useZodForm } from "@hooks/useZodForm";
-import { cn } from "@lib/clsx";
-import { contentfulClient } from "@lib/contentful";
-import { formatDate } from "@utils/base";
+import { fadeIn } from "@styles/animations";
 
 const getOfferData = async (): Promise<
   Omit<Offer, "description" | "images">[]
@@ -60,11 +64,17 @@ const offerFormSchema = z.object({
   requests: z.optional(z.string()),
 });
 
-const OffersForm: React.FC = (): JSX.Element => {
+interface Props {
+  offer?: string | string[];
+}
+
+const OffersForm: React.FC<Props> = ({ offer }): JSX.Element => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["offers"],
     queryFn: getOfferData,
   });
+
+  const mutation = api.offer.offerInquiry.useMutation();
 
   const form = useZodForm({
     schema: offerFormSchema,
@@ -73,10 +83,20 @@ const OffersForm: React.FC = (): JSX.Element => {
         adults: 2,
         children: 0,
       },
+      offer: data?.find((item) => item.id === offer)?.name,
     },
   });
 
-  // form.setValue("adults", 10);
+  useEffect(() => {
+    if (data) {
+      const selectedOffer = data.find((item) => item.id === offer)?.name;
+
+      if (selectedOffer) {
+        form.setValue("offer", selectedOffer);
+      }
+    }
+  }, [data, form, offer]);
+
   const offerValue = form.watch("offer");
   const offerExpireDate = useMemo(() => {
     if (isLoading || isError) {
@@ -90,29 +110,45 @@ const OffersForm: React.FC = (): JSX.Element => {
   if (isError) return <></>;
 
   return (
-    <div className="grid auto-rows-min grid-cols-1 gap-y-6 mlg:grid-cols-3 ">
-      <div className="flex w-full flex-col items-start justify-end rounded-md bg-lightWater px-4 pt-12 pb-4 mlg:col-start-1 mlg:py-12 lg:px-9">
-        <span className="text-xs font-bold uppercase tracking-wider text-black-600">
-          Reserve
-        </span>
-        <SecondaryHeading alignment="left" intent="secondary">
-          Offers & Packages
-        </SecondaryHeading>
+    <m.div
+      key="offers-form"
+      className="grid auto-rows-min grid-cols-1 gap-y-6 mlg:grid-cols-3"
+      variants={fadeIn}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
+      <div className="flex h-48 w-full flex-col items-start justify-between rounded-md bg-lightWater px-4 py-4 mlg:col-start-1 mlg:h-full mlg:py-12 lg:px-9">
+        <Link
+          href="/reservations"
+          className="flex items-center justify-start gap-x-2 rounded-md border-2 border-water bg-water fill-white px-2 py-3 font-sans text-sm font-semibold text-white transition-colors duration-200 hover:bg-transparent hover:fill-water hover:text-water"
+        >
+          <svg className="h-2 w-7 rotate-180 transform">
+            <use xlinkHref="/assets/svg/sprites.svg#arrow-right-long" />
+          </svg>
+          Back to Selection
+        </Link>
+        <div>
+          <span className="text-xs font-bold uppercase tracking-wider text-black-600">
+            Reserve
+          </span>
+          <SecondaryHeading alignment="left" intent="secondary">
+            Offers & Packages
+          </SecondaryHeading>
+        </div>
       </div>
       <div className="w-full mlg:col-span-2 mlg:col-start-2 mlg:py-6 mlg:pl-9 mlg:pr-0">
         {data && (
           <div className="w-full">
             <Form
               form={form}
-              onSubmit={(data) => {
-                alert(
-                  JSON.stringify({
-                    ...data,
-                    date: data.date
-                      ? formatDate(data.date.toISOString())
-                      : null,
-                  })
-                );
+              onSubmit={async (data) => {
+                const response = await mutation.mutateAsync({
+                  ...data,
+                  date: (data.date as Date).toISOString(),
+                  noOfGuests: data.pax,
+                });
+                alert(response.status);
               }}
               className={cn(
                 "grid auto-rows-min grid-cols-1 gap-6 mlg:grid-cols-2",
@@ -208,14 +244,19 @@ const OffersForm: React.FC = (): JSX.Element => {
                 intent="black"
               />
 
-              <Button type="submit" intent="primary" fullWidth>
+              <Button
+                type="submit"
+                intent="primary"
+                fullWidth
+                loading={form.formState.isSubmitting}
+              >
                 Submit
               </Button>
             </Form>
           </div>
         )}
       </div>
-    </div>
+    </m.div>
   );
 };
 
