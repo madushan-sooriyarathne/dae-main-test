@@ -8,7 +8,8 @@ import {
   useState,
   useEffect,
 } from "react";
-
+import { cva, type VariantProps } from "class-variance-authority";
+import { m, AnimatePresence } from "framer-motion";
 import {
   type FirstDayOfWeek,
   type OnDatesChangeProps,
@@ -18,12 +19,12 @@ import {
   START_DATE,
   useDatepicker,
 } from "@datepicker-react/hooks";
+
 import { cn } from "@lib/clsx";
-import { cva, type VariantProps } from "class-variance-authority";
-import { m, AnimatePresence } from "framer-motion";
-import { fadeInBottom } from "@styles/animations";
-import { OutsideClickHandler } from "./outside-click-handler";
 import { formatDate } from "@utils/base";
+
+import { fadeInBottom } from "@styles/animations";
+import { OutsideClickHandler } from "@components/outside-click-handler";
 
 type DatePickerContextType = {
   focusedDate: Date | null;
@@ -113,7 +114,7 @@ const Day: React.FC<DayProps> = ({ day, date }: DayProps): JSX.Element => {
       aria-label={`${formatDate(date.toISOString())} - ${
         disabledDate ? "Disabled" : "Not Disabled"
       } - ${isSelected ? "Selected" : "Not Selected"}`}
-      aria-disabled={disabledDate ? "true" : "false"}
+      aria-disabled={Boolean(disabledDate)}
       className={cn(
         "h-8 w-8 rounded-full bg-white text-black lg:h-12 lg:w-12",
         { " bg-primary text-white": isSelectedStartOrEnd },
@@ -183,17 +184,17 @@ const Month = forwardRef<HTMLDivElement, MonthProps>(
 
 Month.displayName = "Month";
 
-const dateInputField = cva(
+const dateInputFieldVariants = cva(
   [
-    "flex items-center gap-x-4 justify-start w-full rounded-sm border bg-transparent px-2 py-3 font-sans text-sm  lg:text-base font-normal outline-none placeholder:font-sans placeholder:text-sm lg:placeholder:text-base placeholder:font-normal  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 group disabled:text-white-600 disabled:border-white-600 disabled:cursor-not-allowed disabled:!outline-none ",
+    "flex items-center gap-x-4 justify-start w-full rounded-sm border bg-transparent px-2 py-3 font-sans text-sm  lg:text-base font-normal outline-none placeholder:font-sans placeholder:text-sm lg:placeholder:text-base placeholder:font-normal  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 group  disabled:cursor-not-allowed disabled:!outline-none ",
   ],
   {
     variants: {
       intent: {
         white:
-          "text-white border-white placeholder:text-white-700 focus-visible:outline-white data-[placeholder=true]:text-white-700",
+          "text-white border-white placeholder:text-white-700 focus-visible:outline-white data-[placeholder=true]:text-white-700 disabled:text-white-400 disabled:border-white-400",
         black:
-          "text-black border-black-900 placeholder:text-black-800 focus-visible:outline-black data-[placeholder=true]:text-black-400",
+          "text-black border-black-900 placeholder:text-black-800 focus-visible:outline-black data-[placeholder=true]:text-black-400 disabled:text-black-500 disabled:border-black-500",
       },
     },
     defaultVariants: {
@@ -202,8 +203,38 @@ const dateInputField = cva(
   }
 );
 
+const inputLabelVariants = cva("block text-sm font-semibold tracking-wider", {
+  variants: {
+    intent: {
+      black: "text-black",
+      white: "text-white",
+    },
+    disabled: {
+      true: "cursor-not-allowed",
+    },
+  },
+  compoundVariants: [
+    {
+      intent: "black",
+      disabled: true,
+      className: "text-black-500",
+    },
+    {
+      intent: "white",
+      disabled: true,
+      className: "text-white-400",
+    },
+  ],
+  defaultVariants: {
+    intent: "black",
+    disabled: false,
+  },
+});
+
 // Date Range Picker
-interface DateRangePickerProps extends VariantProps<typeof dateInputField> {
+interface DateRangePickerProps
+  extends VariantProps<typeof dateInputFieldVariants>,
+    VariantProps<typeof inputLabelVariants> {
   startDate?: Date;
   endDate?: Date;
   minDate?: Date;
@@ -217,7 +248,6 @@ interface DateRangePickerProps extends VariantProps<typeof dateInputField> {
   unavailableDates?: Date[];
   minDateRange?: number;
   exactMinRange?: true;
-  disabled?: boolean;
   required?: boolean;
 }
 
@@ -317,9 +347,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
       {label && (
         <label
           htmlFor={name}
-          className={`block ${
-            intent === "white" ? "text-white" : "text-black"
-          } text-sm font-semibold tracking-wider`}
+          className={cn(inputLabelVariants({ intent, disabled }))}
         >
           {label}
           {required && (
@@ -331,10 +359,10 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
       )}
       <div className="relative w-full" id="date-range-picker-portal">
         <button
-          disabled={disabled}
-          aria-disabled={disabled ? "true" : "false"}
+          disabled={Boolean(disabled)}
+          aria-disabled={Boolean(disabled)}
           id={name}
-          className={dateInputField({
+          className={dateInputFieldVariants({
             intent,
           })}
           onClick={togglePortal}
@@ -441,7 +469,9 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
 };
 
 // Date Picker
-interface DatePickerProps extends VariantProps<typeof dateInputField> {
+interface DatePickerProps
+  extends VariantProps<typeof dateInputFieldVariants>,
+    VariantProps<typeof inputLabelVariants> {
   value: Date | null;
   onDateChange: (date: Date | null) => void;
   minDate?: Date;
@@ -452,7 +482,6 @@ interface DatePickerProps extends VariantProps<typeof dateInputField> {
   placeholder?: string;
   noOfMonths?: 1 | 2;
   unavailableDates?: Date[];
-  disabled?: boolean;
   required?: boolean;
 }
 
@@ -511,9 +540,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
       {label && (
         <label
           htmlFor={name}
-          className={`block ${
-            intent === "white" ? "text-white" : "text-black"
-          } text-sm font-semibold tracking-wider`}
+          className={cn(inputLabelVariants({ disabled, intent }))}
         >
           {label}
           {required && (
@@ -525,15 +552,15 @@ export const DatePicker: React.FC<DatePickerProps> = ({
       )}
       <div className="relative w-full" id="date-picker-portal">
         <button
-          disabled={disabled}
-          aria-disabled={disabled ? "true" : "false"}
+          disabled={Boolean(disabled)}
+          aria-disabled={Boolean(disabled)}
           id={name}
-          className={dateInputField({
+          className={dateInputFieldVariants({
             intent,
           })}
           type="button"
           onClick={togglePortal}
-          data-placeholder={!value && placeholder ? true : false}
+          data-placeholder={Boolean(!value && placeholder)}
         >
           <span className="font-sans text-base tracking-wide">
             {value ? value.toLocaleDateString("en-lk") : placeholder}
@@ -611,7 +638,12 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         </DatePickerContext.Provider>
       </div>
       {error && (
-        <p className="block text-left font-sans text-xs font-medium text-primary">
+        <p
+          className={cn(
+            "block text-left font-sans text-xs font-medium text-primary",
+            { "text-primary-400": disabled }
+          )}
+        >
           {error}
         </p>
       )}

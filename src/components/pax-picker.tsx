@@ -1,21 +1,23 @@
-import { fadeInBottom } from "@styles/animations";
+import { useState } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { AnimatePresence, m } from "framer-motion";
-import { useCallback, useState } from "react";
-import { Button } from "./button";
-import { OutsideClickHandler } from "./outside-click-handler";
+
+import { fadeInBottom } from "@styles/animations";
+
+import { OutsideClickHandler } from "@components/outside-click-handler";
+import { cn } from "@lib/clsx";
 
 const fieldVariants = cva(
   [
-    "w-full flex items-center justify-start rounded-sm border bg-transparent px-2 py-3 font-sans text-sm  lg:text-base font-normal outline-none placeholder:font-sans placeholder:text-sm lg:placeholder:text-base placeholder:font-normal placeholder:text-white-400  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+    "w-full flex items-center justify-start rounded-sm border bg-transparent px-2 py-3 font-sans text-sm  lg:text-base font-normal outline-none placeholder:font-sans placeholder:text-sm lg:placeholder:text-base placeholder:font-normal placeholder:text-white-400  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:outline-none disabled:cursor-not-allowed",
   ],
   {
     variants: {
       intent: {
         white:
-          "text-white border-white placeholder:text-white-700 focus-visible:outline-white",
+          "text-white border-white placeholder:text-white-700 focus-visible:outline-white disabled:text-white-400 disabled:border-white-400 disabled:placeholder:bg-white-400",
         black:
-          "text-black border-black-900 placeholder:text-black-800 focus-visible:outline-black",
+          "text-black border-black-900 placeholder:text-black-800 focus-visible:outline-black disabled:text-black-500 disabled:border-black-500 disabled:placeholder:bg-black-500",
       },
     },
     defaultVariants: {
@@ -24,7 +26,37 @@ const fieldVariants = cva(
   }
 );
 
-interface Props extends VariantProps<typeof fieldVariants> {
+const inputLabelVariants = cva("block text-sm font-semibold tracking-wider", {
+  variants: {
+    intent: {
+      black: "text-black",
+      white: "text-white",
+    },
+    disabled: {
+      true: "cursor-not-allowed",
+    },
+  },
+  compoundVariants: [
+    {
+      intent: "black",
+      disabled: true,
+      className: "text-black-500",
+    },
+    {
+      intent: "white",
+      disabled: true,
+      className: "text-white-400",
+    },
+  ],
+  defaultVariants: {
+    intent: "black",
+    disabled: false,
+  },
+});
+
+interface Props
+  extends VariantProps<typeof fieldVariants>,
+    VariantProps<typeof inputLabelVariants> {
   onPaxChange: (pax: { adults: number; children: number }) => void;
   value: {
     adults: number;
@@ -42,6 +74,7 @@ const PaxPicker: React.FC<Props> = ({
   intent,
   label,
   name,
+  disabled,
   error,
   required,
 }: Props): JSX.Element => {
@@ -54,9 +87,7 @@ const PaxPicker: React.FC<Props> = ({
       {label && (
         <label
           htmlFor={name}
-          className={`block ${
-            intent === "white" ? "text-white" : "text-black"
-          } text-sm font-semibold tracking-wider`}
+          className={cn(inputLabelVariants({ intent, disabled }))}
         >
           {label}
           {required && (
@@ -71,6 +102,7 @@ const PaxPicker: React.FC<Props> = ({
           id={name}
           type="button"
           role="button"
+          disabled={Boolean(disabled)}
           className={fieldVariants({
             intent: intent,
           })}
@@ -126,6 +158,7 @@ const PaxPicker: React.FC<Props> = ({
                       value={value.adults}
                       inputMode="numeric"
                       min={0}
+                      readOnly
                       placeholder="00"
                       className="w-8 appearance-none border-none bg-transparent text-center font-sans text-base font-medium tracking-wide text-black-900 outline-none"
                     />
@@ -178,6 +211,7 @@ const PaxPicker: React.FC<Props> = ({
                       value={value.children}
                       inputMode="numeric"
                       min={0}
+                      readOnly
                       placeholder="00"
                       className="w-8 appearance-none border-none bg-transparent text-center font-sans text-base font-medium tracking-wide text-black-900 outline-none"
                     />
@@ -206,7 +240,12 @@ const PaxPicker: React.FC<Props> = ({
       </div>
 
       {error && (
-        <p className="block text-left font-sans text-xs font-medium text-primary">
+        <p
+          className={cn(
+            "block text-left font-sans text-xs font-medium text-primary",
+            { "text-primary-400": disabled }
+          )}
+        >
           {error}
         </p>
       )}

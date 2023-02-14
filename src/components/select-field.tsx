@@ -1,13 +1,12 @@
-import * as SelectPrimitive from "@radix-ui/react-select";
-
-import { cn } from "@lib/clsx";
 import {
   forwardRef,
   type ElementRef,
   type ComponentPropsWithoutRef,
 } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { ChangeHandler } from "react-hook-form";
+import * as SelectPrimitive from "@radix-ui/react-select";
+
+import { cn } from "@lib/clsx";
 
 // Root
 const Select = SelectPrimitive.Root;
@@ -15,15 +14,15 @@ const Select = SelectPrimitive.Root;
 // Trigger
 const triggerVariants = cva(
   [
-    "flex items-center min-h-[50px] justify-between gap-x-2 placeholder:text-base border w-full rounded-sm bg-transparent px-2 py-2 font-sans text-base font-normal outline-none focus:outline focus:outline-2 outline-offset-2 placeholder:font-normal placeholder:font-sans ",
+    "flex items-center min-h-[50px] justify-between gap-x-2 placeholder:text-base border w-full rounded-sm bg-transparent px-2 py-2 font-sans text-base font-normal outline-none focus:outline focus:outline-2 outline-offset-2 placeholder:font-normal placeholder:font-sans disabled:outline-none disabled:cursor-not-allowed",
   ],
   {
     variants: {
       intent: {
         white:
-          "border-white text-white placeholder:text-white focus:outline-white data-[placeholder]:text-white-700",
+          "border-white text-white  focus:outline-white data-[placeholder]:text-white-700 disabled:text-white-400 disabled:border-white-400 disabled:data-[placeholder]:text-white-400",
         black:
-          "text-black border-black-900 placeholder:text-black-800 focus:outline-black-800 data-[placeholder]:text-black-400",
+          "text-black border-black-900 focus:outline-black-800 data-[placeholder]:text-black-400 disabled:text-black-500 disabled:border-black-500 disabled:data-[placeholder]:text-black-500",
       },
     },
     defaultVariants: {
@@ -105,8 +104,38 @@ const SelectItem = forwardRef<
 ));
 SelectItem.displayName = SelectPrimitive.Item.displayName;
 
+const inputLabelVariants = cva("block text-sm font-semibold tracking-wider", {
+  variants: {
+    intent: {
+      black: "text-black",
+      white: "text-white",
+    },
+    disabled: {
+      true: "cursor-not-allowed",
+    },
+  },
+  compoundVariants: [
+    {
+      intent: "black",
+      disabled: true,
+      className: "text-black-500",
+    },
+    {
+      intent: "white",
+      disabled: true,
+      className: "text-white-400",
+    },
+  ],
+  defaultVariants: {
+    intent: "black",
+    disabled: false,
+  },
+});
+
 // SelectFiled
-interface Props extends ComponentPropsWithoutRef<typeof SelectTrigger> {
+interface Props
+  extends ComponentPropsWithoutRef<typeof SelectTrigger>,
+    Omit<VariantProps<typeof inputLabelVariants>, "disabled"> {
   options: string[];
   label: string;
   name: string;
@@ -127,14 +156,13 @@ const SelectField: React.FC<Props> = ({
   options,
   required,
   onValueChange,
+  ...props
 }: Props): JSX.Element => {
   return (
     <div className="flex flex-col items-start justify-start gap-y-1">
       <label
         htmlFor={name}
-        className={`block ${
-          intent === "white" ? "text-white" : "text-black"
-        } text-sm font-semibold tracking-wider`}
+        className={cn(inputLabelVariants({ disabled: props.disabled, intent }))}
       >
         {label}
         {required && (
@@ -144,7 +172,7 @@ const SelectField: React.FC<Props> = ({
         )}
       </label>
       <Select onValueChange={onValueChange} value={value}>
-        <SelectTrigger placeholder={placeholder} intent={intent} />
+        <SelectTrigger placeholder={placeholder} intent={intent} {...props} />
         <SelectContent>
           {options.map((option) => (
             <SelectItem
@@ -157,7 +185,12 @@ const SelectField: React.FC<Props> = ({
         </SelectContent>
       </Select>
       {error && (
-        <p className="block text-left font-sans text-xs font-medium text-primary">
+        <p
+          className={cn(
+            "block text-left font-sans text-xs font-medium text-primary",
+            { "text-primary-400": props.disabled }
+          )}
+        >
           {error}
         </p>
       )}
