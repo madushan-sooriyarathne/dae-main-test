@@ -20,6 +20,7 @@ const WhatsappWidget: React.FC = (): JSX.Element => {
         "_blank"
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ const WhatsappWidget: React.FC = (): JSX.Element => {
   }, []);
 
   return (
-    <div className="fixed bottom-5 right-24">
+    <div className="fixed bottom-5 right-5">
       <AnimatePresence>
         {widgetOpen && (
           <m.div
@@ -47,9 +48,9 @@ const WhatsappWidget: React.FC = (): JSX.Element => {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="absolute bottom-[calc(100%+1rem)] -right-14 flex  w-[300px] flex-col items-center justify-start gap-y-5 rounded-md bg-white px-3 py-5 shadow-md shadow-black/20"
+            className="absolute bottom-[calc(100%+1rem)] right-0 flex  w-[300px] flex-col items-center justify-start gap-y-5 rounded-md border border-black-300/30 bg-white px-3 py-5 shadow-lg shadow-black/20"
           >
-            <div className="absolute right-20 bottom-0 h-3 w-3 translate-y-1/2 rotate-45 transform bg-white" />
+            <div className="absolute right-5 bottom-0 h-3 w-3 translate-y-1/2 rotate-45 transform bg-white" />
             <QuaternaryHeading alignment="center" intent="secondary">
               Chat with us on WhatsApp
             </QuaternaryHeading>
