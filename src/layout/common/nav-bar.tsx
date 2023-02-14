@@ -111,7 +111,7 @@ const NavBar: React.FC = (): JSX.Element => {
                 </Link>
               ))}
             </div>
-            <Button route="/reservation" type="route" intent="primary">
+            <Button route="/reservations" type="route" intent="primary">
               Reserve Now
             </Button>
           </div>
@@ -251,7 +251,7 @@ const NavBar: React.FC = (): JSX.Element => {
             </div>
             <div>
               <Button
-                route="/reservation"
+                route="/reservations"
                 type="route"
                 intent="primary"
                 withArrow
