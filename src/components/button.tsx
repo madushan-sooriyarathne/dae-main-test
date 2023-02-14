@@ -226,7 +226,7 @@ const Button: React.FC<ButtonType> = (props): JSX.Element => {
           onClick={props.onClick}
         >
           {loading ? (
-            <div className="h-6 w-6 animate-spin rounded-full border-2 border-solid border-[rgba(255,255,255,0.2)] border-l-white transition-[border] duration-200 ease-out" />
+            <div className="h-[18px] w-[18px] animate-spin rounded-full border-2 border-solid border-[rgba(255,255,255,0.2)] border-l-white transition-[border] duration-200 ease-out" />
           ) : (
             <>
               <span className="text-inherit font-sans text-xs font-bold uppercase leading-snug tracking-[0.2em]">
@@ -258,7 +258,7 @@ const Button: React.FC<ButtonType> = (props): JSX.Element => {
           href={props.route}
         >
           {loading ? (
-            <div className="h-6 w-6 animate-spin rounded-full border-2 border-solid border-[rgba(255,255,255,0.2)] border-l-white transition-[border] duration-200 ease-out" />
+            <div className="h-[18px] w-[18px] animate-spin rounded-full border-2 border-solid border-[rgba(255,255,255,0.2)] border-l-white transition-[border] duration-200 ease-out" />
           ) : (
             <>
               <span className="text-inherit font-sans text-xs font-bold uppercase leading-snug tracking-[0.2em]">
@@ -292,7 +292,7 @@ const Button: React.FC<ButtonType> = (props): JSX.Element => {
           rel={props.external ? "noopener noreferrer" : ""}
         >
           {loading ? (
-            <div className="h-6 w-6 animate-spin rounded-full border-2 border-solid border-[rgba(255,255,255,0.2)] border-l-white transition-[border] duration-200 ease-out" />
+            <div className="h-[18px] w-[18px] animate-spin rounded-full border-2 border-solid border-[rgba(255,255,255,0.2)] border-l-white transition-[border] duration-200 ease-out" />
           ) : (
             <>
               <span className="text-inherit font-sans text-xs font-bold uppercase leading-snug tracking-[0.2em]">
@@ -325,7 +325,7 @@ const Button: React.FC<ButtonType> = (props): JSX.Element => {
           disabled={disabled ? true : false}
         >
           {loading ? (
-            <div className="h-6 w-6 animate-spin rounded-full border-2 border-solid border-[rgba(255,255,255,0.2)] border-l-white transition-[border] duration-200 ease-out" />
+            <div className="h-[18px] w-[18px] animate-spin rounded-full border-2 border-solid border-[rgba(255,255,255,0.2)] border-l-white transition-[border] duration-200 ease-out" />
           ) : (
             <>
               <span className="text-inherit font-sans text-xs font-bold uppercase leading-snug tracking-[0.2em]">
