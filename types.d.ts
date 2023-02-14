@@ -3,6 +3,12 @@ import type { MultiImageContentSectionType } from "@layout/common/multi-image-co
 declare global {
   type NonEmptyArray<T> = [T, ...T[]];
 
+  type APIResponseType = {
+    status: "success" | "failed";
+    message: string | null;
+    data: object | null;
+  };
+
   type NotificationType = {
     title: string;
     message: string;
