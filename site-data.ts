@@ -82,7 +82,7 @@ export const reservationTypes: ReservationType[] = [
       alt: "Packages and Offers Reservation selector image - A girl relaxing in the swimming pool at Marina by D.A.E",
       blurUrl: "",
     },
-    id: "package-and-offers",
+    id: "packages-and-offers",
     name: "Packages and Offers",
   },
   {
@@ -95,3 +95,12 @@ export const reservationTypes: ReservationType[] = [
     name: "Events",
   },
 ];
+
+export const eventTypes = [
+  "Weddings",
+  "Birthdays",
+  "Corporate Events",
+  "Gatherings",
+] as const;
+
+export const waterSports = ["Banana Boat", "Kayaking", "Jet Ski ride"] as const;
