@@ -96,6 +96,38 @@ export const reservationTypes: ReservationType[] = [
   },
 ];
 
+type ErrorType = {
+  code: number;
+  message: string;
+  title: string;
+  image: Image;
+};
+
+export const errorTypes: ErrorType[] = [
+  {
+    code: 404,
+    message:
+      "Sorry! The page you are looking for doesn't exist or has been moved. Please check the URL or try navigating to our homepage to find what you're looking for:",
+    title: "Page not found...",
+    image: {
+      src: "https://images.ctfassets.net/5uyx9ygtaaqf/1AQV0d6iAtWJu4PUTBKGRS/98ecefa1ca09a874d16a91d91220bd1d/404.jpg",
+      blurUrl: "",
+      alt: "404-image",
+    },
+  },
+  {
+    code: 500,
+    message:
+      "Our server encountered an unexpected error and we're unable to fulfill your request at this time. Please try refreshing the page, or come back later and try again. If the issue persists, please feel free to contact our support team for assistance.",
+    title: "Something went wrong...",
+    image: {
+      src: "https://images.ctfassets.net/5uyx9ygtaaqf/1jNayDfJsQz5tg2skzAHbd/9a9757301643b54e5fb3ab436080b6e8/500.jpg",
+      blurUrl: "",
+      alt: "500-image",
+    },
+  },
+];
+
 export const eventTypes = [
   "Weddings",
   "Birthdays",

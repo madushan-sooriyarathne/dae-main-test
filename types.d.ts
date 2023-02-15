@@ -5,6 +5,13 @@ declare global {
     dataLayer: any;
   }
 
+  type ErrorType = {
+    code: number;
+    message: string;
+    title: string;
+    image: Image;
+  };
+
   type NonEmptyArray<T> = [T, ...T[]];
 
   type APIResponseType = {
