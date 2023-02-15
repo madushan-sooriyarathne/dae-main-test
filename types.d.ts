@@ -1,6 +1,10 @@
 import type { MultiImageContentSectionType } from "@layout/common/multi-image-content-horizontal";
 
 declare global {
+  interface Window {
+    dataLayer: any;
+  }
+
   type NonEmptyArray<T> = [T, ...T[]];
 
   type APIResponseType = {
