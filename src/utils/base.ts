@@ -29,3 +29,7 @@ export const formatDate = (date: string) => {
     day: "numeric",
   });
 };
+
+export const formatId = (id: string): string => {
+  return id.replace(" ", "-").toLowerCase();
+};
