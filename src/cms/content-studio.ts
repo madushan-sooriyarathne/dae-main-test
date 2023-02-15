@@ -7,6 +7,7 @@ import type {
   IBannerBlockFields,
   ICardBlockFields,
   IFaqFields,
+  IHeroSlideFields,
   IImageContentBlockFields,
   IMultiImageContentBlockFields,
   IOfferFields,
@@ -15,6 +16,7 @@ import type {
   IStatFields,
   ITestimonialFields,
   ITextContentBlockFields,
+  IVideoBlockFields,
 } from "@cms/generated/types";
 import type { BannerType } from "@layout/common/banner-section";
 import type { ImageContentSectionType } from "@layout/common/image-content-section";
@@ -23,6 +25,7 @@ import type { PageSummerySectionType } from "@layout/common/page-summery-section
 import type { Asset } from "contentful";
 import type { CardBlockType } from "@components/card-block";
 import type { ContentGroupType } from "@layout/common/groups/content-group";
+import { formatId } from "@utils/base";
 
 /**
  * format the given asset's url with protocol correction.
@@ -311,4 +314,41 @@ export const getOffers = async (): Promise<Offer[]> => {
       ),
     }))
   );
+};
+
+export const getVideoBlock = async (entryId: string): Promise<Video> => {
+  if (entryId.length < 1) throw new Error("Entry ID is empty");
+
+  try {
+    const data = await contentfulClient.getEntry<IVideoBlockFields>(entryId);
+
+    return {
+      fallbackImage: await processContentfulImage(data.fields.fallbackImage),
+      files: data.fields.videos.map((vid) => ({
+        id: formatId(vid.fields.title),
+        src: vid.fields.file.url,
+        type: vid.fields.file.contentType,
+      })),
+    };
+  } catch {
+    throw new Error(
+      `Error fetching the Text Content Block with given ID: ${entryId}`
+    );
+  }
+};
+
+export const getHeroSlides = async (): Promise<HeroSlide[]> => {
+  try {
+    const data = await contentfulClient.getEntries<IHeroSlideFields>({
+      content_type: "heroSlide",
+    });
+
+    return data.items.map((slide) => ({
+      ...slide.fields,
+      ctaLink: slide.fields.ctaLink || null,
+      ctaText: slide.fields.ctaText || null,
+    }));
+  } catch (err: unknown) {
+    throw new Error(`Error fetching the Hero Slides`);
+  }
 };

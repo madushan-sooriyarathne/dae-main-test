@@ -2,11 +2,13 @@ import dynamic from "next/dynamic";
 
 import {
   getBannerBlock,
+  getHeroSlides,
   getImageContentBlock,
   getMultiImageContentBlock,
   getPageSummeryBlock,
   getStats,
   getTestimonials,
+  getVideoBlock,
 } from "@cms/content-studio";
 
 import Page from "@layout/common/page";
@@ -66,6 +68,8 @@ const StatsGrid = dynamic(() =>
 );
 
 interface Props {
+  heroVideo: Video;
+  heroSlides: HeroSlide[];
   aboutSection: ImageContentSectionType;
   locationSection: ImageContentSectionType;
   boatStorageSection: PageSummerySectionType;
@@ -77,6 +81,8 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({
+  heroVideo,
+  heroSlides,
   aboutSection,
   locationSection,
   boatStorageSection,
@@ -88,23 +94,7 @@ const Home: NextPage<Props> = ({
 }) => {
   return (
     <Page title="Home Page">
-      <Hero
-        video={{
-          files: [
-            {
-              src: "/assets/video/hero-sample.mp4",
-              type: "video/mp4",
-              id: "mp4",
-            },
-          ],
-          fallbackImage: {
-            src: "https://picsum.photos/1920/1080",
-            alt: "",
-            blurUrl: "",
-          },
-        }}
-        slides={[]}
-      />
+      <Hero video={heroVideo} slides={heroSlides} />
       <ImageContentSection
         {...aboutSection}
         button={{
@@ -169,6 +159,10 @@ const Home: NextPage<Props> = ({
 const getStaticProps: GetStaticProps = async (): Promise<
   GetStaticPropsResult<Props>
 > => {
+  const heroVideo = await getVideoBlock("4j0keJ4b1W4R0ZLmpfXQxX");
+
+  const heroSlides = await getHeroSlides();
+
   const aboutSection = await getImageContentBlock("vtzVqu4ar9WM8ztkaXeDD");
   const boatStorageSection = await getPageSummeryBlock(
     "76ESyIGEPU40V57T7MeHYw"
@@ -190,6 +184,8 @@ const getStaticProps: GetStaticProps = async (): Promise<
   const testimonials = await getTestimonials();
   return {
     props: {
+      heroVideo,
+      heroSlides,
       aboutSection,
       locationSection,
       boatStorageSection,

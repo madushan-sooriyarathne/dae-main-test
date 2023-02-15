@@ -113,11 +113,12 @@ declare global {
     fallbackImage: Image;
   };
 
-  type Slide = {
-    title: string;
-    subtitle: string;
-    url?: string;
-    external?: boolean;
+  type HeroSlide = {
+    heading: string;
+    subText: string;
+    ctaText: string | null;
+    ctaLink: string | null;
+    externalLink: boolean;
   };
 }
 

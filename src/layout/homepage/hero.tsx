@@ -1,21 +1,48 @@
 import { useEffect, useRef, useState } from "react";
 
 import { fadeIn } from "@styles/animations";
-import { m } from "framer-motion";
+import { AnimatePresence, m, type Variants } from "framer-motion";
 
 import { Button } from "@components/button";
 import { DisplayHeading } from "@components/headings/display-heading";
 import { ImageComponent } from "@components/image-component";
 import { Paragraph } from "@components/paragraph";
+import { clamp } from "@utils/base";
+
+const slideVariants: Variants = {
+  initial: {
+    opacity: 0,
+
+    y: 20,
+  },
+  animate: (x: number) => ({
+    opacity: 1,
+
+    y: 0,
+    transition: {
+      duration: 0.2,
+      ease: "easeInOut",
+      delay: x * 0.1,
+    },
+  }),
+  exit: {
+    opacity: 0,
+    y: -20,
+    transition: {
+      duration: 0.2,
+      ease: "easeInOut",
+    },
+  },
+};
 
 interface Props {
   video: Video;
-  slides: Slide[];
+  slides: HeroSlide[];
 }
 
-const Hero: React.FC<Props> = ({ video }: Props): JSX.Element => {
+const Hero: React.FC<Props> = ({ video, slides }: Props): JSX.Element => {
   const videoPlayerRef = useRef<HTMLVideoElement>(null);
-  const [videoLoaded, setVideoLoaded] = useState<boolean>(false);
+  const [activeSlide, setActiveSlide] = useState<number>(0);
   const [componentMounted, setComponentMounted] = useState<boolean>(false);
 
   useEffect(() => {
@@ -26,22 +53,14 @@ const Hero: React.FC<Props> = ({ video }: Props): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    const playerRef = videoPlayerRef.current;
-
-    if (playerRef) {
-      playerRef.addEventListener("canplaythrough", () => {
-        setVideoLoaded(true);
-      });
-    }
-
-    return () => {
-      if (playerRef) {
-        playerRef.removeEventListener("canplaythrough", () => {
-          setVideoLoaded(true);
-        });
-      }
+    const paginateSlides = () => {
+      setActiveSlide((prev) => clamp(0, slides.length, prev + 1));
     };
-  }, [componentMounted]);
+
+    const interval = setInterval(paginateSlides, 10000);
+
+    return () => clearInterval(interval);
+  }, [slides.length]);
 
   return (
     <header className="mt:relative mt-18 grid w-full grid-cols-1 grid-rows-[min-content_min-content] bg-black lg:mt-0">
@@ -65,7 +84,6 @@ const Hero: React.FC<Props> = ({ video }: Props): JSX.Element => {
           </m.video>
         )}
 
-        {/* {!videoLoaded && <ImageComponent image={video.fallbackImage} />} */}
         <div className="absolute inset-0 z-[-1] aspect-square w-full sm:aspect-[4/3] md:aspect-video lg:aspect-[4/3]">
           <ImageComponent image={video.fallbackImage} sizes="100vw" />
         </div>
@@ -73,19 +91,75 @@ const Hero: React.FC<Props> = ({ video }: Props): JSX.Element => {
       </div>
 
       <div className="bg-water px-4 pb-12 lg:absolute lg:inset-0 lg:flex lg:w-full lg:items-end lg:bg-transparent lg:px-12 3xl:px-16 3xl:py-16">
-        <div className="mx-auto flex w-[min(100%,_50rem)] flex-col items-center justify-end gap-y-9 lg:mx-0 lg:mr-auto lg:items-start [&_p]:text-center lg:[&_p]:!text-left [&_h1]:text-center lg:[&_h1]:!text-left">
-          <div className="flex flex-col items-start justify-end gap-y-2">
-            <DisplayHeading intent="white" alignment="left">
-              Your Gateway to Adventure on the Lake
-            </DisplayHeading>
-            <Paragraph intent="white" alignment="left" titleParagraph>
-              Experience the Joy of Water with Marina by Debug Auto Exclusive.
-            </Paragraph>
-          </div>
-          <Button type="route" route="/reservation" solid mobileAdapt withArrow>
-            Reserve Now
-          </Button>
-        </div>
+        <AnimatePresence mode="wait">
+          {slides.map(
+            (slide, index) =>
+              activeSlide === index && (
+                <div
+                  key={`slide-${index}`}
+                  className="mx-auto flex w-[min(100%,_50rem)] flex-col items-center justify-end gap-y-9 lg:mx-0 lg:mr-auto lg:items-start [&_p]:text-center lg:[&_p]:!text-left [&_h1]:text-center lg:[&_h1]:!text-left"
+                >
+                  <div className="flex flex-col items-start justify-end gap-y-2">
+                    <m.div
+                      key={`main-heading-${index}`}
+                      variants={slideVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      custom={0}
+                    >
+                      <DisplayHeading intent="white" alignment="left">
+                        {slide.heading}
+                      </DisplayHeading>
+                    </m.div>
+                    <m.div
+                      variants={slideVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      custom={2}
+                    >
+                      <Paragraph intent="white" alignment="left" titleParagraph>
+                        {slide.subText}
+                      </Paragraph>
+                    </m.div>
+                  </div>
+                  {slide.ctaLink && slide.ctaText && (
+                    <m.div
+                      variants={slideVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      custom={3}
+                    >
+                      {slide.externalLink ? (
+                        <Button
+                          type="link"
+                          link={slide.ctaLink}
+                          solid
+                          mobileAdapt
+                          withArrow
+                          external
+                        >
+                          {slide.ctaText}
+                        </Button>
+                      ) : (
+                        <Button
+                          type="route"
+                          route={slide.ctaLink}
+                          solid
+                          mobileAdapt
+                          withArrow
+                        >
+                          {slide.ctaText}
+                        </Button>
+                      )}
+                    </m.div>
+                  )}
+                </div>
+              )
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );

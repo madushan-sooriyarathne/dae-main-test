@@ -135,6 +135,40 @@ export interface IFaq extends Entry<IFaqFields> {
   };
 }
 
+export interface IHeroSlideFields {
+  /** Heading */
+  heading: string;
+
+  /** Sub Text */
+  subText: string;
+
+  /** CTA Text */
+  ctaText?: string | undefined;
+
+  /** CTA Link */
+  ctaLink?: string | undefined;
+
+  /** External Link */
+  externalLink: boolean;
+}
+
+export interface IHeroSlide extends Entry<IHeroSlideFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "heroSlide";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IImageContentBlockFields {
   /** Heading */
   heading: string;
@@ -438,6 +472,7 @@ export type CONTENT_TYPE =
   | "bannerBlock"
   | "cardBlock"
   | "faq"
+  | "heroSlide"
   | "imageContentBlock"
   | "multiImageContentBlock"
   | "offer"
@@ -453,6 +488,7 @@ export type IEntry =
   | IBannerBlock
   | ICardBlock
   | IFaq
+  | IHeroSlide
   | IImageContentBlock
   | IMultiImageContentBlock
   | IOffer
