@@ -33,7 +33,6 @@
     "@trpc/next": "^10.8.1",
     "@trpc/react-query": "^10.8.1",
     "@trpc/server": "^10.8.1",
-    "aws-sdk": "^2.1313.0",
     "class-variance-authority": "^0.4.0",
     "clsx": "^1.2.1",
     "contentful": "^9.2.17",
