@@ -22,6 +22,7 @@ import { PaxPicker } from "@components/pax-picker";
 import { SelectField } from "@components/select-field";
 import { TextAreaField } from "@components/text-area-field";
 import { fadeIn } from "@styles/animations";
+import { triggerGTMEvent } from "@lib/gtm";
 
 const getOfferData = async (): Promise<
   Omit<Offer, "description" | "images">[]
@@ -143,12 +144,30 @@ const OffersForm: React.FC<Props> = ({ offer }): JSX.Element => {
             <Form
               form={form}
               onSubmit={async (data) => {
-                const response = await mutation.mutateAsync({
-                  ...data,
-                  date: (data.date as Date).toISOString(),
-                  noOfGuests: data.pax,
-                });
-                alert(response.status);
+                try {
+                  const response = await mutation.mutateAsync({
+                    ...data,
+                    date: (data.date as Date).toISOString(),
+                    noOfGuests: data.pax,
+                  });
+
+                  if (response.status === "success") {
+                    triggerGTMEvent("offer-form-submission", {
+                      name: data.name,
+                      email: data.email,
+                      phone: data.contact,
+                      offer: data.offer,
+                    });
+
+                    alert("Success");
+
+                    form.reset();
+                  } else {
+                    alert("Failed");
+                  }
+                } catch (error: unknown) {
+                  alert("Failed");
+                }
               }}
               className={cn(
                 "grid auto-rows-min grid-cols-1 gap-6 mlg:grid-cols-2",

@@ -29,6 +29,7 @@ export const clientSchema = z.object({
   NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN: z.string(),
   NEXT_PUBLIC_CONTENTFUL_SPACE_ID: z.string(),
   NEXT_PUBLIC_MAPBOX_API_KEY: z.string(),
+  NEXT_PUBLIC_GTM_ID: z.string(),
 });
 
 /**
@@ -43,4 +44,5 @@ export const clientEnv = {
     process.env.NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN,
   NEXT_PUBLIC_CONTENTFUL_SPACE_ID: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
   NEXT_PUBLIC_MAPBOX_API_KEY: process.env.NEXT_PUBLIC_MAPBOX_API_KEY,
+  NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID
 };

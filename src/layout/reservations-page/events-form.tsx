@@ -17,6 +17,7 @@ import { TextAreaField } from "@components/text-area-field";
 import { eventTypes } from "site-data";
 import { fadeIn } from "@styles/animations";
 import Link from "next/link";
+import { triggerGTMEvent } from "@lib/gtm";
 
 const eventsFormSchema = z.object({
   name: z.string({ required_error: "Name is required." }),
@@ -90,11 +91,29 @@ const EventsForm: React.FC = (): JSX.Element => {
           <Form
             form={form}
             onSubmit={async (data) => {
-              const response = await mutation.mutateAsync({
-                ...data,
-                date: (data.date as Date).toISOString(),
-              });
-              alert(response.status);
+              try {
+                const response = await mutation.mutateAsync({
+                  ...data,
+                  date: (data.date as Date).toISOString(),
+                });
+
+                if (response.status === "success") {
+                  alert("Success");
+
+                  triggerGTMEvent("event-form-submission", {
+                    name: data.name,
+                    email: data.email,
+                    phone: data.contact,
+                    eventType: data.eventType,
+                  });
+
+                  form.reset();
+                } else {
+                  alert("Failed");
+                }
+              } catch (error: unknown) {
+                alert("Failed");
+              }
             }}
             className={cn(
               "grid auto-rows-min grid-cols-1 gap-6 mlg:grid-cols-2",

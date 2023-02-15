@@ -8,6 +8,7 @@ import { InputField } from "@components/input-field";
 import { Paragraph } from "@components/paragraph";
 
 import { HeadingGroup } from "./groups/heading-group";
+import { triggerGTMEvent } from "@lib/gtm";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -30,7 +31,16 @@ const ContactFormSection: React.FC = (): JSX.Element => {
         />
         <Form
           form={form}
-          onSubmit={(data) => alert(JSON.stringify(data))}
+          onSubmit={(data) => {
+            // trigger GTM event
+            triggerGTMEvent("contact-form-submission", {
+              name: data.name,
+              email: data.email,
+              phone: data.phone,
+            });
+
+            alert(JSON.stringify(data));
+          }}
           className="grid grid-cols-1 items-center  md:grid-cols-[minmax(min-content,_1fr)_min-content] md:gap-x-8 md:[&>*:nth-child(1)]:col-span-2 md:[&>*:nth-child(2)]:col-span-2 md:[&>*:nth-child(3)]:col-span-2"
         >
           <InputField

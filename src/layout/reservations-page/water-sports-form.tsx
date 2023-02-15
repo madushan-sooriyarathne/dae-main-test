@@ -17,6 +17,7 @@ import { MultiSelectGroup } from "@components/multi-selector";
 import { waterSports } from "site-data";
 import { fadeIn } from "@styles/animations";
 import Link from "next/link";
+import { triggerGTMEvent } from "@lib/gtm";
 
 const waterSportsFormSchema = z.object({
   name: z.string({ required_error: "Name is required." }),
@@ -92,11 +93,27 @@ const WaterSportsForm: React.FC = (): JSX.Element => {
           <Form
             form={form}
             onSubmit={async (data) => {
-              const response = await mutation.mutateAsync({
-                ...data,
-                date: (data.date as Date).toISOString(),
-              });
-              alert(response.status);
+              try {
+                const response = await mutation.mutateAsync({
+                  ...data,
+                  date: (data.date as Date).toISOString(),
+                });
+
+                if (response.status === "failed") {
+                  triggerGTMEvent("water-sports-form-submission", {
+                    name: data.name,
+                    email: data.email,
+                    phone: data.contact,
+                    selectedWaterSports: data.selectedWaterSports.join(", "),
+                  });
+
+                  alert("Success");
+
+                  form.reset();
+                }
+              } catch (error: unknown) {
+                alert("Failed");
+              }
             }}
             className={cn(
               "grid auto-rows-min grid-cols-1 gap-6 mlg:grid-cols-2",

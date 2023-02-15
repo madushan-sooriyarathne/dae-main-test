@@ -10,6 +10,7 @@ import { Paragraph } from "@components/paragraph";
 
 import { HeadingGroup } from "./groups/heading-group";
 import { cn } from "@lib/clsx";
+import { triggerGTMEvent } from "@lib/gtm";
 
 interface Props {
   trim?: true;
@@ -48,6 +49,11 @@ const NewsletterSection: React.FC<Props> = ({ trim }): JSX.Element => {
           <Form
             form={newsletterForm}
             onSubmit={(data) => {
+              // trigger GTM event
+              triggerGTMEvent("newsletter-subscription", {
+                email: data.email,
+              });
+
               alert(`Subscribed to newsletter ${data.email}`);
             }}
             className="flex max-w-[37.5rem] items-stretch justify-start gap-y-6"

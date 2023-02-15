@@ -11,6 +11,7 @@ import { TextAreaField } from "@components/text-area-field";
 import { useZodForm } from "@hooks/useZodForm";
 import type { ImageContentSectionType } from "@layout/common/image-content-section";
 import { Controller } from "react-hook-form";
+import { triggerGTMEvent } from "@lib/gtm";
 
 const SelectField = dynamic(
   () => import("@components/select-field").then((mod) => mod.SelectField),
@@ -58,7 +59,15 @@ const ContactForm: React.FC<ImageContentSectionType> = ({
         </div>
         <Form
           form={form}
-          onSubmit={(data) => alert(JSON.stringify(data))}
+          onSubmit={(data) => {
+            triggerGTMEvent("contact-form-submission", {
+              name: data.name,
+              email: data.email,
+              phone: data.contactNumber,
+            });
+
+            alert(JSON.stringify(data));
+          }}
           className="grid w-full auto-rows-min grid-cols-1 gap-y-3 gap-x-3 md:grid-cols-2 md:[&>*:nth-child(5)]:col-span-2"
         >
           <InputField

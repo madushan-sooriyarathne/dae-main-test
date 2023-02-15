@@ -16,6 +16,7 @@ import { TextAreaField } from "@components/text-area-field";
 import { TimePicker } from "@components/time-picker";
 import { fadeIn } from "@styles/animations";
 import Link from "next/link";
+import { triggerGTMEvent } from "@lib/gtm";
 
 const restaurantFormSchema = z.object({
   name: z.string({ required_error: "Name is required." }),
@@ -96,16 +97,31 @@ const RestaurantForm: React.FC = (): JSX.Element => {
           <Form
             form={form}
             onSubmit={async (data) => {
-              const response = await mutation.mutateAsync({
-                ...data,
-                time: `${data.time.hour
-                  .toString()
-                  .padStart(2, "0")}.${data.time.mins
-                  .toString()
-                  .padStart(2, "0")} ${data.time.meridiem}`,
-                date: (data.date as Date).toISOString(),
-              });
-              alert(response.status);
+              try {
+                const response = await mutation.mutateAsync({
+                  ...data,
+                  time: `${data.time.hour
+                    .toString()
+                    .padStart(2, "0")}.${data.time.mins
+                    .toString()
+                    .padStart(2, "0")} ${data.time.meridiem}`,
+                  date: (data.date as Date).toISOString(),
+                });
+
+                if (response.status === "success") {
+                  triggerGTMEvent("restaurant-form-submission", {
+                    name: data.name,
+                    email: data.email,
+                    phone: data.contact,
+                  });
+
+                  alert("Success");
+
+                  form.reset();
+                }
+              } catch (error: unknown) {
+                alert("Failed");
+              }
             }}
             className={cn(
               "grid auto-rows-min grid-cols-1 gap-6 mlg:grid-cols-2",
