@@ -2,6 +2,7 @@ import type { MultiImageContentSectionType } from "@layout/common/multi-image-co
 
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     dataLayer: any;
   }
 
