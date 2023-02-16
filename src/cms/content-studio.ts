@@ -6,6 +6,7 @@ import type {
   IArticlePreviewFields,
   IBannerBlockFields,
   ICardBlockFields,
+  IEventTypeFields,
   IFaqFields,
   IHeroSlideFields,
   IImageContentBlockFields,
@@ -348,6 +349,23 @@ export const getHeroSlides = async (): Promise<HeroSlide[]> => {
       ctaLink: slide.fields.ctaLink || null,
       ctaText: slide.fields.ctaText || null,
     }));
+  } catch (err: unknown) {
+    throw new Error(`Error fetching the Hero Slides`);
+  }
+};
+
+export const getEventTypes = async (): Promise<EventType[]> => {
+  try {
+    const data = await contentfulClient.getEntries<IEventTypeFields>({
+      content_type: "eventType",
+    });
+
+    return await Promise.all(
+      data.items.map(async (type) => ({
+        ...type.fields,
+        image: await processContentfulImage(type.fields.image),
+      }))
+    );
   } catch (err: unknown) {
     throw new Error(`Error fetching the Hero Slides`);
   }

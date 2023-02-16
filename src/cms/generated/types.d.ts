@@ -104,6 +104,40 @@ export interface ICardBlock extends Entry<ICardBlockFields> {
   };
 }
 
+export interface IEventTypeFields {
+  /** Name */
+  name: string;
+
+  /** Id */
+  id: string;
+
+  /** Tag Line */
+  tagLine: string;
+
+  /** Description */
+  description: string;
+
+  /** Image */
+  image: Asset;
+}
+
+export interface IEventType extends Entry<IEventTypeFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "eventType";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IFaqFields {
   /** Question */
   question: string;
@@ -471,6 +505,7 @@ export type CONTENT_TYPE =
   | "articlePreview"
   | "bannerBlock"
   | "cardBlock"
+  | "eventType"
   | "faq"
   | "heroSlide"
   | "imageContentBlock"
@@ -487,6 +522,7 @@ export type IEntry =
   | IArticlePreview
   | IBannerBlock
   | ICardBlock
+  | IEventType
   | IFaq
   | IHeroSlide
   | IImageContentBlock

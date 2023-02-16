@@ -131,6 +131,14 @@ declare global {
     ctaLink: string | null;
     externalLink: boolean;
   };
+
+  type EventType = {
+    id: string;
+    name: string;
+    tagLine: string;
+    description: string;
+    image: Image;
+  };
 }
 
 export {};
