@@ -24,6 +24,7 @@ declare global {
   type NotificationType = {
     title: string;
     message: string;
+    type?: "error";
   };
 
   type ReservationType = {

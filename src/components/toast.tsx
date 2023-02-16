@@ -1,86 +1,101 @@
+import { AnimatePresence, m } from "framer-motion";
+import { useContext, useEffect, useRef } from "react";
+
 import {
   NotificationContext,
   NotificationDispatchContext,
 } from "@context/notification";
-import * as ToastPrimitive from "@radix-ui/react-toast";
+
 import { fadeInLeft } from "@styles/animations";
-import { AnimatePresence, m } from "framer-motion";
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { cn } from "@lib/clsx";
 
 const Toast: React.FC = (): JSX.Element => {
-  const [open, setOpen] = useState(false);
   const timerRef = useRef(0);
   const notificationRef = useRef<NotificationType>();
 
-  //   const notification = useContext(NotificationContext);
+  const notification = useContext(NotificationContext);
   const dispatchNotification = useContext(NotificationDispatchContext);
 
-  const notification: NotificationType = useMemo(
-    () => ({
-      message: "This is a test message",
-      title: "This is a test title",
-    }),
-    []
-  );
+  if (notification) {
+    notificationRef.current = notification;
+  }
 
   useEffect(() => {
     if (notification) {
-      notificationRef.current = notification;
-      setOpen(false);
       clearTimeout(timerRef.current);
       timerRef.current = window.setTimeout(() => {
-        setOpen(true);
-      }, 100);
+        dispatchNotification(null);
+      }, 7000);
     }
-  }, []);
+  }, [dispatchNotification, notification]);
 
   useEffect(() => {
     return () => clearTimeout(timerRef.current);
   }, []);
 
   const handleClose = () => {
-    setOpen(false);
     dispatchNotification(null);
   };
 
   return (
-    <ToastPrimitive.Provider swipeDirection="left">
-      <ToastPrimitive.Root
-        className="grid grid-cols-[auto_max-content] items-center gap-x-4 rounded-md border border-black-400/50 bg-white-100 p-4 shadow-xl"
-        open={open}
-        onOpenChange={setOpen}
-        asChild
-      >
-        <AnimatePresence>
-          <m.div
-            variants={fadeInLeft}
-            initial="initial"
-            animate="animate"
-            exit="exit"
+    <AnimatePresence>
+      {notification && (
+        <m.div
+          variants={fadeInLeft}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          tabIndex={0}
+          aria-atomic="true"
+          role="status"
+          aria-live="polite"
+          aria-label="notification"
+          className={cn(
+            "width-full fixed right-4 left-4 bottom-4 grid max-w-[400px] grid-cols-[1fr_min-content] grid-rows-2 items-center justify-items-start rounded-md  border border-water-200/40 bg-water px-4 py-3 shadow-lg shadow-water/50 ",
+
+            {
+              "border-primary-200/40 bg-primary shadow-primary/50":
+                notificationRef.current?.type === "error",
+            }
+          )}
+        >
+          <h4
+            className="col-start-1 row-start-1 text-lg font-bold text-white"
+            aria-label="notification title"
           >
-            <ToastPrimitive.Title className="col-start-1 row-start-1 text-lg font-bold text-black-900">
-              {notification?.title}
-            </ToastPrimitive.Title>
-            <ToastPrimitive.Description
-              asChild
-              className="col-start-1 row-start-2 text-sm font-medium tracking-wide text-black-700"
-            >
-              <p>{notification?.message}</p>
-            </ToastPrimitive.Description>
-            <ToastPrimitive.Action
-              asChild
-              altText="Goto schedule to undo"
-              onClick={handleClose}
-            >
-              <button className="border-text-water-600 col-start-2 row-span-2 row-start-1 rounded-sm border px-2 py-1 text-xs font-bold tracking-wide text-water-600 hover:bg-water-600 hover:text-white">
-                Close
-              </button>
-            </ToastPrimitive.Action>
-          </m.div>
-        </AnimatePresence>
-      </ToastPrimitive.Root>
-      <ToastPrimitive.Viewport className="fixed bottom-0 left-0 z-[200] flex w-[min(100%,_400px)] flex-col gap-2 p-6" />
-    </ToastPrimitive.Provider>
+            {notificationRef.current?.title}
+          </h4>
+
+          <p
+            className={cn(
+              "col-start-1 row-start-2 text-sm font-medium tracking-wide text-white-500",
+              {
+                "text-white-200": notificationRef.current?.type === "error",
+              }
+            )}
+            aria-label="notification message"
+          >
+            {notificationRef.current?.message}
+          </p>
+
+          <button
+            type="button"
+            role="button"
+            onClick={handleClose}
+            aria-label="close button"
+            className={cn(
+              "border-text-water-600 col-start-2 row-span-2 row-start-1  rounded border-2  px-2 py-1 text-xs font-bold tracking-wide text-water-300 hover:bg-water-600 hover:text-white",
+              {
+                "text-primary-100 hover:bg-primary-400":
+                  notificationRef.current?.type === "error",
+              }
+            )}
+          >
+            Close
+          </button>
+        </m.div>
+      )}
+    </AnimatePresence>
   );
 };
 
