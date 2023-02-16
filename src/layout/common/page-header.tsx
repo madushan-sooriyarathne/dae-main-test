@@ -5,21 +5,23 @@ import { AnimatePresence, m } from "framer-motion";
 import { clamp } from "@utils/base";
 
 import { ImageComponent } from "@components/image-component";
+import { Button, type ButtonType } from "@components/button";
+import { HeadingGroup } from "@layout/common/groups/heading-group";
 
 import { sliderVariants } from "@styles/animations";
-
-import { HeadingGroup } from "./groups/heading-group";
 
 interface Props {
   heading: string;
   subHeading: string;
   images: Image[];
+  button?: ButtonType;
 }
 
 const PageHeader: React.FC<Props> = ({
   heading,
   subHeading,
   images,
+  button,
 }: Props): JSX.Element => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
@@ -58,7 +60,7 @@ const PageHeader: React.FC<Props> = ({
       </div>
 
       <div className="main-grid-columns grid auto-rows-fr items-end justify-items-start bg-water py-9 md:py-12 lg:absolute lg:inset-0 lg:w-full lg:bg-transparent lg:py-16 ">
-        <div className="col-content mx-auto flex w-[min(100%,_50rem)] flex-col items-center justify-end gap-y-6 lg:mx-0 lg:mr-auto lg:items-start [&_p]:text-center lg:[&_p]:!text-left [&_h1]:text-center lg:[&_h1]:!text-left">
+        <div className="col-content mx-auto flex w-[min(100%,_50rem)] flex-col items-start justify-end gap-y-6 lg:mx-0 lg:mr-auto lg:items-start lg:gap-y-9">
           <HeadingGroup
             heading={heading}
             subHeading={subHeading}
@@ -66,9 +68,7 @@ const PageHeader: React.FC<Props> = ({
             displayHeading
             alignment="left"
           />
-          {/* <Button type="route" route="/reservation" solid mobileAdapt withArrow>
-            Reserve Now
-          </Button> */}
+          {button && <Button {...button} />}
         </div>
       </div>
     </header>

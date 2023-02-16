@@ -52,15 +52,15 @@ const Hero: React.FC<Props> = ({ video, slides }: Props): JSX.Element => {
     };
   }, []);
 
-  useEffect(() => {
-    const paginateSlides = () => {
-      setActiveSlide((prev) => clamp(0, slides.length, prev + 1));
-    };
+  // useEffect(() => {
+  //   const paginateSlides = () => {
+  //     setActiveSlide((prev) => clamp(0, slides.length, prev + 1));
+  //   };
 
-    const interval = setInterval(paginateSlides, 10000);
+  //   const interval = setInterval(paginateSlides, 10000);
 
-    return () => clearInterval(interval);
-  }, [slides.length]);
+  //   return () => clearInterval(interval);
+  // }, [slides.length]);
 
   return (
     <header className="mt:relative mt-18 grid w-full grid-cols-1 grid-rows-[min-content_min-content] bg-black lg:mt-0">
@@ -107,6 +107,7 @@ const Hero: React.FC<Props> = ({ video, slides }: Props): JSX.Element => {
                       animate="animate"
                       exit="exit"
                       custom={0}
+                      className="w-full"
                     >
                       <DisplayHeading intent="white" alignment="left">
                         {slide.heading}
@@ -118,8 +119,14 @@ const Hero: React.FC<Props> = ({ video, slides }: Props): JSX.Element => {
                       animate="animate"
                       exit="exit"
                       custom={2}
+                      className="w-full"
                     >
-                      <Paragraph intent="white" alignment="left" titleParagraph>
+                      <Paragraph
+                        intent="white"
+                        alignment="left"
+                        className=""
+                        titleParagraph
+                      >
                         {slide.subText}
                       </Paragraph>
                     </m.div>
