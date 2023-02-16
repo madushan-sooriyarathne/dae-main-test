@@ -1,7 +1,7 @@
 import { createTRPCRouter, publicProcedure } from "@server/api/trpc";
 import { z } from "zod";
 
-export const applyMembershipRouter = createTRPCRouter({
+export const membershipRouter = createTRPCRouter({
   apply: publicProcedure
     .input(
       z
@@ -27,7 +27,7 @@ export const applyMembershipRouter = createTRPCRouter({
           }
         )
     )
-    .mutation(({ input }): APIResponseType => {
+    .mutation(({ input }) => {
       // Do the processing
       // Send the inquiry data to the operations
       const adminNotification = true;
@@ -42,13 +42,13 @@ export const applyMembershipRouter = createTRPCRouter({
           status: "success",
           message: null,
           data: null,
-        };
+        } satisfies APIResponseType;
       } else {
         return {
           status: "failed",
-          message: "Error occurred while processing the inquiry",
+          message: "An error occurred while processing the inquiry.",
           data: null,
-        };
+        } satisfies APIResponseType;
       }
     }),
 });

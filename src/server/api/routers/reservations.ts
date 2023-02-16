@@ -3,7 +3,7 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@server/api/trpc";
 import { eventTypes, waterSports } from "site-data";
 
-export const offerInquiryRouter = createTRPCRouter({
+export const reservationRouter = createTRPCRouter({
   offerInquiry: publicProcedure
     .input(
       z.object({
@@ -19,7 +19,7 @@ export const offerInquiryRouter = createTRPCRouter({
         requests: z.optional(z.string()),
       })
     )
-    .mutation(({ input }): APIResponseType => {
+    .mutation(({ input }) => {
       // Do the processing
       // Send the inquiry data to the operations
       const adminNotification = true;
@@ -32,18 +32,15 @@ export const offerInquiryRouter = createTRPCRouter({
           status: "success",
           message: null,
           data: null,
-        };
+        } satisfies APIResponseType;
       } else {
         return {
           status: "failed",
-          message: "Error occurred while processing the inquiry",
+          message: "An error occurred while processing the inquiry.",
           data: null,
-        };
+        } satisfies APIResponseType;
       }
     }),
-});
-
-export const restaurantInquiryRouter = createTRPCRouter({
   restaurantInquiry: publicProcedure
     .input(
       z.object({
@@ -59,7 +56,64 @@ export const restaurantInquiryRouter = createTRPCRouter({
         requests: z.optional(z.string()),
       })
     )
-    .mutation(({ input }): APIResponseType => {
+    .mutation(({ input }) => {
+      // Do the processing
+      // Send the inquiry data to the operations
+      const adminNotification = true;
+
+      // send the acknowledgement to the user.
+      const userAcknowledgement = true;
+
+      if (adminNotification && userAcknowledgement) {
+        return {
+          status: "success",
+          message: null,
+          data: null,
+        } satisfies APIResponseType;
+      } else {
+        return {
+          status: "failed",
+          message: "An error occurred while processing the inquiry.",
+          data: null,
+        } satisfies APIResponseType;
+      }
+    }),
+  activitiesInquiry: publicProcedure
+    .input(
+      z.object({
+        name: z
+          .string({ required_error: "field name is required" })
+          .min(2, { message: "field 'name' must have at least 2 characters" }),
+        email: z
+          .string({ required_error: "field 'email' is required" })
+          .email({ message: "email format is incorrect" }),
+        contact: z
+          .string({
+            required_error: "field 'phone' is required",
+            invalid_type_error: "filed 'phone' must be a string",
+          })
+          .min(10, { message: "phone must have at least 10 digits" }),
+        selectedWaterSports: z.enum(waterSports).array().nonempty({
+          message: "At least one option must be selected.",
+        }),
+        date: z.string({ required_error: "field 'date' is required" }),
+        pax: z.object({
+          adults: z
+            .number({
+              invalid_type_error: "field 'pax.adults' must be a number",
+              required_error: "field 'pax.adults' is required",
+            })
+            .min(1, { message: "at least 1 adult is required" }),
+          children: z
+            .number({
+              invalid_type_error: "field 'pax.children' must be a number",
+              required_error: "field 'pax.children' is required",
+            })
+            .min(0),
+        }),
+      })
+    )
+    .mutation(({ input }) => {
       // Do the processing
       // Send the inquiry data to the operations
       const adminNotification = true;
@@ -74,18 +128,15 @@ export const restaurantInquiryRouter = createTRPCRouter({
           status: "success",
           message: null,
           data: null,
-        };
+        } satisfies APIResponseType;
       } else {
         return {
           status: "failed",
-          message: "Error occurred while processing the inquiry",
+          message: "An error occurred while processing the inquiry.",
           data: null,
-        };
+        } satisfies APIResponseType;
       }
     }),
-});
-
-export const eventsInquiryRouter = createTRPCRouter({
   eventsInquiry: publicProcedure
     .input(
       z.object({
@@ -121,7 +172,7 @@ export const eventsInquiryRouter = createTRPCRouter({
         }),
       })
     )
-    .mutation(({ input }): APIResponseType => {
+    .mutation(({ input }) => {
       // Do the processing
       // Send the inquiry data to the operations
       const adminNotification = true;
@@ -136,75 +187,13 @@ export const eventsInquiryRouter = createTRPCRouter({
           status: "success",
           message: null,
           data: null,
-        };
+        } satisfies APIResponseType;
       } else {
         return {
           status: "failed",
-          message: "Error occurred while processing the inquiry",
+          message: "An error occurred while processing the inquiry.",
           data: null,
-        };
-      }
-    }),
-});
-
-export const waterSportsInquiryRouter = createTRPCRouter({
-  eventsInquiry: publicProcedure
-    .input(
-      z.object({
-        name: z
-          .string({ required_error: "field name is required" })
-          .min(2, { message: "field 'name' must have at least 2 characters" }),
-        email: z
-          .string({ required_error: "field 'email' is required" })
-          .email({ message: "email format is incorrect" }),
-        contact: z
-          .string({
-            required_error: "field 'phone' is required",
-            invalid_type_error: "filed 'phone' must be a string",
-          })
-          .min(10, { message: "phone must have at least 10 digits" }),
-        selectedWaterSports: z.enum(waterSports).array().nonempty({
-          message: "At least one option must be selected.",
-        }),
-        date: z.string({ required_error: "field 'date' is required" }),
-        pax: z.object({
-          adults: z
-            .number({
-              invalid_type_error: "field 'pax.adults' must be a number",
-              required_error: "field 'pax.adults' is required",
-            })
-            .min(1, { message: "at least 1 adult is required" }),
-          children: z
-            .number({
-              invalid_type_error: "field 'pax.children' must be a number",
-              required_error: "field 'pax.children' is required",
-            })
-            .min(0),
-        }),
-      })
-    )
-    .mutation(({ input }): APIResponseType => {
-      // Do the processing
-      // Send the inquiry data to the operations
-      const adminNotification = true;
-
-      // send the acknowledgement to the user.
-      const userAcknowledgement = true;
-
-      console.log(input);
-
-      if (adminNotification && userAcknowledgement) {
-        return {
-          status: "success",
-          message: null,
-          data: null,
-        };
-      } else {
-        return {
-          status: "failed",
-          message: "Error occurred while processing the inquiry",
-          data: null,
-        };
+        } satisfies APIResponseType;
       }
     }),
 });

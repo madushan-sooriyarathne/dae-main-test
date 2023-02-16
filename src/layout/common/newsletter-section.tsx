@@ -11,6 +11,9 @@ import { Paragraph } from "@components/paragraph";
 import { HeadingGroup } from "./groups/heading-group";
 import { cn } from "@lib/clsx";
 import { triggerGTMEvent } from "@lib/gtm";
+import { useContext } from "react";
+import { NotificationDispatchContext } from "@context/notification";
+import { api } from "@utils/api";
 
 interface Props {
   trim?: true;
@@ -22,6 +25,9 @@ const newsletterSchema = z.object({
 
 const NewsletterSection: React.FC<Props> = ({ trim }): JSX.Element => {
   const newsletterForm = useZodForm({ schema: newsletterSchema });
+  const dispatchNotification = useContext(NotificationDispatchContext);
+
+  const mutation = api.newsletter.subscribeToNewsletter.useMutation();
 
   return (
     <section
@@ -49,13 +55,39 @@ const NewsletterSection: React.FC<Props> = ({ trim }): JSX.Element => {
         <div>
           <Form
             form={newsletterForm}
-            onSubmit={(data) => {
-              // trigger GTM event
-              triggerGTMEvent("newsletter-subscription", {
-                email: data.email,
-              });
+            onSubmit={async (data) => {
+              try {
+                const response = await mutation.mutateAsync({
+                  email: data.email,
+                });
 
-              alert(`Subscribed to newsletter ${data.email}`);
+                if (response.status === "success") {
+                  // trigger GTM event
+                  triggerGTMEvent("newsletter-subscription", {
+                    email: data.email,
+                  });
+
+                  dispatchNotification({
+                    message: "Subscribed to newsletter",
+                    title: "Success!",
+                  });
+
+                  newsletterForm.reset();
+                } else {
+                  dispatchNotification({
+                    message: response.message,
+                    title: "Something went wrong!",
+                    type: "error",
+                  });
+                }
+              } catch (error: unknown) {
+                dispatchNotification({
+                  message:
+                    "An error occurred while subscribing to the newsletter.",
+                  title: "Something went wrong!",
+                  type: "error",
+                });
+              }
             }}
             className="flex max-w-[37.5rem] items-stretch justify-start gap-y-6"
           >
@@ -67,7 +99,11 @@ const NewsletterSection: React.FC<Props> = ({ trim }): JSX.Element => {
                 type="email"
                 intent="black"
               />
-              <Button type="submit" intent="primary">
+              <Button
+                type="submit"
+                intent="primary"
+                loading={newsletterForm.formState.isSubmitting}
+              >
                 Subscribe
               </Button>
             </div>

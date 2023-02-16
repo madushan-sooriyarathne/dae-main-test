@@ -1,11 +1,8 @@
-import {
-  eventsInquiryRouter,
-  offerInquiryRouter,
-  restaurantInquiryRouter,
-  waterSportsInquiryRouter,
-} from "@server/api/routers/reservations";
+import { reservationRouter } from "@server/api/routers/reservations";
 import { createTRPCRouter } from "@server/api/trpc";
-import { applyMembershipRouter } from "./routers/membership";
+import { contactRouter } from "./routers/contact";
+import { membershipRouter } from "./routers/membership";
+import { newsletterRouter } from "./routers/newsletter";
 
 /**
  * This is the primary router for your server.
@@ -13,11 +10,10 @@ import { applyMembershipRouter } from "./routers/membership";
  * All routers added in /api/routers should be manually added here
  */
 export const appRouter = createTRPCRouter({
-  offer: offerInquiryRouter,
-  restaurant: restaurantInquiryRouter,
-  events: eventsInquiryRouter,
-  waterSports: waterSportsInquiryRouter,
-  membership: applyMembershipRouter,
+  reservations: reservationRouter,
+  membership: membershipRouter,
+  contact: contactRouter,
+  newsletter: newsletterRouter,
 });
 
 // export type definition of API

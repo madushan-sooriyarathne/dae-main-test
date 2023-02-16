@@ -12,6 +12,9 @@ import { useZodForm } from "@hooks/useZodForm";
 import type { ImageContentSectionType } from "@layout/common/image-content-section";
 import { Controller } from "react-hook-form";
 import { triggerGTMEvent } from "@lib/gtm";
+import { useContext } from "react";
+import { NotificationDispatchContext } from "@context/notification";
+import { api } from "@utils/api";
 
 const SelectField = dynamic(
   () => import("@components/select-field").then((mod) => mod.SelectField),
@@ -43,6 +46,9 @@ const ContactForm: React.FC<ImageContentSectionType> = ({
 }): JSX.Element => {
   const form = useZodForm({ schema: contactFormSchema });
 
+  const notificationDispatch = useContext(NotificationDispatchContext);
+  const mutation = api.contact.contactInquiry.useMutation();
+
   return (
     <section className="trim-bottom lg:main-grid-columns grid auto-rows-min grid-cols-1 bg-water">
       <div className="aspect-square md:aspect-video lg:col-full-end-half lg:row-start-1 lg:aspect-auto lg:h-full">
@@ -59,14 +65,42 @@ const ContactForm: React.FC<ImageContentSectionType> = ({
         </div>
         <Form
           form={form}
-          onSubmit={(data) => {
-            triggerGTMEvent("contact-form-submission", {
-              name: data.name,
-              email: data.email,
-              phone: data.contactNumber,
-            });
+          onSubmit={async (data) => {
+            try {
+              const response = await mutation.mutateAsync({
+                name: data.name,
+                email: data.email,
+                contact: data.contactNumber,
+                message: data.message || "Not Provided",
+              });
 
-            alert(JSON.stringify(data));
+              if (response.status === "success") {
+                triggerGTMEvent("contact-form-submission", {
+                  name: data.name,
+                  email: data.email,
+                  phone: data.contactNumber,
+                });
+
+                notificationDispatch({
+                  title: "Success!",
+                  message: "Inquiry successfully submitted.",
+                });
+
+                form.reset();
+              } else {
+                notificationDispatch({
+                  title: "Something went wrong!",
+                  message: response.message,
+                  type: "error",
+                });
+              }
+            } catch (error: unknown) {
+              notificationDispatch({
+                title: "Something went wrong!",
+                message: "An error occurred while submitting the inquiry.",
+                type: "error",
+              });
+            }
           }}
           className="grid w-full auto-rows-min grid-cols-1 gap-y-3 gap-x-3 md:grid-cols-2 md:[&>*:nth-child(5)]:col-span-2"
         >
@@ -123,7 +157,12 @@ const ContactForm: React.FC<ImageContentSectionType> = ({
             {...form.register("message")}
           />
           <div className="md:col-start-2 md:row-start-4 md:justify-self-end ">
-            <Button type="submit" intent="white" fullWidth>
+            <Button
+              type="submit"
+              intent="white"
+              loading={form.formState.isSubmitting}
+              fullWidth
+            >
               Submit
             </Button>
           </div>

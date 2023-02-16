@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import { Controller } from "react-hook-form";
 import { z } from "zod";
 import { m } from "framer-motion";
+import Link from "next/link";
 
 import { api } from "@utils/api";
 import { useZodForm } from "@hooks/useZodForm";
 import { cn } from "@lib/clsx";
+import { triggerGTMEvent } from "@lib/gtm";
+import { NotificationDispatchContext } from "@context/notification";
 
 import { Button } from "@components/button";
 import { DatePicker } from "@components/date-picker";
@@ -14,10 +18,10 @@ import { InputField } from "@components/input-field";
 import { PaxPicker } from "@components/pax-picker";
 import { TextAreaField } from "@components/text-area-field";
 import { MultiSelectGroup } from "@components/multi-selector";
+
 import { waterSports } from "site-data";
+
 import { fadeIn } from "@styles/animations";
-import Link from "next/link";
-import { triggerGTMEvent } from "@lib/gtm";
 
 const waterSportsFormSchema = z.object({
   name: z.string({ required_error: "Name is required." }),
@@ -48,7 +52,8 @@ const waterSportsFormSchema = z.object({
 });
 
 const WaterSportsForm: React.FC = (): JSX.Element => {
-  const mutation = api.waterSports.eventsInquiry.useMutation();
+  const mutation = api.reservations.activitiesInquiry.useMutation();
+  const dispatchNotification = useContext(NotificationDispatchContext);
 
   const form = useZodForm({
     schema: waterSportsFormSchema,
@@ -99,7 +104,7 @@ const WaterSportsForm: React.FC = (): JSX.Element => {
                   date: (data.date as Date).toISOString(),
                 });
 
-                if (response.status === "failed") {
+                if (response.status === "success") {
                   triggerGTMEvent("water-sports-form-submission", {
                     name: data.name,
                     email: data.email,
@@ -107,12 +112,23 @@ const WaterSportsForm: React.FC = (): JSX.Element => {
                     selectedWaterSports: data.selectedWaterSports.join(", "),
                   });
 
-                  alert("Success");
-
-                  form.reset();
+                  dispatchNotification({
+                    title: "Success!",
+                    message: "Inquiry successfully submitted.",
+                  });
+                } else {
+                  dispatchNotification({
+                    title: "Something went wrong!",
+                    message: response.message,
+                    type: "error",
+                  });
                 }
               } catch (error: unknown) {
-                alert("Failed");
+                dispatchNotification({
+                  title: "Something went wrong!",
+                  message: "An error occurred while submitting the inquiry.",
+                  type: "error",
+                });
               }
             }}
             className={cn(

@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Controller } from "react-hook-form";
 import { z } from "zod";
@@ -9,8 +9,10 @@ import { api } from "@utils/api";
 import { useZodForm } from "@hooks/useZodForm";
 import { cn } from "@lib/clsx";
 import { contentfulClient } from "@lib/contentful";
+import { triggerGTMEvent } from "@lib/gtm";
 
 import { type IOfferFields } from "@cms/generated/types";
+import { NotificationDispatchContext } from "@context/notification";
 
 import { Button } from "@components/button";
 import { DatePicker } from "@components/date-picker";
@@ -21,8 +23,8 @@ import { LoadingSpinner } from "@components/loading-spinner";
 import { PaxPicker } from "@components/pax-picker";
 import { SelectField } from "@components/select-field";
 import { TextAreaField } from "@components/text-area-field";
+
 import { fadeIn } from "@styles/animations";
-import { triggerGTMEvent } from "@lib/gtm";
 
 const getOfferData = async (): Promise<
   Omit<Offer, "description" | "images">[]
@@ -75,7 +77,8 @@ const OffersForm: React.FC<Props> = ({ offer }): JSX.Element => {
     queryFn: getOfferData,
   });
 
-  const mutation = api.offer.offerInquiry.useMutation();
+  const mutation = api.reservations.offerInquiry.useMutation();
+  const dispatchNotification = useContext(NotificationDispatchContext);
 
   const form = useZodForm({
     schema: offerFormSchema,
@@ -159,14 +162,25 @@ const OffersForm: React.FC<Props> = ({ offer }): JSX.Element => {
                       offer: data.offer,
                     });
 
-                    alert("Success");
+                    dispatchNotification({
+                      message: "Inquiry successfully submitted.",
+                      title: "Success!",
+                    });
 
                     form.reset();
                   } else {
-                    alert("Failed");
+                    dispatchNotification({
+                      message: response.message,
+                      title: "Something went wrong!",
+                      type: "error",
+                    });
                   }
                 } catch (error: unknown) {
-                  alert("Failed");
+                  dispatchNotification({
+                    message: "An error occurred while submitting the inquiry.",
+                    title: "Something went wrong!",
+                    type: "error",
+                  });
                 }
               }}
               className={cn(

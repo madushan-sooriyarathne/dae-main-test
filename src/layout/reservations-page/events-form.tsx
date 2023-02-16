@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import { Controller } from "react-hook-form";
 import { z } from "zod";
 import { m } from "framer-motion";
+import Link from "next/link";
 
 import { api } from "@utils/api";
 import { useZodForm } from "@hooks/useZodForm";
+import { triggerGTMEvent } from "@lib/gtm";
 import { cn } from "@lib/clsx";
+import { NotificationDispatchContext } from "@context/notification";
 
 import { Button } from "@components/button";
 import { DatePicker } from "@components/date-picker";
@@ -14,10 +18,10 @@ import { InputField } from "@components/input-field";
 import { PaxPicker } from "@components/pax-picker";
 import { SelectField } from "@components/select-field";
 import { TextAreaField } from "@components/text-area-field";
+
 import { eventTypes } from "site-data";
+
 import { fadeIn } from "@styles/animations";
-import Link from "next/link";
-import { triggerGTMEvent } from "@lib/gtm";
 
 const eventsFormSchema = z.object({
   name: z.string({ required_error: "Name is required." }),
@@ -46,7 +50,9 @@ const eventsFormSchema = z.object({
 });
 
 const EventsForm: React.FC = (): JSX.Element => {
-  const mutation = api.events.eventsInquiry.useMutation();
+  const mutation = api.reservations.eventsInquiry.useMutation();
+
+  const dispatchNotification = useContext(NotificationDispatchContext);
 
   const form = useZodForm({
     schema: eventsFormSchema,
@@ -98,8 +104,6 @@ const EventsForm: React.FC = (): JSX.Element => {
                 });
 
                 if (response.status === "success") {
-                  alert("Success");
-
                   triggerGTMEvent("event-form-submission", {
                     name: data.name,
                     email: data.email,
@@ -107,12 +111,24 @@ const EventsForm: React.FC = (): JSX.Element => {
                     eventType: data.eventType,
                   });
 
+                  dispatchNotification({
+                    title: "Success!",
+                    message: "Inquiry successfully submitted.",
+                  });
                   form.reset();
                 } else {
-                  alert("Failed");
+                  dispatchNotification({
+                    title: "Something went wrong!",
+                    message: response.message,
+                    type: "error",
+                  });
                 }
               } catch (error: unknown) {
-                alert("Failed");
+                dispatchNotification({
+                  title: "Something went wrong!",
+                  message: "An error occurred while submitting the inquiry.",
+                  type: "error",
+                });
               }
             }}
             className={cn(

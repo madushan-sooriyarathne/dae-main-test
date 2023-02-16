@@ -6,7 +6,7 @@ import { m } from "framer-motion";
 import { Footer } from "./footer";
 import { NavBar } from "./nav-bar";
 import { Floater } from "@components/floater";
-// import { Toast } from "@components/toast";
+import { Toast } from "@components/toast";
 import { pageTransition } from "@styles/animations";
 import WhatsappWidget from "@components/whatsapp-widget";
 
@@ -35,7 +35,7 @@ const Page: React.FC<Props> = ({ title, children }: Props): JSX.Element => {
       <Footer />
       <Floater />
       <WhatsappWidget />
-      {/* <Toast /> */}
+      <Toast />
     </m.div>
   );
 };
