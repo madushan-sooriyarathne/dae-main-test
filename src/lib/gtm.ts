@@ -9,7 +9,7 @@ export const gtmTrackPageView = (url: string) => {
 
 export const triggerGTMEvent = (
   eventName: string,
-  rest: { [key: string]: any }
+  rest: { [key: string]: unknown }
 ) => {
   window.dataLayer.push({
     event: eventName,
