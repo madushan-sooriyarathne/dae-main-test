@@ -9,9 +9,6 @@ const ContactDetailsSection: React.FC = (): JSX.Element => {
           <PrimaryHeading alignment="center" intent="primary">
             {brand.companyName}
           </PrimaryHeading>
-          <span className="text-center text-sm font-semibold uppercase tracking-widest text-black-800">
-            By Debug Auto Exclusive
-          </span>
         </div>
         <address className="text-center text-base font-bold not-italic tracking-wide text-black">
           {brand.address}

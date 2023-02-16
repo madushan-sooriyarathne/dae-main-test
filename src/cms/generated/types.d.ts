@@ -46,6 +46,9 @@ export interface IBannerBlockFields {
   /** Sub Heading */
   subHeading: string;
 
+  /** Description */
+  description?: string | undefined;
+
   /** Images */
   images: Asset[];
 }
@@ -60,6 +63,95 @@ export interface IBannerBlock extends Entry<IBannerBlockFields> {
     contentType: {
       sys: {
         id: "bannerBlock";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IBannerCardBlockFields {
+  /** Heading */
+  heading: string;
+
+  /** Id */
+  id: string;
+
+  /** Sub Heading */
+  subHeading: string;
+
+  /** Content */
+  content?: string | undefined;
+
+  /** Image */
+  image: Asset;
+
+  /** Group */
+  group: "boat-options";
+}
+
+export interface IBannerCardBlock extends Entry<IBannerCardBlockFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "bannerCardBlock";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IBoatFields {
+  /** Name */
+  name: string;
+
+  /** Id */
+  id: string;
+
+  /** Features */
+  features: string[];
+
+  /** Cover Image */
+  coverImage: Asset;
+
+  /** Gallery */
+  gallery: Asset[];
+
+  /** Video */
+  video?: IVideoBlock | undefined;
+
+  /** Length (M) */
+  length: number;
+
+  /** Crew */
+  crew: number;
+
+  /** No of Cabins */
+  noOfCabins: number;
+
+  /** Guests (Stay) */
+  guestsStay?: number | undefined;
+
+  /** Guests (Events) */
+  guestsEvents?: number | undefined;
+}
+
+export interface IBoat extends Entry<IBoatFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "boat";
         linkType: "ContentType";
         type: "Link";
       };
@@ -104,7 +196,7 @@ export interface ICardBlock extends Entry<ICardBlockFields> {
   };
 }
 
-export interface IEventTypeFields {
+export interface ICruiseTypeFields {
   /** Name */
   name: string;
 
@@ -121,7 +213,7 @@ export interface IEventTypeFields {
   image: Asset;
 }
 
-export interface IEventType extends Entry<IEventTypeFields> {
+export interface ICruiseType extends Entry<ICruiseTypeFields> {
   sys: {
     id: string;
     type: string;
@@ -130,7 +222,7 @@ export interface IEventType extends Entry<IEventTypeFields> {
     locale: string;
     contentType: {
       sys: {
-        id: "eventType";
+        id: "cruiseType";
         linkType: "ContentType";
         type: "Link";
       };
@@ -388,7 +480,11 @@ export interface IStatFields {
   icon?: Asset | undefined;
 
   /** Group */
-  group: "berthing-values" | "membership-perks" | "activities-perks";
+  group:
+    | "berthing-values"
+    | "activities-perks"
+    | "event-facilities"
+    | "cruises-highlights";
 }
 
 export interface IStat extends Entry<IStatFields> {
@@ -480,6 +576,9 @@ export interface IVideoBlockFields {
 
   /** Fallback Image */
   fallbackImage: Asset;
+
+  /** Title */
+  title?: string | undefined;
 }
 
 /** A video block with multiple videos (multiple file types) and a fallback image.  */
@@ -504,8 +603,10 @@ export interface IVideoBlock extends Entry<IVideoBlockFields> {
 export type CONTENT_TYPE =
   | "articlePreview"
   | "bannerBlock"
+  | "bannerCardBlock"
+  | "boat"
   | "cardBlock"
-  | "eventType"
+  | "cruiseType"
   | "faq"
   | "heroSlide"
   | "imageContentBlock"
@@ -521,8 +622,10 @@ export type CONTENT_TYPE =
 export type IEntry =
   | IArticlePreview
   | IBannerBlock
+  | IBannerCardBlock
+  | IBoat
   | ICardBlock
-  | IEventType
+  | ICruiseType
   | IFaq
   | IHeroSlide
   | IImageContentBlock

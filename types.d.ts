@@ -124,6 +124,7 @@ declare global {
       id: string;
     }[];
     fallbackImage: Image;
+    title: string | null;
   };
 
   type HeroSlide = {
@@ -134,7 +135,21 @@ declare global {
     externalLink: boolean;
   };
 
-  type EventType = {
+  type Boat = {
+    name: string;
+    id: string;
+    features: string[];
+    coverImage: Image;
+    gallery: Image[];
+    video: Video | null;
+    length: number;
+    noOfCabins: number;
+    crew: number;
+    guestsEvents: number | null;
+    guestsStay: number | null;
+  };
+
+  type CruiseType = {
     id: string;
     name: string;
     tagLine: string;

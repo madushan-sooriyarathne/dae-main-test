@@ -20,8 +20,10 @@ import { TextAreaField } from "@components/text-area-field";
 import { TimePicker } from "@components/time-picker";
 
 import { fadeIn } from "@styles/animations";
+import { cruiseTypes } from "site-data";
+import { SelectField } from "@components/select-field";
 
-const restaurantFormSchema = z.object({
+const cruisesFormSchema = z.object({
   name: z.string({ required_error: "Name is required." }),
   email: z
     .string({ required_error: "Email address is required." })
@@ -41,30 +43,23 @@ const restaurantFormSchema = z.object({
     .date({ required_error: "The Date is required." })
     .min(new Date(), { message: "The date must be a future date." })
     .nullable(),
-  time: z.object({
-    hour: z.number().default(0),
-    mins: z.number().default(0),
-    meridiem: z.union([z.literal("AM"), z.literal("PM")]).default("AM"),
+  cruiseType: z.enum(cruiseTypes, {
+    required_error: "Cruise type is required.",
   }),
   requests: z.optional(z.string()),
 });
 
-const RestaurantForm: React.FC = (): JSX.Element => {
-  const mutation = api.reservations.restaurantInquiry.useMutation();
+const CruisesForm: React.FC = (): JSX.Element => {
+  const mutation = api.reservations.cruisesInquiry.useMutation();
 
   const dispatchNotification = useContext(NotificationDispatchContext);
 
   const form = useZodForm({
-    schema: restaurantFormSchema,
+    schema: cruisesFormSchema,
     defaultValues: {
       pax: {
         adults: 2,
         children: 0,
-      },
-      time: {
-        hour: 0,
-        meridiem: "AM",
-        mins: 0,
       },
     },
   });
@@ -93,7 +88,7 @@ const RestaurantForm: React.FC = (): JSX.Element => {
             Reserve
           </span>
           <SecondaryHeading alignment="left" intent="secondary">
-            Restaurant
+            A Cruise
           </SecondaryHeading>
         </div>
       </div>
@@ -105,11 +100,7 @@ const RestaurantForm: React.FC = (): JSX.Element => {
               try {
                 const response = await mutation.mutateAsync({
                   ...data,
-                  time: `${data.time.hour
-                    .toString()
-                    .padStart(2, "0")}.${data.time.mins
-                    .toString()
-                    .padStart(2, "0")} ${data.time.meridiem}`,
+
                   date: (data.date as Date).toISOString(),
                 });
 
@@ -206,18 +197,20 @@ const RestaurantForm: React.FC = (): JSX.Element => {
             />
             <Controller
               control={form.control}
-              name="time"
+              name="cruiseType"
               render={({
                 field: { name, onChange, value },
                 formState: { errors },
               }) => (
-                <TimePicker
-                  onTimeChange={onChange}
-                  value={value}
+                <SelectField
+                  label="Cruise Type"
                   name={name}
-                  label="Reservation Time"
-                  error={errors.time?.message}
-                  required
+                  value={value}
+                  onValueChange={onChange}
+                  error={errors.cruiseType?.message}
+                  options={cruiseTypes as unknown as string[]}
+                  intent="black"
+                  placeholder="Select your preferred cruise type"
                 />
               )}
             />
@@ -244,4 +237,4 @@ const RestaurantForm: React.FC = (): JSX.Element => {
   );
 };
 
-export { RestaurantForm };
+export { CruisesForm };

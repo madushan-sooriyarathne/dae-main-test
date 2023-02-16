@@ -7,9 +7,8 @@ import { cn } from "@lib/clsx";
 import { SecondaryHeading } from "@components/headings/secondary-heading";
 import { ImageComponent } from "@components/image-component";
 import { OffersForm } from "@layout/reservations-page/offers-form";
-import { RestaurantForm } from "@layout/reservations-page/restaurant-form";
+import { CruisesForm } from "@layout/reservations-page/cruises-form";
 import { EventsForm } from "@layout/reservations-page/events-form";
-import { WaterSportsForm } from "@layout/reservations-page/water-sports-form";
 
 import { reservationTypes } from "site-data";
 import { fadeIn } from "@styles/animations";
@@ -64,9 +63,8 @@ const ReservationContainer: React.FC = (): JSX.Element => {
           {reservationType === "packages-and-offers" && (
             <OffersForm offer={router.query.offer} />
           )}
-          {reservationType === "restaurant" && <RestaurantForm />}
+          {reservationType === "cruises" && <CruisesForm />}
           {reservationType === "events" && <EventsForm />}
-          {reservationType === "water-sports" && <WaterSportsForm />}
         </AnimatePresence>
       </div>
     </section>

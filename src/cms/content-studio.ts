@@ -1,12 +1,15 @@
 import { contentfulClient } from "@lib/contentful";
 
+import { formatId } from "@utils/base";
 import { getBlurHash } from "@utils/blurHashGenerator";
 
 import type {
   IArticlePreviewFields,
   IBannerBlockFields,
+  IBannerCardBlockFields,
+  IBoatFields,
   ICardBlockFields,
-  IEventTypeFields,
+  ICruiseTypeFields,
   IFaqFields,
   IHeroSlideFields,
   IImageContentBlockFields,
@@ -19,6 +22,7 @@ import type {
   ITextContentBlockFields,
   IVideoBlockFields,
 } from "@cms/generated/types";
+
 import type { BannerType } from "@layout/common/banner-section";
 import type { ImageContentSectionType } from "@layout/common/image-content-section";
 import type { PageHeaderType } from "@layout/common/page-header";
@@ -26,7 +30,7 @@ import type { PageSummerySectionType } from "@layout/common/page-summery-section
 import type { Asset } from "contentful";
 import type { CardBlockType } from "@components/card-block";
 import type { ContentGroupType } from "@layout/common/groups/content-group";
-import { formatId } from "@utils/base";
+import type { BannerCardType } from "@components/banner-card";
 
 /**
  * format the given asset's url with protocol correction.
@@ -163,6 +167,7 @@ export const getBannerBlock = async (
     return {
       heading: data.fields.heading,
       subHeading: data.fields.subHeading,
+      content: data.fields.description ? data.fields.description : null,
       images: await Promise.all(
         data.fields.images.map((img) => processContentfulImage(img))
       ),
@@ -330,6 +335,7 @@ export const getVideoBlock = async (entryId: string): Promise<Video> => {
         src: vid.fields.file.url,
         type: vid.fields.file.contentType,
       })),
+      title: data.fields.title || null,
     };
   } catch {
     throw new Error(
@@ -354,9 +360,9 @@ export const getHeroSlides = async (): Promise<HeroSlide[]> => {
   }
 };
 
-export const getEventTypes = async (): Promise<EventType[]> => {
+export const getCruiseTypes = async (): Promise<CruiseType[]> => {
   try {
-    const data = await contentfulClient.getEntries<IEventTypeFields>({
+    const data = await contentfulClient.getEntries<ICruiseTypeFields>({
       content_type: "eventType",
     });
 
@@ -368,5 +374,67 @@ export const getEventTypes = async (): Promise<EventType[]> => {
     );
   } catch (err: unknown) {
     throw new Error(`Error fetching the Hero Slides`);
+  }
+};
+
+export const getBannerCardBlocks = async (
+  group: string,
+  limit?: number
+): Promise<Omit<BannerCardType, "button">[]> => {
+  if (group.length < 1) throw new Error("Group id cannot be empty");
+
+  try {
+    const data = await contentfulClient.getEntries<IBannerCardBlockFields>({
+      content_type: "bannerCardBlock",
+      limit: limit,
+      "fields.group": group,
+    });
+
+    return await Promise.all(
+      data.items.map(async (card) => ({
+        ...card.fields,
+        content: card.fields.content || null,
+        image: await processContentfulImage(card.fields.image),
+      }))
+    );
+  } catch (error: unknown) {
+    throw new Error(
+      `An error occurred while fetching Banner Card Blocks of group id ${group}`
+    );
+  }
+};
+
+export const getBoat = async (entryId: string): Promise<Boat> => {
+  if (entryId.length < 1) throw new Error("entryId cannot be empty");
+
+  try {
+    const data = await contentfulClient.getEntry<IBoatFields>(entryId);
+
+    return {
+      ...data.fields,
+      coverImage: await processContentfulImage(data.fields.coverImage),
+      gallery: await Promise.all(
+        data.fields.gallery.map(async (img) => processContentfulImage(img))
+      ),
+      video: data.fields.video
+        ? {
+            fallbackImage: await processContentfulImage(
+              data.fields.video.fields.fallbackImage
+            ),
+            files: data.fields.video.fields.videos.map((vid) => ({
+              src: vid.fields.file.url,
+              id: vid.fields.title,
+              type: vid.fields.file.contentType,
+            })),
+            title: data.fields.video.fields.title || null,
+          }
+        : null,
+      guestsEvents: data.fields.guestsEvents || null,
+      guestsStay: data.fields.guestsStay || null,
+    };
+  } catch (error: unknown) {
+    throw new Error(
+      `An error occurred while fetching Boat data for entry ${entryId}`
+    );
   }
 };

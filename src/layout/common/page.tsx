@@ -26,7 +26,7 @@ const Page: React.FC<Props> = ({ title, children }: Props): JSX.Element => {
       className="grid min-h-screen grid-cols-1 grid-rows-[1fr_min-content] items-start justify-items-stretch"
     >
       <Head>
-        <title>{`${title} - DAE Starter`}</title>
+        <title>{`${title} | Charters by Debug Auto Exclusive`}</title>
       </Head>
       <NavBar />
       <main className="row-start-1 mx-auto flex w-[min(100%,_208rem)] flex-col items-stretch justify-start gap-y-20 self-start 2xl:gap-y-24 4xl:gap-y-36">

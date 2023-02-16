@@ -2,9 +2,11 @@ import dynamic from "next/dynamic";
 
 import {
   getBannerBlock,
+  getBannerCardBlocks,
   getHeroSlides,
   getImageContentBlock,
   getMultiImageContentBlock,
+  getOffers,
   getPageSummeryBlock,
   getStats,
   getTestimonials,
@@ -14,27 +16,16 @@ import {
 import Page from "@layout/common/page";
 import { type PageSummerySectionType } from "@layout/common/page-summery-section";
 import { Hero } from "@layout/homepage/hero";
-import { LocationSection } from "@layout/homepage/location-section";
 
 import type { BannerType } from "@layout/common/banner-section";
 import type { ImageContentSectionType } from "@layout/common/image-content-section";
 import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-
-const MultiImageHorizontal = dynamic(() =>
-  import("@layout/common/multi-image-content-horizontal").then(
-    (mod) => mod.MultiImageHorizontal
-  )
-);
+import { BannerCardType } from "@components/banner-card";
+import BoatOptions from "@layout/homepage/event-types-section";
 
 const ImageContentSection = dynamic(() =>
   import("@layout/common/image-content-section").then(
     (mod) => mod.ImageContentSection
-  )
-);
-
-const PageSummerySection = dynamic(() =>
-  import("@layout/common/page-summery-section").then(
-    (mod) => mod.PageSummerySection
   )
 );
 
@@ -63,72 +54,55 @@ const MultiIMageContentVertical = dynamic(() =>
   )
 );
 
-const StatsGrid = dynamic(() =>
-  import("@layout/common/stats-grid").then((mod) => mod.StatsGrid)
-);
-
 interface Props {
   heroVideo: Video;
+  boatOptions: Omit<BannerCardType, "button">[];
   heroSlides: HeroSlide[];
-  aboutSection: ImageContentSectionType;
-  locationSection: ImageContentSectionType;
-  boatStorageSection: PageSummerySectionType;
-  stats: Stat[];
-  waterSportsSection: MultiImageContentBlockType;
-  diningBanner: Omit<BannerType, "button">;
-  eventsSection: MultiImageContentBlockType;
+  accommodationSection: ImageContentSectionType;
+  cruisesSection: MultiImageContentBlockType;
+  eventsSection: Omit<BannerType, "button">;
+  offers: Offer[];
   testimonials: Testimonial[];
 }
 
 const Home: NextPage<Props> = ({
   heroVideo,
   heroSlides,
-  aboutSection,
-  locationSection,
-  boatStorageSection,
-  stats,
-  waterSportsSection,
-  diningBanner,
+  boatOptions,
+  accommodationSection,
+  cruisesSection,
   eventsSection,
   testimonials,
 }) => {
   return (
     <Page title="Home Page">
       <Hero video={heroVideo} slides={heroSlides} />
-      <ImageContentSection
-        {...aboutSection}
-        button={{
-          children: "About The Marina",
-          route: "/about",
-          intent: "primary",
-          type: "route",
-          withArrow: true,
-        }}
-      />
-      <LocationSection {...locationSection} />
-      <PageSummerySection
-        {...boatStorageSection}
-        button={{
-          children: "About The Marina",
-          route: "/about",
-          intent: "primary",
-          type: "route",
-          withArrow: true,
-        }}
+      <BoatOptions
+        options={boatOptions.map((option) => ({
+          ...option,
+          button: {
+            children: `Explore ${option.heading}`,
+            type: "route",
+            intent: "white",
+            route: `/${option.id}`,
+            withArrow: true,
+          },
+        }))}
       />
       <MultiIMageContentVertical
-        {...waterSportsSection}
+        {...cruisesSection}
         button={{
-          children: "Explore Water Sports",
-          route: "/water-sports",
+          children: "Explore Cruises",
+          route: "/cruises",
           intent: "primary",
           type: "route",
           withArrow: true,
         }}
       />
-      <StatsGrid stats={stats} />
+
+      <ImageContentSection {...accommodationSection} />
       <BannerSection
-        {...diningBanner}
+        {...eventsSection}
         button={{
           children: "Explore The Restaurant",
           route: "/restaurant",
@@ -138,18 +112,11 @@ const Home: NextPage<Props> = ({
           withArrow: true,
         }}
       />
-      <MultiImageHorizontal
-        {...eventsSection}
-        button={{
-          children: "Explore Events",
-          route: "/events",
-          intent: "primary",
-          type: "route",
-          withArrow: true,
-        }}
-      />
+
+      {/* Offers Carousel here */}
 
       <TestimonialSection testimonials={testimonials} />
+      {/* TODO: Insta Feed  */}
       <NewsletterSection trim />
       <ContactFormSection />
     </Page>
@@ -163,36 +130,29 @@ const getStaticProps: GetStaticProps = async (): Promise<
 
   const heroSlides = await getHeroSlides();
 
-  const aboutSection = await getImageContentBlock("vtzVqu4ar9WM8ztkaXeDD");
-  const boatStorageSection = await getPageSummeryBlock(
-    "76ESyIGEPU40V57T7MeHYw"
+  const boatOptions = await getBannerCardBlocks("boat-options");
+
+  const accommodationSection = await getImageContentBlock(
+    "vtzVqu4ar9WM8ztkaXeDD"
   );
-  const locationSection = await getImageContentBlock("7aMH2kvF0qY1iHlOUJY1iu");
 
-  const stats = await getStats("berthing-values", 3);
-
-  const waterSportsSection = await getMultiImageContentBlock(
+  const cruisesSection = await getMultiImageContentBlock(
     "1TdqoQoGUbfoy8xJ36Oymr"
   );
 
-  const diningBanner = await getBannerBlock("6z4iVnl6j0QCU39LXgXGQa");
-
-  const eventsSection = await getMultiImageContentBlock(
-    "42JacW2uUz3yzm5IigC5zL"
-  );
+  const eventsSection = await getBannerBlock("6z4iVnl6j0QCU39LXgXGQa");
+  const offers = await getOffers();
 
   const testimonials = await getTestimonials();
   return {
     props: {
       heroVideo,
       heroSlides,
-      aboutSection,
-      locationSection,
-      boatStorageSection,
-      stats,
-      diningBanner,
-      waterSportsSection,
+      boatOptions,
+      accommodationSection,
       eventsSection,
+      cruisesSection,
+      offers,
       testimonials,
     },
   };

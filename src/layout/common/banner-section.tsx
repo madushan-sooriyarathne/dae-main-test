@@ -8,20 +8,23 @@ import { clamp } from "@utils/base";
 import { Button } from "@components/button";
 import { ImageComponent } from "@components/image-component";
 
-import { HeadingGroup } from "./groups/heading-group";
+import { HeadingGroup } from "@layout/common/groups/heading-group";
 
 import type { ButtonType } from "@components/button";
 
-import type { HeadingGroupType } from "./groups/heading-group";
+import type { ContentGroupType } from "@layout/common/groups/content-group";
+import { Paragraph } from "@components/paragraph";
 
-interface Props extends HeadingGroupType {
+interface Props extends Omit<ContentGroupType, "content"> {
   images: Image[];
+  content: string | null;
   button?: ButtonType;
 }
 
 const BannerSection: React.FC<Props> = ({
   images,
   button,
+  content,
   ...headingGroupProps
 }: Props): JSX.Element => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -58,6 +61,11 @@ const BannerSection: React.FC<Props> = ({
       <div className="main-grid-columns flex w-full items-end justify-start bg-water py-9 lg:h-full lg:bg-transparent lg:bg-overlayShade lg:px-12 lg:py-12 xl:p-16">
         <div className="col-content flex w-[min(100%,_37.5rem)] flex-col items-start justify-end gap-y-8 lg:col-full">
           <HeadingGroup {...headingGroupProps} intent="white" />
+          {content && (
+            <Paragraph alignment="left" intent="white">
+              {content}
+            </Paragraph>
+          )}
           {button && <Button {...button} />}
         </div>
       </div>

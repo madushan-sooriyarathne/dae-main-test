@@ -1,5 +1,5 @@
 export const brand: Brand = {
-  companyName: "Marina by D.A.E",
+  companyName: "Charter by D.A.E",
   address: "58, 42nd Lane, Wellawatte, Colombo 06, Sri Lanka.",
   vatNo: "501030670",
   registrationNumber: "PV17108040",
@@ -13,20 +13,16 @@ export const brand: Brand = {
 };
 
 export const navLinks: NavLink[] = [
-  { label: "Club", route: "/club" },
-  { label: "Berthing", route: "/berthing" },
-  { label: "Activities", route: "/activities" },
-  { label: "Safety", route: "/safety" },
-  { label: "Restaurant", route: "/restaurant" },
+  { label: "Flow 01", route: "/flow-1" },
+  { label: "Flow 02", route: "/flow-2" },
+  { label: "Cruises", route: "/cruises" },
   { label: "Events", route: "/events" },
 ];
 
 export const sideBarNavLinks: NavLink[] = [
-  { label: "Club", route: "/club" },
-  { label: "Berthing", route: "/berthing" },
-  { label: "Activities", route: "/activities" },
-  { label: "Safety", route: "/safety" },
-  { label: "Restaurant", route: "/restaurant" },
+  { label: "Flow 01", route: "/flow-1" },
+  { label: "Flow 02", route: "/flow-2" },
+  { label: "Cruises", route: "/cruises" },
   { label: "Events", route: "/events" },
   { label: "Offers", route: "/offers" },
   { label: "Blog", route: "https://dae.fun/blog", external: true },
@@ -64,17 +60,8 @@ export const reservationTypes: ReservationType[] = [
       alt: "Restaurant Reservation selector image - Food Plates at Marina by D.A.E restaurant",
       blurUrl: "",
     },
-    id: "restaurant",
-    name: "Restaurant",
-  },
-  {
-    image: {
-      src: "https://images.ctfassets.net/5uyx9ygtaaqf/6Jkvb8n9n3ThE9lKKWOVOF/1be8cdae3dd7688cd8a94f8cdae794dd/reservation-type-watersports.jpg",
-      alt: "Water-sports Reservation selector image - A couple on a Sea-Doo jet ski at Marina by D.A.E",
-      blurUrl: "",
-    },
-    id: "water-sports",
-    name: "Water Sports",
+    id: "cruises",
+    name: "Cruises",
   },
   {
     image: {
@@ -128,4 +115,8 @@ export const eventTypes = [
   "Gatherings",
 ] as const;
 
-export const waterSports = ["Banana Boat", "Kayaking", "Jet Ski ride"] as const;
+export const cruiseTypes = [
+  "Overnight Stay",
+  "Sunset Cruise",
+  "Morning Cruise",
+] as const;

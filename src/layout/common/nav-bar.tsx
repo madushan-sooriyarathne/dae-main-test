@@ -95,7 +95,7 @@ const NavBar: React.FC = (): JSX.Element => {
             />
           </svg>
           <span className="font-sans text-xs font-bold uppercase leading-snug tracking-wider text-primary">
-            The Marina
+            Charter
           </span>
         </Link>
         <div className="grid h-full grid-cols-[repeat(2,_max-content)] grid-rows-[1fr] items-center justify-end gap-x-2 sm:gap-x-4 md:gap-x-8 lg:gap-x-9 xl:gap-x-12">
@@ -208,7 +208,7 @@ const NavBar: React.FC = (): JSX.Element => {
                   />
                 </svg>
                 <span className="font-sans text-xs font-bold uppercase leading-snug tracking-wider text-primary">
-                  The Marina
+                  Charter
                 </span>
               </Link>
               <button
