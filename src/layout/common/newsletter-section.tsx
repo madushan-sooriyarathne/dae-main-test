@@ -36,6 +36,7 @@ const NewsletterSection: React.FC<Props> = ({ trim }): JSX.Element => {
             alt: "Newsletter",
             blurUrl: "",
           }}
+          sizes="(max-width: 1024px) 100vw, 50vw"
         />
       </div>
       <div className="flex w-full flex-col items-stretch gap-y-9 py-12 px-4 md:px-6 lg:col-full-end-half lg:justify-center lg:p-12 2xl:p-16">

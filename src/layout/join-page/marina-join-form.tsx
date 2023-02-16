@@ -57,6 +57,7 @@ const MarinaJoinForm: React.FC = (): JSX.Element => {
                 blurUrl: "",
                 alt: "Explorers Collective membership sign-in form cover.",
               }}
+              sizes="50vw"
             />
           </div>
           <div className="flex h-full flex-col items-start justify-start bg-water p-9 xl:justify-end xl:bg-transparent xl:bg-overlayShade xl:p-9">

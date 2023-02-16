@@ -27,10 +27,11 @@ const StatsGrid = forwardRef<HTMLElement, Props>(
                 <div className="h-16 w-16">
                   <ImageComponent
                     image={{ src: stat.icon, alt: stat.title, blurUrl: "" }}
+                    sizes="10vw"
                   />
                 </div>
               )}
-              <QuaternaryHeading alignment="left" intent="black">
+              <QuaternaryHeading alignment="left" intent="primary">
                 {stat.title}
               </QuaternaryHeading>
               <Paragraph alignment="left" intent="black">

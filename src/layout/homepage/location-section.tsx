@@ -19,6 +19,7 @@ const LocationSection: React.FC<Props> = ({
           image={image}
           objectFit="contain"
           pos={{ x: "right", y: "center" }}
+          sizes="(max-width: 820px) 100vw, 60vw"
         />
       </div>
       <div className="flex flex-col items-start justify-center px-4 py-9 mlg:col-content-start-half mlg:row-start-1 mlg:px-0 mlg:py-12">

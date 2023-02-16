@@ -76,7 +76,10 @@ const MultiIMageContentVertical: React.FC<Props> = ({
         >
           {images.map((image, index) => (
             <div className="aspect-square w-full" key={index}>
-              <ImageComponent image={image} />
+              <ImageComponent
+                image={image}
+                sizes="(max-width: 580px) 75vw, (max-width: 800px) 50vw, 33vw"
+              />
             </div>
           ))}
         </Carousel>
@@ -90,7 +93,7 @@ const MultiIMageContentVertical: React.FC<Props> = ({
               y: index === 1 ? imageTwoY : index === 2 ? imageThreeY : 0,
             }}
           >
-            <ImageComponent image={image} />
+            <ImageComponent image={image} sizes="33vw" />
           </m.div>
         ))}
       </div>

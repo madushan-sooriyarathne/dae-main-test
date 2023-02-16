@@ -96,13 +96,6 @@ export const reservationTypes: ReservationType[] = [
   },
 ];
 
-type ErrorType = {
-  code: number;
-  message: string;
-  title: string;
-  image: Image;
-};
-
 export const errorTypes: ErrorType[] = [
   {
     code: 404,

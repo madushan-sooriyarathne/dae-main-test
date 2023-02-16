@@ -46,7 +46,7 @@ const ContactForm: React.FC<ImageContentSectionType> = ({
   return (
     <section className="trim-bottom lg:main-grid-columns grid auto-rows-min grid-cols-1 bg-water">
       <div className="aspect-square md:aspect-video lg:col-full-end-half lg:row-start-1 lg:aspect-auto lg:h-full">
-        <ImageComponent image={image} />
+        <ImageComponent image={image} sizes="(max-width: 1024px) 100vw, 50vw" />
       </div>
       <div className="flex flex-col items-start justify-start gap-y-9 py-8 px-4 md:py-12 md:px-8 lg:col-full-start-half lg:row-start-1 lg:px-8 xl:py-16 xl:!px-16 2xl:py-18">
         <div className="flex flex-col items-start justify-start gap-y-2">

@@ -74,15 +74,18 @@ const MultiImageHorizontal: React.FC<Props> = ({
         >
           {images.map((image, index) => (
             <div className="aspect-square w-full" key={index}>
-              <ImageComponent image={image} />
+              <ImageComponent
+                image={image}
+                sizes="(max-width: 580px) 75vw, (max-width: 800px) 50vw, 33vw"
+              />
             </div>
           ))}
         </Carousel>
       </div>
-      <div className="col-content-start-half row-start-1 row-end-1 hidden w-full auto-rows-min grid-cols-2 items-center justify-center gap-6 pr-12 lg:grid xl:pr-14 2xl:col-full-start-half 2xl:px-16 [&>*:nth-child(1)]:col-[1/2] [&>*:nth-child(1)]:row-[1/3] [&>*:nth-child(2)]:col-[2/3] [&>*:nth-child(2)]:row-[1/2] [&>*:nth-child(3)]:col-[2/3] [&>*:nth-child(3)]:row-[2/3]">
+      <div className="col-content-start-half row-start-1 row-end-1 hidden w-full auto-rows-min grid-cols-2 items-center justify-center gap-6 pr-12 lg:grid xl:pr-14 2xl:col-full-start-half 2xl:px-16 [&>*:nth-child(2)]:col-[2/3] [&>*:nth-child(2)]:row-[1/2] [&>*:nth-child(3)]:col-[2/3] [&>*:nth-child(3)]:row-[2/3] [&>*:nth-child(1)]:col-[1/2] [&>*:nth-child(1)]:row-[1/3]">
         {images.map((image, index) => (
           <div key={index} className="aspect-[1_/_1.2] w-full">
-            <ImageComponent image={image} />
+            <ImageComponent image={image} sizes="25vw" />
           </div>
         ))}
       </div>

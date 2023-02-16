@@ -36,7 +36,7 @@ const PageSummerySection: React.FC<Props> = ({
       </div>
       {image && (
         <div className="col-full aspect-square w-full overflow-hidden rounded-sm sm:aspect-[4/3] md:col-content md:aspect-video lg:aspect-[3/1.3]">
-          <ImageComponent image={image} />
+          <ImageComponent image={image} sizes="100vw" />
         </div>
       )}
     </section>

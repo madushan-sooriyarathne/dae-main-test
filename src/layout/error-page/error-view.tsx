@@ -30,7 +30,7 @@ const ErrorView: React.FC<Props> = ({ errorCode }: Props): JSX.Element => {
         </Button>
       </div>
       <div className="col-content-end-half hidden aspect-square w-full overflow-hidden rounded-lg mlg:block">
-        <ImageComponent image={errorData.image} />
+        <ImageComponent image={errorData.image} sizes="50vw" />
       </div>
     </section>
   );

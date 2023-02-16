@@ -54,7 +54,7 @@ const ReservationContainer: React.FC = (): JSX.Element => {
                       </span>
                     </div>
                     <div className="absolute inset-0 -z-10">
-                      <ImageComponent image={type.image} />
+                      <ImageComponent image={type.image} sizes="300px" />
                     </div>
                   </Link>
                 ))}

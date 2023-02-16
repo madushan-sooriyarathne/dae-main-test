@@ -1,6 +1,7 @@
-import { cva } from "class-variance-authority";
+import { type ComponentPropsWithRef, forwardRef } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import type { VariantProps } from "class-variance-authority";
+import { cn } from "@lib/clsx";
 
 const subHeading = cva(["font-serif italic font-normal tracking-wider"], {
   variants: {
@@ -30,20 +31,33 @@ const subHeading = cva(["font-serif italic font-normal tracking-wider"], {
   },
 });
 
-interface Props extends VariantProps<typeof subHeading> {
+interface Props
+  extends VariantProps<typeof subHeading>,
+    ComponentPropsWithRef<"span"> {
   children: string;
 }
 
-const SubHeading: React.FC<Props> = ({
-  children,
-  type,
-  intent,
-  alignment,
-}: Props): JSX.Element => {
-  return (
-    <span className={subHeading({ type, intent, alignment })}>{children}</span>
-  );
-};
+const SubHeading = forwardRef<HTMLSpanElement, Props>(
+  ({
+    children,
+    type,
+    intent,
+    alignment,
+    className,
+    ...props
+  }: Props): JSX.Element => {
+    return (
+      <span
+        className={cn(subHeading({ type, intent, alignment, className }))}
+        {...props}
+      >
+        {children}
+      </span>
+    );
+  }
+);
+
+SubHeading.displayName = "SubHeading";
 
 export type { Props as SubHeadingType };
 export { SubHeading };

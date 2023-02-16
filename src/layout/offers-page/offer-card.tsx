@@ -72,7 +72,10 @@ const OfferCard: React.FC<Props> = ({ offer, invert }: Props): JSX.Element => {
                   exit="exit"
                   className="absolute inset-0 h-full w-full"
                 >
-                  <ImageComponent image={image} />
+                  <ImageComponent
+                    image={image}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
                 </m.div>
               )
           )}
