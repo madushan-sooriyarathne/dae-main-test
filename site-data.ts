@@ -13,15 +13,15 @@ export const brand: Brand = {
 };
 
 export const navLinks: NavLink[] = [
-  { label: "Flow 01", route: "/flow-1" },
-  { label: "Flow 02", route: "/flow-2" },
+  { label: "Flow 01", route: "/flow-01" },
+  { label: "Flow 02", route: "/flow-02" },
   { label: "Cruises", route: "/cruises" },
   { label: "Events", route: "/events" },
 ];
 
 export const sideBarNavLinks: NavLink[] = [
-  { label: "Flow 01", route: "/flow-1" },
-  { label: "Flow 02", route: "/flow-2" },
+  { label: "Flow 01", route: "/flow-01" },
+  { label: "Flow 02", route: "/flow-02" },
   { label: "Cruises", route: "/cruises" },
   { label: "Events", route: "/events" },
   { label: "Offers", route: "/offers" },
@@ -56,8 +56,8 @@ export const socialLinks: SocialLink[] = [
 export const reservationTypes: ReservationType[] = [
   {
     image: {
-      src: "https://images.ctfassets.net/5uyx9ygtaaqf/3K53muxwYjbNidlZNpoqES/7398ee1901d9f9f8a9bc22b5039eea61/reservation-type-restaurant.jpg",
-      alt: "Restaurant Reservation selector image - Food Plates at Marina by D.A.E restaurant",
+      src: "https://images.ctfassets.net/88dxwx49umgp/7JTcwrtVo4x1M1Xt6pULE5/ad4deb70940d9628747ad7f26b78997d/reservation-type-cruises.jpg",
+      alt: "Cruises Reservation selector image - A cruising yacht by Debug Auto Exclusive",
       blurUrl: "",
     },
     id: "cruises",
@@ -65,8 +65,8 @@ export const reservationTypes: ReservationType[] = [
   },
   {
     image: {
-      src: "https://images.ctfassets.net/5uyx9ygtaaqf/1c9xJC7BghZXzglXtuQh7s/abf50481f46084b908f2af1843b27d50/reservation-type-offers.jpg",
-      alt: "Packages and Offers Reservation selector image - A girl relaxing in the swimming pool at Marina by D.A.E",
+      src: "https://images.ctfassets.net/88dxwx49umgp/23T38Azj7Vu01l8VvRrDLN/74ec9a9e608c7b3456e21f10d481c53c/reservations-type-offers.jpg",
+      alt: "Packages and Offers Reservation selector image - A couple having a good time in cruise by Debug Auto Exclusive",
       blurUrl: "",
     },
     id: "packages-and-offers",
@@ -74,8 +74,8 @@ export const reservationTypes: ReservationType[] = [
   },
   {
     image: {
-      src: "https://images.ctfassets.net/5uyx9ygtaaqf/Xt6BBRs0pPM5SEPIHVerb/787e216fd9b7fab87c540124a623682a/reservation-type-events.jpg",
-      alt: "Events Reservation selector image - A dining table of event at Marina by D.A.E",
+      src: "https://images.ctfassets.net/88dxwx49umgp/UfOLa7Y9MP7nulHobrL1G/99d0d729cb0cbb02b80bee4129e04757/reservations-type-evens.jpg",
+      alt: "Events Reservation selector image - Group of people having a party on a cruise by Debug Auto Exclusive",
       blurUrl: "",
     },
     id: "events",

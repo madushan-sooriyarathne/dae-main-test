@@ -39,7 +39,10 @@ const OfferCard: React.FC<Props> = ({ offer, invert }: Props): JSX.Element => {
   );
 
   return (
-    <section className="lg:main-grid-columns grid auto-rows-min bg-lightWater lg:bg-[image:none]">
+    <section
+      className="lg:main-grid-columns grid auto-rows-min bg-lightWater lg:bg-[image:none]"
+      id={offer.id}
+    >
       <div
         className={cn(
           "relative isolate z-0 col-full aspect-video overflow-hidden lg:aspect-auto lg:min-h-[31.25rem]",

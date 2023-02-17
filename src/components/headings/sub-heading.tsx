@@ -38,18 +38,15 @@ interface Props
 }
 
 const SubHeading = forwardRef<HTMLSpanElement, Props>(
-  ({
-    children,
-    type,
-    intent,
-    alignment,
-    className,
-    ...props
-  }: Props): JSX.Element => {
+  (
+    { children, type, intent, alignment, className, ...props },
+    ref
+  ): JSX.Element => {
     return (
       <span
         className={cn(subHeading({ type, intent, alignment, className }))}
         {...props}
+        ref={ref}
       >
         {children}
       </span>

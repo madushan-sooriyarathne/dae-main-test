@@ -7,21 +7,21 @@ import {
   getImageContentBlock,
   getMultiImageContentBlock,
   getOffers,
-  getPageSummeryBlock,
-  getStats,
   getTestimonials,
+  getTextContentBlock,
   getVideoBlock,
 } from "@cms/content-studio";
 
 import Page from "@layout/common/page";
-import { type PageSummerySectionType } from "@layout/common/page-summery-section";
 import { Hero } from "@layout/homepage/hero";
 
 import type { BannerType } from "@layout/common/banner-section";
 import type { ImageContentSectionType } from "@layout/common/image-content-section";
 import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-import { BannerCardType } from "@components/banner-card";
-import BoatOptions from "@layout/homepage/event-types-section";
+import type { BannerCardType } from "@components/banner-card";
+import BoatOptions from "@layout/homepage/boat-options";
+import { OffersCarousel } from "@layout/homepage/offers-carousel";
+import { ContentGroupType } from "@layout/common/groups/content-group";
 
 const ImageContentSection = dynamic(() =>
   import("@layout/common/image-content-section").then(
@@ -62,6 +62,7 @@ interface Props {
   cruisesSection: MultiImageContentBlockType;
   eventsSection: Omit<BannerType, "button">;
   offers: Offer[];
+  offersSection: ContentGroupType;
   testimonials: Testimonial[];
 }
 
@@ -72,6 +73,8 @@ const Home: NextPage<Props> = ({
   accommodationSection,
   cruisesSection,
   eventsSection,
+  offers,
+  offersSection,
   testimonials,
 }) => {
   return (
@@ -113,7 +116,7 @@ const Home: NextPage<Props> = ({
         }}
       />
 
-      {/* Offers Carousel here */}
+      <OffersCarousel offers={offers} {...offersSection} />
 
       <TestimonialSection testimonials={testimonials} />
       {/* TODO: Insta Feed  */}
@@ -141,6 +144,9 @@ const getStaticProps: GetStaticProps = async (): Promise<
   );
 
   const eventsSection = await getBannerBlock("6z4iVnl6j0QCU39LXgXGQa");
+
+  const offersSection = await getTextContentBlock("6Ma30q1FXp0PkspE7OITES");
+
   const offers = await getOffers();
 
   const testimonials = await getTestimonials();
@@ -153,6 +159,7 @@ const getStaticProps: GetStaticProps = async (): Promise<
       eventsSection,
       cruisesSection,
       offers,
+      offersSection,
       testimonials,
     },
   };
