@@ -41,8 +41,8 @@ const VideoSection: React.FC<Props> = ({ video }): JSX.Element => {
           {video.title && (
             <div
               className={cn(
-                "opacity-100 transition-opacity duration-200 ease-in-out"
-                // { "opacity-0": interacted }
+                "opacity-100 transition-opacity duration-200 ease-in-out",
+                { "opacity-0": interacted }
               )}
             >
               <SecondaryHeading alignment="center" intent="white">
