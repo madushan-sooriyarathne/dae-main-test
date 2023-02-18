@@ -332,7 +332,7 @@ export const getVideoBlock = async (entryId: string): Promise<Video> => {
       fallbackImage: await processContentfulImage(data.fields.fallbackImage),
       files: data.fields.videos.map((vid) => ({
         id: formatId(vid.fields.title),
-        src: vid.fields.file.url,
+        src: getAssetUrl(vid),
         type: vid.fields.file.contentType,
       })),
       title: data.fields.title || null,
@@ -422,7 +422,7 @@ export const getBoat = async (entryId: string): Promise<Boat> => {
               data.fields.video.fields.fallbackImage
             ),
             files: data.fields.video.fields.videos.map((vid) => ({
-              src: vid.fields.file.url,
+              src: getAssetUrl(vid),
               id: vid.fields.title,
               type: vid.fields.file.contentType,
             })),

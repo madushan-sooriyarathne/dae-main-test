@@ -24,6 +24,7 @@ import { type ContentGroupType } from "@layout/common/groups/content-group";
 import { StatsGrid } from "@layout/common/stats-grid";
 import { BoatStats } from "@layout/boat-page/boat-stats";
 import { BoatFeatures } from "@layout/boat-page/boat-features";
+import { VideoSection } from "@layout/boat-page/video-section";
 
 interface Props {
   header: PageHeaderType;
@@ -61,6 +62,7 @@ const FlowOne: NextPage<Props> = ({
       {/* Cruises Section */}
       {/* Boat Options Tab Section */}
       {/* Video */}
+      {boatStats.video && <VideoSection video={boatStats.video} />}
       {/* Gallery */}
       {/* <StatsGrid stats={activitiesPerks} />
       <MultiItemSection {...activitiesRangeSection}>
