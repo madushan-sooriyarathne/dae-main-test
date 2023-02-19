@@ -102,7 +102,6 @@ const GallerySection: React.FC<Props> = ({ images }: Props): JSX.Element => {
                       withNavigation={showNav}
                       loop
                       initial={previewIndex}
-                      slideStyles="h-full"
                       fullHeight
                       breakpoints={{
                         "(min-width: 320px)": {
