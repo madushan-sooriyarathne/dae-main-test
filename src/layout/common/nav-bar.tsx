@@ -41,7 +41,7 @@ const NavBar: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[200] flex h-18 flex-row items-center justify-between bg-white py-3 px-2 shadow-md sm:px-3 md:px-4 md:py-2 lg:py-3 lg:px-6 xl:px-9 2xl:px-16">
+      <nav className="fixed top-0 left-0 right-0 z-[200] flex h-18 flex-row items-center justify-between bg-white py-3 px-2 shadow-md sm:px-3 md:px-4 md:py-2 lg:h-20 lg:py-3 lg:px-6 xl:px-9 2xl:px-16">
         <Link
           href="/"
           className="grid h-full w-[169px] grid-cols-[max-content] grid-rows-[1fr_min-content] items-start justify-start gap-1 no-underline outline-offset-8 outline-primary-400 focus-visible:outline focus-visible:outline-2 "
@@ -106,7 +106,13 @@ const NavBar: React.FC = (): JSX.Element => {
                 <Link
                   key={link.route}
                   href={link.route}
-                  className="relative font-sans text-xs font-bold uppercase leading-snug tracking-[0.2em] text-black-800 no-underline outline-offset-2 outline-primary-400 transition-[color] duration-200 ease-in-out hover:text-primary focus-visible:outline focus-visible:outline-2"
+                  className={cn(
+                    "relative font-sans text-xs font-bold uppercase leading-snug tracking-[0.2em] text-black-800 no-underline outline-offset-2 outline-primary-400 transition-[color] duration-200 ease-in-out hover:text-primary focus-visible:outline focus-visible:outline-2",
+                    {
+                      "after:absolute after:top-full after:left-0 after:right-0 after:block after:h-[2px] after:w-full after:bg-black-600 after:transition-colors after:duration-200 after:ease-in-out hover:after:bg-primary":
+                        router.pathname.startsWith(link.route),
+                    }
+                  )}
                 >
                   {link.label}
                 </Link>
@@ -116,24 +122,15 @@ const NavBar: React.FC = (): JSX.Element => {
               Reserve Now
             </Button>
           </div>
-          {/* <div
-            onClick={toggleSideMenu}
-            className="group flex aspect-square h-12 cursor-pointer flex-col items-end justify-center gap-2 p-2"
-          >
-            <div className={`h-[2px] w-full  rounded-sm bg-black-700`} />
-            <div
-              className={`h-[2px] w-1/2 rounded-sm bg-black-700 transition-transform duration-200 ease-in-out group-hover:-translate-x-full`}
-            />
-            <div className={`h-[2px] w-full rounded-sm bg-black-700 `} />
-          </div> */}
+
           <button
-            className="flex aspect-square h-12 w-12 items-center justify-center p-1 outline-primary-400 focus-visible:outline focus-visible:outline-2"
+            className="flex aspect-square h-12 w-12 items-center justify-center  p-1 outline-primary-400 focus-visible:outline focus-visible:outline-2 lg:h-14 lg:w-14 lg:p-2"
             onClick={toggleSideMenu}
           >
             <svg
               viewBox="0 0 33 20"
               xmlns="http://www.w3.org/2000/svg"
-              className="h-[40px] w-[40px] fill-black-700"
+              className="h-10 w-10 fill-black-700"
             >
               <rect x="0.215088" y="0.258789" width="32" height="1.5" />
               <rect x="16.2151" y="9.25879" width="16" height="1.5" />
@@ -239,10 +236,8 @@ const NavBar: React.FC = (): JSX.Element => {
                     key={link.route}
                     className={cn(
                       "rounded-lg px-3 py-2 text-right text-lg font-bold tracking-wider text-black-800 outline-primary-400 hover:bg-primary-100 hover:text-primary focus-visible:outline focus-visible:outline-2 lg:px-6 lg:py-4 lg:text-xl",
-                      "transition-colors duration-200 ease-in-out",
-                      router.pathname.startsWith(link.route)
-                        ? "bg-white-100"
-                        : "bg-transparent"
+                      "bg-transparent transition-colors duration-200 ease-in-out",
+                      { "bg-white-300": router.pathname.startsWith(link.route) }
                     )}
                   >
                     {link.label}
