@@ -1,12 +1,13 @@
+import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+
+import { getImageContentBlock } from "@cms/content-studio";
+
+import type { ImageContentSectionType } from "@layout/common/image-content-section";
 import { NewsletterSection } from "@layout/common/newsletter-section";
 import Page from "@layout/common/page";
+import { ContactDetailsSection } from "@layout/contact-page/contact-details";
 import { ContactForm } from "@layout/contact-page/contact-form";
 import { MapsSection } from "@layout/contact-page/map-section";
-
-import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-import type { ImageContentSectionType } from "@layout/common/image-content-section";
-import { getImageContentBlock } from "@cms/content-studio";
-import { ContactDetailsSection } from "@layout/contact-page/contact-details";
 
 interface Props {
   contactFormSection: ImageContentSectionType;

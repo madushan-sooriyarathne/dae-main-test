@@ -1,11 +1,13 @@
 import { useState } from "react";
+
 import { cva, type VariantProps } from "class-variance-authority";
 import { AnimatePresence, m } from "framer-motion";
 
-import { fadeInBottom } from "@styles/animations";
+import { cn } from "@lib/clsx";
 
 import { OutsideClickHandler } from "@components/outside-click-handler";
-import { cn } from "@lib/clsx";
+
+import { fadeInBottom } from "@styles/animations";
 
 const fieldVariants = cva(
   [

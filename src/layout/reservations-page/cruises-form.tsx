@@ -1,14 +1,20 @@
 import { useContext } from "react";
 import { Controller } from "react-hook-form";
-import { z } from "zod";
-import { m } from "framer-motion";
+
 import Link from "next/link";
 
-import { api } from "@utils/api";
-import { useZodForm } from "@hooks/useZodForm";
-import { NotificationDispatchContext } from "@context/notification";
+import { m } from "framer-motion";
+import { cruiseTypes } from "site-data";
+import { z } from "zod";
+
 import { cn } from "@lib/clsx";
 import { triggerGTMEvent } from "@lib/gtm";
+
+import { useZodForm } from "@hooks/useZodForm";
+
+import { NotificationDispatchContext } from "@context/notification";
+
+import { api } from "@utils/api";
 
 import { Button } from "@components/button";
 import { DatePicker } from "@components/date-picker";
@@ -16,12 +22,11 @@ import { Form } from "@components/form";
 import { SecondaryHeading } from "@components/headings/secondary-heading";
 import { InputField } from "@components/input-field";
 import { PaxPicker } from "@components/pax-picker";
+import { SelectField } from "@components/select-field";
 import { TextAreaField } from "@components/text-area-field";
 import { TimePicker } from "@components/time-picker";
 
 import { fadeIn } from "@styles/animations";
-import { cruiseTypes } from "site-data";
-import { SelectField } from "@components/select-field";
 
 const cruisesFormSchema = z.object({
   name: z.string({ required_error: "Name is required." }),

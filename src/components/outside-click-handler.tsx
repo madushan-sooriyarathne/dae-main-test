@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 
 interface Props {
   id: string;

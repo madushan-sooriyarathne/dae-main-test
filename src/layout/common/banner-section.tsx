@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
 
-import { sliderVariants } from "@styles/animations";
 import { AnimatePresence, m } from "framer-motion";
 
 import { clamp } from "@utils/base";
 
-import { Button } from "@components/button";
-import { ImageComponent } from "@components/image-component";
-
+import type { ContentGroupType } from "@layout/common/groups/content-group";
 import { HeadingGroup } from "@layout/common/groups/heading-group";
 
-import type { ButtonType } from "@components/button";
-
-import type { ContentGroupType } from "@layout/common/groups/content-group";
+import { Button, type ButtonType } from "@components/button";
+import { ImageComponent } from "@components/image-component";
 import { Paragraph } from "@components/paragraph";
+
+import { sliderVariants } from "@styles/animations";
 
 interface Props extends Omit<ContentGroupType, "content"> {
   images: Image[];

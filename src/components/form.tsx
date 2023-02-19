@@ -1,11 +1,11 @@
-import { FormProvider } from "react-hook-form";
-
 import type { ComponentProps } from "react";
-import type {
-  FieldValues,
-  SubmitHandler,
-  UseFormReturn,
+import {
+  FormProvider,
+  type FieldValues,
+  type SubmitHandler,
+  type UseFormReturn,
 } from "react-hook-form";
+
 import { cn } from "@lib/clsx";
 
 interface Props<T extends FieldValues>

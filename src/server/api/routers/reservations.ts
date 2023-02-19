@@ -1,7 +1,7 @@
+import { cruiseTypes, eventTypes } from "site-data";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "@server/api/trpc";
-import { cruiseTypes, eventTypes } from "site-data";
 
 export const reservationRouter = createTRPCRouter({
   offerInquiry: publicProcedure
@@ -58,11 +58,9 @@ export const reservationRouter = createTRPCRouter({
           adults: z
             .number({ required_error: "filed 'pax.adults' is required" })
             .min(1, { message: "at least 1 adult is required." }),
-          children: z
-            .number()
-            .min(0, {
-              message: "field 'pax.children'children cannot be a minus value",
-            }),
+          children: z.number().min(0, {
+            message: "field 'pax.children'children cannot be a minus value",
+          }),
         }),
         cruiseType: z.enum(cruiseTypes, {
           required_error: "field 'cruiseType' is required",

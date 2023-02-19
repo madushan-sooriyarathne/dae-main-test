@@ -1,9 +1,8 @@
 import { Button, type ButtonType } from "@components/button";
 import { SubHeading } from "@components/headings/sub-heading";
-import { TertiaryHeading } from "@components/headings/tertiary-heading";
 import { ImageComponent } from "@components/image-component";
 import { Paragraph } from "@components/paragraph";
-import { PrimaryHeading } from "./headings/primary-heading";
+
 import { SecondaryHeading } from "./headings/secondary-heading";
 
 interface Props {

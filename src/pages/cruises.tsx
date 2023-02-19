@@ -9,19 +9,21 @@ import {
   getStats,
 } from "@cms/content-studio";
 
-import { ImageContentSection } from "@layout/common/image-content-section";
+import { BannerSection, type BannerType } from "@layout/common/banner-section";
+import { CTASection } from "@layout/common/cta-section";
+import {
+  ImageContentSection,
+  type ImageContentSectionType,
+} from "@layout/common/image-content-section";
+import { MultiImageHorizontal } from "@layout/common/multi-image-content-horizontal";
 import { NewsletterSection } from "@layout/common/newsletter-section";
 import Page from "@layout/common/page";
-import { PageHeader } from "@layout/common/page-header";
-import { PageSummerySection } from "@layout/common/page-summery-section";
+import { PageHeader, type PageHeaderType } from "@layout/common/page-header";
+import {
+  PageSummerySection,
+  type PageSummerySectionType,
+} from "@layout/common/page-summery-section";
 import { StatsGrid } from "@layout/common/stats-grid";
-
-import type { ImageContentSectionType } from "@layout/common/image-content-section";
-import type { PageHeaderType } from "@layout/common/page-header";
-import type { PageSummerySectionType } from "@layout/common/page-summery-section";
-import { CTASection } from "@layout/common/cta-section";
-import { MultiImageHorizontal } from "@layout/common/multi-image-content-horizontal";
-import { BannerSection, type BannerType } from "@layout/common/banner-section";
 
 interface Props {
   header: PageHeaderType;

@@ -1,9 +1,8 @@
-import { forwardRef } from "react";
+import { forwardRef, type ComponentProps } from "react";
 import { useFormContext } from "react-hook-form";
 
 import { cva, type VariantProps } from "class-variance-authority";
 
-import type { ComponentProps } from "react";
 import { cn } from "@lib/clsx";
 
 const inputFieldVariants = cva(

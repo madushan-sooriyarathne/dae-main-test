@@ -1,18 +1,21 @@
 import { Controller } from "react-hook-form";
+
 import { z } from "zod";
 
 import { cn } from "@lib/clsx";
-import { api } from "@utils/api";
+
 import { useZodForm } from "@hooks/useZodForm";
 
+import { api } from "@utils/api";
+
 import { Button } from "@components/button";
-import { Form } from "@components/form";
-import { InputField } from "@components/input-field";
 import { Checkbox } from "@components/checkbox";
+import { Form } from "@components/form";
 import { PrimaryHeading } from "@components/headings/primary-heading";
+import { SubHeading } from "@components/headings/sub-heading";
 import { TertiaryHeading } from "@components/headings/tertiary-heading";
 import { ImageComponent } from "@components/image-component";
-import { SubHeading } from "@components/headings/sub-heading";
+import { InputField } from "@components/input-field";
 
 const membershipFormSchema = z
   .object({

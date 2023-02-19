@@ -1,11 +1,12 @@
 import { useCallback, useState } from "react";
+
 import Link from "next/link";
-import { AnimatePresence, m, type Variants } from "framer-motion";
 import { useRouter } from "next/router";
 
-import { cn } from "@lib/clsx";
-
+import { AnimatePresence, m, type Variants } from "framer-motion";
 import { navLinks, sideBarNavLinks } from "site-data";
+
+import { cn } from "@lib/clsx";
 
 import { Button } from "@components/button";
 

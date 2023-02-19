@@ -1,6 +1,7 @@
+import { type NextPage } from "next";
+
 import Page from "@layout/common/page";
 import { ReservationContainer } from "@layout/reservations-page/booking-container";
-import { type NextPage } from "next";
 
 const ReservationsPage: NextPage = (): JSX.Element => {
   return (

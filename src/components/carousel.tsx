@@ -1,9 +1,8 @@
-import { useState } from "react";
-
-import { useKeenSlider } from "keen-slider/react";
+import { useState, type MouseEvent, type ReactNode } from "react";
 
 import type { KeenSliderPlugin, WebOptions } from "keen-slider";
-import type { MouseEvent, ReactNode } from "react";
+import { useKeenSlider } from "keen-slider/react";
+
 import { cn } from "@lib/clsx";
 
 type BreakpointType = {

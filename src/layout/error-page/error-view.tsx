@@ -1,8 +1,9 @@
+import { errorTypes } from "site-data";
+
 import { Button } from "@components/button";
 import { PrimaryHeading } from "@components/headings/primary-heading";
 import { ImageComponent } from "@components/image-component";
 import { Paragraph } from "@components/paragraph";
-import { errorTypes } from "site-data";
 
 interface Props {
   errorCode: number;

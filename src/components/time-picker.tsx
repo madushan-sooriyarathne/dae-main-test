@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { AnimatePresence, m } from "framer-motion";
-import { cva, type VariantProps } from "class-variance-authority";
 
-import { fadeInBottom } from "@styles/animations";
+import { cva, type VariantProps } from "class-variance-authority";
+import { AnimatePresence, m } from "framer-motion";
+
+import { cn } from "@lib/clsx";
+
+import { clamp } from "@utils/base";
 
 import { OutsideClickHandler } from "@components/outside-click-handler";
-import { clamp } from "@utils/base";
-import { cn } from "@lib/clsx";
+
+import { fadeInBottom } from "@styles/animations";
 
 const fieldVariants = cva(
   [
@@ -16,7 +19,7 @@ const fieldVariants = cva(
     variants: {
       intent: {
         white:
-          "text-white border-white focus-visible:outline-white disabled:text-white-400 disabled:border-white-400",
+          "border-white text-white focus-visible:outline-white disabled:text-white-400 disabled:border-white-400 ",
         black:
           "text-black border-black-900 focus-visible:outline-black disabled:text-black-500 disabled:border-black-500",
       },

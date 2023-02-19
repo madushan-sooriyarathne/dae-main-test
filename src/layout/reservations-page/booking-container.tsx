@@ -1,18 +1,21 @@
-import { useRouter } from "next/router";
 import { useMemo } from "react";
+
+import Link from "next/link";
+import { useRouter } from "next/router";
+
 import { AnimatePresence, m } from "framer-motion";
+import { reservationTypes } from "site-data";
 
 import { cn } from "@lib/clsx";
 
-import { SecondaryHeading } from "@components/headings/secondary-heading";
-import { ImageComponent } from "@components/image-component";
-import { OffersForm } from "@layout/reservations-page/offers-form";
 import { CruisesForm } from "@layout/reservations-page/cruises-form";
 import { EventsForm } from "@layout/reservations-page/events-form";
+import { OffersForm } from "@layout/reservations-page/offers-form";
 
-import { reservationTypes } from "site-data";
+import { SecondaryHeading } from "@components/headings/secondary-heading";
+import { ImageComponent } from "@components/image-component";
+
 import { fadeIn } from "@styles/animations";
-import Link from "next/link";
 
 const ReservationContainer: React.FC = (): JSX.Element => {
   const router = useRouter();

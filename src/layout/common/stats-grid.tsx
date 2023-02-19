@@ -1,9 +1,10 @@
-import { type ComponentPropsWithRef, forwardRef } from "react";
+import { forwardRef, type ComponentPropsWithRef } from "react";
+
+import { cn } from "@lib/clsx";
 
 import { QuaternaryHeading } from "@components/headings/quaternary-heading";
 import { ImageComponent } from "@components/image-component";
 import { Paragraph } from "@components/paragraph";
-import { cn } from "@lib/clsx";
 
 interface Props extends ComponentPropsWithRef<"section"> {
   stats: Stat[];

@@ -1,5 +1,8 @@
-import { AnimatePresence, m } from "framer-motion";
 import { useContext, useEffect, useRef } from "react";
+
+import { AnimatePresence, m } from "framer-motion";
+
+import { cn } from "@lib/clsx";
 
 import {
   NotificationContext,
@@ -7,7 +10,6 @@ import {
 } from "@context/notification";
 
 import { fadeInLeft } from "@styles/animations";
-import { cn } from "@lib/clsx";
 
 const Toast: React.FC = (): JSX.Element => {
   const timerRef = useRef(0);

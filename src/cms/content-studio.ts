@@ -1,3 +1,5 @@
+import type { Asset } from "contentful";
+
 import { contentfulClient } from "@lib/contentful";
 
 import { formatId } from "@utils/base";
@@ -25,13 +27,13 @@ import type {
 } from "@cms/generated/types";
 
 import type { BannerType } from "@layout/common/banner-section";
+import type { ContentGroupType } from "@layout/common/groups/content-group";
 import type { ImageContentSectionType } from "@layout/common/image-content-section";
 import type { PageHeaderType } from "@layout/common/page-header";
 import type { PageSummerySectionType } from "@layout/common/page-summery-section";
-import type { Asset } from "contentful";
-import type { CardBlockType } from "@components/card-block";
-import type { ContentGroupType } from "@layout/common/groups/content-group";
+
 import type { BannerCardType } from "@components/banner-card";
+import type { CardBlockType } from "@components/card-block";
 
 /**
  * format the given asset's url with protocol correction.

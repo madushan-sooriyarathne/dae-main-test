@@ -1,11 +1,14 @@
 import { useCallback, useMemo, useState } from "react";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { m, AnimatePresence } from "framer-motion";
 
-import { ImageComponent } from "@components/image-component";
-import { fadeIn } from "@styles/animations";
-import { Carousel } from "@components/carousel";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { AnimatePresence, m } from "framer-motion";
+
 import useMediaQuery from "@hooks/useMediaQuery";
+
+import { Carousel } from "@components/carousel";
+import { ImageComponent } from "@components/image-component";
+
+import { fadeIn } from "@styles/animations";
 
 interface Props {
   images: Image[];

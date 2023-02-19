@@ -1,10 +1,11 @@
 import {
   forwardRef,
-  type ElementRef,
   type ComponentPropsWithoutRef,
+  type ElementRef,
 } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+
 import * as SelectPrimitive from "@radix-ui/react-select";
+import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@lib/clsx";
 

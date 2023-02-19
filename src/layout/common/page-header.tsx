@@ -4,9 +4,10 @@ import { AnimatePresence, m } from "framer-motion";
 
 import { clamp } from "@utils/base";
 
-import { ImageComponent } from "@components/image-component";
-import { Button, type ButtonType } from "@components/button";
 import { HeadingGroup } from "@layout/common/groups/heading-group";
+
+import { Button, type ButtonType } from "@components/button";
+import { ImageComponent } from "@components/image-component";
 
 import { sliderVariants } from "@styles/animations";
 

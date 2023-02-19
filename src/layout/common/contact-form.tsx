@@ -1,6 +1,14 @@
+import { useContext } from "react";
+
 import { z } from "zod";
 
+import { triggerGTMEvent } from "@lib/gtm";
+
 import { useZodForm } from "@hooks/useZodForm";
+
+import { NotificationDispatchContext } from "@context/notification";
+
+import { api } from "@utils/api";
 
 import { Button } from "@components/button";
 import { Form } from "@components/form";
@@ -8,10 +16,6 @@ import { InputField } from "@components/input-field";
 import { Paragraph } from "@components/paragraph";
 
 import { HeadingGroup } from "./groups/heading-group";
-import { triggerGTMEvent } from "@lib/gtm";
-import { api } from "@utils/api";
-import { useContext } from "react";
-import { NotificationDispatchContext } from "@context/notification";
 
 const formSchema = z.object({
   email: z.string().email(),

@@ -1,4 +1,5 @@
 import { Head, Html, Main, NextScript } from "next/document";
+
 import { env } from "@env/client.mjs";
 
 const Document = (): JSX.Element => {

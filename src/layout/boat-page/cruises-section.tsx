@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { AnimatePresence, m } from "framer-motion";
 
 import { cn } from "@lib/clsx";
@@ -7,6 +8,7 @@ import { Button } from "@components/button";
 import { SecondaryHeading } from "@components/headings/secondary-heading";
 import { ImageComponent } from "@components/image-component";
 import { Paragraph } from "@components/paragraph";
+
 import { fadeIn } from "@styles/animations";
 
 interface Props {

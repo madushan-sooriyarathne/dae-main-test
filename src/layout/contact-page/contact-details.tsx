@@ -1,5 +1,6 @@
-import { PrimaryHeading } from "@components/headings/primary-heading";
 import { brand } from "site-data";
+
+import { PrimaryHeading } from "@components/headings/primary-heading";
 
 const ContactDetailsSection: React.FC = (): JSX.Element => {
   return (

@@ -1,9 +1,11 @@
 import { useRef } from "react";
-import { useScroll, useTransform, m } from "framer-motion";
+
+import { m, useScroll, useTransform } from "framer-motion";
+
+import { HeadingGroup } from "@layout/common/groups/heading-group";
 
 import { ArticleCard } from "@components/article-card";
 import { Carousel } from "@components/carousel";
-import { HeadingGroup } from "@layout/common/groups/heading-group";
 
 interface Props {
   articles: ArticlePreview[];

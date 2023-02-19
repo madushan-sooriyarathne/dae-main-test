@@ -1,13 +1,15 @@
+import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+
 import {
+  getCardBlockGroup,
+  getImageContentBlock,
   getPageHeaderBlock,
   getPageSummeryBlock,
-  getImageContentBlock,
-  getCardBlockGroup,
   getTextContentBlock,
 } from "@cms/content-studio";
 
-import { CardBlock } from "@components/card-block";
 import { CTASection } from "@layout/common/cta-section";
+import { type ContentGroupType } from "@layout/common/groups/content-group";
 import {
   ImageContentSection,
   type ImageContentSectionType,
@@ -20,9 +22,8 @@ import {
   PageSummerySection,
   type PageSummerySectionType,
 } from "@layout/common/page-summery-section";
-import type { CardBlockType } from "@components/card-block";
-import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-import { type ContentGroupType } from "@layout/common/groups/content-group";
+
+import { CardBlock, type CardBlockType } from "@components/card-block";
 
 interface Props {
   header: PageHeaderType;

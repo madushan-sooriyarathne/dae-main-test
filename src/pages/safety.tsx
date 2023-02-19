@@ -1,3 +1,5 @@
+import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+
 import {
   getImageContentBlock,
   getMultiImageContentBlock,
@@ -5,6 +7,7 @@ import {
   getPageSummeryBlock,
   getPreviewArticles,
 } from "@cms/content-studio";
+
 import {
   ImageContentSection,
   type ImageContentSectionType,
@@ -18,7 +21,6 @@ import {
   type PageSummerySectionType,
 } from "@layout/common/page-summery-section";
 import { SafetyGuidesSection } from "@layout/safety-page/guides-section";
-import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 interface Props {
   header: PageHeaderType;

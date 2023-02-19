@@ -1,8 +1,9 @@
-import { ContentGroup } from "@layout/common/groups/content-group";
+import {
+  ContentGroup,
+  type ContentGroupType,
+} from "@layout/common/groups/content-group";
 
 import { ImageComponent } from "@components/image-component";
-
-import type { ContentGroupType } from "@layout/common/groups/content-group";
 
 interface Props extends ContentGroupType {
   image: Image;

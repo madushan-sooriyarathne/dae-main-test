@@ -1,5 +1,7 @@
 import dynamic from "next/dynamic";
 
+import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+
 import {
   getBannerBlock,
   getBannerCardBlocks,
@@ -12,16 +14,14 @@ import {
   getVideoBlock,
 } from "@cms/content-studio";
 
+import type { BannerType } from "@layout/common/banner-section";
+import type { ContentGroupType } from "@layout/common/groups/content-group";
+import type { ImageContentSectionType } from "@layout/common/image-content-section";
+import { OptionsGrid } from "@layout/common/options-grid";
 import Page from "@layout/common/page";
 import { Hero } from "@layout/homepage/hero";
 
-import type { BannerType } from "@layout/common/banner-section";
-import type { ImageContentSectionType } from "@layout/common/image-content-section";
-import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import type { BannerCardType } from "@components/banner-card";
-import BoatOptions from "@layout/homepage/boat-options";
-import { OffersCarousel } from "@layout/homepage/offers-carousel";
-import { ContentGroupType } from "@layout/common/groups/content-group";
 
 const ImageContentSection = dynamic(() =>
   import("@layout/common/image-content-section").then(
@@ -54,6 +54,10 @@ const MultiIMageContentVertical = dynamic(() =>
   )
 );
 
+const OffersCarousel = dynamic(() =>
+  import("@layout/homepage/offers-carousel").then((mod) => mod.OffersCarousel)
+);
+
 interface Props {
   heroVideo: Video;
   boatOptions: Omit<BannerCardType, "button">[];
@@ -80,7 +84,7 @@ const Home: NextPage<Props> = ({
   return (
     <Page title="Home Page">
       <Hero video={heroVideo} slides={heroSlides} />
-      <BoatOptions
+      <OptionsGrid
         options={boatOptions.map((option) => ({
           ...option,
           button: {

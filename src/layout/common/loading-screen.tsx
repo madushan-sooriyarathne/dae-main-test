@@ -1,5 +1,6 @@
-import { pageTransition } from "@styles/animations";
 import { m } from "framer-motion";
+
+import { pageTransition } from "@styles/animations";
 
 const LoadingScreen: React.FC = (): JSX.Element => {
   return (

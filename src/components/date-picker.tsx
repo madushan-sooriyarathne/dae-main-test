@@ -1,30 +1,33 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import {
-  type ComponentPropsWithoutRef,
   createContext,
   forwardRef,
-  useRef,
   useContext,
-  useState,
   useEffect,
+  useRef,
+  useState,
+  type ComponentPropsWithoutRef,
 } from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { m, AnimatePresence } from "framer-motion";
+
 import {
-  type FirstDayOfWeek,
-  type OnDatesChangeProps,
-  type FocusedInput,
-  useMonth,
-  useDay,
   START_DATE,
   useDatepicker,
+  useDay,
+  useMonth,
+  type FirstDayOfWeek,
+  type FocusedInput,
+  type OnDatesChangeProps,
 } from "@datepicker-react/hooks";
+import { cva, type VariantProps } from "class-variance-authority";
+import { AnimatePresence, m } from "framer-motion";
 
 import { cn } from "@lib/clsx";
+
 import { formatDate } from "@utils/base";
 
-import { fadeInBottom } from "@styles/animations";
 import { OutsideClickHandler } from "@components/outside-click-handler";
+
+import { fadeInBottom } from "@styles/animations";
 
 type DatePickerContextType = {
   focusedDate: Date | null;

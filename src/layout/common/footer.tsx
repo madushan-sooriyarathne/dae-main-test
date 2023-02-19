@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import { cn } from "@lib/clsx";
-
 import { brand, navLinks, socialLinks } from "site-data";
+
+import { cn } from "@lib/clsx";
 
 import { QuaternaryHeading } from "@components/headings/quaternary-heading";
 import { Paragraph } from "@components/paragraph";

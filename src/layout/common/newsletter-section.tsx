@@ -1,6 +1,15 @@
+import { useContext } from "react";
+
 import { z } from "zod";
 
+import { cn } from "@lib/clsx";
+import { triggerGTMEvent } from "@lib/gtm";
+
 import { useZodForm } from "@hooks/useZodForm";
+
+import { NotificationDispatchContext } from "@context/notification";
+
+import { api } from "@utils/api";
 
 import { Button } from "@components/button";
 import { Form } from "@components/form";
@@ -9,11 +18,6 @@ import { InputField } from "@components/input-field";
 import { Paragraph } from "@components/paragraph";
 
 import { HeadingGroup } from "./groups/heading-group";
-import { cn } from "@lib/clsx";
-import { triggerGTMEvent } from "@lib/gtm";
-import { useContext } from "react";
-import { NotificationDispatchContext } from "@context/notification";
-import { api } from "@utils/api";
 
 interface Props {
   trim?: true;

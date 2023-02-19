@@ -2,8 +2,8 @@ import {
   createContext,
   useState,
   type Dispatch,
-  type SetStateAction,
   type ReactNode,
+  type SetStateAction,
 } from "react";
 
 const NotificationContext = createContext<NotificationType | null>(null);

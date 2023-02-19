@@ -1,9 +1,11 @@
 import { forwardRef } from "react";
+
 import { cva, type VariantProps } from "class-variance-authority";
-import { type HTMLMotionProps, m } from "framer-motion";
+import { m, type HTMLMotionProps } from "framer-motion";
+
+import { cn } from "@lib/clsx";
 
 import { generateRandomPath } from "@utils/base";
-import { cn } from "@lib/clsx";
 
 const clipPath = cva(["w-[320px] h-[320px] sm:!w-[400px] sm:!h-[400px]"], {
   variants: {

@@ -1,11 +1,11 @@
-import Image from "next/image";
 import ReactMarkdown from "react-markdown";
+
+import Image from "next/image";
+
+import { cva, type VariantProps } from "class-variance-authority";
 import remarkGfm from "remark-gfm";
-import { cva } from "class-variance-authority";
 
 import { cn } from "@lib/clsx";
-
-import type { VariantProps } from "class-variance-authority";
 
 import { PrimaryHeading } from "./headings/primary-heading";
 import { QuaternaryHeading } from "./headings/quaternary-heading";

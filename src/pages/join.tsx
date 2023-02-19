@@ -1,6 +1,7 @@
+import { type NextPage } from "next";
+
 import Page from "@layout/common/page";
 import { MarinaJoinForm } from "@layout/join-page/marina-join-form";
-import { type NextPage } from "next";
 
 const ReservationsPage: NextPage = (): JSX.Element => {
   return (

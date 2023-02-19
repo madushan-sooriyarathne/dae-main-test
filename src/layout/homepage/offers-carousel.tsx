@@ -1,12 +1,15 @@
-import { Carousel } from "@components/carousel";
-import { QuaternaryHeading } from "@components/headings/quaternary-heading";
-import { ImageComponent } from "@components/image-component";
+import Link from "next/link";
+
+import { formatDate } from "@utils/base";
+
 import {
   ContentGroup,
   ContentGroupType,
 } from "@layout/common/groups/content-group";
-import { formatDate } from "@utils/base";
-import Link from "next/link";
+
+import { Carousel } from "@components/carousel";
+import { QuaternaryHeading } from "@components/headings/quaternary-heading";
+import { ImageComponent } from "@components/image-component";
 
 interface Props extends ContentGroupType {
   offers: Offer[];

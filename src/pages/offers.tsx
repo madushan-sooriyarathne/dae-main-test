@@ -1,18 +1,19 @@
+import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+
 import {
   getOffers,
   getPageHeaderBlock,
   getPageSummeryBlock,
 } from "@cms/content-studio";
 
+import { CTASection } from "@layout/common/cta-section";
 import { NewsletterSection } from "@layout/common/newsletter-section";
 import Page from "@layout/common/page";
-import { PageHeader } from "@layout/common/page-header";
-import { PageSummerySection } from "@layout/common/page-summery-section";
-import { CTASection } from "@layout/common/cta-section";
-
-import type { PageHeaderType } from "@layout/common/page-header";
-import type { PageSummerySectionType } from "@layout/common/page-summery-section";
-import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+import { PageHeader, type PageHeaderType } from "@layout/common/page-header";
+import {
+  PageSummerySection,
+  type PageSummerySectionType,
+} from "@layout/common/page-summery-section";
 import { OfferCard } from "@layout/offers-page/offer-card";
 
 interface Props {

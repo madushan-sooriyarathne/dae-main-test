@@ -13,7 +13,6 @@ import {
   ImageContentSection,
   type ImageContentSectionType,
 } from "@layout/common/image-content-section";
-
 import { MultiIMageContentVertical } from "@layout/common/multi-image-content-vertical";
 import { NewsletterSection } from "@layout/common/newsletter-section";
 import Page from "@layout/common/page";

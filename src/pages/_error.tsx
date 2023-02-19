@@ -1,7 +1,7 @@
 import type { NextPage, NextPageContext } from "next";
 
-import ErrorView from "@layout/error-page/error-view";
 import Page from "@layout/common/page";
+import ErrorView from "@layout/error-page/error-view";
 
 interface Props {
   statusCode: 404 | 500;

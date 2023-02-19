@@ -1,6 +1,6 @@
 import { cn } from "@lib/clsx";
 
-import { type BannerCardType, BannerCard } from "@components/banner-card";
+import { BannerCard, type BannerCardType } from "@components/banner-card";
 
 interface Props {
   options: BannerCardType[];

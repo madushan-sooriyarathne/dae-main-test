@@ -1,6 +1,8 @@
-import { fadeInBottom } from "@styles/animations";
-import { AnimatePresence, m } from "framer-motion";
 import { useEffect, useState } from "react";
+
+import { AnimatePresence, m } from "framer-motion";
+
+import { fadeInBottom } from "@styles/animations";
 
 const Floater: React.FC = (): JSX.Element => {
   const [scrolled, setScrolled] = useState<boolean>(false);

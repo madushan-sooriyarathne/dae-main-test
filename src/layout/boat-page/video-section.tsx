@@ -1,9 +1,11 @@
+import { useCallback, useEffect, useState } from "react";
+import ReactPlayer from "react-player/file";
+
+import { cn } from "@lib/clsx";
+
 import { PrimaryHeading } from "@components/headings/primary-heading";
 import { SecondaryHeading } from "@components/headings/secondary-heading";
 import { ImageComponent } from "@components/image-component";
-import { cn } from "@lib/clsx";
-import { useCallback, useEffect, useState } from "react";
-import ReactPlayer from "react-player/file";
 
 interface Props {
   video: Video;

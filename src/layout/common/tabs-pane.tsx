@@ -1,8 +1,10 @@
 import { type ReactNode } from "react";
-import { AnimatePresence, m } from "framer-motion";
+
 import * as TabsPrimitive from "@radix-ui/react-tabs";
+import { AnimatePresence, m } from "framer-motion";
 
 import { cn } from "@lib/clsx";
+
 import { fadeIn } from "@styles/animations";
 
 interface Props {

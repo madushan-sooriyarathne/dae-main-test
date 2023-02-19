@@ -1,10 +1,10 @@
+import type { ReactNode } from "react";
+
 import Link from "next/link";
-import { cva } from "class-variance-authority";
+
+import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@lib/clsx";
-
-import type { VariantProps } from "class-variance-authority";
-import type { ReactNode } from "react";
 
 const buttonVariants = cva(
   [

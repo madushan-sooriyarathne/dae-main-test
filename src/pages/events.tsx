@@ -7,19 +7,20 @@ import {
   getPageSummeryBlock,
 } from "@cms/content-studio";
 
-import { MultiIMageContentVertical } from "@layout/common/multi-image-content-vertical";
-import { NewsletterSection } from "@layout/common/newsletter-section";
-import Page from "@layout/common/page";
-import { PageHeader } from "@layout/common/page-header";
-import { PageSummerySection } from "@layout/common/page-summery-section";
-import type { PageHeaderType } from "@layout/common/page-header";
-import type { PageSummerySectionType } from "@layout/common/page-summery-section";
 import { CTASection } from "@layout/common/cta-section";
-import { MultiImageHorizontal } from "@layout/common/multi-image-content-horizontal";
 import {
   ImageContentSection,
   type ImageContentSectionType,
 } from "@layout/common/image-content-section";
+import { MultiImageHorizontal } from "@layout/common/multi-image-content-horizontal";
+import { MultiIMageContentVertical } from "@layout/common/multi-image-content-vertical";
+import { NewsletterSection } from "@layout/common/newsletter-section";
+import Page from "@layout/common/page";
+import { PageHeader, type PageHeaderType } from "@layout/common/page-header";
+import {
+  PageSummerySection,
+  type PageSummerySectionType,
+} from "@layout/common/page-summery-section";
 
 interface Props {
   header: PageHeaderType;

@@ -1,13 +1,14 @@
-import { cva } from "class-variance-authority";
+import type { ReactNode } from "react";
 
-import { ContentGroup } from "@layout/common/groups/content-group";
+import { cva, type VariantProps } from "class-variance-authority";
+
+import {
+  ContentGroup,
+  type ContentGroupType,
+} from "@layout/common/groups/content-group";
 
 import { Carousel } from "@components/carousel";
 import { ImageComponent } from "@components/image-component";
-
-import type { ReactNode } from "react";
-import type { ContentGroupType } from "@layout/common/groups/content-group";
-import type { VariantProps } from "class-variance-authority";
 
 const section = cva(
   ["w-full grid main-grid-columns gap-y-9 lg:items-center relative"],

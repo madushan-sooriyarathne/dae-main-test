@@ -1,7 +1,8 @@
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
+
 import { cn } from "@lib/clsx";
 
-import { Paragraph } from "./paragraph";
+import { Paragraph } from "@components/paragraph";
 
 interface Props {
   items: {

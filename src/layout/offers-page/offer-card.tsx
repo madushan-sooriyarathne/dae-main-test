@@ -1,12 +1,17 @@
+import { useCallback, useEffect, useRef, useState } from "react";
+
+import { AnimatePresence, m } from "framer-motion";
+
+import { cn } from "@lib/clsx";
+
+import { clamp, formatDate } from "@utils/base";
+
 import { Button } from "@components/button";
 import { PrimaryHeading } from "@components/headings/primary-heading";
 import { ImageComponent } from "@components/image-component";
 import { Paragraph } from "@components/paragraph";
-import { cn } from "@lib/clsx";
+
 import { sliderVariants } from "@styles/animations";
-import { clamp, formatDate } from "@utils/base";
-import { AnimatePresence, m } from "framer-motion";
-import { useState, useEffect, useRef, useCallback } from "react";
 
 interface Props {
   offer: Offer;

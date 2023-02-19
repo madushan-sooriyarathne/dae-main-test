@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 
-import { fadeIn } from "@styles/animations";
 import { AnimatePresence, m, type Variants } from "framer-motion";
+
+import { clamp } from "@utils/base";
 
 import { Button } from "@components/button";
 import { DisplayHeading } from "@components/headings/display-heading";
 import { ImageComponent } from "@components/image-component";
 import { Paragraph } from "@components/paragraph";
-import { clamp } from "@utils/base";
+
+import { fadeIn } from "@styles/animations";
 
 const slideVariants: Variants = {
   initial: {

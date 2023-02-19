@@ -1,13 +1,13 @@
+import { useRef } from "react";
+
 import { m, useScroll, useTransform } from "framer-motion";
+
 import useMediaQuery from "@hooks/useMediaQuery";
 
 import { Carousel } from "@components/carousel";
 import { ImageComponent } from "@components/image-component";
 
-import { ContentGroup } from "./groups/content-group";
-
-import type { ContentGroupType } from "./groups/content-group";
-import { useRef } from "react";
+import { ContentGroup, type ContentGroupType } from "./groups/content-group";
 
 interface Props extends ContentGroupType {
   images: [Image, Image, Image];
