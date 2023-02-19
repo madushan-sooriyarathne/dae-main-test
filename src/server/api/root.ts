@@ -2,7 +2,6 @@ import { reservationRouter } from "@server/api/routers/reservations";
 import { createTRPCRouter } from "@server/api/trpc";
 
 import { contactRouter } from "@server/api/routers/contact";
-import { membershipRouter } from "@server/api/routers/membership";
 import { newsletterRouter } from "@server/api/routers/newsletter";
 
 /**
@@ -12,7 +11,6 @@ import { newsletterRouter } from "@server/api/routers/newsletter";
  */
 export const appRouter = createTRPCRouter({
   reservations: reservationRouter,
-  membership: membershipRouter,
   contact: contactRouter,
   newsletter: newsletterRouter,
 });
