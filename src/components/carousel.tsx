@@ -4,6 +4,7 @@ import { useKeenSlider } from "keen-slider/react";
 
 import type { KeenSliderPlugin, WebOptions } from "keen-slider";
 import type { MouseEvent, ReactNode } from "react";
+import { cn } from "@lib/clsx";
 
 type BreakpointType = {
   [key: string]: Omit<WebOptions<Record<string, never>>, "breakpoints">;
@@ -22,6 +23,9 @@ interface Props {
   initial?: number;
   centered?: boolean;
   autoPlay?: boolean;
+  slideOverflow?: true;
+  slideStyles?: string;
+  fullHeight?: true;
   onSlideChange?: (activeSlide: number) => void;
 }
 
@@ -65,6 +69,9 @@ const Carousel: React.FC<Props> = ({
   centered = false,
   autoPlay = false,
   withNavigation,
+  slideOverflow,
+  fullHeight,
+  slideStyles,
 }: Props): JSX.Element => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [carouselLoaded, setCarouselLoaded] = useState<boolean>(false);
@@ -144,8 +151,13 @@ const Carousel: React.FC<Props> = ({
   };
 
   return (
-    <div className="relative z-0 w-full">
-      <div className="relative grid w-full auto-rows-min grid-cols-1 items-start justify-center gap-y-6">
+    <div className={cn("relative z-0 w-full", { "h-full": fullHeight })}>
+      <div
+        className={cn(
+          "relative grid w-full auto-rows-min grid-cols-1 items-start justify-center gap-y-6",
+          { "h-full grid-rows-[1fr_min-content]": fullHeight }
+        )}
+      >
         {withNavigation && (
           <button
             className="absolute top-1/2 left-0 z-10 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-sm shadow-water-500"
@@ -157,11 +169,14 @@ const Carousel: React.FC<Props> = ({
             </svg>
           </button>
         )}
-        <div className="w-full overflow-hidden">
-          <div ref={sliderRef} className="keen-slider">
+        <div className="h-full w-full overflow-hidden">
+          <div ref={sliderRef} className="keen-slider h-full">
             {children.map((child, index) => (
               <div
-                className="keen-slider__slide flex items-center justify-center"
+                className={cn(
+                  "keen-slider__slide flex h-full items-center justify-center",
+                  { "!overflow-visible": slideOverflow }
+                )}
                 key={index}
               >
                 {child}

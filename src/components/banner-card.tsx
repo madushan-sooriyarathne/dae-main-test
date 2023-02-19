@@ -46,7 +46,7 @@ const BannerCard: React.FC<Props> = ({
             <Paragraph
               alignment="left"
               intent="white"
-              className="@lg:[&_p]:text-base"
+              className="@lg:[&_p]:!text-base"
               small
             >
               {content}
