@@ -1,6 +1,6 @@
-import { QuaternaryHeading } from "./headings/quaternary-heading";
-import { ImageComponent } from "./image-component";
-import { Paragraph } from "./paragraph";
+import { QuaternaryHeading } from "@components/headings/quaternary-heading";
+import { ImageComponent } from "@components/image-component";
+import { Paragraph } from "@components/paragraph";
 
 interface Props {
   image: Image;

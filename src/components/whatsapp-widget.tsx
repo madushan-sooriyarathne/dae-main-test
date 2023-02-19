@@ -5,7 +5,7 @@ import { brand } from "site-data";
 
 import { fadeInBottom } from "@styles/animations";
 
-import { QuaternaryHeading } from "./headings/quaternary-heading";
+import { QuaternaryHeading } from "@components/headings/quaternary-heading";
 
 const WhatsappWidget: React.FC = (): JSX.Element => {
   const [widgetOpen, setWidgetOpen] = useState<boolean>(false);

@@ -17,7 +17,7 @@ import { ImageComponent } from "@components/image-component";
 import { InputField } from "@components/input-field";
 import { Paragraph } from "@components/paragraph";
 
-import { HeadingGroup } from "./groups/heading-group";
+import { HeadingGroup } from "@layout/common/groups/heading-group";
 
 interface Props {
   trim?: true;

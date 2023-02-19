@@ -3,7 +3,7 @@ import { PrimaryHeading } from "@components/headings/primary-heading";
 import { ImageComponent } from "@components/image-component";
 import { Paragraph } from "@components/paragraph";
 
-import type { ContentGroupType } from "./groups/content-group";
+import type { ContentGroupType } from "@layout/common/groups/content-group";
 
 interface Props extends ContentGroupType {
   image: Image | null;

@@ -7,11 +7,11 @@ import remarkGfm from "remark-gfm";
 
 import { cn } from "@lib/clsx";
 
-import { PrimaryHeading } from "./headings/primary-heading";
-import { QuaternaryHeading } from "./headings/quaternary-heading";
-import { QuinaryHeading } from "./headings/quinary-heading";
-import { SecondaryHeading } from "./headings/secondary-heading";
-import { TertiaryHeading } from "./headings/tertiary-heading";
+import { PrimaryHeading } from "@components/headings/primary-heading";
+import { QuaternaryHeading } from "@components/headings/quaternary-heading";
+import { QuinaryHeading } from "@components/headings/quinary-heading";
+import { SecondaryHeading } from "@components/headings/secondary-heading";
+import { TertiaryHeading } from "@components/headings/tertiary-heading";
 
 const paragraphVariants = cva(
   [

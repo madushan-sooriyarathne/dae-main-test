@@ -4,7 +4,10 @@ import { m, useScroll, useTransform } from "framer-motion";
 
 import { Carousel } from "@components/carousel";
 
-import { ContentGroup, type ContentGroupType } from "./groups/content-group";
+import {
+  ContentGroup,
+  type ContentGroupType,
+} from "@layout/common/groups/content-group";
 
 interface Props extends ContentGroupType {
   children: ReactNode[]; // or ReactNode

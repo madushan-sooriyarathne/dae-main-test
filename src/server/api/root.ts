@@ -1,9 +1,9 @@
 import { reservationRouter } from "@server/api/routers/reservations";
 import { createTRPCRouter } from "@server/api/trpc";
 
-import { contactRouter } from "./routers/contact";
-import { membershipRouter } from "./routers/membership";
-import { newsletterRouter } from "./routers/newsletter";
+import { contactRouter } from "@server/api/routers/contact";
+import { membershipRouter } from "@server/api/routers/membership";
+import { newsletterRouter } from "@server/api/routers/newsletter";
 
 /**
  * This is the primary router for your server.

@@ -1,9 +1,9 @@
 import { formatDate } from "@utils/base";
 
-import { Button } from "./button";
-import { QuaternaryHeading } from "./headings/quaternary-heading";
-import { ImageComponent } from "./image-component";
-import { Paragraph } from "./paragraph";
+import { Button } from "@components/button";
+import { QuaternaryHeading } from "@components/headings/quaternary-heading";
+import { ImageComponent } from "@components/image-component";
+import { Paragraph } from "@components/paragraph";
 
 interface Props {
   article: ArticlePreview;

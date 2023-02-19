@@ -21,7 +21,7 @@ import { playfairDisplay, plusJakartaSans } from "@styles/fonts";
 
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import { api } from "../utils/api";
+import { api } from "@utils/api";
 
 // 3rd Party styles
 import "@styles/globals.css";

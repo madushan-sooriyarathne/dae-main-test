@@ -3,7 +3,7 @@ import { SubHeading } from "@components/headings/sub-heading";
 import { ImageComponent } from "@components/image-component";
 import { Paragraph } from "@components/paragraph";
 
-import { SecondaryHeading } from "./headings/secondary-heading";
+import { SecondaryHeading } from "@components/headings/secondary-heading";
 
 interface Props {
   id: string;

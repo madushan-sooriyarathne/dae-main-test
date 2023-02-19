@@ -10,8 +10,8 @@ import WhatsappWidget from "@components/whatsapp-widget";
 
 import { pageTransition } from "@styles/animations";
 
-import { Footer } from "./footer";
-import { NavBar } from "./nav-bar";
+import { Footer } from "@layout/common/footer";
+import { NavBar } from "@layout/common/nav-bar";
 
 interface Props {
   title: string;
