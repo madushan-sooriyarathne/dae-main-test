@@ -18,11 +18,11 @@ const StatsGrid = forwardRef<HTMLElement, Props>(
         {...props}
         ref={ref}
       >
-        <div className="col-content mx-auto flex flex-row flex-wrap items-stretch justify-center gap-4 md:w-full">
+        <div className="col-content mx-auto flex flex-row flex-wrap items-stretch justify-center gap-4 md:w-full xl:gap-7">
           {stats.map((stat) => (
             <div
               key={stat.id}
-              className="flex w-[min(100%,_25rem)] flex-col items-start gap-y-4 border-2 border-dashed border-primary-200 px-9 py-12"
+              className="flex w-[min(100%,_22rem)] flex-col items-start gap-y-4 rounded border-2 border-dashed border-primary-200 px-7 py-9  lg:px-9 lg:py-12 3xl:w-[min(100%,_25rem)]"
             >
               {stat.icon && (
                 <div className="h-16 w-16">
