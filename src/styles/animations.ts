@@ -2,20 +2,22 @@ import { type Variants } from "framer-motion";
 
 export const fadeIn: Variants = {
   initial: { opacity: 0 },
-  animate: {
+  animate: (x: number) => ({
     opacity: 1,
     transition: {
       duration: 0.3,
       ease: "easeInOut",
+      delay: x * 0.1,
     },
-  },
-  exit: {
+  }),
+  exit: (x: number) => ({
     opacity: 0,
     transition: {
       duration: 0.3,
       ease: "easeInOut",
+      delay: x * 0.1,
     },
-  },
+  }),
 };
 
 export const fadeInBottom: Variants = {
