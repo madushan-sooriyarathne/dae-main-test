@@ -58,7 +58,7 @@ const VideoSection: React.FC<Props> = ({ video }): JSX.Element => {
               aria-label="video play/pause button"
               onClick={togglePlayback}
               className={cn(
-                "flex h-16 w-16 items-center justify-center rounded-full bg-white transition-opacity duration-200 ease-in-out",
+                "flex h-16 w-16 items-center justify-center rounded-full bg-white transition-opacity duration-200 ease-in-out xl:h-20 xl:w-20",
                 {
                   "opacity-20 hover:!opacity-100 group-hover:opacity-50":
                     playing,
@@ -66,11 +66,11 @@ const VideoSection: React.FC<Props> = ({ video }): JSX.Element => {
               )}
             >
               {!playing ? (
-                <svg className="h-6 w-6 fill-primary">
+                <svg className="h-6 w-6 fill-primary xl:h-9 xl:w-9">
                   <use xlinkHref="/assets/svg/sprites.svg#icon-play" />
                 </svg>
               ) : (
-                <svg className="h-6 w-6 fill-primary">
+                <svg className="h-6 w-6 fill-primary xl:h-9 xl:w-9">
                   <use xlinkHref="/assets/svg/sprites.svg#icon-pause" />
                 </svg>
               )}

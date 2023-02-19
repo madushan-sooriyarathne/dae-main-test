@@ -21,7 +21,7 @@ const StatsGrid = forwardRef<HTMLElement, Props>(
           {stats.map((stat) => (
             <div
               key={stat.id}
-              className="flex w-[min(100%,_25rem)] flex-col items-start gap-y-4 border border-dashed border-primary-200 px-9 py-12"
+              className="flex w-[min(100%,_25rem)] flex-col items-start gap-y-4 border-2 border-dashed border-primary-200 px-9 py-12"
             >
               {stat.icon && (
                 <div className="h-16 w-16">

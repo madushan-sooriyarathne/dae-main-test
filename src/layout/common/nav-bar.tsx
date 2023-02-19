@@ -40,7 +40,7 @@ const NavBar: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[200] flex h-20 flex-row items-center justify-between bg-white py-3 px-2 shadow-md sm:px-3 md:px-4 md:py-2 lg:py-3 lg:px-6 xl:px-9 2xl:px-16">
+      <nav className="fixed top-0 left-0 right-0 z-[200] flex h-18 flex-row items-center justify-between bg-white py-3 px-2 shadow-md sm:px-3 md:px-4 md:py-2 lg:py-3 lg:px-6 xl:px-9 2xl:px-16">
         <Link
           href="/"
           className="grid h-full w-[169px] grid-cols-[max-content] grid-rows-[1fr_min-content] items-start justify-start gap-1 no-underline outline-offset-8 outline-primary-400 focus-visible:outline focus-visible:outline-2 "
@@ -126,7 +126,7 @@ const NavBar: React.FC = (): JSX.Element => {
             <div className={`h-[2px] w-full rounded-sm bg-black-700 `} />
           </div> */}
           <button
-            className="flex aspect-square h-14 w-14 items-center justify-center p-2 outline-primary-400 focus-visible:outline focus-visible:outline-2"
+            className="flex aspect-square h-12 w-12 items-center justify-center p-1 outline-primary-400 focus-visible:outline focus-visible:outline-2"
             onClick={toggleSideMenu}
           >
             <svg

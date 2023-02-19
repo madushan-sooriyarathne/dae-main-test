@@ -5,6 +5,7 @@ import { ContentGroup } from "@layout/common/groups/content-group";
 import { Carousel } from "@components/carousel";
 import { ImageComponent } from "@components/image-component";
 
+import type { ReactNode } from "react";
 import type { ContentGroupType } from "@layout/common/groups/content-group";
 import type { VariantProps } from "class-variance-authority";
 
@@ -14,7 +15,7 @@ const section = cva(
   {
     variants: {
       withBg: {
-        true: "py-16 bg-water bg-darkWater",
+        true: "py-16 bg-water ",
       },
     },
   }
@@ -22,20 +23,23 @@ const section = cva(
 
 interface Props extends ContentGroupType, VariantProps<typeof section> {
   images: [Image, Image, Image];
+  extraNode?: ReactNode;
 }
 
 const MultiImageHorizontal: React.FC<Props> = ({
   images,
   withBg,
+  extraNode,
   ...contentGroupProps
 }): JSX.Element => {
   return (
     <section className={section({ withBg })}>
-      <div className="col-content row-span-1 row-start-1 lg:col-content-end-half">
+      <div className="col-content row-span-1 row-start-1 flex flex-col items-start justify-center gap-y-6  lg:col-content-end-half lg:gap-x-8">
         <ContentGroup
           {...contentGroupProps}
           intent={withBg ? "white" : undefined}
         />
+        {extraNode}
       </div>
       <div className="col-content row-span-1 row-start-2 lg:hidden">
         <Carousel

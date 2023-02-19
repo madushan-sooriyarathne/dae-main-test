@@ -6,7 +6,7 @@ interface Props {
   options: BannerCardType[];
 }
 
-const BoatOptions: React.FC<Props> = ({ options }: Props): JSX.Element => {
+const OptionsGrid: React.FC<Props> = ({ options }: Props): JSX.Element => {
   return (
     <section
       className={cn(
@@ -20,4 +20,4 @@ const BoatOptions: React.FC<Props> = ({ options }: Props): JSX.Element => {
   );
 };
 
-export default BoatOptions;
+export { OptionsGrid };

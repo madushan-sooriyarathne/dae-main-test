@@ -16,7 +16,7 @@ const BoatStats: React.FC<Props> = ({
   guestsStay,
 }: Props): JSX.Element => {
   return (
-    <section className="main-grid-columns -mt-16 grid">
+    <section className="main-grid-columns trim-top grid pt-12">
       <div className="col-content flex flex-row flex-wrap items-start justify-center gap-x-6  gap-y-6">
         <div className="flex aspect-square w-[140px] flex-col items-center justify-center gap-y-3 rounded border border-dashed border-primary-300 p-3 md:w-[160px] md:border-2 lg:w-[180px]">
           <SecondaryHeading alignment="center" intent="secondary">

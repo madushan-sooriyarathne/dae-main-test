@@ -9,7 +9,7 @@ import { Paragraph } from "@components/paragraph";
 
 const Footer: React.FC = (): JSX.Element => {
   return (
-    <footer className="main-grid-columns row-start-2 grid w-full auto-rows-min grid-cols-1 items-start justify-items-center gap-y-12 bg-water bg-darkWater pt-12 md:gap-y-0 md:pt-0">
+    <footer className="main-grid-columns row-start-2 grid w-full auto-rows-min grid-cols-1 items-start justify-items-center gap-y-12 bg-water pt-12 md:gap-y-0 md:pt-0">
       <div
         className={cn(
           "col-full flex h-full w-full items-center justify-center border-b border-b-water-800 pb-12",

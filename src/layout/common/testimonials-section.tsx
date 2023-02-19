@@ -17,7 +17,7 @@ const TestimonialSection: React.FC<Props> = ({
 
   return (
     <div className="main-grid-columns grid gap-y-9 bg-water  py-16 lg:bg-transparent ">
-      <div className="col-content flex w-full items-center justify-center lg:col-full-start-half lg:aspect-[4/3] lg:rounded-br-[5rem] lg:bg-water lg:bg-darkWater lg:p-12 xl:!col-[full-start_/_col-end_3] xl:p-16 2xl:p-18 3xl:px-24">
+      <div className="col-content flex w-full items-center justify-center lg:col-full-start-half lg:aspect-[4/3] lg:rounded-br-[5rem] lg:bg-water lg:p-12 xl:!col-[full-start_/_col-end_3] xl:p-16 2xl:p-18 3xl:px-24">
         <HeadingGroup
           heading="What Our Guests Are Saying"
           subHeading="Customer Testimonials"
