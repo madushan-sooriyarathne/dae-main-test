@@ -3,9 +3,7 @@ import ReactPlayer from "react-player/file";
 
 import { cn } from "@lib/clsx";
 
-import { PrimaryHeading } from "@components/headings/primary-heading";
 import { SecondaryHeading } from "@components/headings/secondary-heading";
-import { ImageComponent } from "@components/image-component";
 
 interface Props {
   video: Video;

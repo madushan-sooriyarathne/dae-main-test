@@ -23,7 +23,6 @@ interface Props {
   centered?: boolean;
   autoPlay?: boolean;
   slideOverflow?: true;
-  slideStyles?: string;
   fullHeight?: true;
   onSlideChange?: (activeSlide: number) => void;
 }
@@ -70,7 +69,6 @@ const Carousel: React.FC<Props> = ({
   withNavigation,
   slideOverflow,
   fullHeight,
-  slideStyles,
 }: Props): JSX.Element => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [carouselLoaded, setCarouselLoaded] = useState<boolean>(false);

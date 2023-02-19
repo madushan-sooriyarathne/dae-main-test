@@ -4,7 +4,7 @@ import { formatDate } from "@utils/base";
 
 import {
   ContentGroup,
-  ContentGroupType,
+  type ContentGroupType,
 } from "@layout/common/groups/content-group";
 
 import { Carousel } from "@components/carousel";
