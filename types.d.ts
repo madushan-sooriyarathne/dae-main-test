@@ -127,6 +127,7 @@ declare global {
     title: string | null;
   };
 
+  // Charter specific types
   type HeroSlide = {
     heading: string;
     subText: string;
@@ -155,6 +156,12 @@ declare global {
     tagLine: string;
     description: string;
     image: Image;
+  };
+
+  type Amenity = {
+    name: string;
+    id: string;
+    icon: string;
   };
 }
 
