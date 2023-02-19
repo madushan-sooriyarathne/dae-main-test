@@ -14,16 +14,9 @@ module.exports = {
         "3xs": "0.5rem",
       },
       backgroundImage: {
-        lightArtifacts: "var(--gradient-bg-artifacts-light)",
-        darkWater: "var(--dark-water)",
+        darkOverlay: "var(--overlay-dark)",
         overlayShade: "var(--overlay-shade)",
         lightWater: "var(--gradient-bg-water-light)",
-        primaryLight: "var(--gradient-bg-primary-light)",
-        blurPrimary: "var(--gradient-blur-primary)",
-        blurWater: "var(--gradient-blur-water)",
-        blurLand: "var(--gradient-blur-land)",
-        blurPrimaryWater: "var(--gradient-blur-primary-water)",
-        blurPrimaryLand: "var(--gradient-blur-primary-land)",
       },
       keyframes: {
         "accordion-down": {
