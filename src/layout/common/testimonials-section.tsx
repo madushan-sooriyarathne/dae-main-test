@@ -25,7 +25,7 @@ const TestimonialSection: React.FC<Props> = ({
           alignment="center"
         />
       </div>
-      <div className="col-content w-full lg:col-full-end-half lg:row-start-1 lg:flex lg:h-full lg:items-center lg:p-9 xl:col-[col-start_4_/_full-end] xl:px-16 2xl:px-24 3xl:px-48">
+      <div className="col-content w-full lg:col-full-end-half lg:row-start-1 lg:flex lg:h-full lg:items-center lg:p-9 xl:col-[col-start_4_/_full-end] xl:px-16 2xl:px-24 3xl:px-32 4xl:px-40">
         <Carousel
           withDots
           withNavigation={enableNavigation}
