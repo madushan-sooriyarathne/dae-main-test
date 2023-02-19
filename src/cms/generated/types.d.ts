@@ -2,6 +2,35 @@
 
 import { Asset, Entry } from "contentful";
 
+export interface IAccommodationAmenityFields {
+  /** Name */
+  name: string;
+
+  /** Id */
+  id: string;
+
+  /** Icon */
+  icon: Asset;
+}
+
+export interface IAccommodationAmenity
+  extends Entry<IAccommodationAmenityFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "accommodationAmenity";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IArticlePreviewFields {
   /** Title */
   title: string;
@@ -87,7 +116,7 @@ export interface IBannerCardBlockFields {
   image: Asset;
 
   /** Group */
-  group: "boat-options";
+  group: "boat-options" | "event-types";
 }
 
 export interface IBannerCardBlock extends Entry<IBannerCardBlockFields> {
@@ -601,6 +630,7 @@ export interface IVideoBlock extends Entry<IVideoBlockFields> {
 }
 
 export type CONTENT_TYPE =
+  | "accommodationAmenity"
   | "articlePreview"
   | "bannerBlock"
   | "bannerCardBlock"
@@ -620,6 +650,7 @@ export type CONTENT_TYPE =
   | "videoBlock";
 
 export type IEntry =
+  | IAccommodationAmenity
   | IArticlePreview
   | IBannerBlock
   | IBannerCardBlock
