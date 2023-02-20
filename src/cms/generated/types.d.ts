@@ -467,10 +467,7 @@ export interface IPageSummeryBlockFields {
   heading: string;
 
   /** Sub Heading */
-  subHeading?: string | undefined;
-
-  /** Description */
-  description: string;
+  subHeading: string;
 
   /** Image */
   image?: Asset | undefined;
@@ -513,7 +510,8 @@ export interface IStatFields {
     | "berthing-values"
     | "activities-perks"
     | "event-facilities"
-    | "cruises-highlights";
+    | "cruises-highlights"
+    | "dining-options";
 }
 
 export interface IStat extends Entry<IStatFields> {

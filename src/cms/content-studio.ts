@@ -217,9 +217,7 @@ export const getPageSummeryBlock = async (
     );
 
     return {
-      heading: data.fields.heading,
-      subHeading: data.fields.subHeading || null,
-      content: data.fields.description,
+      ...data.fields,
       image: data.fields.image
         ? await processContentfulImage(data.fields.image)
         : null,
