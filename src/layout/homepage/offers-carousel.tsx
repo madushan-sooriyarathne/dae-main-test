@@ -10,6 +10,8 @@ import {
 import { Carousel } from "@components/carousel";
 import { QuaternaryHeading } from "@components/headings/quaternary-heading";
 import { ImageComponent } from "@components/image-component";
+import useMediaQuery from "@hooks/useMediaQuery";
+import { cn } from "@lib/clsx";
 
 interface Props extends ContentGroupType {
   offers: Offer[];
@@ -19,9 +21,19 @@ const OffersCarousel: React.FC<Props> = ({
   offers,
   ...contentGroupProps
 }: Props): JSX.Element => {
+  const mlg = useMediaQuery("(min-width: 820px) and (pointer: fine)");
+  const lg = useMediaQuery(
+    "(min-width: 1024px) and (pointer: fine) and (max-width: 1280px)"
+  );
+  const xl = useMediaQuery("(min-width: 1280px)");
+
   return (
     <section className="main-grid-columns grid justify-items-start gap-y-9 lg:items-center ">
-      <div className="col-content lg:col-[content-start_/_col-end_4] lg:pr-9 xl:col-[content-start_/_col-end_3] xl:pr-12 2xl:pr-16">
+      <div
+        className={cn(
+          "col-content lg:col-[content-start_/_col-end_4] lg:pr-9 xl:col-[content-start_/_col-end_3] xl:pr-12 2xl:pr-16"
+        )}
+      >
         <ContentGroup
           {...contentGroupProps}
           alignment="left"
@@ -33,7 +45,17 @@ const OffersCarousel: React.FC<Props> = ({
           }}
         />
       </div>
-      <div className="col-content w-full lg:col-[col-start_5_/_full-end] xl:!col-[col-start_4_/_full-end]">
+      <div
+        className={cn(
+          "col-content w-full lg:col-[col-start_5_/_full-end] xl:!col-[col-start_4_/_full-end]",
+          {
+            "px-7": mlg,
+          },
+          {
+            "px-10": lg,
+          }
+        )}
+      >
         <Carousel
           breakpoints={{
             "(min-width: 320px)": {
@@ -115,17 +137,20 @@ const OffersCarousel: React.FC<Props> = ({
               },
             },
           }}
+          withNavigation={
+            (mlg && offers.length > 2) || lg || (xl && offers.length > 2)
+          }
         >
           {offers.map((offer) => (
             <Link
               href={`/offers#${offer.id}`}
               key={offer.id}
-              className="grid h-full w-full grid-cols-1 grid-rows-[min-content_1fr] gap-y-3"
+              className="group grid h-full w-full grid-cols-1 grid-rows-[min-content_1fr] gap-y-3"
             >
               <div className="aspect-square w-full overflow-hidden rounded-sm">
                 <ImageComponent image={offer.images[0] as Image} />
               </div>
-              <div className="flex h-full flex-col items-start justify-between gap-2">
+              <div className="flex h-full flex-col items-start justify-between gap-2 [&>h5]:transition-colors group-hover:[&>h5]:text-water-700">
                 <QuaternaryHeading alignment="left" intent="secondary">
                   {offer.name}
                 </QuaternaryHeading>
