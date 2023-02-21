@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-
 import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 import {

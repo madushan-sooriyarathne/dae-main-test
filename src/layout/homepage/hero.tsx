@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-
 import { AnimatePresence, m, type Variants } from "framer-motion";
 
 import { clamp } from "@utils/base";
@@ -99,7 +98,7 @@ const Hero: React.FC<Props> = ({ video, slides }: Props): JSX.Element => {
               activeSlide === index && (
                 <div
                   key={`slide-${index}`}
-                  className="mx-auto flex w-[min(100%,_50rem)] flex-col items-center justify-end gap-y-9 lg:mx-0 lg:mr-auto lg:items-start [&_p]:text-center lg:[&_p]:!text-left [&_h1]:text-center lg:[&_h1]:!text-left"
+                  className="mx-auto flex w-[min(100%,_50rem)] flex-col items-center justify-end gap-y-9 lg:mx-0 lg:mr-auto lg:items-start [&_h1]:text-center lg:[&_h1]:!text-left [&_p]:text-center lg:[&_p]:!text-left"
                 >
                   <div className="flex flex-col items-start justify-end gap-y-2">
                     <m.div

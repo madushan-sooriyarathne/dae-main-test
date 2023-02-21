@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { AnimatePresence, m } from "framer-motion";
 
 import { clamp } from "@utils/base";

@@ -1,6 +1,10 @@
 // @ts-check
 import { z } from "zod";
 
+
+
+
+
 /**
  * Specify your server-side environment variables schema here.
  * This way you can ensure the app isn't built with invalid env vars.
@@ -30,6 +34,7 @@ export const clientSchema = z.object({
   NEXT_PUBLIC_CONTENTFUL_SPACE_ID: z.string(),
   NEXT_PUBLIC_MAPBOX_API_KEY: z.string(),
   NEXT_PUBLIC_GTM_ID: z.string(),
+  NEXT_PUBLIC_SITE_URL: z.string(),
 });
 
 /**
@@ -45,4 +50,5 @@ export const clientEnv = {
   NEXT_PUBLIC_CONTENTFUL_SPACE_ID: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
   NEXT_PUBLIC_MAPBOX_API_KEY: process.env.NEXT_PUBLIC_MAPBOX_API_KEY,
   NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
+  NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
 };

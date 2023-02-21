@@ -1,17 +1,15 @@
 import { type ReactNode } from "react";
-
 import Head from "next/head";
-
 import { m } from "framer-motion";
+
+import { Footer } from "@layout/common/footer";
+import { NavBar } from "@layout/common/nav-bar";
 
 import { Floater } from "@components/floater";
 import { Toast } from "@components/toast";
 import WhatsappWidget from "@components/whatsapp-widget";
 
 import { pageTransition } from "@styles/animations";
-
-import { Footer } from "@layout/common/footer";
-import { NavBar } from "@layout/common/nav-bar";
 
 interface Props {
   title: string;

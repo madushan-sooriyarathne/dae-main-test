@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-
 import { AnimatePresence, m } from "framer-motion";
 import { brand } from "site-data";
 
-import { fadeInBottom } from "@styles/animations";
-
 import { QuaternaryHeading } from "@components/headings/quaternary-heading";
+
+import { fadeInBottom } from "@styles/animations";
 
 const WhatsappWidget: React.FC = (): JSX.Element => {
   const [widgetOpen, setWidgetOpen] = useState<boolean>(false);

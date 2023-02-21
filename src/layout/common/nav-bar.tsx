@@ -1,8 +1,6 @@
 import { useCallback, useState } from "react";
-
 import Link from "next/link";
 import { useRouter } from "next/router";
-
 import { AnimatePresence, m, type Variants } from "framer-motion";
 import { navLinks, sideBarNavLinks } from "site-data";
 

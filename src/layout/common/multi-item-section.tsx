@@ -1,13 +1,12 @@
 import { useRef, type ReactNode } from "react";
-
 import { m, useScroll, useTransform } from "framer-motion";
-
-import { Carousel } from "@components/carousel";
 
 import {
   ContentGroup,
   type ContentGroupType,
 } from "@layout/common/groups/content-group";
+
+import { Carousel } from "@components/carousel";
 
 interface Props extends ContentGroupType {
   children: ReactNode[]; // or ReactNode

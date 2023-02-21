@@ -1,5 +1,5 @@
 export const brand: Brand = {
-  companyName: "Charter by D.A.E",
+  companyName: "Debug Auto Exclusive Private Limited.",
   address: "58, 42nd Lane, Wellawatte, Colombo 06, Sri Lanka.",
   vatNo: "501030670",
   registrationNumber: "PV17108040",
@@ -13,19 +13,21 @@ export const brand: Brand = {
 };
 
 export const navLinks: NavLink[] = [
-  { label: "Flow 01", route: "/flow-01" },
-  { label: "Flow 02", route: "/flow-02" },
-  { label: "Cruises", route: "/cruises" },
+  { label: "About", route: "/about" },
+  { label: "Membership", route: "/membership" },
   { label: "Events", route: "/events" },
+  { label: "Offers", route: "/offers" },
+  { label: "Training Center", route: "/training" },
 ];
 
 export const sideBarNavLinks: NavLink[] = [
-  { label: "Flow 01", route: "/flow-01" },
-  { label: "Flow 02", route: "/flow-02" },
-  { label: "Cruises", route: "/cruises" },
+  { label: "About", route: "/about" },
+  { label: "Membership", route: "/membership" },
   { label: "Events", route: "/events" },
   { label: "Offers", route: "/offers" },
-  { label: "Blog", route: "https://dae.fun/blog", external: true },
+  { label: "Training Center", route: "/training" },
+  { label: "Careers", route: "/careers" },
+  { label: "Blog", route: "/blog" },
   { label: "Contact", route: "/contact" },
 ];
 
@@ -106,6 +108,13 @@ export const errorTypes: ErrorType[] = [
       alt: "500-image",
     },
   },
+];
+
+export const acceptedFileTypes = [
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats",
+  "officedocument.wordprocessingml.document",
 ];
 
 export const eventTypes = [

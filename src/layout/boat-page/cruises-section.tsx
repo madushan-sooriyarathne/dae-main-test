@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { AnimatePresence, m } from "framer-motion";
 
 import { cn } from "@lib/clsx";
@@ -50,7 +49,7 @@ const CruisesSection: React.FC<Props> = ({ cruises }: Props): JSX.Element => {
               </div>
               <div
                 className={cn(
-                  "flex w-[min(100%,_540px)] flex-col items-start justify-end gap-y-6 transition-opacity delay-200 duration-500 ease-in-out @md:items-center @md:[&_*]:text-center @7xl/wrapper:@md/block:opacity-0",
+                  "flex w-[min(100%,_540px)] flex-col items-start justify-end gap-y-6 transition-opacity delay-200 duration-500 ease-in-out @md:items-center @7xl/wrapper:@md/block:opacity-0 @md:[&_*]:text-center",
                   {
                     "@7xl/wrapper:@md/block:opacity-100":
                       selectedCruise === cruise.id,

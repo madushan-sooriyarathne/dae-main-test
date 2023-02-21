@@ -1,21 +1,18 @@
 import { useContext } from "react";
-
 import { z } from "zod";
 
 import { triggerGTMEvent } from "@lib/gtm";
 
 import { useZodForm } from "@hooks/useZodForm";
-
 import { NotificationDispatchContext } from "@context/notification";
-
 import { api } from "@utils/api";
+
+import { HeadingGroup } from "@layout/common/groups/heading-group";
 
 import { Button } from "@components/button";
 import { Form } from "@components/form";
 import { InputField } from "@components/input-field";
 import { Paragraph } from "@components/paragraph";
-
-import { HeadingGroup } from "@layout/common/groups/heading-group";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -79,7 +76,7 @@ const ContactFormSection: React.FC = (): JSX.Element => {
               });
             }
           }}
-          className="grid grid-cols-1 items-center  md:grid-cols-[minmax(min-content,_1fr)_min-content] md:gap-x-8 md:[&>*:nth-child(2)]:col-span-2 md:[&>*:nth-child(3)]:col-span-2 md:[&>*:nth-child(1)]:col-span-2"
+          className="grid grid-cols-1 items-center  md:grid-cols-[minmax(min-content,_1fr)_min-content] md:gap-x-8 md:[&>*:nth-child(1)]:col-span-2 md:[&>*:nth-child(2)]:col-span-2 md:[&>*:nth-child(3)]:col-span-2"
         >
           <InputField
             label="Name"

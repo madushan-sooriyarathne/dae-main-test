@@ -1,7 +1,5 @@
 import ReactMarkdown from "react-markdown";
-
 import Image from "next/image";
-
 import { cva, type VariantProps } from "class-variance-authority";
 import remarkGfm from "remark-gfm";
 
@@ -84,9 +82,7 @@ const Paragraph: React.FC<Props> = ({
             <PrimaryHeading
               intent={intent}
               alignment={alignment}
-              className={cn(
-                "mt-8 first:mt-0 md:mt-10 md:first:mt-0 lg:mt-12 lg:first:mt-0"
-              )}
+              className={cn("!mt-12 md:!mt-14 lg:!mt-16")}
             >
               {props.children as string}
             </PrimaryHeading>
@@ -95,9 +91,7 @@ const Paragraph: React.FC<Props> = ({
             <SecondaryHeading
               intent={intent}
               alignment={alignment}
-              className={cn(
-                "mt-6 first:mt-0  md:mt-9 md:first:mt-0 lg:mt-11 lg:first:mt-0"
-              )}
+              className={cn("!mt-10 md:!mt-12 lg:!mt-14")}
             >
               {props.children as string}
             </SecondaryHeading>
@@ -106,9 +100,7 @@ const Paragraph: React.FC<Props> = ({
             <TertiaryHeading
               intent={intent}
               alignment={alignment}
-              className={cn(
-                "mt-5 first:mt-0 md:mt-8 md:first:mt-0 lg:mt-10 lg:first:mt-0"
-              )}
+              className={cn("!mt-8 md:!mt-10 lg:!mt-12")}
             >
               {props.children as string}
             </TertiaryHeading>
@@ -117,9 +109,7 @@ const Paragraph: React.FC<Props> = ({
             <QuaternaryHeading
               intent={intent}
               alignment={alignment}
-              className={cn(
-                "mt-4 first:mt-0 md:mt-5 md:first:mt-0 lg:mt-6 lg:first:mt-0"
-              )}
+              className="!mt-6 md:!mt-8 lg:!mt-10"
             >
               {props.children as string}
             </QuaternaryHeading>
@@ -128,9 +118,7 @@ const Paragraph: React.FC<Props> = ({
             <QuinaryHeading
               intent={intent}
               alignment={alignment}
-              className={cn(
-                "mt-4 first:mt-0 md:mt-5 md:first:mt-0 lg:mt-6 lg:first:mt-0"
-              )}
+              className={cn("!mt-6 md:!mt-8 lg:!mt-10")}
             >
               {props.children as string}
             </QuinaryHeading>
@@ -139,9 +127,7 @@ const Paragraph: React.FC<Props> = ({
             <QuinaryHeading
               intent={intent}
               alignment={alignment}
-              className={cn(
-                "mt-4 first:mt-0 md:mt-5 md:first:mt-0 lg:mt-6 lg:first:mt-0"
-              )}
+              className={cn("!mt-6 md:!mt-8 lg:!mt-10")}
             >
               {props.children as string}
             </QuinaryHeading>

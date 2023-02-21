@@ -1,6 +1,9 @@
+import { forwardRef, type ComponentPropsWithoutRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
-const heading = cva(
+import { cn } from "@lib/clsx";
+
+const headingVariants = cva(
   [
     "font-sans font-semibold text-[1.125rem] leading-tight tracking-normal md:text-[1.25rem] md:font-bold lg:text-[1.375rem] 3xl:text-[1.625rem]",
   ],
@@ -30,31 +33,31 @@ const heading = cva(
   }
 );
 
-interface Props extends VariantProps<typeof heading> {
-  children: string;
-  className?: string;
-}
+interface Props
+  extends VariantProps<typeof headingVariants>,
+    ComponentPropsWithoutRef<"h5"> {}
 
-const QuaternaryHeading: React.FC<Props> = ({
-  children,
-  intent,
-  uppercase,
-  alignment,
-  className,
-}: Props): JSX.Element => {
-  return (
-    <h5
-      className={heading({
-        intent,
-        uppercase,
-        alignment,
-        className,
-      })}
-    >
-      {children}
-    </h5>
-  );
-};
+const QuaternaryHeading = forwardRef<HTMLHeadingElement, Props>(
+  ({ children, intent, uppercase, alignment, className }, ref): JSX.Element => {
+    return (
+      <h5
+        ref={ref}
+        className={cn(
+          headingVariants({
+            intent,
+            uppercase,
+            alignment,
+            className,
+          })
+        )}
+      >
+        {children}
+      </h5>
+    );
+  }
+);
+
+QuaternaryHeading.displayName = "QuaternaryHeading";
 
 export type { Props as QuaternaryHeadingType };
 export { QuaternaryHeading };

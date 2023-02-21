@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 import { brand, navLinks, socialLinks } from "site-data";
 
 import { cn } from "@lib/clsx";
@@ -33,7 +32,7 @@ const Footer: React.FC = (): JSX.Element => {
           "2xl:col-[col-start_3_/_col-end_5]"
         )}
       >
-        <div className="flex flex-col items-center justify-start gap-y-1 md:items-start md:[&_p]:text-left md:[&_h5]:text-left">
+        <div className="flex flex-col items-center justify-start gap-y-1 md:items-start md:[&_h5]:text-left md:[&_p]:text-left">
           <QuaternaryHeading
             alignment="center"
             intent="white"

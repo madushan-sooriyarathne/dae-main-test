@@ -1,5 +1,8 @@
 import Link from "next/link";
 
+import { cn } from "@lib/clsx";
+
+import useMediaQuery from "@hooks/useMediaQuery";
 import { formatDate } from "@utils/base";
 
 import {
@@ -10,8 +13,6 @@ import {
 import { Carousel } from "@components/carousel";
 import { QuaternaryHeading } from "@components/headings/quaternary-heading";
 import { ImageComponent } from "@components/image-component";
-import useMediaQuery from "@hooks/useMediaQuery";
-import { cn } from "@lib/clsx";
 
 interface Props extends ContentGroupType {
   offers: Offer[];

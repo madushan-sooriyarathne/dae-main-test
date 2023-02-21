@@ -1,5 +1,4 @@
 import { useState, type MouseEvent, type ReactNode } from "react";
-
 import type { KeenSliderPlugin, WebOptions } from "keen-slider";
 import { useKeenSlider } from "keen-slider/react";
 

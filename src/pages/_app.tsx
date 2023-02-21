@@ -1,27 +1,23 @@
 // import { useEffect, useState } from "react";
 
 import { useEffect } from "react";
-
 import { type AppType } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Script from "next/script";
-
 import { QueryClientProvider } from "@tanstack/react-query";
 import { AnimatePresence, LazyMotion } from "framer-motion";
 
 import { env } from "@env/client.mjs";
-
 import { gtmTrackPageView } from "@lib/gtm";
 import { queryClient } from "@lib/react-query";
 
 import { NotificationProvider } from "@context/notification";
-
-import { playfairDisplay, plusJakartaSans } from "@styles/fonts";
-
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { api } from "@utils/api";
+
+import { playfairDisplay, plusJakartaSans } from "@styles/fonts";
 
 // 3rd Party styles
 import "@styles/globals.css";

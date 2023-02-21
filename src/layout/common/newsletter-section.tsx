@@ -1,23 +1,20 @@
 import { useContext } from "react";
-
 import { z } from "zod";
 
 import { cn } from "@lib/clsx";
 import { triggerGTMEvent } from "@lib/gtm";
 
 import { useZodForm } from "@hooks/useZodForm";
-
 import { NotificationDispatchContext } from "@context/notification";
-
 import { api } from "@utils/api";
+
+import { HeadingGroup } from "@layout/common/groups/heading-group";
 
 import { Button } from "@components/button";
 import { Form } from "@components/form";
 import { ImageComponent } from "@components/image-component";
 import { InputField } from "@components/input-field";
 import { Paragraph } from "@components/paragraph";
-
-import { HeadingGroup } from "@layout/common/groups/heading-group";
 
 interface Props {
   trim?: true;

@@ -1,8 +1,6 @@
 import { useContext, useEffect, useMemo } from "react";
 import { Controller } from "react-hook-form";
-
 import Link from "next/link";
-
 import { useQuery } from "@tanstack/react-query";
 import { m } from "framer-motion";
 import { z } from "zod";
@@ -12,9 +10,7 @@ import { contentfulClient } from "@lib/contentful";
 import { triggerGTMEvent } from "@lib/gtm";
 
 import { useZodForm } from "@hooks/useZodForm";
-
 import { NotificationDispatchContext } from "@context/notification";
-
 import { api } from "@utils/api";
 
 import { type IOfferFields } from "@cms/generated/types";

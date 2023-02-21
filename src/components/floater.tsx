@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { AnimatePresence, m } from "framer-motion";
 
 import { fadeInBottom } from "@styles/animations";

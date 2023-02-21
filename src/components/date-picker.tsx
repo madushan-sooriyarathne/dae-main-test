@@ -8,7 +8,6 @@ import {
   useState,
   type ComponentPropsWithoutRef,
 } from "react";
-
 import {
   START_DATE,
   useDatepicker,

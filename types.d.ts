@@ -152,6 +152,16 @@ declare global {
     image: Image;
   };
 
+  type JobPost = {
+    id: string;
+    title: string;
+    location: string;
+    department: string;
+    type: string; // Full-time / Part-time
+    description: string;
+    coverImage: Image;
+  };
+
   // Charter specific types TODO: remove these
   type HeroSlide = {
     heading: string;

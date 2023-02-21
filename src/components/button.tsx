@@ -1,7 +1,5 @@
 import type { ReactNode } from "react";
-
 import Link from "next/link";
-
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@lib/clsx";

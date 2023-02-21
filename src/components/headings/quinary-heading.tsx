@@ -1,3 +1,4 @@
+import { forwardRef, type ComponentPropsWithoutRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const heading = cva(
@@ -30,24 +31,28 @@ const heading = cva(
   }
 );
 
-interface Props extends VariantProps<typeof heading> {
-  children: string;
-  className?: string;
-}
+interface Props
+  extends VariantProps<typeof heading>,
+    ComponentPropsWithoutRef<"h6"> {}
 
-const QuinaryHeading: React.FC<Props> = ({
-  children,
-  intent,
-  uppercase,
-  alignment,
-  className,
-}: Props): JSX.Element => {
-  return (
-    <h6 className={heading({ intent, uppercase, alignment, className })}>
-      {children}
-    </h6>
-  );
-};
+const QuinaryHeading = forwardRef<HTMLHeadingElement, Props>(
+  (
+    { children, intent, uppercase, alignment, className, ...props },
+    ref
+  ): JSX.Element => {
+    return (
+      <h6
+        className={heading({ intent, uppercase, alignment, className })}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </h6>
+    );
+  }
+);
+
+QuinaryHeading.displayName = "QuinaryHeading";
 
 export type { Props as QuinaryHeadingType };
 export { QuinaryHeading };
