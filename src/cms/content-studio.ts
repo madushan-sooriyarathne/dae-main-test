@@ -1,4 +1,4 @@
-import type { Asset } from "contentful";
+import type { Asset, Entry } from "contentful";
 
 import { contentfulClient } from "@lib/contentful";
 
@@ -12,14 +12,17 @@ import type {
   IBannerCardBlockFields,
   IBoatFields,
   ICardBlockFields,
+  ICompanyValueFields,
   ICruiseTypeFields,
   IFaqFields,
   IHeroSlideFields,
   IImageContentBlockFields,
+  IJobPostFields,
   IMultiImageContentBlockFields,
   IOfferFields,
   IPageHeaderBlockFields,
   IPageSummeryBlockFields,
+  IPlaceFields,
   IStatFields,
   ITestimonialFields,
   ITextContentBlockFields,
@@ -453,5 +456,89 @@ export const getAmenities = async (): Promise<Amenity[]> => {
     }));
   } catch (error: unknown) {
     throw new Error("An error occurred while fetching the amenities.");
+  }
+};
+
+export const getPlaces = async (): Promise<Place[]> => {
+  try {
+    const response = await contentfulClient.getEntries<IPlaceFields>({
+      content_type: "place",
+      limit: 5,
+    });
+
+    return response.items.map((place) => ({
+      ...place.fields,
+      mapIcon: place.fields.mapIcon ? getAssetUrl(place.fields.mapIcon) : null,
+    }));
+  } catch (error: any) {
+    throw new Error("An error occurred while fetching Places");
+  }
+};
+
+export const getCompanyValues = async (
+  limit?: number
+): Promise<CompanyValue[]> => {
+  try {
+    const response = await contentfulClient.getEntries<ICompanyValueFields>({
+      content_type: "companyValue",
+      limit: limit,
+    });
+
+    return await Promise.all(
+      response.items.map(async (value) => ({
+        ...value.fields,
+        image: await processContentfulImage(value.fields.image),
+      }))
+    );
+  } catch (error: any) {
+    throw new Error("An error occurred while fetching Company values");
+  }
+};
+
+export const getJobPosts = async (
+  limit?: number,
+  excludeEntry?: string
+): Promise<JobPost[]> => {
+  try {
+    const response = await contentfulClient.getEntries<IJobPostFields>({
+      content_type: "jobPost",
+      limit: limit,
+      "fields.id[ne]": excludeEntry,
+    });
+
+    return await Promise.all(
+      response.items.map(async (job) => ({
+        ...job.fields,
+        coverImage: await processContentfulImage(job.fields.coverImage),
+      }))
+    );
+  } catch (error: unknown) {
+    throw new Error("An error occurred while fetching Job Posts");
+  }
+};
+
+export const getJobPost = async (jobId: string): Promise<JobPost> => {
+  if (jobId.length < 1) throw new Error("jobId cannot be a empty string");
+
+  try {
+    const response = await contentfulClient.getEntries<IJobPostFields>({
+      content_type: "jobPost",
+      limit: 1,
+      "fields.id": jobId,
+    });
+
+    if (response.items.length < 1 && !response.items[0])
+      throw new Error(`no job post entires found for field id: ${jobId}`);
+
+    return {
+      ...(response.items[0] as Entry<IJobPostFields>).fields,
+      coverImage: await processContentfulImage(
+        (response.items[0] as Entry<IJobPostFields>).fields.coverImage
+      ),
+    };
+  } catch (err: unknown) {
+    throw new Error(
+      `An error occurred while fetching jobPost entry for entry id: ${jobId}`
+    );
   }
 };

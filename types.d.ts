@@ -1,5 +1,9 @@
 import type { MultiImageContentSectionType } from "@layout/common/multi-image-content-horizontal";
 
+
+
+
+
 declare global {
   interface Window {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -127,7 +131,28 @@ declare global {
     title: string | null;
   };
 
-  // Charter specific types
+  // Main Specific types
+  type Place = {
+    name: string;
+    id: string;
+    address: string;
+    phone: string;
+    email: string;
+    mapIcon: string | null;
+    coords: {
+      lon: number;
+      lat: number;
+    };
+  };
+
+  type CompanyValue = {
+    id: string;
+    name: string;
+    description: string;
+    image: Image;
+  };
+
+  // Charter specific types TODO: remove these
   type HeroSlide = {
     heading: string;
     subText: string;

@@ -225,6 +225,39 @@ export interface ICardBlock extends Entry<ICardBlockFields> {
   };
 }
 
+export interface ICompanyValueFields {
+  /** Name */
+  name: string;
+
+  /** Id */
+  id: string;
+
+  /** Description */
+  description: string;
+
+  /** Image */
+  image: Asset;
+}
+
+/** Main Specific */
+
+export interface ICompanyValue extends Entry<ICompanyValueFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "companyValue";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface ICruiseTypeFields {
   /** Name */
   name: string;
@@ -350,6 +383,48 @@ export interface IImageContentBlock extends Entry<IImageContentBlockFields> {
     contentType: {
       sys: {
         id: "imageContentBlock";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IJobPostFields {
+  /** Title */
+  title: string;
+
+  /** Id */
+  id: string;
+
+  /** Department */
+  department: string;
+
+  /** Location */
+  location: string;
+
+  /** Type */
+  type: "Full-Time" | "Part-Time" | "Contract";
+
+  /** Description */
+  description: string;
+
+  /** Cover Image */
+  coverImage: Asset;
+}
+
+/** Main Specific */
+
+export interface IJobPost extends Entry<IJobPostFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "jobPost";
         linkType: "ContentType";
         type: "Link";
       };
@@ -485,6 +560,48 @@ export interface IPageSummeryBlock extends Entry<IPageSummeryBlockFields> {
     contentType: {
       sys: {
         id: "pageSummeryBlock";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IPlaceFields {
+  /** Name */
+  name: string;
+
+  /** Id */
+  id: string;
+
+  /** Address */
+  address: string;
+
+  /** Email */
+  email: string;
+
+  /** Phone */
+  phone: string;
+
+  /** Coordinates  */
+  coords: { lat: number; lon: number };
+
+  /** Map Icon */
+  mapIcon?: Asset | undefined;
+}
+
+/** Main Specific */
+
+export interface IPlace extends Entry<IPlaceFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "place";
         linkType: "ContentType";
         type: "Link";
       };
@@ -634,14 +751,17 @@ export type CONTENT_TYPE =
   | "bannerCardBlock"
   | "boat"
   | "cardBlock"
+  | "companyValue"
   | "cruiseType"
   | "faq"
   | "heroSlide"
   | "imageContentBlock"
+  | "jobPost"
   | "multiImageContentBlock"
   | "offer"
   | "pageHeaderBlock"
   | "pageSummeryBlock"
+  | "place"
   | "stat"
   | "testimonial"
   | "textContentBlock"
@@ -654,14 +774,17 @@ export type IEntry =
   | IBannerCardBlock
   | IBoat
   | ICardBlock
+  | ICompanyValue
   | ICruiseType
   | IFaq
   | IHeroSlide
   | IImageContentBlock
+  | IJobPost
   | IMultiImageContentBlock
   | IOffer
   | IPageHeaderBlock
   | IPageSummeryBlock
+  | IPlace
   | IStat
   | ITestimonial
   | ITextContentBlock

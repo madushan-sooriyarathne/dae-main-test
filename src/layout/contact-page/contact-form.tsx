@@ -1,16 +1,12 @@
 import { useContext } from "react";
 import { Controller } from "react-hook-form";
-
 import dynamic from "next/dynamic";
-
 import { z } from "zod";
 
 import { triggerGTMEvent } from "@lib/gtm";
 
 import { useZodForm } from "@hooks/useZodForm";
-
 import { NotificationDispatchContext } from "@context/notification";
-
 import { api } from "@utils/api";
 
 import type { ImageContentSectionType } from "@layout/common/image-content-section";

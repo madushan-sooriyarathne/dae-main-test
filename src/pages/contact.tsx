@@ -1,6 +1,6 @@
 import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
-import { getImageContentBlock } from "@cms/content-studio";
+import { getImageContentBlock, getPlaces } from "@cms/content-studio";
 
 import type { ImageContentSectionType } from "@layout/common/image-content-section";
 import { NewsletterSection } from "@layout/common/newsletter-section";
@@ -11,12 +11,16 @@ import { MapsSection } from "@layout/contact-page/map-section";
 
 interface Props {
   contactFormSection: ImageContentSectionType;
+  places: Place[];
 }
 
-const ContactPage: NextPage<Props> = ({ contactFormSection }): JSX.Element => {
+const ContactPage: NextPage<Props> = ({
+  contactFormSection,
+  places,
+}): JSX.Element => {
   return (
     <Page title="Contact">
-      <MapsSection />
+      <MapsSection places={places} />
       <ContactDetailsSection />
       <ContactForm {...contactFormSection} />
       <NewsletterSection />
@@ -31,9 +35,12 @@ const getStaticProps: GetStaticProps = async (): Promise<
     "535U91Vi0eC1iU3BU3BNK9"
   );
 
+  const places = await getPlaces();
+
   return {
     props: {
       contactFormSection,
+      places,
     },
   };
 };

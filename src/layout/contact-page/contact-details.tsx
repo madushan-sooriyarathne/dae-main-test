@@ -11,7 +11,7 @@ const ContactDetailsSection: React.FC = (): JSX.Element => {
             {brand.companyName}
           </PrimaryHeading>
         </div>
-        <address className="text-center text-base font-bold not-italic tracking-wide text-black">
+        <address className="text-center text-base font-medium not-italic tracking-wide text-black-800 lg:-mt-2 lg:text-lg">
           {brand.address}
         </address>
         <div className="group/contact relative flex w-full flex-col items-center rounded-md border border-black-200/50 p-6 transition-[background-color] duration-200 ease-in-out hover:bg-black-100/40">
