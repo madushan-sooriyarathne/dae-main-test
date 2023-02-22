@@ -17,15 +17,14 @@ export const navLinks: NavLink[] = [
   { label: "Membership", route: "/membership" },
   { label: "Events", route: "/events" },
   { label: "Offers", route: "/offers" },
-  { label: "Training Center", route: "/training" },
+  { label: "Training Center", route: "/training-center" },
 ];
 
 export const sideBarNavLinks: NavLink[] = [
   { label: "About", route: "/about" },
   { label: "Membership", route: "/membership" },
   { label: "Events", route: "/events" },
-  { label: "Offers", route: "/offers" },
-  { label: "Training Center", route: "/training" },
+  { label: "Training Center", route: "/training-center" },
   { label: "Careers", route: "/careers" },
   { label: "Blog", route: "/blog" },
   { label: "Contact", route: "/contact" },
