@@ -16,8 +16,8 @@ export const navLinks: NavLink[] = [
   { label: "About", route: "/about" },
   { label: "Membership", route: "/membership" },
   { label: "Events", route: "/events" },
-  { label: "Offers", route: "/offers" },
   { label: "Training Center", route: "/training-center" },
+  { label: "Blog", route: "/blog" },
 ];
 
 export const sideBarNavLinks: NavLink[] = [
