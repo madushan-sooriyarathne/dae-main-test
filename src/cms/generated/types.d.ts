@@ -711,6 +711,46 @@ export interface ITextContentBlock extends Entry<ITextContentBlockFields> {
   };
 }
 
+export interface ITrainingCourseFields {
+  /** Name */
+  name: string;
+
+  /** Id */
+  id: string;
+
+  /** Duration */
+  duration: string;
+
+  /** Minimum Age */
+  minAge: number;
+
+  /** Description */
+  description: string;
+
+  /** Image */
+  image: Asset;
+
+  /** Course Outline */
+  courseOutline?: Asset | undefined;
+}
+
+export interface ITrainingCourse extends Entry<ITrainingCourseFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "trainingCourse";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IVideoBlockFields {
   /** Videos */
   videos: Asset[];
@@ -765,6 +805,7 @@ export type CONTENT_TYPE =
   | "stat"
   | "testimonial"
   | "textContentBlock"
+  | "trainingCourse"
   | "videoBlock";
 
 export type IEntry =
@@ -788,6 +829,7 @@ export type IEntry =
   | IStat
   | ITestimonial
   | ITextContentBlock
+  | ITrainingCourse
   | IVideoBlock;
 
 export type LOCALE_CODE = "en-US";

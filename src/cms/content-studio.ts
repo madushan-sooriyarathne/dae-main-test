@@ -1,5 +1,7 @@
 import type { Asset, Entry } from "contentful";
 
+
+
 import { contentfulClient } from "@lib/contentful";
 
 import { formatId } from "@utils/base";
@@ -26,6 +28,7 @@ import type {
   IStatFields,
   ITestimonialFields,
   ITextContentBlockFields,
+  ITrainingCourseFields,
   IVideoBlockFields,
 } from "@cms/generated/types";
 
@@ -540,5 +543,26 @@ export const getJobPost = async (jobId: string): Promise<JobPost> => {
     throw new Error(
       `An error occurred while fetching jobPost entry for entry id: ${jobId}`
     );
+  }
+};
+
+export const getTrainingCourses = async (
+  limit?: number
+): Promise<TrainingCourse[]> => {
+  try {
+    const response = await contentfulClient.getEntries<ITrainingCourseFields>({
+      content_type: "trainingCourse",
+      limit,
+    });
+
+    return await Promise.all(
+      response.items.map(async (course) => ({
+        ...course.fields,
+        image: await processContentfulImage(course.fields.image),
+        courseOutline: course.fields.courseOutline?.fields.file.url || null,
+      }))
+    );
+  } catch (err: unknown) {
+    throw new Error("An error occurred while fetching Training Courses");
   }
 };

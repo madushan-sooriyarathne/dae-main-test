@@ -162,6 +162,16 @@ declare global {
     coverImage: Image;
   };
 
+  type TrainingCourse = {
+    id: string;
+    name: string;
+    duration: string;
+    minAge: number;
+    description: string;
+    image: Image;
+    courseOutline: string | null;
+  };
+
   // Charter specific types TODO: remove these
   type HeroSlide = {
     heading: string;
