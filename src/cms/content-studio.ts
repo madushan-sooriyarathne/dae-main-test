@@ -1,7 +1,5 @@
 import type { Asset, Entry } from "contentful";
 
-
-
 import { contentfulClient } from "@lib/contentful";
 
 import { formatId } from "@utils/base";
@@ -9,7 +7,7 @@ import { getBlurHash } from "@utils/blurHashGenerator";
 
 import type {
   IAccommodationAmenityFields,
-  IArticlePreviewFields,
+  IArticleFields,
   IBannerBlockFields,
   IBannerCardBlockFields,
   IBoatFields,
@@ -297,38 +295,6 @@ export const getTextContentBlock = async (
   }
 };
 
-export const getPreviewArticles = async (): Promise<ArticlePreview[]> => {
-  const data = await contentfulClient.getEntries<IArticlePreviewFields>({
-    content_type: "articlePreview",
-  });
-
-  if (data.items.length < 1) throw new Error("No articles found");
-
-  return await Promise.all(
-    data.items.map(async (article) => ({
-      ...article.fields,
-      image: await processContentfulImage(article.fields.image),
-    }))
-  );
-};
-
-export const getOffers = async (): Promise<Offer[]> => {
-  const data = await contentfulClient.getEntries<IOfferFields>({
-    content_type: "offer",
-  });
-
-  return await Promise.all(
-    data.items.map(async (offer) => ({
-      ...offer.fields,
-      images: await Promise.all(
-        offer.fields.images.map(
-          async (img) => await processContentfulImage(img)
-        )
-      ),
-    }))
-  );
-};
-
 export const getVideoBlock = async (entryId: string): Promise<Video> => {
   if (entryId.length < 1) throw new Error("Entry ID is empty");
 
@@ -564,5 +530,57 @@ export const getTrainingCourses = async (
     );
   } catch (err: unknown) {
     throw new Error("An error occurred while fetching Training Courses");
+  }
+};
+
+export const getArticles = async (
+  limit?: number,
+  excludeEntry?: string
+): Promise<Article[]> => {
+  try {
+    const response = await contentfulClient.getEntries<IArticleFields>({
+      content_type: "article",
+      limit,
+      "fields.id[ne]": excludeEntry,
+    });
+
+    return await Promise.all(
+      response.items.map(async (article) => ({
+        ...article.fields,
+        author: article.fields.author || null,
+        image: await processContentfulImage(article.fields.image),
+      }))
+    );
+  } catch (error: unknown) {
+    throw new Error("An error occurred while fetching articles.");
+  }
+};
+
+export const getArticle = async (articleId: string): Promise<Article> => {
+  if (articleId.length < 1) {
+    throw new Error("articleId cannot be empty");
+  }
+
+  try {
+    const response = await contentfulClient.getEntries<IArticleFields>({
+      content_type: "article",
+      "fields.id": articleId,
+    });
+
+    if (response.items.length < 1)
+      throw new Error(`No articles found for given article id ${articleId}`);
+
+    return {
+      ...(response.items[0] as Entry<IArticleFields>).fields,
+      image: await processContentfulImage(
+        (response.items[0] as Entry<IArticleFields>).fields.image
+      ),
+      author:
+        (response.items[0] as Entry<IArticleFields>).fields.author || null,
+    };
+  } catch (error: unknown) {
+    throw new Error(
+      `An error occurred while fetching the article with id ${articleId}`
+    );
   }
 };

@@ -97,7 +97,7 @@ const Document = (): JSX.Element => {
           href="/assets/icons/favicon-96x96.png"
         />
       </Head>
-      <body className="scroll-pt-24">
+      <body>
         {/* GTM No script fallback */}
         <noscript>
           <iframe

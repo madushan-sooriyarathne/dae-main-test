@@ -31,27 +31,33 @@ export interface IAccommodationAmenity
   };
 }
 
-export interface IArticlePreviewFields {
+export interface IArticleFields {
   /** Title */
   title: string;
 
   /** Id */
   id: string;
 
-  /** Date */
-  date: string;
+  /** Tags */
+  tags: string[];
 
-  /** Preview Text */
-  previewText: string;
+  /** Preview Content */
+  previewContent: string;
 
-  /** URL */
-  url: string;
+  /** Content */
+  content: string;
 
   /** Image */
   image: Asset;
+
+  /** Author */
+  author?: string | undefined;
+
+  /** Published Date */
+  publishedDate: string;
 }
 
-export interface IArticlePreview extends Entry<IArticlePreviewFields> {
+export interface IArticle extends Entry<IArticleFields> {
   sys: {
     id: string;
     type: string;
@@ -60,7 +66,7 @@ export interface IArticlePreview extends Entry<IArticlePreviewFields> {
     locale: string;
     contentType: {
       sys: {
-        id: "articlePreview";
+        id: "article";
         linkType: "ContentType";
         type: "Link";
       };
@@ -293,17 +299,17 @@ export interface ICruiseType extends Entry<ICruiseTypeFields> {
 }
 
 export interface IFaqFields {
+  /** Id */
+  id: string;
+
   /** Question */
   question: string;
 
   /** Answer */
   answer: string;
 
-  /** Id */
-  id: string;
-
   /** Group */
-  group: "membership-faq" | "dining-faq";
+  group: "training-center-faq";
 }
 
 export interface IFaq extends Entry<IFaqFields> {
@@ -623,12 +629,7 @@ export interface IStatFields {
   icon?: Asset | undefined;
 
   /** Group */
-  group:
-    | "berthing-values"
-    | "activities-perks"
-    | "event-facilities"
-    | "cruises-highlights"
-    | "dining-options";
+  group: "event-facilities" | "training-perks";
 }
 
 export interface IStat extends Entry<IStatFields> {
@@ -786,7 +787,7 @@ export interface IVideoBlock extends Entry<IVideoBlockFields> {
 
 export type CONTENT_TYPE =
   | "accommodationAmenity"
-  | "articlePreview"
+  | "article"
   | "bannerBlock"
   | "bannerCardBlock"
   | "boat"
@@ -810,7 +811,7 @@ export type CONTENT_TYPE =
 
 export type IEntry =
   | IAccommodationAmenity
-  | IArticlePreview
+  | IArticle
   | IBannerBlock
   | IBannerCardBlock
   | IBoat

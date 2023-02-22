@@ -1,9 +1,5 @@
 import type { MultiImageContentSectionType } from "@layout/common/multi-image-content-horizontal";
 
-
-
-
-
 declare global {
   interface Window {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -93,26 +89,6 @@ declare global {
     answer: string;
   };
 
-  interface ArticlePreview {
-    title: string;
-    id: string;
-    date: string;
-    previewText: string;
-    url: string;
-    image: Image;
-  }
-
-  interface Offer {
-    id: string;
-    name: string;
-    description: string;
-    images: Image[];
-    pricing: number;
-    currency: string;
-    expireDate?: string;
-    pricingType: "percentage" | "fixed";
-  }
-
   interface PageHeader {
     heading: string;
     subHeading: string;
@@ -170,6 +146,17 @@ declare global {
     description: string;
     image: Image;
     courseOutline: string | null;
+  };
+
+  type Article = {
+    id: string;
+    title: string;
+    tags: string[];
+    previewContent: string;
+    content: string;
+    image: Image;
+    publishedDate: string;
+    author: string | null;
   };
 
   // Charter specific types TODO: remove these

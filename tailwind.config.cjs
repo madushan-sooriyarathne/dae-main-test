@@ -125,5 +125,8 @@ module.exports = {
       xxl: "1920px",
     },
   },
-  plugins: [require("@tailwindcss/container-queries")],
+  plugins: [
+    require("@tailwindcss/container-queries"),
+    require("@tailwindcss/line-clamp"),
+  ],
 };

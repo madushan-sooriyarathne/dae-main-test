@@ -34,7 +34,7 @@ const buttonVariants = cva(
         true: "w-full",
       },
       small: {
-        true: "py-1 px-2 [&>span:text-sm] min-h-[2rem]",
+        true: "py-1 px-2 [&>span:text-sm] md:py-1 md:px-2 min-h-[2.5rem] md:min-h-[2.8rem]",
       },
       disabled: {
         true: "bg-black-500 border-black-500 text-white fill-white cursor-not-allowed hover:bg-black-500 hover:border-black-500 hover:text-white hover:fill-white",

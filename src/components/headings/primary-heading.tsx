@@ -1,4 +1,7 @@
+import { ComponentPropsWithoutRef, forwardRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+
+import { cn } from "@lib/clsx";
 
 const heading = cva(
   [
@@ -30,31 +33,38 @@ const heading = cva(
   }
 );
 
-interface Props extends VariantProps<typeof heading> {
+interface Props
+  extends VariantProps<typeof heading>,
+    ComponentPropsWithoutRef<"h2"> {
   children: string;
   className?: string;
 }
 
-const PrimaryHeading: React.FC<Props> = ({
-  children,
-  intent,
-  uppercase,
-  alignment,
-  className,
-}: Props): JSX.Element => {
-  return (
-    <h2
-      className={heading({
-        intent,
-        uppercase,
-        alignment,
-        className,
-      })}
-    >
-      {children}
-    </h2>
-  );
-};
+const PrimaryHeading = forwardRef<HTMLHeadingElement, Props>(
+  (
+    { children, intent, uppercase, alignment, className, ...props },
+    ref
+  ): JSX.Element => {
+    return (
+      <h2
+        ref={ref}
+        className={cn(
+          heading({
+            intent,
+            uppercase,
+            alignment,
+            className,
+          })
+        )}
+        {...props}
+      >
+        {children}
+      </h2>
+    );
+  }
+);
+
+PrimaryHeading.displayName = "PrimaryHeading";
 
 export type { Props as PrimaryHeadingType };
 export { PrimaryHeading };

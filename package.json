@@ -59,6 +59,7 @@
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^3.7.1",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@types/mapbox-gl": "^2.7.10",
     "@types/node": "^18.11.18",
     "@types/prettier": "^2.7.2",

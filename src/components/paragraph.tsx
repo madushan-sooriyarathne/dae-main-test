@@ -141,14 +141,12 @@ const Paragraph: React.FC<Props> = ({
             </p>
           ),
           img: (props) => (
-            <div className="my-6 w-full ">
-              <Image
-                width={`${props.width as number}`}
-                height={`${props.height as number}`}
-                src={props.src as string}
-                alt={props.alt as string}
-              />
-            </div>
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={props.src as string}
+              alt={props.alt as string}
+              className="my-6 w-full "
+            />
           ),
           ol: (props) => (
             <ol
