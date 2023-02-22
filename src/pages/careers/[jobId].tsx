@@ -1,18 +1,16 @@
 import type { ParsedUrlQuery } from "querystring";
-import type {
-  GetStaticPaths,
-  GetStaticPathsResult,
-  GetStaticProps,
-  GetStaticPropsContext,
-  GetStaticPropsResult,
-  NextPage,
-} from "next";
+import type { GetStaticPaths, GetStaticPathsResult, GetStaticProps, GetStaticPropsContext, GetStaticPropsResult, NextPage } from "next";
+
+
 
 import { getJobPost, getJobPosts } from "@cms/content-studio";
+
+
 
 import Page from "@layout/common/page";
 import { OpeningDetailsSection } from "@layout/job-post-page/opening-details-section";
 import { OpeningHeader } from "@layout/job-post-page/opening-header";
+import { OtherOpeningsSection } from "@layout/job-post-page/other-openings-section";
 
 import { BottomSpacer } from "@components/bottom-spacer";
 
@@ -29,6 +27,7 @@ const JobPostPage: NextPage<Props> = ({
     <Page title={opening.title}>
       <OpeningHeader image={opening.coverImage} />
       <OpeningDetailsSection opening={opening} />
+      <OtherOpeningsSection otherOpenings={relatedOpenings} />
       <BottomSpacer />
     </Page>
   );

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 
 import { cn } from "@lib/clsx";
@@ -19,18 +19,23 @@ const CompanyValueSection: React.FC<Props> = ({
   values,
 }: Props): JSX.Element => {
   const [selectedValue, setSelectedValue] = useState<number>(0);
+  const intervalRef = useRef<NodeJS.Timer>();
 
-  const handleValueItemClick = (index: number) => setSelectedValue(index);
+  const paginate = useCallback(() => {
+    setSelectedValue((prev) => clamp(0, values.length, prev + 1));
+  }, [values.length]);
+
+  const handleValueItemClick = (index: number) => {
+    setSelectedValue(index);
+    clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(paginate, 7000);
+  };
 
   useEffect(() => {
-    const paginate = () => {
-      setSelectedValue((prev) => clamp(0, values.length, prev + 1));
-    };
+    intervalRef.current = setInterval(paginate, 7000);
 
-    const interval = setInterval(paginate, 7000);
-
-    return () => clearInterval(interval);
-  }, [values.length]);
+    return () => clearInterval(intervalRef.current);
+  }, [paginate, values.length]);
 
   return (
     <section className="main-grid-columns grid">

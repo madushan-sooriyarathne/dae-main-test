@@ -1,5 +1,6 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { AnimatePresence, m } from "framer-motion";
 
 import { formatId } from "@utils/base";
@@ -18,6 +19,8 @@ interface Props {
 }
 
 const LatestOpenings: React.FC<Props> = ({ openings }: Props): JSX.Element => {
+  const router = useRouter();
+
   const [loading, setLoading] = useState<boolean>(false);
   const departments = useMemo(() => {
     const deps: string[] = ["All"];
@@ -50,13 +53,26 @@ const LatestOpenings: React.FC<Props> = ({ openings }: Props): JSX.Element => {
     return () => clearTimeout(timeout);
   }, []);
 
+  useEffect(() => {
+    if (router.query.dep) {
+      if (router.query.dep instanceof Array) {
+        setSelectedDep(router.query.dep[0] as string);
+      } else {
+        setSelectedDep(router.query.dep);
+      }
+    }
+  }, [router.query.dep]);
+
   return (
     <TitleContentSection
       heading="Latest Openings"
       alignment="left"
       intent="primary"
     >
-      <div className="grid w-full grid-cols-1 items-start justify-items-start gap-y-5">
+      <div
+        className="grid w-full grid-cols-1 items-start justify-items-start gap-y-5"
+        id="latest-openings"
+      >
         <div
           className="flex flex-wrap items-start justify-start gap-3"
           role="radiogroup"

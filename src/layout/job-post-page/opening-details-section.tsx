@@ -17,6 +17,8 @@ import { m } from "framer-motion";
 import { acceptedFileTypes } from "site-data";
 import { z } from "zod";
 
+
+
 import { env } from "@env/client.mjs";
 
 import { useZodForm } from "@hooks/useZodForm";
@@ -46,29 +48,27 @@ const applicationFormSchema = z.object({
     .string({ required_error: "Contact number is required" })
     .min(10, { message: "Contact number should have at least 10 digits" }),
   coverLetter:
-    // typeof window === "undefined"
-    // ? z.any({ required_error: "Cover letter is required" })
-    // :
-    z
-      .instanceof(File, { message: "Cover letter must be file" })
-      .refine((val) => !acceptedFileTypes.includes(val.type), {
-        message: "Cover letter must be a pdf / word document type",
-      })
-      .refine((val) => val.size < 1000000, {
-        message: "File size must be less than 1mb",
-      }),
+    typeof window === "undefined"
+      ? z.any({ required_error: "Cover letter is required" })
+      : z
+          .instanceof(File, { message: "Cover letter must be file" })
+          .refine((val) => !acceptedFileTypes.includes(val.type), {
+            message: "Cover letter must be a pdf / word document type",
+          })
+          .refine((val) => val.size < 1000000, {
+            message: "File size must be less than 1mb",
+          }),
   resume:
-    // typeof window === "undefined"
-    //   ? z.any({ required_error: "Resume is required" })
-    //   :
-    z
-      .instanceof(File, { message: "Resume must be file" })
-      .refine((val) => !acceptedFileTypes.includes(val.type), {
-        message: "Resume must be a pdf / word document type",
-      })
-      .refine((val) => val.size < 1000000, {
-        message: "File size must be less than 1mb",
-      }),
+    typeof window === "undefined"
+      ? z.any({ required_error: "Resume is required" })
+      : z
+          .instanceof(File, { message: "Resume must be file" })
+          .refine((val) => !acceptedFileTypes.includes(val.type), {
+            message: "Resume must be a pdf / word document type",
+          })
+          .refine((val) => val.size < 1000000, {
+            message: "File size must be less than 1mb",
+          }),
 });
 
 const OpeningDetailsSection: React.FC<Props> = ({
@@ -104,7 +104,7 @@ const OpeningDetailsSection: React.FC<Props> = ({
               {opening.location}
             </span>
             <Link
-              href={`/careers?dep=${opening.department}`}
+              href={`/careers?dep=${opening.department}#latest-openings`}
               className="cursor-pointer rounded border border-primary-300 bg-primary-100 px-3 py-1.5 text-xs font-semibold tracking-wide text-primary transition-colors duration-200 ease-in-out hover:border-primary hover:bg-primary hover:text-white lg:text-sm"
             >
               {opening.department}
