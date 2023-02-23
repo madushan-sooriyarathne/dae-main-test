@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { ComponentPropsWithoutRef, forwardRef, type ReactNode } from "react";
 
 import {
   HeadingGroup,
@@ -10,19 +10,22 @@ interface Props extends Omit<HeadingGroupType, "subHeading"> {
   subHeading?: string;
 }
 
-const TitleContentSection: React.FC<Props> = ({
-  children,
-  subHeading,
-  ...headingGroupProps
-}: Props): JSX.Element => {
-  return (
-    <section className="main-grid-columns grid gap-y-8 lg:gap-y-10 xl:gap-y-12">
-      <div className="col-content w-full">
-        <HeadingGroup {...headingGroupProps} subHeading={subHeading || null} />
-      </div>
-      <div className="col-content w-full">{children}</div>
-    </section>
-  );
-};
+const TitleContentSection = forwardRef<HTMLElement, Props>(
+  ({ children, subHeading, ...headingProps }, ref): JSX.Element => {
+    return (
+      <section
+        className="main-grid-columns grid gap-y-8 lg:gap-y-10 xl:gap-y-12"
+        ref={ref}
+      >
+        <div className="col-content w-full">
+          <HeadingGroup {...headingProps} subHeading={subHeading || null} />
+        </div>
+        <div className="col-content w-full">{children}</div>
+      </section>
+    );
+  }
+);
+
+TitleContentSection.displayName = "TitleContentSection";
 
 export { TitleContentSection };
