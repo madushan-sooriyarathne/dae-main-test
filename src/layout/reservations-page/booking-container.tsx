@@ -8,7 +8,6 @@ import { cn } from "@lib/clsx";
 
 import { CruisesForm } from "@layout/reservations-page/cruises-form";
 import { EventsForm } from "@layout/reservations-page/events-form";
-import { OffersForm } from "@layout/reservations-page/offers-form";
 
 import { SecondaryHeading } from "@components/headings/secondary-heading";
 import { ImageComponent } from "@components/image-component";
@@ -60,9 +59,6 @@ const ReservationContainer: React.FC = (): JSX.Element => {
                 ))}
               </div>
             </m.div>
-          )}
-          {reservationType === "packages-and-offers" && (
-            <OffersForm offer={router.query.offer} />
           )}
           {reservationType === "cruises" && <CruisesForm />}
           {reservationType === "events" && <EventsForm />}
