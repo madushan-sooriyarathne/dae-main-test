@@ -1,5 +1,4 @@
 import ReactMarkdown from "react-markdown";
-import Image from "next/image";
 import { cva, type VariantProps } from "class-variance-authority";
 import remarkGfm from "remark-gfm";
 

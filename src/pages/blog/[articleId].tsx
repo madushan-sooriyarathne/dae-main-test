@@ -14,8 +14,6 @@ import { ArticleHeader } from "@layout/article-page/article-header";
 import { NewsletterSection } from "@layout/common/newsletter-section";
 import Page from "@layout/common/page";
 
-import { BottomSpacer } from "@components/bottom-spacer";
-
 interface Props {
   article: Article;
   otherArticles: Article[];

@@ -2,7 +2,6 @@ import { cn } from "@lib/clsx";
 
 import { formatDate } from "@utils/base";
 
-import { HeadingGroup } from "@layout/common/groups/heading-group";
 import { TitleContentSection } from "@layout/common/title-content-section";
 
 import { Button } from "@components/button";

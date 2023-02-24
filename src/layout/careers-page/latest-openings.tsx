@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { AnimatePresence, m } from "framer-motion";
+import { m } from "framer-motion";
 
 import { formatId } from "@utils/base";
 

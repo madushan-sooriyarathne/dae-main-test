@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, forwardRef } from "react";
+import { forwardRef, type ComponentPropsWithoutRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@lib/clsx";

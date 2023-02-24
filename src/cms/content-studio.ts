@@ -385,7 +385,7 @@ export const getPlaces = async (): Promise<Place[]> => {
       ...place.fields,
       mapIcon: place.fields.mapIcon ? getAssetUrl(place.fields.mapIcon) : null,
     }));
-  } catch (error: any) {
+  } catch (error: unknown) {
     throw new Error("An error occurred while fetching Places");
   }
 };
@@ -405,7 +405,7 @@ export const getCompanyValues = async (
         image: await processContentfulImage(value.fields.image),
       }))
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     throw new Error("An error occurred while fetching Company values");
   }
 };

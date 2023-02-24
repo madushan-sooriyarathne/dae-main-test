@@ -1,22 +1,15 @@
 import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 import {
-  getAmenities,
-  getBannerCardBlocks,
-  getBoat,
-  getCardBlockGroup,
-  getCruiseTypes,
   getFAQGroup,
   getImageContentBlock,
   getMultiImageContentBlock,
   getPageHeaderBlock,
   getPageSummeryBlock,
   getStats,
-  getTextContentBlock,
   getVideoBlock,
 } from "@cms/content-studio";
 
-import { VideoSection } from "@layout/boat-page/video-section";
 import { CTASection } from "@layout/common/cta-section";
 import { FAQSection } from "@layout/common/faq-section";
 import {
@@ -32,6 +25,7 @@ import {
   type PageSummerySectionType,
 } from "@layout/common/page-summery-section";
 import { StatsGrid } from "@layout/common/stats-grid";
+import { VideoSection } from "@layout/common/video-section";
 
 interface Props {
   header: PageHeaderType;

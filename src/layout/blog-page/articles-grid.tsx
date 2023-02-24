@@ -84,7 +84,7 @@ const ArticlesGrid: React.FC<Props> = ({ articles }: Props): JSX.Element => {
     ) {
       setSelectedTag(router.query.tag);
     }
-  }, []);
+  }, [router.query.tag, tags]);
 
   return (
     <section

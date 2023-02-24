@@ -1,15 +1,12 @@
 import { useState } from "react";
-import { AnimatePresence, m } from "framer-motion";
+import { m } from "framer-motion";
 
 import { cn } from "@lib/clsx";
 
 import { Button } from "@components/button";
 import { PrimaryHeading } from "@components/headings/primary-heading";
-import { SecondaryHeading } from "@components/headings/secondary-heading";
 import { SubHeading } from "@components/headings/sub-heading";
 import { ImageComponent } from "@components/image-component";
-
-import { fadeIn } from "@styles/animations";
 
 interface Props {
   childSites: ChildSite[];
@@ -18,13 +15,6 @@ interface Props {
 const ChildSitesSection: React.FC<Props> = ({
   childSites,
 }: Props): JSX.Element => {
-  const [selectedCruise, setSelectedCruise] = useState<
-    string | undefined | null
-  >(childSites[0]?.id);
-  const [previousSelected, setPreviousSelected] = useState<ChildSite | null>(
-    null
-  );
-
   return (
     <section className="relative isolate ">
       <div className="grid w-full grid-cols-1 items-start justify-items-start @container/wrapper md:grid-cols-2 md:grid-rows-2 md:gap-4 md:px-4">
@@ -32,11 +22,6 @@ const ChildSitesSection: React.FC<Props> = ({
           <m.div
             className="relative isolate aspect-square w-full border-b border-black/50 @container/block last:border-r-0 lg:aspect-[4/3] xl:border-r"
             key={index}
-            onMouseEnter={() => {
-              setSelectedCruise(sites.id);
-              setPreviousSelected(sites);
-            }}
-            onMouseLeave={() => setSelectedCruise(null)}
           >
             <div className="absolute inset-0 -z-10">
               <ImageComponent image={sites.image} sizes="100vw" />

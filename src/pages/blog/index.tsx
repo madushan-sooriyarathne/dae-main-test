@@ -1,4 +1,4 @@
-import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 import { getArticles, getPageHeaderBlock } from "@cms/content-studio";
 
