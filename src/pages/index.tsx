@@ -2,31 +2,28 @@ import dynamic from "next/dynamic";
 import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 import {
-  getBannerBlock,
-  getBannerCardBlocks,
+  getArticles,
+  getCardBlockGroup,
+  getChildSites,
   getHeroSlides,
-  getImageContentBlock,
-  getMultiImageContentBlock,
-  getOffers,
+  getPageSummeryBlock,
   getTestimonials,
   getTextContentBlock,
   getVideoBlock,
 } from "@cms/content-studio";
 
-import type { BannerType } from "@layout/common/banner-section";
 import type { ContentGroupType } from "@layout/common/groups/content-group";
-import type { ImageContentSectionType } from "@layout/common/image-content-section";
-import { OptionsGrid } from "@layout/common/options-grid";
+import { MultiItemSection } from "@layout/common/multi-item-section";
 import Page from "@layout/common/page";
+import {
+  PageSummerySection,
+  type PageSummerySectionType,
+} from "@layout/common/page-summery-section";
+import { ArticlesSection } from "@layout/homepage/articles-section";
+import { ChildSitesSection } from "@layout/homepage/child-sites-section";
 import { Hero } from "@layout/homepage/hero";
 
-import type { BannerCardType } from "@components/banner-card";
-
-const ImageContentSection = dynamic(() =>
-  import("@layout/common/image-content-section").then(
-    (mod) => mod.ImageContentSection
-  )
-);
+import { CardBlock, type CardBlockType } from "@components/card-block";
 
 const NewsletterSection = dynamic(() =>
   import("@layout/common/newsletter-section").then(
@@ -43,84 +40,38 @@ const TestimonialSection = dynamic(() =>
   )
 );
 
-const BannerSection = dynamic(() =>
-  import("@layout/common/banner-section").then((mod) => mod.BannerSection)
-);
-
-const MultiIMageContentVertical = dynamic(() =>
-  import("@layout/common/multi-image-content-vertical").then(
-    (mod) => mod.MultiIMageContentVertical
-  )
-);
-
-const OffersCarousel = dynamic(() =>
-  import("@layout/homepage/offers-carousel").then((mod) => mod.OffersCarousel)
-);
-
 interface Props {
   heroVideo: Video;
-  boatOptions: Omit<BannerCardType, "button">[];
   heroSlides: HeroSlide[];
-  accommodationSection: ImageContentSectionType;
-  cruisesSection: MultiImageContentBlockType;
-  eventsSection: Omit<BannerType, "button">;
-  offers: Offer[];
-  offersSection: ContentGroupType;
+  pageSummery: PageSummerySectionType;
+  childSites: ChildSite[];
+  whyDAESection: ContentGroupType;
+  daeValues: CardBlockType[];
+  latestArticles: Article[];
   testimonials: Testimonial[];
 }
 
 const Home: NextPage<Props> = ({
   heroVideo,
   heroSlides,
-  boatOptions,
-  accommodationSection,
-  cruisesSection,
-  eventsSection,
-  offers,
-  offersSection,
+  pageSummery,
+  childSites,
+  whyDAESection,
+  daeValues,
+  latestArticles,
   testimonials,
 }) => {
   return (
-    <Page title="Home Page">
+    <Page title="Home">
       <Hero video={heroVideo} slides={heroSlides} />
-      <OptionsGrid
-        options={boatOptions.map((option) => ({
-          ...option,
-          button: {
-            children: `Explore ${option.heading}`,
-            type: "route",
-            intent: "white",
-            route: `/${option.id}`,
-            withArrow: true,
-          },
-        }))}
-      />
-      <MultiIMageContentVertical
-        {...cruisesSection}
-        button={{
-          children: "Explore Cruises",
-          route: "/cruises",
-          intent: "primary",
-          type: "route",
-          withArrow: true,
-        }}
-      />
-
-      <ImageContentSection {...accommodationSection} />
-      <BannerSection
-        {...eventsSection}
-        button={{
-          children: "Explore The Restaurant",
-          route: "/restaurant",
-          intent: "primary",
-          type: "route",
-          solid: true,
-          withArrow: true,
-        }}
-      />
-
-      <OffersCarousel offers={offers} {...offersSection} />
-
+      <PageSummerySection {...pageSummery} />
+      <ChildSitesSection childSites={childSites} />
+      <MultiItemSection {...whyDAESection}>
+        {daeValues.map((val) => (
+          <CardBlock {...val} key={val.title} />
+        ))}
+      </MultiItemSection>
+      <ArticlesSection articles={latestArticles} />
       <TestimonialSection testimonials={testimonials} />
       {/* TODO: Insta Feed  */}
       <NewsletterSection trim />
@@ -133,36 +84,23 @@ const getStaticProps: GetStaticProps = async (): Promise<
   GetStaticPropsResult<Props>
 > => {
   const heroVideo = await getVideoBlock("4j0keJ4b1W4R0ZLmpfXQxX");
-
   const heroSlides = await getHeroSlides();
-
-  const boatOptions = await getBannerCardBlocks("boat-options");
-
-  const accommodationSection = await getImageContentBlock(
-    "vtzVqu4ar9WM8ztkaXeDD"
-  );
-
-  const cruisesSection = await getMultiImageContentBlock(
-    "1TdqoQoGUbfoy8xJ36Oymr"
-  );
-
-  const eventsSection = await getBannerBlock("6z4iVnl6j0QCU39LXgXGQa");
-
-  const offersSection = await getTextContentBlock("6Ma30q1FXp0PkspE7OITES");
-
-  const offers = await getOffers();
-
+  const pageSummery = await getPageSummeryBlock("6hCw1Nn2Xv53i6BuZGHF0g");
+  const childSites = await getChildSites();
+  const whyDAESection = await getTextContentBlock("6Ma30q1FXp0PkspE7OITES");
+  const daeValues = await getCardBlockGroup("dae-values", 4);
+  const latestArticles = await getArticles(5);
   const testimonials = await getTestimonials();
+
   return {
     props: {
       heroVideo,
       heroSlides,
-      boatOptions,
-      accommodationSection,
-      eventsSection,
-      cruisesSection,
-      offers,
-      offersSection,
+      pageSummery,
+      childSites,
+      whyDAESection,
+      daeValues,
+      latestArticles,
       testimonials,
     },
   };

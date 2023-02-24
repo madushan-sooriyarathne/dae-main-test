@@ -2,35 +2,6 @@
 
 import { Asset, Entry } from "contentful";
 
-export interface IAccommodationAmenityFields {
-  /** Name */
-  name: string;
-
-  /** Id */
-  id: string;
-
-  /** Icon */
-  icon: Asset;
-}
-
-export interface IAccommodationAmenity
-  extends Entry<IAccommodationAmenityFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: "accommodationAmenity";
-        linkType: "ContentType";
-        type: "Link";
-      };
-    };
-  };
-}
-
 export interface IArticleFields {
   /** Title */
   title: string;
@@ -56,6 +27,8 @@ export interface IArticleFields {
   /** Published Date */
   publishedDate: string;
 }
+
+/** Main Specific */
 
 export interface IArticle extends Entry<IArticleFields> {
   sys: {
@@ -142,58 +115,6 @@ export interface IBannerCardBlock extends Entry<IBannerCardBlockFields> {
   };
 }
 
-export interface IBoatFields {
-  /** Name */
-  name: string;
-
-  /** Id */
-  id: string;
-
-  /** Features */
-  features: string[];
-
-  /** Cover Image */
-  coverImage: Asset;
-
-  /** Gallery */
-  gallery: Asset[];
-
-  /** Video */
-  video?: IVideoBlock | undefined;
-
-  /** Length (M) */
-  length: number;
-
-  /** Crew */
-  crew: number;
-
-  /** No of Cabins */
-  noOfCabins: number;
-
-  /** Guests (Stay) */
-  guestsStay?: number | undefined;
-
-  /** Guests (Events) */
-  guestsEvents?: number | undefined;
-}
-
-export interface IBoat extends Entry<IBoatFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: "boat";
-        linkType: "ContentType";
-        type: "Link";
-      };
-    };
-  };
-}
-
 export interface ICardBlockFields {
   /** Title */
   title: string;
@@ -224,6 +145,45 @@ export interface ICardBlock extends Entry<ICardBlockFields> {
     contentType: {
       sys: {
         id: "cardBlock";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IChildSiteFields {
+  /** Name */
+  name: string;
+
+  /** Id */
+  id: string;
+
+  /** Tag Line */
+  tagLine: string;
+
+  /** URL */
+  url: string;
+
+  /** Button Text */
+  buttonText: string;
+
+  /** Image */
+  image: Asset;
+}
+
+/** Main Specific */
+
+export interface IChildSite extends Entry<IChildSiteFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "childSite";
         linkType: "ContentType";
         type: "Link";
       };
@@ -264,40 +224,6 @@ export interface ICompanyValue extends Entry<ICompanyValueFields> {
   };
 }
 
-export interface ICruiseTypeFields {
-  /** Name */
-  name: string;
-
-  /** Id */
-  id: string;
-
-  /** Tag Line */
-  tagLine: string;
-
-  /** Description */
-  description: string;
-
-  /** Image */
-  image: Asset;
-}
-
-export interface ICruiseType extends Entry<ICruiseTypeFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: "cruiseType";
-        linkType: "ContentType";
-        type: "Link";
-      };
-    };
-  };
-}
-
 export interface IFaqFields {
   /** Id */
   id: string;
@@ -309,7 +235,7 @@ export interface IFaqFields {
   answer: string;
 
   /** Group */
-  group: "training-center-faq";
+  group: "training-center-faq" | "membership-faq";
 }
 
 export interface IFaq extends Entry<IFaqFields> {
@@ -472,49 +398,6 @@ export interface IMultiImageContentBlock
   };
 }
 
-export interface IOfferFields {
-  /** Name */
-  name: string;
-
-  /** Id */
-  id: string;
-
-  /** Description */
-  description: string;
-
-  /** Pricing */
-  pricing: number;
-
-  /** Pricing Type */
-  pricingType: "percentage" | "fixed";
-
-  /** Currency */
-  currency: string;
-
-  /** Expire Date */
-  expireDate?: string | undefined;
-
-  /** Images */
-  images: Asset[];
-}
-
-export interface IOffer extends Entry<IOfferFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: "offer";
-        linkType: "ContentType";
-        type: "Link";
-      };
-    };
-  };
-}
-
 export interface IPageHeaderBlockFields {
   /** Heading */
   heading: string;
@@ -629,7 +512,7 @@ export interface IStatFields {
   icon?: Asset | undefined;
 
   /** Group */
-  group: "event-facilities" | "training-perks";
+  group: "training-perks" | "membership-perks";
 }
 
 export interface IStat extends Entry<IStatFields> {
@@ -735,6 +618,8 @@ export interface ITrainingCourseFields {
   courseOutline?: Asset | undefined;
 }
 
+/** Main Specific */
+
 export interface ITrainingCourse extends Entry<ITrainingCourseFields> {
   sys: {
     id: string;
@@ -786,20 +671,17 @@ export interface IVideoBlock extends Entry<IVideoBlockFields> {
 }
 
 export type CONTENT_TYPE =
-  | "accommodationAmenity"
   | "article"
   | "bannerBlock"
   | "bannerCardBlock"
-  | "boat"
   | "cardBlock"
+  | "childSite"
   | "companyValue"
-  | "cruiseType"
   | "faq"
   | "heroSlide"
   | "imageContentBlock"
   | "jobPost"
   | "multiImageContentBlock"
-  | "offer"
   | "pageHeaderBlock"
   | "pageSummeryBlock"
   | "place"
@@ -810,20 +692,17 @@ export type CONTENT_TYPE =
   | "videoBlock";
 
 export type IEntry =
-  | IAccommodationAmenity
   | IArticle
   | IBannerBlock
   | IBannerCardBlock
-  | IBoat
   | ICardBlock
+  | IChildSite
   | ICompanyValue
-  | ICruiseType
   | IFaq
   | IHeroSlide
   | IImageContentBlock
   | IJobPost
   | IMultiImageContentBlock
-  | IOffer
   | IPageHeaderBlock
   | IPageSummeryBlock
   | IPlace

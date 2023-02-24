@@ -107,6 +107,14 @@ declare global {
     title: string | null;
   };
 
+  type HeroSlide = {
+    heading: string;
+    subText: string;
+    ctaText: string | null;
+    ctaLink: string | null;
+    externalLink: boolean;
+  };
+
   // Main Specific types
   type Place = {
     name: string;
@@ -159,41 +167,13 @@ declare global {
     author: string | null;
   };
 
-  // Charter specific types TODO: remove these
-  type HeroSlide = {
-    heading: string;
-    subText: string;
-    ctaText: string | null;
-    ctaLink: string | null;
-    externalLink: boolean;
-  };
-
-  type Boat = {
-    name: string;
-    id: string;
-    features: string[];
-    coverImage: Image;
-    gallery: Image[];
-    video: Video | null;
-    length: number;
-    noOfCabins: number;
-    crew: number;
-    guestsEvents: number | null;
-    guestsStay: number | null;
-  };
-
-  type CruiseType = {
+  type ChildSite = {
     id: string;
     name: string;
     tagLine: string;
-    description: string;
+    url: string;
+    buttonText: string;
     image: Image;
-  };
-
-  type Amenity = {
-    name: string;
-    id: string;
-    icon: string;
   };
 }
 

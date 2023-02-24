@@ -6,20 +6,17 @@ import { formatId } from "@utils/base";
 import { getBlurHash } from "@utils/blurHashGenerator";
 
 import type {
-  IAccommodationAmenityFields,
   IArticleFields,
   IBannerBlockFields,
   IBannerCardBlockFields,
-  IBoatFields,
   ICardBlockFields,
+  IChildSiteFields,
   ICompanyValueFields,
-  ICruiseTypeFields,
   IFaqFields,
   IHeroSlideFields,
   IImageContentBlockFields,
   IJobPostFields,
   IMultiImageContentBlockFields,
-  IOfferFields,
   IPageHeaderBlockFields,
   IPageSummeryBlockFields,
   IPlaceFields,
@@ -333,20 +330,20 @@ export const getHeroSlides = async (): Promise<HeroSlide[]> => {
   }
 };
 
-export const getCruiseTypes = async (): Promise<CruiseType[]> => {
+export const getChildSites = async (): Promise<ChildSite[]> => {
   try {
-    const data = await contentfulClient.getEntries<ICruiseTypeFields>({
-      content_type: "cruiseType",
+    const data = await contentfulClient.getEntries<IChildSiteFields>({
+      content_type: "childSite",
     });
 
     return await Promise.all(
-      data.items.map(async (type) => ({
-        ...type.fields,
-        image: await processContentfulImage(type.fields.image),
+      data.items.map(async (site) => ({
+        ...site.fields,
+        image: await processContentfulImage(site.fields.image),
       }))
     );
   } catch (err: unknown) {
-    throw new Error(`Error fetching the Hero Slides`);
+    throw new Error(`Error fetching the Child sites`);
   }
 };
 
@@ -374,57 +371,6 @@ export const getBannerCardBlocks = async (
     throw new Error(
       `An error occurred while fetching Banner Card Blocks of group id ${group}`
     );
-  }
-};
-
-export const getBoat = async (entryId: string): Promise<Boat> => {
-  if (entryId.length < 1) throw new Error("entryId cannot be empty");
-
-  try {
-    const data = await contentfulClient.getEntry<IBoatFields>(entryId);
-
-    return {
-      ...data.fields,
-      coverImage: await processContentfulImage(data.fields.coverImage),
-      gallery: await Promise.all(
-        data.fields.gallery.map(async (img) => processContentfulImage(img))
-      ),
-      video: data.fields.video
-        ? {
-            fallbackImage: await processContentfulImage(
-              data.fields.video.fields.fallbackImage
-            ),
-            files: data.fields.video.fields.videos.map((vid) => ({
-              src: getAssetUrl(vid),
-              id: vid.fields.title,
-              type: vid.fields.file.contentType,
-            })),
-            title: data.fields.video.fields.title || null,
-          }
-        : null,
-      guestsEvents: data.fields.guestsEvents || null,
-      guestsStay: data.fields.guestsStay || null,
-    };
-  } catch (error: unknown) {
-    throw new Error(
-      `An error occurred while fetching Boat data for entry ${entryId}`
-    );
-  }
-};
-
-export const getAmenities = async (): Promise<Amenity[]> => {
-  try {
-    const response =
-      await contentfulClient.getEntries<IAccommodationAmenityFields>({
-        content_type: "accommodationAmenity",
-      });
-
-    return response.items.map((amenity) => ({
-      ...amenity.fields,
-      icon: getAssetUrl(amenity.fields.icon),
-    }));
-  } catch (error: unknown) {
-    throw new Error("An error occurred while fetching the amenities.");
   }
 };
 
