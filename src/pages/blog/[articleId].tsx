@@ -12,6 +12,7 @@ import { getArticle, getArticles } from "@cms/content-studio";
 import { ArticleBody } from "@layout/article-page/article-body";
 import { ArticleHeader } from "@layout/article-page/article-header";
 import { NewsletterSection } from "@layout/common/newsletter-section";
+import { OtherArticlesGrid } from "@layout/common/other-articles-grid";
 import Page from "@layout/common/page";
 
 interface Props {
@@ -27,6 +28,11 @@ const ArticlePage: NextPage<Props> = ({
     <Page title={article.title}>
       <ArticleHeader image={article.image} />
       <ArticleBody article={article} />
+      <OtherArticlesGrid
+        articles={otherArticles}
+        heading="Other Related Articles"
+        subHeading="Read More"
+      />
       <NewsletterSection />
     </Page>
   );

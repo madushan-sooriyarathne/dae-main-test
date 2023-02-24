@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { m } from "framer-motion";
 
 import { cn } from "@lib/clsx";
