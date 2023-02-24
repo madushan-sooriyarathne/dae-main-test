@@ -64,8 +64,8 @@ const Hero: React.FC<Props> = ({ video, slides }: Props): JSX.Element => {
   }, [slides.length]);
 
   return (
-    <header className="mt:relative mt-18 grid w-full grid-cols-1 grid-rows-[min-content_min-content] bg-black lg:mt-0">
-      <div className="relative isolate aspect-square w-full overflow-hidden sm:aspect-[4/3] md:aspect-video lg:aspect-auto lg:h-screen">
+    <header className="mt:relative mt-18 grid h-[80vh] w-full grid-cols-1 grid-rows-[min-content_1fr] bg-black supports-[height:1svh]:h-[80svh] lg:mt-0 lg:h-screen lg:supports-[height:1svh]:h-[100svh]">
+      <div className="relative isolate aspect-[4/3] w-full overflow-hidden sm:aspect-[4/3] md:aspect-video lg:aspect-auto lg:h-screen">
         {componentMounted && (
           <m.video
             className="h-full w-full object-cover"
@@ -85,13 +85,13 @@ const Hero: React.FC<Props> = ({ video, slides }: Props): JSX.Element => {
           </m.video>
         )}
 
-        <div className="absolute inset-0 z-[-1] aspect-square w-full sm:aspect-[4/3] md:aspect-video lg:aspect-[4/3]">
+        <div className="absolute inset-0 z-[-1] ">
           <ImageComponent image={video.fallbackImage} sizes="100vw" />
         </div>
         <div className="absolute inset-0 z-[1] h-full w-full bg-[image:linear-gradient(0deg,_rgba(2,48,75,1)_0%,_rgba(2,48,75,0)_100%)]" />
       </div>
 
-      <div className="bg-water px-4 pb-12 lg:absolute lg:inset-0 lg:flex lg:w-full lg:items-end lg:bg-transparent lg:px-12 3xl:px-16 3xl:py-16">
+      <div className="flex flex-col items-center justify-end bg-water px-4 pb-12 lg:absolute lg:inset-0 lg:flex lg:w-full lg:items-end lg:bg-transparent lg:px-12 3xl:px-16 3xl:py-16">
         <AnimatePresence mode="wait">
           {slides.map(
             (slide, index) =>
@@ -139,6 +139,7 @@ const Hero: React.FC<Props> = ({ video, slides }: Props): JSX.Element => {
                       animate="animate"
                       exit="exit"
                       custom={3}
+                      className="w-full sm:w-max"
                     >
                       {slide.externalLink ? (
                         <Button
