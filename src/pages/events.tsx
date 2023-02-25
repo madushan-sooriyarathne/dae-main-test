@@ -1,12 +1,14 @@
 import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 import {
+  getBannerBlock,
+  getBannerCardBlocks,
   getImageContentBlock,
   getMultiImageContentBlock,
   getPageHeaderBlock,
-  getPageSummeryBlock,
 } from "@cms/content-studio";
 
+import { BannerSection, type BannerType } from "@layout/common/banner-section";
 import { CTASection } from "@layout/common/cta-section";
 import {
   ImageContentSection,
@@ -15,35 +17,37 @@ import {
 import { MultiImageHorizontal } from "@layout/common/multi-image-content-horizontal";
 import { MultiIMageContentVertical } from "@layout/common/multi-image-content-vertical";
 import { NewsletterSection } from "@layout/common/newsletter-section";
+import { OptionsGrid } from "@layout/common/options-grid";
 import Page from "@layout/common/page";
 import { PageHeader, type PageHeaderType } from "@layout/common/page-header";
-import {
-  PageSummerySection,
-  type PageSummerySectionType,
-} from "@layout/common/page-summery-section";
+
+import type { BannerCardType } from "@components/banner-card";
 
 interface Props {
   header: PageHeaderType;
   eventsIntro: MultiImageContentBlockType;
-  corporateEventsSection: ImageContentSectionType;
-  privateEventsSection: MultiImageContentBlockType;
-  eventsByDAESection: PageSummerySectionType;
+  eventsByYouSection: ImageContentSectionType;
+  eventTypes: BannerCardType[];
+  eventsForYouSection: MultiImageContentBlockType;
+  featuredEvent: BannerType;
 }
 
 const EventsPage: NextPage<Props> = ({
   header,
   eventsIntro,
-  corporateEventsSection,
-  privateEventsSection,
-  eventsByDAESection,
+  eventsByYouSection,
+  eventTypes,
+  eventsForYouSection,
+  featuredEvent,
 }: Props): JSX.Element => {
   return (
     <Page title="Events">
       <PageHeader {...header} />
       <MultiIMageContentVertical {...eventsIntro} />
-      <ImageContentSection {...corporateEventsSection} />
-      <MultiImageHorizontal {...privateEventsSection} />
-      <PageSummerySection {...eventsByDAESection} />
+      <ImageContentSection {...eventsByYouSection} />
+      <OptionsGrid options={eventTypes} />
+      <MultiImageHorizontal {...eventsForYouSection} />
+      <BannerSection {...featuredEvent} />
       <CTASection
         heading="Ready to set sail?"
         subHeading="Celebrate your next special occasion at the lake."
@@ -64,23 +68,23 @@ const getStaticProps: GetStaticProps = async (): Promise<
 > => {
   const header = await getPageHeaderBlock("6ux5DFx7sXZU7fnQBR5oR7");
   const eventsIntro = await getMultiImageContentBlock("5bFo1y4HIbofMn3SJFkGeR");
-  const corporateEventsSection = await getImageContentBlock(
+  const eventsByYouSection = await getImageContentBlock(
     "4EnWIJflad8VO0YWEtZfS7"
   );
-  const privateEventsSection = await getMultiImageContentBlock(
+  const eventTypes = await getBannerCardBlocks("event-types");
+  const eventsForYouSection = await getMultiImageContentBlock(
     "3Cv8EIlCQXw7A1ZSKoM6ov"
   );
-  const eventsByDAESection = await getPageSummeryBlock(
-    "5KMd0qIjZnksRCDJnrR9Zl"
-  );
+  const featuredEvent = await getBannerBlock("6z4iVnl6j0QCU39LXgXGQa");
 
   return {
     props: {
       header,
       eventsIntro,
-      corporateEventsSection,
-      privateEventsSection,
-      eventsByDAESection,
+      eventsByYouSection,
+      eventTypes,
+      eventsForYouSection,
+      featuredEvent,
     },
   };
 };

@@ -6,6 +6,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AnimatePresence, LazyMotion } from "framer-motion";
 
 import { env } from "@env/client.mjs";
@@ -13,8 +14,6 @@ import { gtmTrackPageView } from "@lib/gtm";
 import { queryClient } from "@lib/react-query";
 
 import { NotificationProvider } from "@context/notification";
-// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
 import { api } from "@utils/api";
 
 import { playfairDisplay, plusJakartaSans } from "@styles/fonts";
@@ -105,7 +104,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               </AnimatePresence>
             </NotificationProvider>
           </div>
-          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </LazyMotion>
     </>

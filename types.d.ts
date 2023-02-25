@@ -27,11 +27,20 @@ declare global {
     type?: "error";
   };
 
-  type ReservationType = {
-    image: Image;
-    id: string;
-    name: string;
-  };
+  type ReservationType =
+    | {
+        image: Image;
+        id: string;
+        name: string;
+        type: "in-site";
+      }
+    | {
+        image: Image;
+        id: string;
+        name: string;
+        type: "external";
+        link: string;
+      };
 
   type Image = {
     src: string;

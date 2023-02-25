@@ -58,20 +58,12 @@ export const reservationTypes: ReservationType[] = [
   {
     image: {
       src: "https://images.ctfassets.net/88dxwx49umgp/7JTcwrtVo4x1M1Xt6pULE5/ad4deb70940d9628747ad7f26b78997d/reservation-type-cruises.jpg",
-      alt: "Cruises Reservation selector image - A cruising yacht by Debug Auto Exclusive",
+      alt: "D.A.E Training Center reservations image - A cruising yacht by Debug Auto Exclusive",
       blurUrl: "",
     },
-    id: "cruises",
-    name: "Cruises",
-  },
-  {
-    image: {
-      src: "https://images.ctfassets.net/88dxwx49umgp/23T38Azj7Vu01l8VvRrDLN/74ec9a9e608c7b3456e21f10d481c53c/reservations-type-offers.jpg",
-      alt: "Packages and Offers Reservation selector image - A couple having a good time in cruise by Debug Auto Exclusive",
-      blurUrl: "",
-    },
-    id: "packages-and-offers",
-    name: "Packages and Offers",
+    id: "training-center",
+    name: "Training Center Inquiries",
+    type: "in-site",
   },
   {
     image: {
@@ -80,7 +72,52 @@ export const reservationTypes: ReservationType[] = [
       blurUrl: "",
     },
     id: "events",
-    name: "Events",
+    name: "Events Inquires",
+    type: "in-site",
+  },
+  {
+    image: {
+      src: "https://images.ctfassets.net/88dxwx49umgp/UfOLa7Y9MP7nulHobrL1G/99d0d729cb0cbb02b80bee4129e04757/reservations-type-evens.jpg",
+      alt: "Events Reservation selector image - Group of people having a party on a cruise by Debug Auto Exclusive",
+      blurUrl: "",
+    },
+    id: "marina",
+    name: "Marina Inquiries",
+    type: "external",
+    link: "https://marina.dae.fun/reservations",
+  },
+  {
+    image: {
+      src: "https://images.ctfassets.net/88dxwx49umgp/UfOLa7Y9MP7nulHobrL1G/99d0d729cb0cbb02b80bee4129e04757/reservations-type-evens.jpg",
+      alt: "Events Reservation selector image - Group of people having a party on a cruise by Debug Auto Exclusive",
+      blurUrl: "",
+    },
+    id: "charter",
+    name: "Charter Inquiries",
+    type: "external",
+    link: "https://charter.dae.fun/reservations",
+  },
+  {
+    image: {
+      src: "https://images.ctfassets.net/88dxwx49umgp/UfOLa7Y9MP7nulHobrL1G/99d0d729cb0cbb02b80bee4129e04757/reservations-type-evens.jpg",
+      alt: "Events Reservation selector image - Group of people having a party on a cruise by Debug Auto Exclusive",
+      blurUrl: "",
+    },
+    id: "products",
+    name: "Products Inquiries",
+    type: "external",
+    link: "https://products.dae.fun/reservations",
+  },
+  {
+    image: {
+      src: "https://images.ctfassets.net/88dxwx49umgp/UfOLa7Y9MP7nulHobrL1G/99d0d729cb0cbb02b80bee4129e04757/reservations-type-evens.jpg",
+      alt: "Events Reservation selector image - Group of people having a party on a cruise by Debug Auto Exclusive",
+      blurUrl: "",
+    },
+    id: "safari",
+    name: "Safari Inquiries",
+    type: "external",
+    link: "https://safari.dae.fun/reservations",
   },
 ];
 

@@ -31,32 +31,66 @@ const ReservationContainer: React.FC = (): JSX.Element => {
               initial="initial"
               animate="animate"
               exit="exit"
-              className="flex w-full flex-col items-stretch gap-y-8 md:gap-y-12 xl:gap-y-16"
+              className="mx-auto flex w-[min(100%,_62.5rem)] flex-col items-stretch gap-y-8 md:gap-y-12 xl:gap-y-16"
               key="selection-screen"
             >
               <SecondaryHeading alignment="center" intent="primary">
                 Select the reservation type your are looking for
               </SecondaryHeading>
-              <div className="flex w-full flex-col items-center justify-center gap-5 mlg:flex-row mlg:flex-wrap">
-                {reservationTypes.map((type) => (
-                  <Link
-                    href={`/reservations/?type=${type.id}`}
-                    key={type.id}
-                    className={cn(
-                      "relative isolate h-[150px] min-h-[150px] w-full max-w-[300px] rounded-md border border-black-400",
-                      "outline-water-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                    )}
-                  >
-                    <div className="grid h-full place-content-center bg-black/60 p-4">
-                      <span className="text-center text-lg font-bold text-white">
-                        {type.name}
-                      </span>
-                    </div>
-                    <div className="absolute inset-0 -z-10">
-                      <ImageComponent image={type.image} sizes="300px" />
-                    </div>
-                  </Link>
-                ))}
+              <div className="grid w-full grid-cols-1 items-center justify-center gap-5 md:grid-cols-2">
+                {reservationTypes.map((type) =>
+                  type.type === "in-site" ? (
+                    <Link
+                      href={`/reservations/?type=${type.id}`}
+                      key={type.id}
+                      className={cn(
+                        "grid aspect-video w-full grid-cols-1 grid-rows-[1fr_min-content] outline-water-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                      )}
+                    >
+                      <div className="h-full w-full">
+                        <ImageComponent image={type.image} sizes="300px" />
+                      </div>
+                      <div
+                        className={cn(
+                          "flex items-center justify-start gap-x-3 bg-primary p-4"
+                        )}
+                      >
+                        <span className="text-left text-lg font-bold text-white">
+                          {type.name}
+                        </span>
+                        <svg className="h-3 w-8 fill-white">
+                          <use xlinkHref="/assets/svg/sprites.svg#arrow-right-long" />
+                        </svg>
+                      </div>
+                    </Link>
+                  ) : (
+                    <a
+                      href={type.link}
+                      rel="noreferrer"
+                      target="_blank"
+                      key={type.id}
+                      className={cn(
+                        "grid aspect-video w-full grid-cols-1 grid-rows-[1fr_min-content] outline-water-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                      )}
+                    >
+                      <div className="h-full w-full">
+                        <ImageComponent image={type.image} sizes="300px" />
+                      </div>
+                      <div
+                        className={cn(
+                          "flex items-center justify-start gap-x-3 bg-water p-4"
+                        )}
+                      >
+                        <span className="text-left text-lg font-bold text-white">
+                          {type.name}
+                        </span>
+                        <svg className="h-6 w-6 fill-white">
+                          <use xlinkHref="/assets/svg/sprites.svg#icon-external" />
+                        </svg>
+                      </div>
+                    </a>
+                  )
+                )}
               </div>
             </m.div>
           )}
@@ -64,6 +98,7 @@ const ReservationContainer: React.FC = (): JSX.Element => {
           {reservationType === "events" && <EventsForm />}
         </AnimatePresence>
       </div>
+      <div className="grid w-full grid-cols-1 items-start justify-items-center"></div>
     </section>
   );
 };

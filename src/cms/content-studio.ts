@@ -1,6 +1,6 @@
 import type { Asset, Entry } from "contentful";
 
-import { contentfulClient } from "@lib/contentful";
+import { contentfulClient, getAssetUrl } from "@lib/contentful";
 
 import { formatId } from "@utils/base";
 import { getBlurHash } from "@utils/blurHashGenerator";
@@ -35,15 +35,6 @@ import type { PageSummerySectionType } from "@layout/common/page-summery-section
 
 import type { BannerCardType } from "@components/banner-card";
 import type { CardBlockType } from "@components/card-block";
-
-/**
- * format the given asset's url with protocol correction.
- * @param asset {Asset} - The Contentful Asset
- * @returns return a formatted URL for the asset
- */
-const getAssetUrl = (asset: Asset): string => {
-  return asset.fields.file.url.replace("//", "https://");
-};
 
 /**
  * Process the image from Contentful and add the blur hash\

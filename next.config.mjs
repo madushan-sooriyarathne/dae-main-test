@@ -1,4 +1,5 @@
 import { withPlaiceholder } from "@plaiceholder/next";
+
 // @ts-check
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
@@ -11,7 +12,7 @@ const config = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["picsum.photos", "images.unsplash.com", "images.ctfassets.net"],
+    domains: ["images.ctfassets.net"],
     formats: ["image/avif", "image/webp"],
   },
   i18n: {
