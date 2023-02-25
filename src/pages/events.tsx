@@ -44,10 +44,36 @@ const EventsPage: NextPage<Props> = ({
     <Page title="Events">
       <PageHeader {...header} />
       <MultiIMageContentVertical {...eventsIntro} />
-      <ImageContentSection {...eventsByYouSection} />
+      <ImageContentSection
+        {...eventsByYouSection}
+        button={{
+          type: "route",
+          route: "/inquiry?type=events",
+          children: "Inquire Now",
+          withArrow: true,
+        }}
+      />
       <OptionsGrid options={eventTypes} />
-      <MultiImageHorizontal {...eventsForYouSection} />
-      <BannerSection {...featuredEvent} />
+      <MultiImageHorizontal
+        {...eventsForYouSection}
+        button={{
+          type: "route",
+          route: "/inquiry?type=events",
+          children: "Inquire Now",
+          withArrow: true,
+        }}
+      />
+      <BannerSection
+        {...featuredEvent}
+        button={{
+          type: "route",
+          route: "/inquiry?type=events",
+          children: "Inquire Now",
+          withArrow: true,
+          intent: "white",
+          solid: true,
+        }}
+      />
       <CTASection
         heading="Ready to set sail?"
         subHeading="Celebrate your next special occasion at the lake."
