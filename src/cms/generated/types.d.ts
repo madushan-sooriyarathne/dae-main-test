@@ -95,7 +95,7 @@ export interface IBannerCardBlockFields {
   image: Asset;
 
   /** Group */
-  group: "boat-options" | "event-types";
+  group: "event-types";
 }
 
 export interface IBannerCardBlock extends Entry<IBannerCardBlockFields> {
@@ -132,7 +132,7 @@ export interface ICardBlockFields {
   image: Asset;
 
   /** Group */
-  group: "storage-facilities" | "activity-types";
+  group: "dae-values";
 }
 
 export interface ICardBlock extends Entry<ICardBlockFields> {
@@ -357,6 +357,37 @@ export interface IJobPost extends Entry<IJobPostFields> {
     contentType: {
       sys: {
         id: "jobPost";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface ILegalDocumentFields {
+  /** Title */
+  title: string;
+
+  /** Id */
+  id: string;
+
+  /** Date */
+  date: string;
+
+  /** Content */
+  content: string;
+}
+
+export interface ILegalDocument extends Entry<ILegalDocumentFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "legalDocument";
         linkType: "ContentType";
         type: "Link";
       };
@@ -681,6 +712,7 @@ export type CONTENT_TYPE =
   | "heroSlide"
   | "imageContentBlock"
   | "jobPost"
+  | "legalDocument"
   | "multiImageContentBlock"
   | "pageHeaderBlock"
   | "pageSummeryBlock"
@@ -702,6 +734,7 @@ export type IEntry =
   | IHeroSlide
   | IImageContentBlock
   | IJobPost
+  | ILegalDocument
   | IMultiImageContentBlock
   | IPageHeaderBlock
   | IPageSummeryBlock

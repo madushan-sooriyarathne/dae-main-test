@@ -184,6 +184,13 @@ declare global {
     buttonText: string;
     image: Image;
   };
+
+  type LegalDocumentType = {
+    id: string;
+    title: string;
+    date: string;
+    content: string;
+  };
 }
 
 export {};

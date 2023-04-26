@@ -5,7 +5,7 @@ import { contentfulClient, getAssetUrl } from "@lib/contentful";
 import { formatId } from "@utils/base";
 import { getBlurHash } from "@utils/blurHashGenerator";
 
-import type {
+import {
   IArticleFields,
   IBannerBlockFields,
   IBannerCardBlockFields,
@@ -16,6 +16,8 @@ import type {
   IHeroSlideFields,
   IImageContentBlockFields,
   IJobPostFields,
+  ILegalDocument,
+  ILegalDocumentFields,
   IMultiImageContentBlockFields,
   IPageHeaderBlockFields,
   IPageSummeryBlockFields,
@@ -518,6 +520,21 @@ export const getArticle = async (articleId: string): Promise<Article> => {
   } catch (error: unknown) {
     throw new Error(
       `An error occurred while fetching the article with id ${articleId}`
+    );
+  }
+};
+
+export const getLegalDocument = async (
+  documentId: string
+): Promise<LegalDocumentType> => {
+  try {
+    const documentResponse =
+      await contentfulClient.getEntry<ILegalDocumentFields>(documentId);
+
+    return { ...documentResponse.fields };
+  } catch (error: unknown) {
+    throw new Error(
+      `An error occurred while fetching the legal document entry for given id: ${documentId}`
     );
   }
 };
