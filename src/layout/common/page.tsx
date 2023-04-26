@@ -11,6 +11,8 @@ import WhatsappWidget from "@components/whatsapp-widget";
 
 import { pageTransition } from "@styles/animations";
 
+import { CookieConsent } from "./cookie-consent";
+
 interface Props {
   title: string;
   children: ReactNode | ReactNode[];
@@ -35,6 +37,7 @@ const Page: React.FC<Props> = ({ title, children }: Props): JSX.Element => {
       </main>
       <Footer />
       <Floater />
+      <CookieConsent />
       <WhatsappWidget />
       <Toast />
     </m.div>
