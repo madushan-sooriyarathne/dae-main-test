@@ -42,7 +42,7 @@
     "framer-motion": "^8.5.0",
     "keen-slider": "^6.8.5",
     "mapbox-gl": "^2.12.0",
-    "next": "canary",
+    "next": "^13.2.3",
     "plaiceholder": "^2.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
