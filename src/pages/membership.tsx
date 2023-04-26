@@ -49,9 +49,27 @@ const FlowOne: NextPage<Props> = ({
   return (
     <Page title="Explorers Collective">
       <PageHeader {...header} />
-      <PageSummerySection {...pageSummery} />
+      <PageSummerySection
+        {...pageSummery}
+        button={{
+          type: "route",
+          route: "/join",
+          children: "Join Explorer's Collective",
+          withArrow: true,
+          intent: "primary",
+        }}
+      />
       <VideoSection video={video} />
-      <MultiImageHorizontal {...membershipIntroSection} />
+      <MultiImageHorizontal
+        {...membershipIntroSection}
+        button={{
+          type: "route",
+          route: "/join",
+          children: "Join Explorer's Collective",
+          withArrow: true,
+          intent: "primary",
+        }}
+      />
       <ImageContentSection {...membershipPerksSection} />
       <StatsGrid stats={membershipPerks} />
       <CTASection

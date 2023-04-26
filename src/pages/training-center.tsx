@@ -43,9 +43,18 @@ const TrainingCenterPage: NextPage<Props> = ({
   trainingCenterFAQ,
 }: Props): JSX.Element => {
   return (
-    <Page title="Cruises">
+    <Page title="Training Center">
       <PageHeader {...header} />
-      <PageSummerySection {...pageSummery} />
+      <PageSummerySection
+        {...pageSummery}
+        button={{
+          type: "route",
+          route: "/inquiry?type=training-center",
+          children: "Inquire Now",
+          withArrow: true,
+          intent: "primary",
+        }}
+      />
       <ImageContentSection {...trainingCenterIntro} withBg />
       <StatsGrid stats={trainingCenterPerks} className="-mt-10 4xl:-mt-20" />
       <TrainingCoursesSection courses={courses} />
