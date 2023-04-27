@@ -64,7 +64,7 @@ const TrainingCenterPage: NextPage<Props> = ({
         subHeading="Ready to set sail?"
         button={{
           children: "Inquire Now",
-          route: "/reservations?type=training-center",
+          route: "/inquiries?type=training-center",
           type: "route",
           withArrow: true,
           intent: "primary",

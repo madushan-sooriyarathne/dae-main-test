@@ -79,7 +79,7 @@ const EventsPage: NextPage<Props> = ({
         subHeading="Celebrate your next special occasion at the lake."
         button={{
           children: "Reserve Now",
-          route: "/reservations?type=events",
+          route: "/inquiries?type=events",
           type: "route",
           intent: "primary",
         }}

@@ -6,8 +6,8 @@ import { reservationTypes } from "site-data";
 
 import { cn } from "@lib/clsx";
 
-import { CruisesForm } from "@layout/reservations-page/cruises-form";
-import { EventsForm } from "@layout/reservations-page/events-form";
+import { CruisesForm } from "@layout/inquiries-page/cruises-form";
+import { EventsForm } from "@layout/inquiries-page/events-form";
 
 import { SecondaryHeading } from "@components/headings/secondary-heading";
 import { ImageComponent } from "@components/image-component";

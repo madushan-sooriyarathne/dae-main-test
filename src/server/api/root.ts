@@ -1,6 +1,6 @@
 import { contactRouter } from "@server/api/routers/contact";
+import { inquiriesRouter } from "@server/api/routers/inquiries";
 import { newsletterRouter } from "@server/api/routers/newsletter";
-import { reservationRouter } from "@server/api/routers/reservations";
 import { createTRPCRouter } from "@server/api/trpc";
 
 /**
@@ -9,7 +9,7 @@ import { createTRPCRouter } from "@server/api/trpc";
  * All routers added in /api/routers should be manually added here
  */
 export const appRouter = createTRPCRouter({
-  reservations: reservationRouter,
+  inquiries: inquiriesRouter,
   contact: contactRouter,
   newsletter: newsletterRouter,
 });

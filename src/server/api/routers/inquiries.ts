@@ -3,7 +3,7 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "@server/api/trpc";
 
-export const reservationRouter = createTRPCRouter({
+export const inquiriesRouter = createTRPCRouter({
   offerInquiry: publicProcedure
     .input(
       z.object({

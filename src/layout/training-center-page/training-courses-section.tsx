@@ -53,7 +53,7 @@ const TrainingCoursesSection: React.FC<Props> = ({
               <div className="flex flex-col flex-wrap items-stretch justify-start gap-2 md:flex-row md:items-start ">
                 <Button
                   type="route"
-                  route={`/reservations?type=training-course&course=${course.id}`}
+                  route={`/inquiries?type=training-course&course=${course.id}`}
                   intent="primary"
                   withArrow
                   solid

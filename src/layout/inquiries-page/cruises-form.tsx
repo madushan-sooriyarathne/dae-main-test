@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Controller } from "react-hook-form";
 import Link from "next/link";
 import { m } from "framer-motion";
-import { eventTypes } from "site-data";
+import { cruiseTypes } from "site-data";
 import { z } from "zod";
 
 import { cn } from "@lib/clsx";
@@ -23,7 +23,7 @@ import { TextAreaField } from "@components/text-area-field";
 
 import { fadeIn } from "@styles/animations";
 
-const eventsFormSchema = z.object({
+const cruisesFormSchema = z.object({
   name: z.string({ required_error: "Name is required." }),
   email: z
     .string({ required_error: "Email address is required." })
@@ -31,13 +31,6 @@ const eventsFormSchema = z.object({
   contact: z
     .string({ required_error: "Contact Number is required." })
     .min(10, { message: "Contact number should contain at least 10 digits." }),
-  eventType: z.enum(eventTypes, {
-    required_error: "A event type must be selected.",
-  }),
-  date: z
-    .date({ required_error: "The Date is required." })
-    .min(new Date(), { message: "The date must be a future date." })
-    .nullable(),
   pax: z.object({
     adults: z
       .number({ required_error: "Number of adults is required." })
@@ -46,16 +39,23 @@ const eventsFormSchema = z.object({
       .number({ required_error: "Number of adults is required." })
       .min(0),
   }),
+  date: z
+    .date({ required_error: "The Date is required." })
+    .min(new Date(), { message: "The date must be a future date." })
+    .nullable(),
+  cruiseType: z.enum(cruiseTypes, {
+    required_error: "Cruise type is required.",
+  }),
   requests: z.optional(z.string()),
 });
 
-const EventsForm: React.FC = (): JSX.Element => {
-  const mutation = api.reservations.eventsInquiry.useMutation();
+const CruisesForm: React.FC = (): JSX.Element => {
+  const mutation = api.inquiries.cruisesInquiry.useMutation();
 
   const dispatchNotification = useContext(NotificationDispatchContext);
 
   const form = useZodForm({
-    schema: eventsFormSchema,
+    schema: cruisesFormSchema,
     defaultValues: {
       pax: {
         adults: 2,
@@ -66,11 +66,11 @@ const EventsForm: React.FC = (): JSX.Element => {
 
   return (
     <m.div
-      key="events-form"
       variants={fadeIn}
       initial="initial"
       animate="animate"
       exit="exit"
+      key="restaurant-form"
       className="grid auto-rows-min grid-cols-1 gap-y-6 mlg:grid-cols-3 "
     >
       <div className="flex h-48 w-full flex-col items-start justify-between rounded-md bg-lightWater px-4 py-4 mlg:col-start-1 mlg:h-full mlg:py-12 lg:px-9">
@@ -88,7 +88,7 @@ const EventsForm: React.FC = (): JSX.Element => {
             Reserve
           </span>
           <SecondaryHeading alignment="left" intent="secondary">
-            Events
+            A Cruise
           </SecondaryHeading>
         </div>
       </div>
@@ -100,21 +100,22 @@ const EventsForm: React.FC = (): JSX.Element => {
               try {
                 const response = await mutation.mutateAsync({
                   ...data,
+
                   date: (data.date as Date).toISOString(),
                 });
 
                 if (response.status === "success") {
-                  triggerGTMEvent("event-form-submission", {
+                  triggerGTMEvent("restaurant-form-submission", {
                     name: data.name,
                     email: data.email,
                     phone: data.contact,
-                    eventType: data.eventType,
                   });
 
                   dispatchNotification({
                     title: "Success!",
-                    message: "Inquiry successfully submitted.",
+                    message: "Inquiry successfully submitted",
                   });
+
                   form.reset();
                 } else {
                   dispatchNotification({
@@ -160,20 +161,18 @@ const EventsForm: React.FC = (): JSX.Element => {
             />
             <Controller
               control={form.control}
-              name="eventType"
+              name="pax"
               render={({
-                field: { name, onChange, value },
+                field: { value, name, onChange },
                 formState: { errors },
               }) => (
-                <SelectField
-                  name={name}
-                  onValueChange={onChange}
+                <PaxPicker
                   value={value}
-                  label="Event Type"
+                  onPaxChange={onChange}
+                  name={name}
+                  label="No of Guests"
                   intent="black"
-                  error={errors.eventType?.message}
-                  placeholder="Select a preferred event type"
-                  options={eventTypes as unknown as string[]}
+                  error={errors.pax?.message}
                   required
                 />
               )}
@@ -198,22 +197,24 @@ const EventsForm: React.FC = (): JSX.Element => {
             />
             <Controller
               control={form.control}
-              name="pax"
+              name="cruiseType"
               render={({
-                field: { value, name, onChange },
+                field: { name, onChange, value },
                 formState: { errors },
               }) => (
-                <PaxPicker
-                  value={value}
-                  onPaxChange={onChange}
+                <SelectField
+                  label="Cruise Type"
                   name={name}
-                  label="No of Guests"
+                  value={value}
+                  onValueChange={onChange}
+                  error={errors.cruiseType?.message}
+                  options={cruiseTypes as unknown as string[]}
                   intent="black"
-                  error={errors.pax?.message}
-                  required
+                  placeholder="Select your preferred cruise type"
                 />
               )}
             />
+
             <TextAreaField
               {...form.register("requests")}
               label="Special Requests"
@@ -236,4 +237,4 @@ const EventsForm: React.FC = (): JSX.Element => {
   );
 };
 
-export { EventsForm };
+export { CruisesForm };
