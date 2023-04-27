@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 
+import { useScrollDirection } from "@hooks/useScrollDirection";
+
 import { fadeInBottom } from "@styles/animations";
 
 const Floater: React.FC = (): JSX.Element => {
   const [scrolled, setScrolled] = useState<boolean>(false);
+  const scrollDirection = useScrollDirection();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 200) {
+      if (window.scrollY > 200 && scrollDirection === -1) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -18,7 +21,7 @@ const Floater: React.FC = (): JSX.Element => {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [scrollDirection]);
 
   return (
     <AnimatePresence>

@@ -37,7 +37,7 @@ interface Props {
   membershipFAQs: FAQ[];
 }
 
-const FlowOne: NextPage<Props> = ({
+const MembershipPage: NextPage<Props> = ({
   header,
   pageSummery,
   video,
@@ -120,4 +120,4 @@ const getStaticProps: GetStaticProps = async (): Promise<
 };
 
 export { getStaticProps };
-export default FlowOne;
+export default MembershipPage;
