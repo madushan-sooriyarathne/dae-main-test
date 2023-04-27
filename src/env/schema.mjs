@@ -1,17 +1,13 @@
 // @ts-check
 import { z } from "zod";
 
-
-
-
-
 /**
  * Specify your server-side environment variables schema here.
  * This way you can ensure the app isn't built with invalid env vars.
  */
 export const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
-  AWS_REGION: z.string(),
+  SITE_URL: z.string().min(1).startsWith("https://"),
 });
 
 /**
@@ -21,7 +17,7 @@ export const serverSchema = z.object({
  */
 export const serverEnv = {
   NODE_ENV: process.env.NODE_ENV,
-  AWS_REGION: process.env.AWS_REGION,
+  SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
 };
 
 /**
