@@ -118,7 +118,7 @@ const NavBar: React.FC = (): JSX.Element => {
               ))}
             </div>
             <Button route="/inquiries" type="route" intent="primary">
-              Reserve Now
+              Inquire Now
             </Button>
           </div>
 
@@ -256,7 +256,7 @@ const NavBar: React.FC = (): JSX.Element => {
                   withArrow
                   fullWidth
                 >
-                  Reserve
+                  Inquire Now
                 </Button>
               </div>
             </div>

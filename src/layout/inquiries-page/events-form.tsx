@@ -75,7 +75,7 @@ const EventsForm: React.FC = (): JSX.Element => {
     >
       <div className="flex h-48 w-full flex-col items-start justify-between rounded-md bg-lightWater px-4 py-4 mlg:col-start-1 mlg:h-full mlg:py-12 lg:px-9">
         <Link
-          href="/reservations"
+          href="/inquiries"
           className="flex items-center justify-start gap-x-2 rounded-md border-2 border-water bg-water fill-white px-2 py-3 font-sans text-sm font-semibold text-white transition-colors duration-200 hover:bg-transparent hover:fill-water hover:text-water"
         >
           <svg className="h-2 w-7 rotate-180 transform">

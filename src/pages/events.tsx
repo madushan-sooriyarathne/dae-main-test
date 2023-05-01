@@ -48,7 +48,7 @@ const EventsPage: NextPage<Props> = ({
         {...eventsByYouSection}
         button={{
           type: "route",
-          route: "/inquiry?type=events",
+          route: "/inquiries?type=events",
           children: "Inquire Now",
           withArrow: true,
         }}
@@ -58,7 +58,7 @@ const EventsPage: NextPage<Props> = ({
         {...eventsForYouSection}
         button={{
           type: "route",
-          route: "/inquiry?type=events",
+          route: "/inquiries?type=events",
           children: "Inquire Now",
           withArrow: true,
         }}
@@ -67,7 +67,7 @@ const EventsPage: NextPage<Props> = ({
         {...featuredEvent}
         button={{
           type: "route",
-          route: "/inquiry?type=events",
+          route: "/inquiries?type=events",
           children: "Inquire Now",
           withArrow: true,
           intent: "white",
@@ -78,7 +78,7 @@ const EventsPage: NextPage<Props> = ({
         heading="Ready to set sail?"
         subHeading="Celebrate your next special occasion at the lake."
         button={{
-          children: "Reserve Now",
+          children: "Inquire Now",
           route: "/inquiries?type=events",
           type: "route",
           intent: "primary",

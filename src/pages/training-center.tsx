@@ -49,7 +49,7 @@ const TrainingCenterPage: NextPage<Props> = ({
         {...pageSummery}
         button={{
           type: "route",
-          route: "/inquiry?type=training-center",
+          route: "/inquiries?type=training-center",
           children: "Inquire Now",
           withArrow: true,
           intent: "primary",

@@ -84,7 +84,7 @@ export const reservationTypes: ReservationType[] = [
     id: "marina",
     name: "Marina Inquiries",
     type: "external",
-    link: "https://marina.dae.fun/reservations",
+    link: "https://marina.dae.fun/inquiries",
   },
   {
     image: {
@@ -95,7 +95,7 @@ export const reservationTypes: ReservationType[] = [
     id: "charter",
     name: "Charter Inquiries",
     type: "external",
-    link: "https://charter.dae.fun/reservations",
+    link: "https://charter.dae.fun/inquiries",
   },
   {
     image: {
@@ -106,7 +106,7 @@ export const reservationTypes: ReservationType[] = [
     id: "products",
     name: "Products Inquiries",
     type: "external",
-    link: "https://products.dae.fun/reservations",
+    link: "https://products.dae.fun/inquiries",
   },
   {
     image: {
@@ -117,7 +117,7 @@ export const reservationTypes: ReservationType[] = [
     id: "safari",
     name: "Safari Inquiries",
     type: "external",
-    link: "https://safari.dae.fun/reservations",
+    link: "https://safari.dae.fun/inquiries",
   },
 ];
 
@@ -160,8 +160,8 @@ export const eventTypes = [
   "Gatherings",
 ] as const;
 
-export const cruiseTypes = [
-  "Overnight Stay",
-  "Sunset Cruise",
-  "Morning Cruise",
+export const trainingCourses = [
+  "Jet Ski Training",
+  "Power Boat Training",
+  "Basic Water Sports Training",
 ] as const;
