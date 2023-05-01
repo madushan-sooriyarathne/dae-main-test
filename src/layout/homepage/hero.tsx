@@ -37,7 +37,7 @@ const slideVariants: Variants = {
 };
 
 interface Props {
-  video: Video;
+  video: LocalVideoType;
   slides: HeroSlide[];
 }
 
@@ -79,8 +79,8 @@ const Hero: React.FC<Props> = ({ video, slides }: Props): JSX.Element => {
             animate="animate"
             exit="exit"
           >
-            {video.files.map((file) => (
-              <source src={file.src} type={file.type} key={file.id} />
+            {video.src.map((file) => (
+              <source src={file.url} type={file.type} key={file.id} />
             ))}
           </m.video>
         )}

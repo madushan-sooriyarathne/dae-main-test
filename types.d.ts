@@ -106,15 +106,25 @@ declare global {
 
   type MultiImageContentBlockType = MultiImageContentSectionType;
 
-  type Video = {
-    files: {
-      src: string;
+  type YoutubeVideoType = {
+    type: "Youtube";
+    src: string;
+    fallbackImage: Image;
+    title: string | null;
+  };
+
+  type LocalVideoType = {
+    type: "Local";
+    src: {
+      url: string;
       type: string;
       id: string;
     }[];
     fallbackImage: Image;
     title: string | null;
   };
+
+  type VideoType = YoutubeVideoType | LocalVideoType;
 
   type HeroSlide = {
     heading: string;

@@ -30,7 +30,7 @@ import { VideoSection } from "@layout/common/video-section";
 interface Props {
   header: PageHeaderType;
   pageSummery: PageSummerySectionType;
-  video: Video;
+  video: VideoType;
   membershipIntroSection: MultiImageContentBlockType;
   membershipPerksSection: ImageContentSectionType;
   membershipPerks: Stat[];

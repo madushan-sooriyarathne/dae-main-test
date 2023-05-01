@@ -669,11 +669,14 @@ export interface ITrainingCourse extends Entry<ITrainingCourseFields> {
 }
 
 export interface IVideoBlockFields {
-  /** Videos */
-  videos: Asset[];
+  /** Type */
+  type: "Local" | "Youtube";
 
-  /** Id */
-  id: string;
+  /** Youtube URL */
+  youtubeUrl?: string | undefined;
+
+  /** Videos */
+  videos?: Asset[] | undefined;
 
   /** Fallback Image */
   fallbackImage: Asset;

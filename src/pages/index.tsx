@@ -41,7 +41,7 @@ const TestimonialSection = dynamic(() =>
 );
 
 interface Props {
-  heroVideo: Video;
+  heroVideo: VideoType;
   heroSlides: HeroSlide[];
   pageSummery: PageSummerySectionType;
   childSites: ChildSite[];
@@ -63,7 +63,9 @@ const Home: NextPage<Props> = ({
 }) => {
   return (
     <Page title="Home">
-      <Hero video={heroVideo} slides={heroSlides} />
+      {heroVideo.type === "Local" && (
+        <Hero video={heroVideo} slides={heroSlides} />
+      )}
       <PageSummerySection {...pageSummery} />
       <ChildSitesSection childSites={childSites} />
       <MultiItemSection {...whyDAESection}>

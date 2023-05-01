@@ -285,21 +285,34 @@ export const getTextContentBlock = async (
   }
 };
 
-export const getVideoBlock = async (entryId: string): Promise<Video> => {
+export const getVideoBlock = async (entryId: string): Promise<VideoType> => {
   if (entryId.length < 1) throw new Error("Entry ID is empty");
 
   try {
     const data = await contentfulClient.getEntry<IVideoBlockFields>(entryId);
 
-    return {
-      fallbackImage: await processContentfulImage(data.fields.fallbackImage),
-      files: data.fields.videos.map((vid) => ({
-        id: formatId(vid.fields.title),
-        src: getAssetUrl(vid),
-        type: vid.fields.file.contentType,
-      })),
-      title: data.fields.title || null,
-    };
+    if (data.fields.type === "Local" && data.fields.videos) {
+      return {
+        fallbackImage: await processContentfulImage(data.fields.fallbackImage),
+        src: data.fields.videos.map((vid) => ({
+          id: formatId(vid.fields.title),
+          url: getAssetUrl(vid),
+          type: vid.fields.file.contentType,
+        })),
+        type: "Local",
+        title: data.fields.title || null,
+      };
+    } else if (data.fields.type === "Youtube" && data.fields.youtubeUrl) {
+      return {
+        fallbackImage: await processContentfulImage(data.fields.fallbackImage),
+        src: data.fields.youtubeUrl,
+        type: "Youtube",
+
+        title: data.fields.title || null,
+      };
+    } else {
+      throw new Error("No matching video formats found");
+    }
   } catch {
     throw new Error(
       `Error fetching the Text Content Block with given ID: ${entryId}`
