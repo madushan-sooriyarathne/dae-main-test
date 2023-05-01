@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Controller } from "react-hook-form";
 import Link from "next/link";
 import { m } from "framer-motion";
-import { cruiseTypes } from "site-data";
+import { trainingCourses } from "site-data";
 import { z } from "zod";
 
 import { cn } from "@lib/clsx";
@@ -23,7 +23,7 @@ import { TextAreaField } from "@components/text-area-field";
 
 import { fadeIn } from "@styles/animations";
 
-const cruisesFormSchema = z.object({
+const trainingCenterFormSchema = z.object({
   name: z.string({ required_error: "Name is required." }),
   email: z
     .string({ required_error: "Email address is required." })
@@ -43,19 +43,19 @@ const cruisesFormSchema = z.object({
     .date({ required_error: "The Date is required." })
     .min(new Date(), { message: "The date must be a future date." })
     .nullable(),
-  cruiseType: z.enum(cruiseTypes, {
-    required_error: "Cruise type is required.",
+  trainingCourse: z.enum(trainingCourses, {
+    required_error: "A course must be selected",
   }),
   requests: z.optional(z.string()),
 });
 
-const CruisesForm: React.FC = (): JSX.Element => {
-  const mutation = api.inquiries.cruisesInquiry.useMutation();
+const TrainingCenterForm: React.FC = (): JSX.Element => {
+  const mutation = api.inquiries.trainingCenterInquiry.useMutation();
 
   const dispatchNotification = useContext(NotificationDispatchContext);
 
   const form = useZodForm({
-    schema: cruisesFormSchema,
+    schema: trainingCenterFormSchema,
     defaultValues: {
       pax: {
         adults: 2,
@@ -70,12 +70,12 @@ const CruisesForm: React.FC = (): JSX.Element => {
       initial="initial"
       animate="animate"
       exit="exit"
-      key="restaurant-form"
+      key="training-center-form"
       className="grid auto-rows-min grid-cols-1 gap-y-6 mlg:grid-cols-3 "
     >
       <div className="flex h-48 w-full flex-col items-start justify-between rounded-md bg-lightWater px-4 py-4 mlg:col-start-1 mlg:h-full mlg:py-12 lg:px-9">
         <Link
-          href="/reservations"
+          href="/inquiries"
           className="flex items-center justify-start gap-x-2 rounded-md border-2 border-water bg-water fill-white px-2 py-3 font-sans text-sm font-semibold text-white transition-colors duration-200 hover:bg-transparent hover:fill-water hover:text-water"
         >
           <svg className="h-2 w-7 rotate-180 transform">
@@ -88,7 +88,7 @@ const CruisesForm: React.FC = (): JSX.Element => {
             Reserve
           </span>
           <SecondaryHeading alignment="left" intent="secondary">
-            A Cruise
+            Your Training Session
           </SecondaryHeading>
         </div>
       </div>
@@ -105,7 +105,7 @@ const CruisesForm: React.FC = (): JSX.Element => {
                 });
 
                 if (response.status === "success") {
-                  triggerGTMEvent("restaurant-form-submission", {
+                  triggerGTMEvent("training-center-form-submission", {
                     name: data.name,
                     email: data.email,
                     phone: data.contact,
@@ -197,20 +197,20 @@ const CruisesForm: React.FC = (): JSX.Element => {
             />
             <Controller
               control={form.control}
-              name="cruiseType"
+              name="trainingCourse"
               render={({
                 field: { name, onChange, value },
                 formState: { errors },
               }) => (
                 <SelectField
-                  label="Cruise Type"
+                  label="Preferred Training Course"
                   name={name}
                   value={value}
                   onValueChange={onChange}
-                  error={errors.cruiseType?.message}
-                  options={cruiseTypes as unknown as string[]}
+                  error={errors.trainingCourse?.message}
+                  options={trainingCourses as unknown as string[]}
                   intent="black"
-                  placeholder="Select your preferred cruise type"
+                  placeholder="Select your preferred course"
                 />
               )}
             />
@@ -237,4 +237,4 @@ const CruisesForm: React.FC = (): JSX.Element => {
   );
 };
 
-export { CruisesForm };
+export { TrainingCenterForm };

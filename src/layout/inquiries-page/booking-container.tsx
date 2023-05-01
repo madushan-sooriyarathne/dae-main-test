@@ -6,8 +6,8 @@ import { reservationTypes } from "site-data";
 
 import { cn } from "@lib/clsx";
 
-import { CruisesForm } from "@layout/inquiries-page/cruises-form";
 import { EventsForm } from "@layout/inquiries-page/events-form";
+import { TrainingCenterForm } from "@layout/inquiries-page/training-center";
 
 import { SecondaryHeading } from "@components/headings/secondary-heading";
 import { ImageComponent } from "@components/image-component";
@@ -41,7 +41,7 @@ const ReservationContainer: React.FC = (): JSX.Element => {
                 {reservationTypes.map((type) =>
                   type.type === "in-site" ? (
                     <Link
-                      href={`/reservations/?type=${type.id}`}
+                      href={`/inquiries/?type=${type.id}`}
                       key={type.id}
                       className={cn(
                         "grid aspect-video w-full grid-cols-1 grid-rows-[1fr_min-content] outline-water-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
@@ -94,7 +94,7 @@ const ReservationContainer: React.FC = (): JSX.Element => {
               </div>
             </m.div>
           )}
-          {reservationType === "cruises" && <CruisesForm />}
+          {reservationType === "training-center" && <TrainingCenterForm />}
           {reservationType === "events" && <EventsForm />}
         </AnimatePresence>
       </div>

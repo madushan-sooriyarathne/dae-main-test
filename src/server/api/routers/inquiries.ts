@@ -1,4 +1,4 @@
-import { cruiseTypes, eventTypes } from "site-data";
+import { eventTypes, trainingCourses } from "site-data";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "@server/api/trpc";
@@ -41,7 +41,7 @@ export const inquiriesRouter = createTRPCRouter({
         } satisfies APIResponseType;
       }
     }),
-  cruisesInquiry: publicProcedure
+  trainingCenterInquiry: publicProcedure
     .input(
       z.object({
         name: z
@@ -62,8 +62,8 @@ export const inquiriesRouter = createTRPCRouter({
             message: "field 'pax.children'children cannot be a minus value",
           }),
         }),
-        cruiseType: z.enum(cruiseTypes, {
-          required_error: "field 'cruiseType' is required",
+        trainingCourse: z.enum(trainingCourses, {
+          required_error: "field 'trainingCourse' is required",
         }),
         requests: z.optional(z.string()),
       })
