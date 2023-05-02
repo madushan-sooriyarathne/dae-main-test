@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import ReactPlayer from "react-player";
 
 import { cn } from "@lib/clsx";
@@ -12,12 +12,7 @@ interface Props {
 const VideoPlayer: React.FC<Props> = ({ video }: Props): JSX.Element => {
   const [playing, setPlaying] = useState<boolean>(false);
   const [interacted, setInteracted] = useState<boolean>(false);
-  const [componentLoaded, setComponentLoaded] = useState<boolean>(false);
   const [muted, setMuted] = useState<boolean>(true);
-
-  useEffect(() => {
-    setComponentLoaded(true);
-  }, []);
 
   const togglePlayback = useCallback(() => {
     setPlaying((prev) => !prev);
@@ -29,6 +24,7 @@ const VideoPlayer: React.FC<Props> = ({ video }: Props): JSX.Element => {
     setInteracted(true);
   }, []);
 
+  const selectedVideo = video.src[0]?.url;
   return (
     <div className="relative aspect-[4/3] overflow-hidden rounded md:col-content md:aspect-video">
       <div
@@ -97,10 +93,10 @@ const VideoPlayer: React.FC<Props> = ({ video }: Props): JSX.Element => {
           )}
         </div>
       </div>
-      {componentLoaded && (
+      {selectedVideo && (
         <div className="absolute inset-0 -z-10  [&_video]:object-fill">
           <ReactPlayer
-            url={video.src.map((file) => ({ src: file.url, type: file.type }))}
+            url={selectedVideo}
             playing={playing}
             onPlay={() => setPlaying(true)}
             onPause={() => setPlaying(false)}

@@ -61,6 +61,7 @@ const Home: NextPage<Props> = ({
   latestArticles,
   testimonials,
 }) => {
+  console.log(heroVideo.type);
   return (
     <Page title="Home">
       {heroVideo.type === "Local" && (
