@@ -2,6 +2,11 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "@server/api/trpc";
 
+import {
+  sendContactNotification,
+  sendCustomerAcknowledgement,
+} from "@utils/courier-api";
+
 export const contactRouter = createTRPCRouter({
   contactInquiry: publicProcedure
     .input(
@@ -18,26 +23,36 @@ export const contactRouter = createTRPCRouter({
         message: z.optional(z.string()),
       })
     )
-    .mutation(({ input }) => {
+    .output(
+      z.object({
+        status: z.enum(["error", "success"]),
+        message: z.string().nullable(),
+        data: z.record(z.string().min(1), z.any()).nullable(),
+      })
+    )
+    .mutation(async ({ input }) => {
       // Do the processing
       // Send the inquiry data to the operations
-      const adminNotification = true;
+      const adminNotification = await sendContactNotification(input);
 
       // send the acknowledgement to the user.
-      const userAcknowledgement = true;
+      const userAcknowledgement = await sendCustomerAcknowledgement({
+        name: input.name,
+        email: input.email,
+      });
 
       if (adminNotification && userAcknowledgement) {
         return {
           status: "success",
           message: null,
           data: null,
-        } satisfies APIResponseType;
+        };
       } else {
         return {
-          status: "failed",
+          status: "error",
           message: "An error occurred while submitting the inquiry.",
           data: null,
-        } satisfies APIResponseType;
+        };
       }
     }),
 });

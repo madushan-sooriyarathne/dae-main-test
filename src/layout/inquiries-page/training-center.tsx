@@ -120,7 +120,8 @@ const TrainingCenterForm: React.FC = (): JSX.Element => {
                 } else {
                   dispatchNotification({
                     title: "Something went wrong!",
-                    message: response.message,
+                    message:
+                      "An error occurred while submitting your inquiry. Please try again later",
                     type: "error",
                   });
                 }

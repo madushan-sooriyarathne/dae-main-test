@@ -93,7 +93,8 @@ const ContactForm: React.FC<ImageContentSectionType> = ({
               } else {
                 notificationDispatch({
                   title: "Something went wrong!",
-                  message: response.message,
+                  message:
+                    "An Error occurred while submitting your inquiry. Please try again later.",
                   type: "error",
                 });
               }

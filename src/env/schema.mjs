@@ -26,11 +26,12 @@ export const serverEnv = {
  * To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
 export const clientSchema = z.object({
-  NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN: z.string(),
-  NEXT_PUBLIC_CONTENTFUL_SPACE_ID: z.string(),
-  NEXT_PUBLIC_MAPBOX_API_KEY: z.string(),
-  NEXT_PUBLIC_GTM_ID: z.string(),
-  NEXT_PUBLIC_SITE_URL: z.string(),
+  NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN: z.string().min(1),
+  NEXT_PUBLIC_CONTENTFUL_SPACE_ID: z.string().min(1),
+  NEXT_PUBLIC_MAPBOX_API_KEY: z.string().min(1),
+  NEXT_PUBLIC_GTM_ID: z.string().min(1),
+  NEXT_PUBLIC_SITE_URL: z.string().min(1),
+  NEXT_PUBLIC_COURIER_AUTH_TOKEN: z.string().min(1),
 });
 
 /**
@@ -47,4 +48,5 @@ export const clientEnv = {
   NEXT_PUBLIC_MAPBOX_API_KEY: process.env.NEXT_PUBLIC_MAPBOX_API_KEY,
   NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
   NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+  NEXT_PUBLIC_COURIER_AUTH_TOKEN: process.env.NEXT_PUBLIC_COURIER_AUTH_TOKEN,
 };
