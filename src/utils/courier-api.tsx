@@ -123,7 +123,16 @@ export const sendCustomerAcknowledgement = async (
   }
 };
 
-type JobApplicationNotificationInput = RouterInputs["jobApplication"]["apply"];
+// type JobApplicationNotificationInput =
+//   RouterInputs["jobApplication"]["application"];
+type JobApplicationNotificationInput = {
+  name: string;
+  email: string;
+  contact: string;
+  position: string;
+  coverLetter: EncodedFile | null;
+  resume: EncodedFile;
+};
 export const sendJobApplicationNotification = async (
   data: JobApplicationNotificationInput
 ): Promise<string | null> => {
@@ -131,8 +140,20 @@ export const sendJobApplicationNotification = async (
     const { requestId } = await courierClient.send({
       message: {
         to: {},
-        template: "",
-        data: data,
+        template: "CRRGCQ89GH4XK4KC0YBN4YE6M8GD",
+        data: {
+          name: data.name,
+          email: data.email,
+          contact: data.contact,
+          position: data.position,
+        },
+        providers: {
+          "aws-ses": {
+            override: {
+              attachments: [data.resume, data.coverLetter],
+            },
+          },
+        },
       },
     });
 
@@ -142,6 +163,7 @@ export const sendJobApplicationNotification = async (
       return null;
     }
   } catch (error: unknown) {
+    console.error(error);
     return null;
   }
 };

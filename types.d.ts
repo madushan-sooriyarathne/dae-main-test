@@ -6,6 +6,11 @@ declare global {
     dataLayer: any;
   }
 
+  type EncodedFile = {
+    filename: string;
+    contentType: string;
+    data: string;
+  };
   type ErrorType = {
     code: number;
     message: string;

@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { Controller } from "react-hook-form";
 import {
   EmailIcon,
   EmailShareButton,
@@ -17,13 +18,16 @@ import { m } from "framer-motion";
 import { acceptedFileTypes } from "site-data";
 import { z } from "zod";
 
-
-
 import { env } from "@env/client.mjs";
+import { triggerGTMEvent } from "@lib/gtm";
 
 import { useZodForm } from "@hooks/useZodForm";
+import { NotificationDispatchContext } from "@context/notification";
+import { api } from "@utils/api";
+import { encodeFile } from "@utils/base";
 
 import { Button } from "@components/button";
+import { FileUploadField } from "@components/file-upload";
 import { Form } from "@components/form";
 import { PrimaryHeading } from "@components/headings/primary-heading";
 import { QuaternaryHeading } from "@components/headings/quaternary-heading";
@@ -44,25 +48,34 @@ const applicationFormSchema = z.object({
   email: z
     .string({ required_error: "Email address is required" })
     .email({ message: "Invalid email format" }),
-  phone: z
+  contact: z
     .string({ required_error: "Contact number is required" })
     .min(10, { message: "Contact number should have at least 10 digits" }),
-  coverLetter:
-    typeof window === "undefined"
-      ? z.any({ required_error: "Cover letter is required" })
-      : z
-          .instanceof(File, { message: "Cover letter must be file" })
-          .refine((val) => !acceptedFileTypes.includes(val.type), {
-            message: "Cover letter must be a pdf / word document type",
-          })
-          .refine((val) => val.size < 1000000, {
-            message: "File size must be less than 1mb",
-          }),
+  coverLetter: z
+    .custom<File>((file) => file instanceof File, {
+      message: "Cover Letter must be a valid file",
+    })
+    .refine((val) => val.name !== "" && val.size > 0, {
+      message: "Cover letter is required.",
+    })
+    .refine(
+      (val) => val instanceof File && !acceptedFileTypes.includes(val.type),
+      {
+        message: "Cover letter must be a pdf / word document type",
+      }
+    )
+    .refine((val) => val instanceof File && val.size < 1000000, {
+      message: "File size must be less than 1mb",
+    })
+    .nullable(),
   resume:
     typeof window === "undefined"
-      ? z.any({ required_error: "Resume is required" })
+      ? z.custom<File>((file) => file instanceof File)
       : z
-          .instanceof(File, { message: "Resume must be file" })
+          .instanceof(File, { message: "Resume must be file", fatal: true })
+          .refine((val) => val.name !== "" && val.size > 0, {
+            message: "Resume is required",
+          })
           .refine((val) => !acceptedFileTypes.includes(val.type), {
             message: "Resume must be a pdf / word document type",
           })
@@ -77,7 +90,14 @@ const OpeningDetailsSection: React.FC<Props> = ({
   const [shareWindowOpen, setShareWindowOpen] = useState<boolean>(false);
   const ref = useRef<HTMLElement | null>();
 
-  const applicationForm = useZodForm({ schema: applicationFormSchema });
+  const applicationForm = useZodForm({
+    schema: applicationFormSchema,
+    defaultValues: {
+      coverLetter: null,
+    },
+  });
+  const mutation = api.jobApplication.application.useMutation();
+  const dispatchNotification = useContext(NotificationDispatchContext);
 
   useEffect(() => {
     ref.current = document.getElementById("app");
@@ -122,7 +142,7 @@ const OpeningDetailsSection: React.FC<Props> = ({
                   <svg className="h-4 w-4">
                     <use xlinkHref="/assets/svg/sprites.svg#icon-share" />
                   </svg>
-                  Share this article
+                  Share this opening
                 </button>
               </PopoverPrimitive.Trigger>
               <PopoverPrimitive.Portal forceMount container={ref.current}>
@@ -224,8 +244,52 @@ const OpeningDetailsSection: React.FC<Props> = ({
         <TertiaryHeading>Apply to this opening</TertiaryHeading>
         <Form
           form={applicationForm}
-          onSubmit={(data) => {
-            alert(JSON.stringify(data));
+          onSubmit={async (data) => {
+            try {
+              const response = await mutation.mutateAsync({
+                ...data,
+                coverLetter: data.coverLetter
+                  ? {
+                      filename: data.coverLetter.name,
+                      contentType: data.coverLetter.type,
+                      data: await encodeFile(data.coverLetter),
+                    }
+                  : null,
+                resume: {
+                  filename: data.resume.name,
+                  contentType: data.resume.type,
+                  data: await encodeFile(data.resume),
+                },
+                position: opening.title,
+              });
+
+              if (response.status === "success") {
+                triggerGTMEvent("job-application-submission", {
+                  name: data.name,
+                  email: data.email,
+                  phone: data.contact,
+                });
+
+                dispatchNotification({
+                  message: "Application submitted successfully!",
+                  title: "Success",
+                });
+                applicationForm.reset();
+              } else {
+                dispatchNotification({
+                  message:
+                    "An error occurred while submitting your application. Please try again later.",
+                  title: "Something went wrong",
+                  type: "error",
+                });
+              }
+            } catch (error: unknown) {
+              dispatchNotification({
+                title: "Something went wrong!",
+                message: "An error occurred while submitting your application.",
+                type: "error",
+              });
+            }
           }}
           className="w-full"
         >
@@ -249,9 +313,49 @@ const OpeningDetailsSection: React.FC<Props> = ({
             label="Contact Number"
             required
             aria-required="true"
-            {...applicationForm.register("phone")}
+            {...applicationForm.register("contact")}
             placeholder="+94 71 123 6789"
             type="tel"
+          />
+          <Controller
+            control={applicationForm.control}
+            name="resume"
+            render={({
+              field: { name, onChange, value },
+              formState: { errors, isSubmitting },
+            }) => (
+              <FileUploadField
+                name={name}
+                value={value}
+                onValueChange={onChange}
+                error={errors.resume?.message}
+                label="Resume"
+                disabled={isSubmitting}
+                placeholder="Upload your resume"
+                intent="black"
+                required
+              />
+            )}
+          />
+
+          <Controller
+            control={applicationForm.control}
+            name="coverLetter"
+            render={({
+              field: { name, onChange, value },
+              formState: { errors, isSubmitting },
+            }) => (
+              <FileUploadField
+                name={name}
+                value={value}
+                onValueChange={onChange}
+                error={errors.coverLetter?.message}
+                label="Cover Letter"
+                disabled={isSubmitting}
+                placeholder="Upload your cover letter"
+                intent="black"
+              />
+            )}
           />
           <Button
             fullWidth

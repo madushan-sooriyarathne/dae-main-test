@@ -1,6 +1,11 @@
 {
   "name": "@dae/marina",
   "version": "0.1.0",
+  "author": {
+    "email": "hello@madushan.dev",
+    "name": "Madushan Sooriyarathne",
+    "url": "https://advertaro.lk"
+  },
   "private": true,
   "browserslist": [
     "defaults",

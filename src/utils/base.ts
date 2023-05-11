@@ -33,3 +33,19 @@ export const formatDate = (date: string) => {
 export const formatId = (id: string): string => {
   return id.replace(" ", "-").toLowerCase();
 };
+
+export const encodeFile = (file: File): Promise<string> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      if (reader.result) {
+        resolve(reader.result.toString());
+      } else {
+        reject(
+          new Error("An error occurred while reading the file - file is empty")
+        );
+      }
+    };
+    reader.onerror = reject;
+  });

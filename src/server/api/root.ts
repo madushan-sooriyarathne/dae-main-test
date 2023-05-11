@@ -1,6 +1,6 @@
 import { contactRouter } from "@server/api/routers/contact";
 import { inquiriesRouter } from "@server/api/routers/inquiries";
-import { jobApplicationRouter } from "@server/api/routers/job-application";
+import { jobApplicationRouter } from "@server/api/routers/jobApplication";
 import { newsletterRouter } from "@server/api/routers/newsletter";
 import { createTRPCRouter } from "@server/api/trpc";
 
@@ -12,8 +12,8 @@ import { createTRPCRouter } from "@server/api/trpc";
 export const appRouter = createTRPCRouter({
   inquiries: inquiriesRouter,
   contact: contactRouter,
-  newsletter: newsletterRouter,
   jobApplication: jobApplicationRouter,
+  newsletter: newsletterRouter,
 });
 
 // export type definition of API
