@@ -2,6 +2,8 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "@server/api/trpc";
 
+import { addUser } from "@utils/mailchimp-api";
+
 export const newsletterRouter = createTRPCRouter({
   subscribeToNewsletter: publicProcedure
     .input(
@@ -11,10 +13,9 @@ export const newsletterRouter = createTRPCRouter({
           .email({ message: "invalid email format." }),
       })
     )
-    .mutation(({ input }) => {
+    .mutation(async ({ input }) => {
       // TODO add email subscription logic
-      const subscribed = true;
-
+      const subscribed = await addUser({ email: input.email });
       if (subscribed) {
         return {
           status: "success",

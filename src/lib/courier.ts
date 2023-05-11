@@ -1,9 +1,9 @@
 import { CourierClient } from "@trycourier/courier";
 
-import { env } from "@env/client.mjs";
+import { env } from "@env/server.mjs";
 
 const courierClient = CourierClient({
-  authorizationToken: env.NEXT_PUBLIC_COURIER_AUTH_TOKEN,
+  authorizationToken: env.COURIER_AUTH_TOKEN,
 });
 
 export { courierClient };

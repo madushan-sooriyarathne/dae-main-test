@@ -8,6 +8,10 @@ import { z } from "zod";
 export const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
   SITE_URL: z.string().min(1).startsWith("https://"),
+  COURIER_AUTH_TOKEN: z.string().min(1),
+  MAILCHIMP_API_KEY: z.string().min(1),
+  MAILCHIMP_AUDIENCE_ID: z.string().min(1),
+  MAILCHIMP_SERVER_PREFIX: z.string().min(1),
 });
 
 /**
@@ -18,6 +22,10 @@ export const serverSchema = z.object({
 export const serverEnv = {
   NODE_ENV: process.env.NODE_ENV,
   SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+  COURIER_AUTH_TOKEN: process.env.COURIER_AUTH_TOKEN,
+  MAILCHIMP_API_KEY: process.env.MAILCHIMP_API_KEY,
+  MAILCHIMP_AUDIENCE_ID: process.env.MAILCHIMP_AUDIENCE_ID,
+  MAILCHIMP_SERVER_PREFIX: process.env.MAILCHIMP_SERVER_PREFIX,
 };
 
 /**
@@ -31,7 +39,6 @@ export const clientSchema = z.object({
   NEXT_PUBLIC_MAPBOX_API_KEY: z.string().min(1),
   NEXT_PUBLIC_GTM_ID: z.string().min(1),
   NEXT_PUBLIC_SITE_URL: z.string().min(1),
-  NEXT_PUBLIC_COURIER_AUTH_TOKEN: z.string().min(1),
 });
 
 /**
@@ -48,5 +55,4 @@ export const clientEnv = {
   NEXT_PUBLIC_MAPBOX_API_KEY: process.env.NEXT_PUBLIC_MAPBOX_API_KEY,
   NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
   NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
-  NEXT_PUBLIC_COURIER_AUTH_TOKEN: process.env.NEXT_PUBLIC_COURIER_AUTH_TOKEN,
 };
