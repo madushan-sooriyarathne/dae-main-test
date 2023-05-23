@@ -63,6 +63,7 @@ const ContactDetailsSection: React.FC = (): JSX.Element => {
             </a>
           </div>
           <object
+            aria-label="background gradient shadow"
             data="/assets/svg/gradient-shadow.svg"
             className="absolute top-full left-0 right-0 w-full opacity-0 transition-opacity duration-200 ease-in-out group-hover/contact:opacity-100"
           />

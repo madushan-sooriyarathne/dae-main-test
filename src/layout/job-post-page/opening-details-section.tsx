@@ -137,6 +137,7 @@ const OpeningDetailsSection: React.FC<Props> = ({
                 <button
                   type="button"
                   role="button"
+                  aria-label="job opening share button"
                   className="flex items-center justify-start gap-x-1 rounded fill-water px-3 py-1.5 font-sans text-xs font-semibold tracking-wide text-water transition-colors duration-200 ease-in-out hover:bg-white-300 data-[state=open]:bg-white-300 lg:gap-x-2 lg:text-sm"
                 >
                   <svg className="h-4 w-4">

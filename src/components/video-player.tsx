@@ -72,6 +72,7 @@ const VideoPlayer: React.FC<Props> = ({ video }: Props): JSX.Element => {
           {interacted && (
             <button
               onClick={toggleMute}
+              aria-label="mute/unmute button"
               className={cn(
                 "flex h-10 w-10 items-center justify-center rounded-md bg-white transition-opacity duration-200 ease-in-out",
                 {

@@ -417,6 +417,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
                 >
                   <div className="flex w-full items-center justify-between gap-x-6">
                     <button
+                      aria-label="go to previous months button"
                       type="button"
                       onClick={goToPreviousMonths}
                       tabIndex={0}
@@ -430,6 +431,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
                       type="button"
                       tabIndex={0}
                       onClick={goToNextMonths}
+                      aria-label="go to next month button"
                       className="group flex h-9 w-9 items-center justify-center rounded-full border border-white-500 transition-[background-color] duration-200 ease-in-out hover:bg-black-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black-700 lg:h-12 lg:w-12"
                     >
                       <svg className="h-5 w-5 fill-black-700 transition-colors duration-200 ease-in-out group-hover:fill-black ">
@@ -601,6 +603,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                   <button
                     type="button"
                     onClick={goToPreviousMonths}
+                    aria-label="go to previous months button"
                     className="group flex h-9 w-9 items-center justify-center rounded-full border border-white-500 transition-[background-color] duration-200 ease-in-out hover:bg-black-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black-700 lg:h-12 lg:w-12"
                   >
                     <svg className="h-5 w-5 fill-black-700 transition-colors duration-200 ease-in-out group-hover:fill-black">
@@ -609,6 +612,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                   </button>
                   <button
                     type="button"
+                    aria-label="go to next months button"
                     onClick={goToNextMonths}
                     className="group flex h-9 w-9 items-center justify-center rounded-full border border-white-500 transition-[background-color] duration-200 ease-in-out hover:bg-black-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black-700 lg:h-12 lg:w-12"
                   >

@@ -60,6 +60,7 @@ const CompanyValueSection: React.FC<Props> = ({
                 {val.description}
               </Paragraph>
               <object
+                aria-label="background gradient shadow"
                 data="/assets/svg/gradient-shadow.svg"
                 className="absolute right-0 left-0 top-full w-full opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100"
               />

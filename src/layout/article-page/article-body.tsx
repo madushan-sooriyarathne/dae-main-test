@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   EmailIcon,
   EmailShareButton,
@@ -26,6 +27,11 @@ interface Props {
 }
 
 const ArticleBody: React.FC<Props> = ({ article }: Props): JSX.Element => {
+  const [publishedDate, setPublishedDate] = useState<string | null>(null);
+
+  useEffect(() => {
+    setPublishedDate(formatDate(article.publishedDate));
+  }, [article.publishedDate]);
   return (
     <section className="main-grid-columns grid">
       <div className="col-content mx-auto flex w-[min(100%,_68.75rem)] flex-col items-stretch justify-start gap-y-9 md:gap-y-12 lg:gap-y-14 xl:gap-y-16">
@@ -41,7 +47,7 @@ const ArticleBody: React.FC<Props> = ({ article }: Props): JSX.Element => {
               </p>
             )}
             <time className="text-left font-sans text-xs font-semibold tracking-wider text-black-700 lg:text-center lg:text-sm">
-              {formatDate(article.publishedDate)}
+              {publishedDate}
             </time>
           </div>
           <PrimaryHeading

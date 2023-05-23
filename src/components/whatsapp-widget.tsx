@@ -72,6 +72,7 @@ const WhatsappWidget: React.FC = (): JSX.Element => {
                 Chat on WhatsApp
               </a>
               <button
+                aria-label="WhatsApp contact button"
                 onClick={() => setWidgetOpen(false)}
                 className="h-10 rounded-md bg-primary px-3 py-2 font-sans text-xs font-semibold tracking-wide text-white transition-colors duration-200 hover:bg-primary-800"
               >
@@ -82,6 +83,7 @@ const WhatsappWidget: React.FC = (): JSX.Element => {
         )}
       </AnimatePresence>
       <button
+        aria-label="WhatsApp widget close button"
         onClick={handleWidgetClick}
         className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-lg shadow-black/20 outline-none"
       >

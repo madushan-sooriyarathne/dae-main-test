@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { brand, navLinks, socialLinks } from "site-data";
 
@@ -7,6 +8,10 @@ import { QuaternaryHeading } from "@components/headings/quaternary-heading";
 import { Paragraph } from "@components/paragraph";
 
 const Footer: React.FC = (): JSX.Element => {
+  const [year, setYear] = useState<number>(2023);
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
   return (
     <footer className="main-grid-columns row-start-2 grid w-full auto-rows-min grid-cols-1 items-start justify-items-center gap-y-12 bg-water pt-12 md:gap-y-0 md:pt-0">
       <div
@@ -19,6 +24,7 @@ const Footer: React.FC = (): JSX.Element => {
       >
         <object
           data="/assets/logos/dae-logo-full-white.svg"
+          aria-label="Debug Auto Exclusive Logo"
           type="image/svg+xml"
           className="mx-auto h-24 w-64"
         />
@@ -128,6 +134,7 @@ const Footer: React.FC = (): JSX.Element => {
             key={link.id}
             href={link.url}
             target="_blank"
+            aria-label={link.label}
             rel="noreferrer"
             className="group/link cursor-pointer border border-white p-3 transition-[background-color] duration-200 ease-in-out hover:bg-white"
           >
@@ -145,12 +152,18 @@ const Footer: React.FC = (): JSX.Element => {
           "2xl:col-[col-start_3_/_full-end]  2xl:border-t-0"
         )}
       >
-        <span className="text-center text-2xs font-semibold uppercase tracking-wide text-white xl:text-xs xl:tracking-wider">{`© ${new Date().getFullYear()}  Debug Auto Exclusive. All rights reserved.`}</span>
+        <span className="text-center text-2xs font-semibold uppercase tracking-wide text-white xl:text-xs xl:tracking-wider">{`© ${year}  Debug Auto Exclusive. All rights reserved.`}</span>
         <span className="flex items-center gap-x-1 text-center text-2xs font-semibold uppercase leading-tight tracking-wide text-white xl:text-xs xl:tracking-wider">
           Web concept by{" "}
-          <a href="https://advertaro.lk" target="_blank" rel="noreferrer">
+          <a
+            href="https://advertaro.lk"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Advertaro Creative Agency - Web Developers in Colombo Sri Lanka"
+          >
             <object
               data="/assets/svg/advertaro-logo.svg"
+              aria-label="Advertaro Creative Agency - Web Developers in Colombo, Sri Lanka"
               className="mb-1 h-[13px] w-[70px] object-contain  xl:h-[14px] xl:w-[90px]"
             />
           </a>

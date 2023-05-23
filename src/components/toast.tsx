@@ -83,7 +83,7 @@ const Toast: React.FC = (): JSX.Element => {
             type="button"
             role="button"
             onClick={handleClose}
-            aria-label="close button"
+            aria-label="notification close button"
             className={cn(
               "border-text-water-600 col-start-2 row-span-2 row-start-1  rounded border-2  px-2 py-1 text-xs font-bold tracking-wide text-water-300 hover:bg-water-600 hover:text-white",
               {

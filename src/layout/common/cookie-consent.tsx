@@ -31,6 +31,7 @@ const CookieConsent: React.FC = (): JSX.Element => {
           className="fixed bottom-3 left-3 right-3 z-[210] flex w-[min(28rem,_calc(100%-24px))] flex-col items-stretch justify-between gap-y-6 rounded bg-white p-3 pt-10 drop-shadow-[0_0_30px_hsla(358,85%,55%,0.4)] @container/dialog md:p-4 md:pt-12"
         >
           <object
+            aria-label="cookie consent popup symbol"
             data="/assets/svg/cookie.svg"
             className="absolute top-0 left-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2 transform md:h-16 md:w-16"
           />
@@ -49,6 +50,7 @@ const CookieConsent: React.FC = (): JSX.Element => {
               link="https://dae.fun/privacy-policy"
               outline
               external
+              small
             >
               Privacy Policy
             </Button>
@@ -58,6 +60,7 @@ const CookieConsent: React.FC = (): JSX.Element => {
               onClick={handleAccept}
               intent="primary"
               solid
+              small
             >
               Okay
             </Button>

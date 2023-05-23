@@ -123,6 +123,7 @@ const NavBar: React.FC = (): JSX.Element => {
           </div>
 
           <button
+            aria-label="sidebar navigation menu toggle button"
             className="flex aspect-square h-12 w-12 items-center justify-center  p-1 outline-primary-400 focus-visible:outline focus-visible:outline-2 lg:h-14 lg:w-14 lg:p-2"
             onClick={toggleSideMenu}
           >
@@ -210,6 +211,7 @@ const NavBar: React.FC = (): JSX.Element => {
                 </Link>
                 <button
                   onClick={toggleSideMenu}
+                  aria-label="sidebar navigation menu close button"
                   className="flex h-14 w-14 items-center justify-center border-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-400 "
                 >
                   <svg className="aspect-square w-12 fill-black-700 p-2">

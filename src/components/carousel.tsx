@@ -192,6 +192,11 @@ const Carousel: React.FC<Props> = ({
                     } rounded-full border-0 bg-primary outline-none  outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary`}
                     onClick={() => instanceRef.current?.moveToIdx(index)}
                     key={index}
+                    aria-label={
+                      currentSlide === index
+                        ? `carousel-pagination-${index}-active`
+                        : `carousel-pagination-${index}`
+                    }
                   />
                 )
               )
