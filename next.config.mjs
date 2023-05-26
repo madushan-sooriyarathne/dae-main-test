@@ -15,6 +15,9 @@ const config = {
     domains: ["images.ctfassets.net"],
     formats: ["image/avif", "image/webp"],
   },
+  experimental: {
+    nextScriptWorkers: true,
+  },
   i18n: {
     locales: ["en"],
     defaultLocale: "en",

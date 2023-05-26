@@ -67,6 +67,7 @@
     "zod": "^3.20.2"
   },
   "devDependencies": {
+    "@builder.io/partytown": "^0.8.0",
     "@ianvs/prettier-plugin-sort-imports": "^3.7.1",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@types/mailchimp__mailchimp_marketing": "^3.0.9",
