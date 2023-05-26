@@ -3,12 +3,12 @@ import { type NextPage } from "next";
 import Page from "@layout/common/page";
 import { ReservationContainer } from "@layout/inquiries-page/booking-container";
 
-const ReservationsPage: NextPage = (): JSX.Element => {
+const InquiriesPage: NextPage = (): JSX.Element => {
   return (
-    <Page title="Reservations">
+    <Page title="Inquiries">
       <ReservationContainer />
     </Page>
   );
 };
 
-export default ReservationsPage;
+export default InquiriesPage;

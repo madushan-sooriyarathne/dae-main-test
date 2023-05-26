@@ -84,12 +84,12 @@ const EventsForm: React.FC = (): JSX.Element => {
           Back to Selection
         </Link>
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-black-600">
-            Reserve
-          </span>
           <SecondaryHeading alignment="left" intent="secondary">
             Events
           </SecondaryHeading>
+          <span className="text-xs font-bold uppercase tracking-wider text-black-600">
+            with Debug Auto Exclusive
+          </span>
         </div>
       </div>
       <div className="w-full mlg:col-span-2 mlg:col-start-2 mlg:py-6 mlg:pl-9 mlg:pr-0">
