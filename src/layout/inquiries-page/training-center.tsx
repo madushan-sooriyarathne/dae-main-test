@@ -105,10 +105,14 @@ const TrainingCenterForm: React.FC = (): JSX.Element => {
                 });
 
                 if (response.status === "success") {
-                  triggerGTMEvent("training-center-form-submission", {
+                  triggerGTMEvent("training-center-inquiry", {
                     name: data.name,
                     email: data.email,
-                    phone: data.contact,
+                    course: data.trainingCourse,
+                    timestamp: new Intl.DateTimeFormat("en-LK", {
+                      dateStyle: "medium",
+                      timeStyle: "medium",
+                    }).format(new Date()),
                   });
 
                   dispatchNotification({

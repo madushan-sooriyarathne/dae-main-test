@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import { brand } from "site-data";
 
+import { triggerGTMEvent } from "@lib/gtm";
+
 import { QuaternaryHeading } from "@components/headings/quaternary-heading";
 
 import { fadeInBottom } from "@styles/animations";
@@ -13,6 +15,12 @@ const WhatsappWidget: React.FC = (): JSX.Element => {
     if (widgetOpen) {
       setWidgetOpen(false);
     } else {
+      triggerGTMEvent("whatsapp-contact-click", {
+        timestamp: new Intl.DateTimeFormat("en-LK", {
+          dateStyle: "medium",
+          timeStyle: "medium",
+        }).format(new Date()),
+      });
       // open the whatsapp link
       window.open(
         `https://api.whatsapp.com/send/?phone=+${
@@ -64,6 +72,8 @@ const WhatsappWidget: React.FC = (): JSX.Element => {
                 }&text=I%27m+Interested+in+The+Marina+by+Debug+Auto+Exclusive.+I+need+to+know+more.+&type=phone_number&app_absent=0`}
                 target="_blank"
                 rel="noreferrer"
+                id="whatsapp-button"
+                data-gtm-trigger="whatsapp-widget"
                 className="flex h-10 cursor-pointer items-center justify-start gap-x-2 rounded-md bg-[#25D366] px-3 py-2 font-sans text-xs font-semibold tracking-wide text-white no-underline transition-colors duration-200 hover:bg-[#049A3C]"
               >
                 <svg className="h-5 w-5 fill-white">

@@ -77,6 +77,10 @@ const NewsletterSection: React.FC<Props> = ({ trim }): JSX.Element => {
                   // trigger GTM event
                   triggerGTMEvent("newsletter-subscription", {
                     email: data.email,
+                    timestamp: new Intl.DateTimeFormat("en-LK", {
+                      dateStyle: "medium",
+                      timeStyle: "medium",
+                    }).format(new Date()),
                   });
 
                   dispatchNotification({

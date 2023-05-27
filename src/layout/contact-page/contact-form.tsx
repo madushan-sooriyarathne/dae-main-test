@@ -81,7 +81,10 @@ const ContactForm: React.FC<ImageContentSectionType> = ({
                 triggerGTMEvent("contact-form-submission", {
                   name: data.name,
                   email: data.email,
-                  phone: data.contactNumber,
+                  timestamp: new Intl.DateTimeFormat("en-LK", {
+                    dateStyle: "medium",
+                    timeStyle: "medium",
+                  }).format(new Date()),
                 });
 
                 notificationDispatch({

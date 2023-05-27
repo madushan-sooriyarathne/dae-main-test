@@ -104,11 +104,14 @@ const EventsForm: React.FC = (): JSX.Element => {
                 });
 
                 if (response.status === "success") {
-                  triggerGTMEvent("event-form-submission", {
+                  triggerGTMEvent("events-inquiry", {
                     name: data.name,
                     email: data.email,
-                    phone: data.contact,
                     eventType: data.eventType,
+                    timestamp: new Intl.DateTimeFormat("en-LK", {
+                      dateStyle: "medium",
+                      timeStyle: "medium",
+                    }).format(new Date()),
                   });
 
                   dispatchNotification({

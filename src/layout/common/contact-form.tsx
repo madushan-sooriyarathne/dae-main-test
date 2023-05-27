@@ -52,7 +52,10 @@ const ContactFormSection: React.FC = (): JSX.Element => {
                 triggerGTMEvent("contact-form-submission", {
                   name: data.name,
                   email: data.email,
-                  phone: data.phone,
+                  timestamp: new Intl.DateTimeFormat("en-LK", {
+                    dateStyle: "medium",
+                    timeStyle: "medium",
+                  }).format(new Date()),
                 });
 
                 dispatchNotification({
