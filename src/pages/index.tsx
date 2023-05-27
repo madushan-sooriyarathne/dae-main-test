@@ -9,7 +9,7 @@ import {
   getPageSummeryBlock,
   getTestimonials,
   getTextContentBlock,
-  getVideoBlock,
+  // getVideoBlock,
 } from "@cms/content-studio";
 
 import type { ContentGroupType } from "@layout/common/groups/content-group";
@@ -41,7 +41,7 @@ const TestimonialSection = dynamic(() =>
 );
 
 interface Props {
-  heroVideo: VideoType;
+  heroVideo: VideoType | null;
   heroSlides: HeroSlide[];
   pageSummery: PageSummerySectionType;
   childSites: ChildSite[];
@@ -61,12 +61,9 @@ const Home: NextPage<Props> = ({
   latestArticles,
   testimonials,
 }) => {
-  console.log(heroVideo.type);
   return (
     <Page title="Home">
-      {heroVideo.type === "Local" && (
-        <Hero video={heroVideo} slides={heroSlides} />
-      )}
+      <Hero video={heroVideo} slides={heroSlides} />
       <PageSummerySection {...pageSummery} />
       <ChildSitesSection childSites={childSites} />
       <MultiItemSection {...whyDAESection}>
@@ -86,7 +83,7 @@ const Home: NextPage<Props> = ({
 const getStaticProps: GetStaticProps = async (): Promise<
   GetStaticPropsResult<Props>
 > => {
-  const heroVideo = await getVideoBlock("4j0keJ4b1W4R0ZLmpfXQxX");
+  // const heroVideo = await getVideoBlock("4j0keJ4b1W4R0ZLmpfXQxX");
   const heroSlides = await getHeroSlides();
   const pageSummery = await getPageSummeryBlock("6hCw1Nn2Xv53i6BuZGHF0g");
   const childSites = await getChildSites();
@@ -97,7 +94,7 @@ const getStaticProps: GetStaticProps = async (): Promise<
 
   return {
     props: {
-      heroVideo,
+      heroVideo: null,
       heroSlides,
       pageSummery,
       childSites,

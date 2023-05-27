@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
+
 import { AnimatePresence, m, type Variants } from "framer-motion";
 
 import { clamp } from "@utils/base";
@@ -36,9 +37,28 @@ const slideVariants: Variants = {
     },
   },
 };
+const slideImageVariants: Variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeInOut",
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeInOut",
+    },
+  },
+};
 
 interface Props {
-  video: LocalVideoType;
+  video: VideoType | null;
   slides: HeroSlide[];
 }
 
@@ -65,39 +85,72 @@ const Hero: React.FC<Props> = ({ video, slides }: Props): JSX.Element => {
 
   return (
     <header className="mt:relative mt-18 grid w-full grid-cols-1 grid-rows-[min-content_min-content] bg-black lg:mt-0">
-      <div className=" relative isolate aspect-square w-full overflow-hidden sm:aspect-[4/3] md:aspect-video lg:aspect-auto lg:h-screen">
-        {componentMounted && (
-          <m.div
-            variants={fadeIn}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            data-id="outer-wrapper"
-            className="h-full w-full [&_video]:object-cover"
-          >
-            <ReactPlayer
-              controls={false}
-              height="100%"
-              width="100%"
-              loop
-              muted
-              playing={true}
-              url={video.src[0]?.url}
-              fallback={
-                <ImageComponent
-                  image={video.fallbackImage}
-                  priority
-                  sizes="100%"
-                />
-              }
+      {video && video.type === "Local" ? (
+        <div className=" relative isolate aspect-square w-full overflow-hidden sm:aspect-[4/3] md:aspect-video lg:aspect-auto lg:h-screen">
+          {componentMounted && (
+            <m.div
+              variants={fadeIn}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              data-id="outer-wrapper"
+              className="h-full w-full [&_video]:object-cover"
+            >
+              <ReactPlayer
+                controls={false}
+                height="100%"
+                width="100%"
+                loop
+                muted
+                playing={true}
+                url={video.src[0]?.url}
+                fallback={
+                  <ImageComponent
+                    image={video.fallbackImage}
+                    priority
+                    sizes="100vw"
+                  />
+                }
+              />
+            </m.div>
+          )}
+          <div className="absolute inset-0 z-[-1] aspect-square w-full sm:aspect-[4/3] md:aspect-video lg:aspect-[4/3]">
+            <ImageComponent
+              image={video.fallbackImage}
+              sizes="100vw"
+              priority
             />
-          </m.div>
-        )}
-        <div className="absolute inset-0 z-[-1] aspect-square w-full sm:aspect-[4/3] md:aspect-video lg:aspect-[4/3]">
-          <ImageComponent image={video.fallbackImage} sizes="100vw" priority />
+          </div>
+          <div className="absolute inset-0 z-[1] h-full w-full bg-[image:linear-gradient(0deg,_rgba(2,48,75,1)_0%,_rgba(2,48,75,0)_100%)]" />
         </div>
-        <div className="absolute inset-0 z-[1] h-full w-full bg-[image:linear-gradient(0deg,_rgba(2,48,75,1)_0%,_rgba(2,48,75,0)_100%)]" />
-      </div>
+      ) : (
+        <div className="relative isolate aspect-square w-full overflow-hidden sm:aspect-[4/3] md:aspect-video lg:aspect-auto lg:h-screen">
+          <AnimatePresence mode="popLayout" initial={false}>
+            {slides.map(
+              (slide, index) =>
+                index === activeSlide && (
+                  <m.div
+                    key={`slide-${index}`}
+                    className="relative isolate aspect-square w-full overflow-hidden sm:aspect-[4/3] md:aspect-video lg:aspect-auto lg:h-screen"
+                    variants={slideImageVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                  >
+                    <div className="absolute inset-0 z-[-1]">
+                      <ImageComponent
+                        image={slide.image}
+                        priority
+                        sizes="100vw"
+                      />
+                    </div>
+                    <div className="absolute inset-0 z-[1] h-full w-full bg-[image:linear-gradient(0deg,_rgba(2,48,75,1)_0%,_rgba(2,48,75,0)_100%)]" />
+                  </m.div>
+                )
+            )}
+          </AnimatePresence>
+        </div>
+      )}
 
       <div className="bg-water px-4 pb-12 lg:absolute lg:inset-0 lg:flex lg:w-full lg:items-end lg:bg-transparent lg:px-12 3xl:px-16 3xl:py-16">
         <AnimatePresence mode="wait" initial={false}>

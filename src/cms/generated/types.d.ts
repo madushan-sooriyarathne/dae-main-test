@@ -270,6 +270,9 @@ export interface IHeroSlideFields {
 
   /** External Link */
   externalLink: boolean;
+
+  /** Image */
+  image: Asset;
 }
 
 export interface IHeroSlide extends Entry<IHeroSlideFields> {
@@ -669,6 +672,9 @@ export interface ITrainingCourse extends Entry<ITrainingCourseFields> {
 }
 
 export interface IVideoBlockFields {
+  /** Id */
+  id: string;
+
   /** Type */
   type: "Local" | "Youtube";
 

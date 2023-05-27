@@ -137,6 +137,7 @@ declare global {
     ctaText: string | null;
     ctaLink: string | null;
     externalLink: boolean;
+    image: Image;
   };
 
   // Main Specific types

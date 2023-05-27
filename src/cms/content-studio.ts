@@ -5,7 +5,7 @@ import { contentfulClient, getAssetUrl } from "@lib/contentful";
 import { formatId } from "@utils/base";
 import { getBlurHash } from "@utils/blurHashGenerator";
 
-import {
+import type {
   IArticleFields,
   IBannerBlockFields,
   IBannerCardBlockFields,
@@ -16,7 +16,6 @@ import {
   IHeroSlideFields,
   IImageContentBlockFields,
   IJobPostFields,
-  ILegalDocument,
   ILegalDocumentFields,
   IMultiImageContentBlockFields,
   IPageHeaderBlockFields,
@@ -325,12 +324,15 @@ export const getHeroSlides = async (): Promise<HeroSlide[]> => {
     const data = await contentfulClient.getEntries<IHeroSlideFields>({
       content_type: "heroSlide",
     });
+    return Promise.all(
+      data.items.map(async (slide) => ({
+        ...slide.fields,
+        image: await processContentfulImage(slide.fields.image),
 
-    return data.items.map((slide) => ({
-      ...slide.fields,
-      ctaLink: slide.fields.ctaLink || null,
-      ctaText: slide.fields.ctaText || null,
-    }));
+        ctaLink: slide.fields.ctaLink || null,
+        ctaText: slide.fields.ctaText || null,
+      }))
+    );
   } catch (err: unknown) {
     throw new Error(`Error fetching the Hero Slides`);
   }
