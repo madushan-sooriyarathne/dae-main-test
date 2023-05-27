@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { AnimatePresence, m } from "framer-motion";
-import { reservationTypes } from "site-data";
+import { inquiryTypes } from "site-data";
 
 import { cn } from "@lib/clsx";
 
@@ -14,10 +14,10 @@ import { ImageComponent } from "@components/image-component";
 
 import { fadeIn } from "@styles/animations";
 
-const ReservationContainer: React.FC = (): JSX.Element => {
+const InquiryContainer: React.FC = (): JSX.Element => {
   const router = useRouter();
 
-  const reservationType = useMemo(() => {
+  const inquiryType = useMemo(() => {
     return router.query.type ? (router.query.type as string) : null;
   }, [router.query]);
 
@@ -25,7 +25,7 @@ const ReservationContainer: React.FC = (): JSX.Element => {
     <section className="main-grid-columns grid">
       <div className="col-content mt-32 mb-18 w-full">
         <AnimatePresence mode="wait">
-          {reservationType === null && (
+          {inquiryType === null && (
             <m.div
               variants={fadeIn}
               initial="initial"
@@ -35,10 +35,10 @@ const ReservationContainer: React.FC = (): JSX.Element => {
               key="selection-screen"
             >
               <SecondaryHeading alignment="center" intent="primary">
-                Select the reservation type your are looking for
+                Select the Inquiry type your are looking for
               </SecondaryHeading>
               <div className="grid w-full grid-cols-1 items-center justify-center gap-5 md:grid-cols-2">
-                {reservationTypes.map((type) =>
+                {inquiryTypes.map((type) =>
                   type.type === "in-site" ? (
                     <Link
                       href={`/inquiries/?type=${type.id}`}
@@ -94,8 +94,8 @@ const ReservationContainer: React.FC = (): JSX.Element => {
               </div>
             </m.div>
           )}
-          {reservationType === "training-center" && <TrainingCenterForm />}
-          {reservationType === "events" && <EventsForm />}
+          {inquiryType === "training-center" && <TrainingCenterForm />}
+          {inquiryType === "events" && <EventsForm />}
         </AnimatePresence>
       </div>
       <div className="grid w-full grid-cols-1 items-start justify-items-center"></div>
@@ -103,4 +103,4 @@ const ReservationContainer: React.FC = (): JSX.Element => {
   );
 };
 
-export { ReservationContainer };
+export { InquiryContainer };

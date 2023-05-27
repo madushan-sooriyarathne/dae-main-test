@@ -54,7 +54,7 @@ export const socialLinks: SocialLink[] = [
   },
 ];
 
-export const reservationTypes: ReservationType[] = [
+export const inquiryTypes: InquiryType[] = [
   {
     image: {
       src: "https://images.ctfassets.net/88dxwx49umgp/7JTcwrtVo4x1M1Xt6pULE5/ad4deb70940d9628747ad7f26b78997d/reservation-type-cruises.jpg",

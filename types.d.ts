@@ -32,7 +32,7 @@ declare global {
     type?: "error";
   };
 
-  type ReservationType =
+  type InquiryType =
     | {
         image: Image;
         id: string;
