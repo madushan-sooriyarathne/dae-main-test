@@ -13,14 +13,17 @@ export const brand: Brand = {
 };
 
 export const navLinks: NavLink[] = [
-  { label: "About", route: "/about" },
-  { label: "Membership", route: "/membership" },
-  { label: "Events", route: "/events" },
-  { label: "Training Center", route: "/training-center" },
-  { label: "Blog", route: "/blog" },
+  { label: "Marina", route: "https://marina.dae.fun" },
+  { label: "Products", route: "https://products.dea.fun" },
+  { label: "Charter", route: "https://charter.dae.fun" },
+  { label: "JetSki Safari", route: "https://safari.dae.fun" },
 ];
 
 export const sideBarNavLinks: NavLink[] = [
+  { label: "Marina", route: "https://marina.dae.fun" },
+  { label: "Products", route: "https://products.dea.fun" },
+  { label: "Charter", route: "https://charter.dae.fun" },
+  { label: "JetSki Safari", route: "https://safari.dae.fun" },
   { label: "About", route: "/about" },
   { label: "Membership", route: "/membership" },
   { label: "Events", route: "/events" },
