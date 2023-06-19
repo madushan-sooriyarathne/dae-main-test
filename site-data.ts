@@ -14,7 +14,7 @@ export const brand: Brand = {
 
 export const navLinks: NavLink[] = [
   { label: "Marina", route: "https://marina.dae.fun" },
-  { label: "Products", route: "https://products.dea.fun" },
+  { label: "Products", route: "https://products.dae.fun" },
   { label: "Charter", route: "https://charter.dae.fun" },
   { label: "JetSki Safari", route: "https://safari.dae.fun" },
 ];
