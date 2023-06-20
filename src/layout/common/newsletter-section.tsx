@@ -33,7 +33,7 @@ const NewsletterSection: React.FC<Props> = ({ trim }): JSX.Element => {
   const dispatchNotification = useContext(NotificationDispatchContext);
   const { data: newsletterImage } = useQuery<Image>({
     queryKey: ["newsletter-image"],
-    queryFn: () => getImage("N6cXPOVQeLurcvdkwiYvG"),
+    queryFn: () => getImage("72bNWzDgJT0Os62WstxAJ8"),
   });
 
   const mutation = api.newsletter.subscribeToNewsletter.useMutation();

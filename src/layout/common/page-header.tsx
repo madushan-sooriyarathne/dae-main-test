@@ -36,7 +36,7 @@ const PageHeader: React.FC<Props> = ({
   return (
     <header className="relative isolate w-full lg:h-[70vh]">
       <div className="relative isolate aspect-square w-full overflow-hidden sm:aspect-[4/3] md:aspect-video lg:aspect-auto lg:h-full">
-        <div className="absolute inset-0 z-[-1] aspect-square w-full sm:aspect-[4/3] md:aspect-video lg:aspect-[4/3]">
+ <div className="absolute inset-0 z-[-1] aspect-square w-full sm:aspect-auto sm:h-full"> 
           <AnimatePresence>
             {images.map(
               (image, index) =>
