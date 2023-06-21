@@ -5,7 +5,7 @@ import { Paragraph } from "@components/paragraph";
 
 interface Props {
   heading: string;
-  subHeading: string;
+  description: string;
   button?: ButtonType;
   image: Image | null;
 }
@@ -13,26 +13,22 @@ interface Props {
 const PageSummerySection: React.FC<Props> = ({
   image,
   heading,
-  subHeading,
+  description,
   button,
 }: Props): JSX.Element => {
   return (
-    <section className="main-grid-columns relative isolate grid w-full items-stretch justify-start gap-y-4 md:gap-y-12 lg:gap-y-16">
-      <div className="col-full row-start-1 row-end-2 flex w-full flex-col items-start justify-center gap-y-6  md:col-content-start-half ">
+    <section className="relative isolate flex w-full flex-col items-center justify-start gap-y-4 px-4 md:gap-y-12 md:px-5 lg:gap-y-16 lg:px-9">
+      <div className="flex w-[min(100%,_68.75em)] flex-col items-start justify-center gap-y-6 lg:items-center lg:[&>*]:text-center">
         <PrimaryHeading alignment="left" intent="primary">
           {heading}
         </PrimaryHeading>
-      </div>
-      <div className="col-full row-start-2 row-end-3 flex flex-col items-start justify-center gap-y-6 md:col-content-end-half md:row-start-1 md:row-end-2 md:py-4 md:pl-9 lg:pl-12 xl:pl-14 2xl:pl-16">
-        {subHeading && (
-          <Paragraph alignment="left" intent="black" titleParagraph>
-            {subHeading}
-          </Paragraph>
-        )}
+        <Paragraph alignment="left" intent="black" titleParagraph>
+          {description}
+        </Paragraph>
         {button && <Button {...button} />}
       </div>
       {image && (
-        <div className="col-full aspect-square w-full overflow-hidden rounded-sm sm:aspect-[4/3] md:col-content md:aspect-video lg:aspect-[3/1.3]">
+        <div className="aspect-square w-full overflow-hidden rounded-sm sm:aspect-[4/3] md:col-content md:aspect-video lg:aspect-[3/1.3]">
           <ImageComponent image={image} sizes="100vw" />
         </div>
       )}

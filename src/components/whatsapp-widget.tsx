@@ -11,7 +11,7 @@ import { fadeInBottom } from "@styles/animations";
 const WhatsappWidget: React.FC = (): JSX.Element => {
   const [widgetOpen, setWidgetOpen] = useState<boolean>(false);
 
-  const handleWidgetClick = useCallback(() => {
+  const handleWidgetClick = () => {
     if (widgetOpen) {
       setWidgetOpen(false);
     } else {
@@ -30,10 +30,20 @@ const WhatsappWidget: React.FC = (): JSX.Element => {
         "_blank"
       );
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  };
+
+  const handleWidgetClose = () => {
+    if (window.localStorage)
+      window.localStorage.setItem("whatsapp-widget-closed", "true");
+
+    setWidgetOpen(false);
+  };
 
   useEffect(() => {
+    const userConsent = window.localStorage.getItem("whatsapp-widget-closed");
+
+    if (userConsent && userConsent === "true") return;
+
     const openTimeout = setTimeout(() => {
       setWidgetOpen(true);
     }, 10000);
@@ -83,7 +93,7 @@ const WhatsappWidget: React.FC = (): JSX.Element => {
               </a>
               <button
                 aria-label="WhatsApp contact button"
-                onClick={() => setWidgetOpen(false)}
+                onClick={handleWidgetClose}
                 className="h-10 rounded-md bg-primary px-3 py-2 font-sans text-xs font-semibold tracking-wide text-white transition-colors duration-200 hover:bg-primary-800"
               >
                 Close

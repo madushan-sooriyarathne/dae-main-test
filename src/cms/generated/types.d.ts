@@ -449,8 +449,8 @@ export interface IPageSummeryBlockFields {
   /** Heading */
   heading: string;
 
-  /** Sub Heading */
-  subHeading: string;
+  /** Description */
+  description: string;
 
   /** Image */
   image?: Asset | undefined;
