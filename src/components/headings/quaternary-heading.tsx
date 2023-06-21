@@ -5,7 +5,7 @@ import { cn } from "@lib/clsx";
 
 const headingVariants = cva(
   [
-    "font-sans font-semibold text-[1.125rem] leading-tight tracking-normal md:text-[1.25rem] md:font-bold lg:text-[1.375rem] 3xl:text-[1.625rem]",
+    "font-sans font-semibold text-[1.125rem] leading-tight tracking-normal md:text-[1.25rem]  lg:text-[1.375rem] 3xl:text-[1.625rem]",
   ],
   {
     variants: {
