@@ -87,7 +87,6 @@ export const getImageContentBlock = async (
 
     return {
       heading: data.fields.heading,
-      subHeading: data.fields.subHeading || null,
       content: data.fields.description,
       image: await processContentfulImage(data.fields.image),
     };
@@ -110,7 +109,6 @@ export const getMultiImageContentBlock = async (
 
     return {
       heading: data.fields.heading,
-      subHeading: data.fields.subHeading || null,
       content: data.fields.description,
       images: (await Promise.all(
         data.fields.images.map((image) => processContentfulImage(image))
@@ -162,7 +160,6 @@ export const getBannerBlock = async (
 
     return {
       heading: data.fields.heading,
-      subHeading: data.fields.subHeading,
       content: data.fields.description ? data.fields.description : null,
       images: await Promise.all(
         data.fields.images.map((img) => processContentfulImage(img))
@@ -187,7 +184,6 @@ export const getPageHeaderBlock = async (
 
     return {
       heading: data.fields.heading,
-      subHeading: data.fields.subHeading,
       images: await Promise.all(
         data.fields.images.map((img) => processContentfulImage(img))
       ),
@@ -274,7 +270,6 @@ export const getTextContentBlock = async (
 
     return {
       heading: data.fields.heading,
-      subHeading: data.fields.subHeading || null,
       content: data.fields.description,
     };
   } catch {

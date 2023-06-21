@@ -1,13 +1,11 @@
 import { Button, type ButtonType } from "@components/button";
 import { SecondaryHeading } from "@components/headings/secondary-heading";
-import { SubHeading } from "@components/headings/sub-heading";
 import { ImageComponent } from "@components/image-component";
 import { Paragraph } from "@components/paragraph";
 
 interface Props {
   id: string;
   heading: string;
-  subHeading: string;
   content: string | null;
   image: Image;
   button?: ButtonType;
@@ -15,7 +13,6 @@ interface Props {
 
 const BannerCard: React.FC<Props> = ({
   heading,
-  subHeading,
   content,
   image,
   button,
@@ -27,14 +24,7 @@ const BannerCard: React.FC<Props> = ({
       </div>
       <div className="flex w-full flex-col items-start justify-start gap-y-4 bg-water p-4 @lg:aspect-[4/3] @lg:justify-end @lg:bg-transparent @lg:bg-overlayShade @lg:p-6 @xl:py-9 @2xl:p-9">
         <div className="space-x-1">
-          <SubHeading
-            alignment="left"
-            type="primary"
-            intent="white"
-            className="text-sm md:text-base lg:text-lg"
-          >
-            {subHeading}
-          </SubHeading>
+          
           <SecondaryHeading alignment="left" intent="white">
             {heading}
           </SecondaryHeading>

@@ -9,13 +9,11 @@ import { Carousel } from "@components/carousel";
 interface Props {
   articles: Article[];
   heading: string;
-  subHeading?: string;
 }
 
 const OtherArticlesGrid: React.FC<Props> = ({
   articles,
   heading,
-  subHeading,
 }: Props): JSX.Element => {
   //   scroll parallax
   const sectionRef = useRef<HTMLElement>(null);
@@ -45,11 +43,7 @@ const OtherArticlesGrid: React.FC<Props> = ({
   }, [articles]);
 
   return (
-    <TitleContentSection
-      heading={heading}
-      subHeading={subHeading}
-      ref={sectionRef}
-    >
+    <TitleContentSection heading={heading} ref={sectionRef}>
       <div className="lg:hidden">
         <Carousel
           withDots

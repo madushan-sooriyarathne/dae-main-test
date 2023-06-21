@@ -110,7 +110,6 @@ module.exports = {
     },
     fontFamily: {
       sans: ["var(--font-plus-jakarta-sans)"],
-      serif: ["var(--font-playfair-display)"],
     },
     screens: {
       xsm: "360px",

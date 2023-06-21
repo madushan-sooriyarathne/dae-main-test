@@ -105,7 +105,6 @@ declare global {
 
   interface PageHeader {
     heading: string;
-    subHeading: string;
     images: Image[];
   }
 

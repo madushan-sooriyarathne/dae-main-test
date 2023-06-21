@@ -1,7 +1,7 @@
-import { HeadingGroup } from "@layout/common/groups/heading-group";
 
 import { Button } from "@components/button";
 import { ImageComponent } from "@components/image-component";
+import { PrimaryHeading } from "@components/headings/primary-heading";
 
 const SpecialtiesSection: React.FC = (): JSX.Element => {
   return (
@@ -12,45 +12,35 @@ const SpecialtiesSection: React.FC = (): JSX.Element => {
             image={{
               src: "https://images.ctfassets.net/z812u03kxpvy/6PAPhQTaIG5UcIAhithHH2/42442b8ae6bb87567b1d2eba68403cec/dae-fun-runs.jpg",
               alt: "A Man riding a Jet Ski by D.A.E",
-              blurUrl: "",
-            }}
-          />
+                blurUrl: "",
+              }}
+            />
+          </div>
+          <div className="w-ful flex h-full flex-col items-start justify-end gap-y-5 bg-darkOverlay p-4 @md:p-6 @2xl:p-8 @3xl:p-10">
+            <PrimaryHeading intent="white" alignment="left">Fun Runs and Safari Events</PrimaryHeading>
+            <Button
+              intent="white"
+              solid
+              withArrow
+              type="link"
+              link="https://safari.dae.fun"
+            >
+              Explore Fun Runs and Safaris
+            </Button>
+          </div>
         </div>
-        <div className="w-ful flex h-full flex-col items-start justify-end gap-y-5 bg-darkOverlay p-4 @md:p-6 @2xl:p-8 @3xl:p-10">
-          <HeadingGroup
-            intent="white"
-            heading="Fun Runs and Safari Events"
-            subHeading="Celebrate the Important Things"
-            alignment="left"
-          />
-          <Button
-            intent="white"
-            solid
-            withArrow
-            type="link"
-            link="https://safari.dae.fun"
-          >
-            Explore Fun Runs and Safaris
-          </Button>
-        </div>
-      </div>
-      <div className="relative aspect-square w-full @container md:aspect-video lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:aspect-auto lg:h-full">
-        <div className="absolute inset-0 -z-10">
-          <ImageComponent
-            image={{
-              src: "https://images.ctfassets.net/z812u03kxpvy/5FN3VkORVdWlEWxVeuUHEg/0da00dac01adeaafe61afbcb3d840260/dae-marina-services.jpg",
+        <div className="relative aspect-square w-full @container md:aspect-video lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:aspect-auto lg:h-full">
+          <div className="absolute inset-0 -z-10">
+            <ImageComponent
+              image={{
+                src: "https://images.ctfassets.net/z812u03kxpvy/5FN3VkORVdWlEWxVeuUHEg/0da00dac01adeaafe61afbcb3d840260/dae-marina-services.jpg",
               alt: "Boat & Jet Ski Storage by D.A.E Marina",
               blurUrl: "",
             }}
           />
         </div>
         <div className="w-ful flex h-full flex-col items-start justify-end gap-y-5 bg-darkOverlay p-4 @md:p-6 @2xl:p-8 @3xl:p-10">
-          <HeadingGroup
-            intent="white"
-            heading="Marina Facilities"
-            subHeading="Celebrate the Important Things"
-            alignment="left"
-          />
+            <PrimaryHeading intent="white" alignment="left">Marina Facilities</PrimaryHeading>
           <Button
             intent="white"
             solid
@@ -73,12 +63,7 @@ const SpecialtiesSection: React.FC = (): JSX.Element => {
           />
         </div>
         <div className="w-ful flex h-full flex-col items-start justify-end gap-y-5 bg-darkOverlay p-4 @md:p-6 @2xl:p-8 @3xl:p-10">
-          <HeadingGroup
-            intent="white"
-            heading="Exclusive Charters"
-            subHeading="Celebrate the Important Things"
-            alignment="left"
-          />
+            <PrimaryHeading intent="white" alignment="left">Exclusive Charters</PrimaryHeading>
           <Button
             intent="white"
             solid

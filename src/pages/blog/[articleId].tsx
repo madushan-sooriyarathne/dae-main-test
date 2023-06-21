@@ -31,7 +31,6 @@ const ArticlePage: NextPage<Props> = ({
       <OtherArticlesGrid
         articles={otherArticles}
         heading="Other Related Articles"
-        subHeading="Read More"
       />
       <NewsletterSection />
     </Page>

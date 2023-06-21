@@ -16,7 +16,7 @@ import { queryClient } from "@lib/react-query";
 import { NotificationProvider } from "@context/notification";
 import { api } from "@utils/api";
 
-import { playfairDisplay, plusJakartaSans } from "@styles/fonts";
+import { plusJakartaSans } from "@styles/fonts";
 
 // 3rd Party styles
 import "@styles/globals.css";
@@ -91,10 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       />
       <LazyMotion features={loadMotionFeatures} strict>
         <QueryClientProvider client={queryClient}>
-          <div
-            className={`${plusJakartaSans.variable} ${playfairDisplay.variable} font-sans`}
-            id="app"
-          >
+          <div className={`${plusJakartaSans.variable} font-sans`} id="app">
             {/* <AnimatePresence>
             {loading &&   <LoadingScreen key="loading-screen" />}
             </AnimatePresence> */}

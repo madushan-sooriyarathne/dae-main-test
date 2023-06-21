@@ -3,25 +3,27 @@ import { forwardRef, type ReactNode } from "react";
 import { cn } from "@lib/clsx";
 
 import {
-  HeadingGroup,
-  type HeadingGroupType,
-} from "@layout/common/groups/heading-group";
+  PrimaryHeading,
+  type PrimaryHeadingType,
+} from "@components/headings/primary-heading";
 
-interface Props extends Omit<HeadingGroupType, "subHeading"> {
+interface Props extends Omit<PrimaryHeadingType, "children"> {
   children: ReactNode | ReactNode[];
-  subHeading?: string;
   fullWidth?: true;
+  heading: string;
 }
 
 const TitleContentSection = forwardRef<HTMLElement, Props>(
-  ({ children, subHeading, fullWidth, ...headingProps }, ref): JSX.Element => {
+  ({ children, fullWidth, heading, intent, alignment }, ref): JSX.Element => {
     return (
       <section
         className="main-grid-columns grid gap-y-8 lg:gap-y-10 xl:gap-y-12"
         ref={ref}
       >
         <div className={cn("col-content w-full", { "col-full": fullWidth })}>
-          <HeadingGroup {...headingProps} subHeading={subHeading || null} />
+          <PrimaryHeading alignment={alignment} intent={intent}>
+            {heading}
+          </PrimaryHeading>
         </div>
         <div className={cn("col-content w-full", { "col-full": fullWidth })}>
           {children}

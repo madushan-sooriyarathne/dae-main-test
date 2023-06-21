@@ -7,10 +7,9 @@ import { useZodForm } from "@hooks/useZodForm";
 import { NotificationDispatchContext } from "@context/notification";
 import { api } from "@utils/api";
 
-import { HeadingGroup } from "@layout/common/groups/heading-group";
-
 import { Button } from "@components/button";
 import { Form } from "@components/form";
+import { PrimaryHeading } from "@components/headings/primary-heading";
 import { InputField } from "@components/input-field";
 import { Paragraph } from "@components/paragraph";
 
@@ -29,13 +28,9 @@ const ContactFormSection: React.FC = (): JSX.Element => {
   return (
     <div className="main-grid-columns  grid bg-water  py-12 md:bg-contain md:py-16 lg:py-18 xl:py-24 2xl:py-32">
       <div className="col-content mx-auto flex w-[min(100%,_42.5rem)] flex-col items-stretch justify-start gap-y-9 ">
-        <HeadingGroup
-          heading="Have Any Questions?"
-          subHeading="Reach out to us"
-          intent="white"
-          alignment="center"
-          bottom
-        />
+        <PrimaryHeading alignment="center" intent="white">
+          Reach out to us
+        </PrimaryHeading>
         <Form
           form={form}
           onSubmit={async (data) => {

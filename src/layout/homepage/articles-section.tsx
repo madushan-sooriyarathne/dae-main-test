@@ -14,7 +14,6 @@ const ArticlesSection: React.FC<Props> = ({ articles }: Props): JSX.Element => {
       fullWidth
       alignment="center"
       heading="Latest News & Stories"
-      subHeading="Stay Updated"
     >
       <div className="w-full md:px-4 xl:hidden">
         <Carousel

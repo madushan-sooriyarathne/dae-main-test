@@ -4,7 +4,6 @@ import { cn } from "@lib/clsx";
 
 import { Button } from "@components/button";
 import { PrimaryHeading } from "@components/headings/primary-heading";
-import { SubHeading } from "@components/headings/sub-heading";
 import { ImageComponent } from "@components/image-component";
 
 interface Props {
@@ -25,17 +24,14 @@ const ChildSitesSection: React.FC<Props> = ({
             <div className="absolute inset-0 -z-10">
               <ImageComponent image={sites.image} sizes="100vw" />
             </div>
-            <div className="flex h-full w-full flex-col items-stretch justify-end gap-y-5 bg-darkOverlay px-4 py-6 @sm:p-6 @lg/block:px-9 @lg/block:py-8">
+            <div className="flex h-full w-full flex-col items-stretch justify-end gap-y-5 bg-darkOverlay px-4 py-6 @sm:p-6 @lg/block:px-9 @lg/block:py-8 lg:gap-y-9">
               <div className="flex flex-col items-center justify-start @md:items-center @md:[&>*]:text-center">
-                {/* <span className="font-sm text-left font-serif italic tracking-wide text-white md:text-base lg:text-lg">
-                  {sites.tagLine}
-                </span> */}
-                <SubHeading alignment="center" intent="white">
-                  {sites.tagLine}
-                </SubHeading>
                 <PrimaryHeading alignment="left" intent="white">
                   {sites.name}
                 </PrimaryHeading>
+                <span className="font-xs text-left font-sans font-semibold tracking-wide text-white md:text-sm">
+                  {sites.tagLine}
+                </span>
               </div>
               <div
                 className={cn(

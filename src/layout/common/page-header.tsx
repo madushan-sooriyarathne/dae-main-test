@@ -3,23 +3,20 @@ import { AnimatePresence, m } from "framer-motion";
 
 import { clamp } from "@utils/base";
 
-import { HeadingGroup } from "@layout/common/groups/heading-group";
-
 import { Button, type ButtonType } from "@components/button";
+import { DisplayHeading } from "@components/headings/display-heading";
 import { ImageComponent } from "@components/image-component";
 
 import { sliderVariants } from "@styles/animations";
 
 interface Props {
   heading: string;
-  subHeading: string;
   images: Image[];
   button?: ButtonType;
 }
 
 const PageHeader: React.FC<Props> = ({
   heading,
-  subHeading,
   images,
   button,
 }: Props): JSX.Element => {
@@ -36,7 +33,7 @@ const PageHeader: React.FC<Props> = ({
   return (
     <header className="relative isolate w-full lg:h-[70vh]">
       <div className="relative isolate aspect-square w-full overflow-hidden sm:aspect-[4/3] md:aspect-video lg:aspect-auto lg:h-full">
- <div className="absolute inset-0 z-[-1] aspect-square w-full sm:aspect-auto sm:h-full"> 
+        <div className="absolute inset-0 z-[-1] aspect-square w-full sm:aspect-auto sm:h-full">
           <AnimatePresence>
             {images.map(
               (image, index) =>
@@ -61,13 +58,9 @@ const PageHeader: React.FC<Props> = ({
 
       <div className="main-grid-columns grid auto-rows-fr items-end justify-items-start bg-water py-9 md:py-12 lg:absolute lg:inset-0 lg:w-full lg:bg-transparent lg:py-16 ">
         <div className="col-content mx-auto flex w-[min(100%,_50rem)] flex-col items-start justify-end gap-y-6 lg:mx-0 lg:mr-auto lg:items-start lg:gap-y-9">
-          <HeadingGroup
-            heading={heading}
-            subHeading={subHeading}
-            intent="white"
-            displayHeading
-            alignment="left"
-          />
+          <DisplayHeading alignment="left" intent="white">
+            {heading}
+          </DisplayHeading>
           {button && <Button {...button} />}
         </div>
       </div>

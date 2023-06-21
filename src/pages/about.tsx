@@ -51,7 +51,6 @@ const AboutPage: NextPage<Props> = ({
       <OtherArticlesGrid
         articles={latestArticles}
         heading="Latest News & Stories"
-        subHeading="From the press"
       />
       <NewsletterSection />
     </Page>

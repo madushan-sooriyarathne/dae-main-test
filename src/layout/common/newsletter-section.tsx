@@ -11,10 +11,9 @@ import { api } from "@utils/api";
 
 import { getImage } from "@cms/client-utils";
 
-import { HeadingGroup } from "@layout/common/groups/heading-group";
-
 import { Button } from "@components/button";
 import { Form } from "@components/form";
+import { PrimaryHeading } from "@components/headings/primary-heading";
 import { ImageComponent } from "@components/image-component";
 import { InputField } from "@components/input-field";
 import { LoadingSpinner } from "@components/loading-spinner";
@@ -58,12 +57,9 @@ const NewsletterSection: React.FC<Props> = ({ trim }): JSX.Element => {
       )}
 
       <div className="flex w-full flex-col items-stretch gap-y-9 py-12 px-4 md:px-6 lg:col-full-end-half lg:justify-center lg:p-12 2xl:p-16">
-        <HeadingGroup
-          intent="primary"
-          heading="Never miss an update!"
-          subHeading="Sign up for our newsletter"
-          bottom
-        />
+        <PrimaryHeading intent="primary" alignment="center">
+          Never miss an update
+        </PrimaryHeading>
         <div>
           <Form
             form={newsletterForm}

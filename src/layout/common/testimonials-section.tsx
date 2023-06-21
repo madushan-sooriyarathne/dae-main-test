@@ -1,8 +1,7 @@
 import useMediaQuery from "@hooks/useMediaQuery";
 
-import { HeadingGroup } from "@layout/common/groups/heading-group";
-
 import { Carousel } from "@components/carousel";
+import { PrimaryHeading } from "@components/headings/primary-heading";
 import { QuaternaryHeading } from "@components/headings/quaternary-heading";
 import { Paragraph } from "@components/paragraph";
 
@@ -18,12 +17,9 @@ const TestimonialSection: React.FC<Props> = ({
   return (
     <div className="main-grid-columns grid gap-y-9 bg-water  py-16 lg:bg-transparent ">
       <div className="col-content flex w-full items-center justify-center lg:col-full-start-half lg:aspect-[4/3] lg:rounded-br-[5rem] lg:bg-water lg:p-12 xl:!col-[full-start_/_col-end_3] xl:p-16 2xl:p-18 3xl:px-24">
-        <HeadingGroup
-          heading="What Our Guests Are Saying"
-          subHeading="Customer Testimonials"
-          intent="white"
-          alignment="center"
-        />
+        <PrimaryHeading intent="white" alignment="center">
+          What our gests are saying
+        </PrimaryHeading>
       </div>
       <div className="col-content w-full lg:col-full-end-half lg:row-start-1 lg:flex lg:h-full lg:items-center lg:p-9 xl:col-[col-start_4_/_full-end] xl:px-16 2xl:px-24 3xl:px-32 4xl:px-40">
         <Carousel

@@ -51,9 +51,6 @@ export interface IBannerBlockFields {
   /** Heading */
   heading: string;
 
-  /** Sub Heading */
-  subHeading: string;
-
   /** Description */
   description?: string | undefined;
 
@@ -84,9 +81,6 @@ export interface IBannerCardBlockFields {
 
   /** Id */
   id: string;
-
-  /** Sub Heading */
-  subHeading: string;
 
   /** Content */
   content?: string | undefined;
@@ -296,9 +290,6 @@ export interface IImageContentBlockFields {
   /** Heading */
   heading: string;
 
-  /** Sub Heading */
-  subHeading?: string | undefined;
-
   /** Description */
   description: string;
 
@@ -402,9 +393,6 @@ export interface IMultiImageContentBlockFields {
   /** Heading */
   heading: string;
 
-  /** Sub Heading */
-  subHeading?: string | undefined;
-
   /** Description */
   description: string;
 
@@ -435,9 +423,6 @@ export interface IMultiImageContentBlock
 export interface IPageHeaderBlockFields {
   /** Heading */
   heading: string;
-
-  /** Sub Heading */
-  subHeading: string;
 
   /** Images */
   images: Asset[];
@@ -602,9 +587,6 @@ export interface ITestimonial extends Entry<ITestimonialFields> {
 export interface ITextContentBlockFields {
   /** Heading */
   heading: string;
-
-  /** Sub Heading */
-  subHeading?: string | undefined;
 
   /** Description */
   description: string;
