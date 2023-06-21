@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { z } from "zod";
 
 import { cn } from "@lib/clsx";
@@ -9,14 +8,10 @@ import { useZodForm } from "@hooks/useZodForm";
 import { NotificationDispatchContext } from "@context/notification";
 import { api } from "@utils/api";
 
-import { getImage } from "@cms/client-utils";
-
 import { Button } from "@components/button";
 import { Form } from "@components/form";
 import { PrimaryHeading } from "@components/headings/primary-heading";
-import { ImageComponent } from "@components/image-component";
 import { InputField } from "@components/input-field";
-import { LoadingSpinner } from "@components/loading-spinner";
 import { Paragraph } from "@components/paragraph";
 
 interface Props {
