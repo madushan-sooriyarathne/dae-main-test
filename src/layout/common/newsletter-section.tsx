@@ -30,33 +30,16 @@ const newsletterSchema = z.object({
 const NewsletterSection: React.FC<Props> = ({ trim }): JSX.Element => {
   const newsletterForm = useZodForm({ schema: newsletterSchema });
   const dispatchNotification = useContext(NotificationDispatchContext);
-  const { data: newsletterImage } = useQuery<Image>({
-    queryKey: ["newsletter-image"],
-    queryFn: () => getImage("72bNWzDgJT0Os62WstxAJ8"),
-  });
 
   const mutation = api.newsletter.subscribeToNewsletter.useMutation();
 
   return (
     <section
-      className={cn("lg:main-grid-columns w-full bg-lightWater", {
+      className={cn("flex w-full items-center justify-center bg-lightWater", {
         "trim-bottom": trim,
       })}
     >
-      {newsletterImage ? (
-        <div className="aspect-square sm:aspect-[4_/_3] md:aspect-video lg:col-full-start-half lg:aspect-[4/3] lg:h-auto lg:w-full">
-          <ImageComponent
-            image={newsletterImage}
-            sizes="(max-width: 1024px) 100vw, 50vw"
-          />
-        </div>
-      ) : (
-        <div className="flex h-full w-full items-center justify-center">
-          <LoadingSpinner />
-        </div>
-      )}
-
-      <div className="flex w-full flex-col items-stretch gap-y-9 py-12 px-4 md:px-6 lg:col-full-end-half lg:justify-center lg:p-12 2xl:p-16">
+      <div className="flex w-[min(100%,_68.75em)] flex-col items-center gap-y-9 py-12 px-4 md:px-6 lg:col-full-end-half lg:justify-center lg:p-12 2xl:p-16">
         <PrimaryHeading intent="primary" alignment="center">
           Never miss an update
         </PrimaryHeading>
