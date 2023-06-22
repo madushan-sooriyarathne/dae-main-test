@@ -100,13 +100,13 @@ const NavBar: React.FC = (): JSX.Element => {
         </Link>
         <div className="grid h-full grid-cols-[repeat(2,_max-content)] grid-rows-[1fr] items-center justify-end gap-x-2 sm:gap-x-4 md:gap-x-8 lg:gap-x-9 xl:gap-x-12">
           <div className="hidden flex-row items-center justify-end gap-x-8 sm:flex md:gap-x-9 xl:gap-x-12">
-            <div className="hidden flex-row items-center justify-end gap-x-12 xl:flex">
+            <div className="hidden flex-row items-center justify-end gap-x-9 xl:flex">
               {navLinks.map((link) => (
                 <Link
                   key={link.route}
                   href={link.route}
                   className={cn(
-                    "relative font-sans text-xs font-bold uppercase leading-snug tracking-[0.2em] text-black-800 no-underline outline-offset-2 outline-primary-400 transition-[color] duration-200 ease-in-out hover:text-primary focus-visible:outline focus-visible:outline-2",
+                    "relative font-sans text-[11px] font-bold uppercase leading-snug tracking-[0.2em] text-black-800 no-underline outline-offset-2 outline-primary-400 transition-[color] duration-200 ease-in-out hover:text-primary focus-visible:outline focus-visible:outline-2 3xl:text-xs",
                     {
                       "after:absolute after:top-full after:left-0 after:right-0 after:block after:h-[2px] after:w-full after:bg-black-600 after:transition-colors after:duration-200 after:ease-in-out hover:after:bg-primary":
                         router.pathname.startsWith(link.route),
