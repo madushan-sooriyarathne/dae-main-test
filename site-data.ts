@@ -1,13 +1,13 @@
 export const brand: Brand = {
   companyName: "Debug Auto Exclusive Private Limited.",
-  address: "58, 42nd Lane, Wellawatte, Colombo 06, Sri Lanka.",
+  address: "No 58, 42nd Lane, Wellawatte, Colombo 06, Sri Lanka.",
   vatNo: "501030670",
   registrationNumber: "PV17108040",
-  email: "sales@dae.fun",
-  phone: "+94 76 36 52 456",
+  email: "info@dae.fun",
+  phone: "+94 77 776 7679",
   whatsapp: {
-    url: "https://wa.me/+94763652456",
-    number: "+94 76 365 2456",
+    url: "https://wa.me/+94777767679",
+    number: "+94 77 776 7679",
   },
   location: { lat: 6.755922562786295, lng: 79.9280520585388 },
 };
@@ -21,7 +21,7 @@ export const navLinks: NavLink[] = [
 
 export const sideBarNavLinks: NavLink[] = [
   { label: "Marina", route: "https://marina.dae.fun" },
-  { label: "Products", route: "https://products.dea.fun" },
+  { label: "Products", route: "https://products.dae.fun" },
   { label: "Charter", route: "https://charter.dae.fun" },
   { label: "JetSki Safari", route: "https://safari.dae.fun" },
   { label: "About", route: "/about" },
@@ -36,23 +36,22 @@ export const sideBarNavLinks: NavLink[] = [
 export const socialLinks: SocialLink[] = [
   {
     id: "facebook",
-    url: "https://www.facebook.com/DAEYachtClub/",
+    url: "https://www.facebook.com/DebugAutoExclusive",
     label: "Facebook",
   },
   {
     id: "instagram",
-    url: "https://www.instagram.com/dae_yacht_club/",
+    url: "https://www.instagram.com/d.a.e.lk/",
     label: "Instagram",
   },
-  { id: "twitter", url: "https://twitter.com/DAEYachtClub", label: "Twitter" },
   {
     id: "youtube",
-    url: "https://www.youtube.com/channel/UCYB1c5x1x5l5n5nZkG9Zp5A",
+    url: "https://www.youtube.com/@DebugAutoExclusive",
     label: "YouTube",
   },
   {
     id: "linkedin",
-    url: "https://www.linkedin.com/company/d-a-e-yacht-club/",
+    url: "https://lk.linkedin.com/company/debug-auto-exclusive",
     label: "LinkedIn",
   },
 ];
