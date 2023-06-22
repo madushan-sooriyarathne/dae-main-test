@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { env } from "@env/client.mjs";
+import { cn } from "@lib/clsx";
 
 import { QuaternaryHeading } from "@components/headings/quaternary-heading";
 
@@ -52,7 +53,8 @@ const MapsSection: React.FC<Props> = ({ places }): JSX.Element => {
             const marker = document.createElement("div");
             marker.id = place.id;
             marker.classList.add("marker");
-            marker.style.setProperty("--logo", place.mapIcon);
+            if (place.mapIcon)
+              marker.style.setProperty("--logo", `url("${place.mapIcon}")`);
             new mapboxgl.Marker(marker)
               .setLngLat(place.coords)
               .addTo(mapEvent.target);
@@ -91,7 +93,10 @@ const MapsSection: React.FC<Props> = ({ places }): JSX.Element => {
             aria-label={`${place.name} Selector`}
             onClick={() => handlePlaceSelect(place)}
             key={place.id}
-            className="group/card group w-full max-w-[480px] rounded border border-white-300 bg-white-100 p-4 outline-none transition-colors duration-200 ease-in-out hover:border-water hover:bg-water focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-water lg:p-8"
+            className={cn(
+              "group/card group w-full max-w-[480px] rounded border border-white-300 bg-white-100 p-4 outline-none transition-colors duration-200 ease-in-out hover:border-water hover:bg-water focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-water lg:p-8",
+              { "border-water": place.id === focusedPlace.id }
+            )}
           >
             <QuaternaryHeading
               intent="secondary"

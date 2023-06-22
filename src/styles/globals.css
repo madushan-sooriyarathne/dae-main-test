@@ -64,9 +64,7 @@
 
 /* Mapbox Marker */
 .marker {
-  @apply relative h-12 w-12
-  before:absolute before:bottom-1/2 before:left-[calc(50%-2px)] before:block before:h-1/2 before:w-[4px] before:rounded-full  before:bg-primary after:absolute after:bottom-full after:block  after:h-12 after:w-12
-  after:rounded-full after:border-4 after:border-primary after:bg-contain after:bg-center after:bg-no-repeat after:content-[""];
+  @apply relative h-12 w-12 before:absolute before:bottom-1/2 before:left-[calc(50%-2px)] before:block before:h-1/2 before:w-[4px] before:rounded-full  before:bg-primary after:absolute after:bottom-full after:block after:h-12 after:w-12 after:rounded-full after:border-4 after:border-primary after:bg-[image:var(--logo),_var(--gradient-bg-water-light)] after:bg-contain after:bg-center after:bg-no-repeat after:content-[""];
 }
 
 /* loaded animation keyframes */
