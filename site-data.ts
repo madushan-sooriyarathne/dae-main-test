@@ -59,8 +59,8 @@ export const socialLinks: SocialLink[] = [
 export const inquiryTypes: InquiryType[] = [
   {
     image: {
-      src: "https://images.ctfassets.net/88dxwx49umgp/7JTcwrtVo4x1M1Xt6pULE5/ad4deb70940d9628747ad7f26b78997d/reservation-type-cruises.jpg",
-      alt: "D.A.E Training Center reservations image - A cruising yacht by Debug Auto Exclusive",
+      src: "https://images.ctfassets.net/z812u03kxpvy/42cuAjKkRUHIVu6Zr5yCey/685ebf864b0f0812c9da1666cf5dc6a2/training-inquiries.jpg",
+      alt: "D.A.E Training Center- A jetski training by Debug Auto Exclusive",
       blurUrl: "",
     },
     id: "training-center",
@@ -69,8 +69,8 @@ export const inquiryTypes: InquiryType[] = [
   },
   {
     image: {
-      src: "https://images.ctfassets.net/88dxwx49umgp/UfOLa7Y9MP7nulHobrL1G/99d0d729cb0cbb02b80bee4129e04757/reservations-type-evens.jpg",
-      alt: "Events Reservation selector image - Group of people having a party on a cruise by Debug Auto Exclusive",
+      src: "https://images.ctfassets.net/z812u03kxpvy/1mO373Niw0Lrj5X98BXA7G/073537b5fe77a6449960baa21be5d943/events-inquires.jpg",
+      alt: "Event spaces on a house boat by Debug Auto Exclusive",
       blurUrl: "",
     },
     id: "events",
@@ -79,8 +79,8 @@ export const inquiryTypes: InquiryType[] = [
   },
   {
     image: {
-      src: "https://images.ctfassets.net/88dxwx49umgp/UfOLa7Y9MP7nulHobrL1G/99d0d729cb0cbb02b80bee4129e04757/reservations-type-evens.jpg",
-      alt: "Events Reservation selector image - Group of people having a party on a cruise by Debug Auto Exclusive",
+      src: "https://images.ctfassets.net/z812u03kxpvy/5wvUMFVNZR8jsiGv7xOwRM/31376f0648e6aafb079c53340dcb7c5d/marina-inquires.jpg",
+      alt: "Jet skies being parked at the Marina by Debug Auto Exclusive",
       blurUrl: "",
     },
     id: "marina",
@@ -90,8 +90,8 @@ export const inquiryTypes: InquiryType[] = [
   },
   {
     image: {
-      src: "https://images.ctfassets.net/88dxwx49umgp/UfOLa7Y9MP7nulHobrL1G/99d0d729cb0cbb02b80bee4129e04757/reservations-type-evens.jpg",
-      alt: "Events Reservation selector image - Group of people having a party on a cruise by Debug Auto Exclusive",
+      src: "https://images.ctfassets.net/z812u03kxpvy/6uNvgy70cAZEDe4IipPIHX/77f5cc316c672403cb954a209297d847/charter-inquiries.jpg",
+      alt: "Luxury house boat by Debug Auto Exclusive",
       blurUrl: "",
     },
     id: "charter",
@@ -101,8 +101,8 @@ export const inquiryTypes: InquiryType[] = [
   },
   {
     image: {
-      src: "https://images.ctfassets.net/88dxwx49umgp/UfOLa7Y9MP7nulHobrL1G/99d0d729cb0cbb02b80bee4129e04757/reservations-type-evens.jpg",
-      alt: "Events Reservation selector image - Group of people having a party on a cruise by Debug Auto Exclusive",
+      src: "https://images.ctfassets.net/z812u03kxpvy/2q0UjS0RycA7A2BtJXnUvx/6d3fa2a6d07ea4a3cb2fb08825322a61/products-inquires.jpg",
+      alt: "Sea-Doo Jet ski in Sri Lanka by Debug Auto Exclusive",
       blurUrl: "",
     },
     id: "products",
@@ -112,8 +112,8 @@ export const inquiryTypes: InquiryType[] = [
   },
   {
     image: {
-      src: "https://images.ctfassets.net/88dxwx49umgp/UfOLa7Y9MP7nulHobrL1G/99d0d729cb0cbb02b80bee4129e04757/reservations-type-evens.jpg",
-      alt: "Events Reservation selector image - Group of people having a party on a cruise by Debug Auto Exclusive",
+      src: "https://images.ctfassets.net/z812u03kxpvy/7f1GyHoVY6050iKI7aFzZ8/5c72cc7afaf0339e817592cb9975586a/safari-inquires.jpg",
+      alt: "Two People on a JetSki safari by Debug Auto Exclusive",
       blurUrl: "",
     },
     id: "safari",

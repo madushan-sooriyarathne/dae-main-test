@@ -13,7 +13,7 @@ const Footer: React.FC = (): JSX.Element => {
     setYear(new Date().getFullYear());
   }, []);
   return (
-    <footer className="main-grid-columns row-start-2 grid w-full auto-rows-min grid-cols-1 items-start justify-items-center gap-y-12 bg-water pt-12 md:gap-y-0 md:pt-0">
+    <footer className="main-grid-columns row-start-2 grid w-full auto-rows-min grid-cols-1 items-start justify-items-center gap-y-12 border-t border-t-water-800 bg-water pt-12 md:gap-y-0 md:pt-0">
       <div
         className={cn(
           "col-full flex h-full w-full items-center justify-center border-b border-b-water-800 pb-12",
@@ -126,7 +126,7 @@ const Footer: React.FC = (): JSX.Element => {
           "col-full flex h-full w-full flex-row flex-wrap items-center justify-center gap-y-3 gap-x-3 border-b border-b-water-800 pb-12",
           "md:border-b-0 md:px-9",
           "xl:py-6",
-          "2xl:col-[col-start_8_/_full-end]  2xl:grid 2xl:grid-cols-[repeat(2,_min-content)] 2xl:items-start 2xl:justify-start 2xl:border-b 2xl:p-12"
+          "2xl:col-[col-start_8_/_full-end] 2xl:grid 2xl:auto-rows-min 2xl:grid-cols-[repeat(2,_min-content)] 2xl:items-start 2xl:justify-start 2xl:border-b 2xl:p-12"
         )}
       >
         {socialLinks.map((link) => (
@@ -149,11 +149,11 @@ const Footer: React.FC = (): JSX.Element => {
           "col-full -mt-8 flex w-full flex-col items-center justify-start gap-y-3 px-4 pb-4",
           "md:border-t md:border-t-water-800 md:pt-6",
           "xl:mt-0 xl:flex-row xl:justify-between xl:gap-x-12 xl:px-12",
-          "2xl:col-[col-start_3_/_full-end]  2xl:border-t-0"
+          "2xl:col-[col-start_3_/_full-end] 2xl:justify-start 2xl:border-t-0"
         )}
       >
-        <span className="text-center text-2xs font-semibold uppercase tracking-wide text-white xl:text-xs xl:tracking-wider">{`© ${year}  Debug Auto Exclusive. All rights reserved.`}</span>
-        <span className="flex items-center gap-x-1 text-center text-2xs font-semibold uppercase leading-tight tracking-wide text-white xl:text-xs xl:tracking-wider">
+        <span className="text-center text-2xs font-semibold uppercase tracking-wider text-white xl:text-xs xl:tracking-widest">{`© ${year}  Debug Auto Exclusive. All rights reserved.`}</span>
+        <span className="flex items-center gap-x-1 text-center text-2xs font-semibold uppercase leading-tight tracking-wider text-white xl:text-xs xl:tracking-widest">
           Web concept by{" "}
           <a
             href="https://advertaro.lk"

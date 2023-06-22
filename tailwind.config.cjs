@@ -14,6 +14,7 @@ module.exports = {
         "3xs": "0.5rem",
       },
       backgroundImage: {
+        darkWater: "var(--dark-water)",
         darkOverlay: "var(--overlay-dark)",
         overlayShade: "var(--overlay-shade)",
         lightWater: "var(--gradient-bg-water-light)",

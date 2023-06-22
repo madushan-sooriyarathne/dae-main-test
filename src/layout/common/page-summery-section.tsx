@@ -28,7 +28,7 @@ const PageSummerySection: React.FC<Props> = ({
         {button && <Button {...button} />}
       </div>
       {image && (
-        <div className="aspect-square w-full overflow-hidden rounded-sm sm:aspect-[4/3] md:col-content md:aspect-video lg:aspect-[3/1.3]">
+        <div className="aspect-square w-[min(100%,_75em)] overflow-hidden rounded-sm sm:aspect-[4/3] md:col-content md:aspect-video lg:aspect-[3/1.3]">
           <ImageComponent image={image} sizes="100vw" />
         </div>
       )}
