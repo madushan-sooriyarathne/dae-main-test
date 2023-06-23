@@ -15,7 +15,7 @@ const ChildSitesSection: React.FC<Props> = ({
 }: Props): JSX.Element => {
   return (
     <section className="relative isolate ">
-      <div className="grid w-full grid-cols-1 items-start justify-items-start @container/wrapper md:grid-cols-2 md:grid-rows-2 md:gap-4 md:px-4">
+      <div className="grid w-full grid-cols-1 items-start justify-items-start gap-y-4 @container/wrapper md:grid-cols-2 md:grid-rows-2 md:gap-4 md:px-4">
         {childSites.map((sites, index) => (
           <m.div
             className="relative isolate aspect-square w-full border-b border-black/50 @container/block last:border-r-0 lg:aspect-[4/3] xl:border-r"
@@ -29,7 +29,7 @@ const ChildSitesSection: React.FC<Props> = ({
                 <PrimaryHeading alignment="left" intent="white">
                   {sites.name}
                 </PrimaryHeading>
-                <span className="font-xs text-left font-sans font-semibold tracking-wide text-white md:text-sm">
+                <span className="font-xs text-center font-sans font-semibold tracking-wide text-white md:text-sm">
                   {sites.tagLine}
                 </span>
               </div>
