@@ -13,18 +13,18 @@ export const brand: Brand = {
 };
 
 export const navLinks: NavLink[] = [
-  { label: "Marina", route: "https://marina.dae.fun" },
   { label: "Products", route: "https://products.dae.fun" },
+  { label: "Marina", route: "https://marina.dae.fun" },
   { label: "Charter", route: "https://charter.dae.fun" },
   { label: "JetSki Safari", route: "https://safari.dae.fun" },
 ];
 
 export const sideBarNavLinks: NavLink[] = [
-  { label: "Marina", route: "https://marina.dae.fun" },
+  { label: "About", route: "/about" },
   { label: "Products", route: "https://products.dae.fun" },
+  { label: "Marina", route: "https://marina.dae.fun" },
   { label: "Charter", route: "https://charter.dae.fun" },
   { label: "JetSki Safari", route: "https://safari.dae.fun" },
-  { label: "About", route: "/about" },
   { label: "Membership", route: "/membership" },
   { label: "Events", route: "/events" },
   { label: "Training Center", route: "/training-center" },
