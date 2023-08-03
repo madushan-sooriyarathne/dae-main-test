@@ -27,7 +27,7 @@ export const sideBarNavLinks: NavLink[] = [
   { label: "JetSki Safari", route: "https://safari.dae.fun" },
   { label: "Membership", route: "/membership" },
   { label: "Events", route: "/events" },
-  { label: "Training Center", route: "/training-center" },
+  // { label: "Training Center", route: "/training-center" },
   { label: "Careers", route: "/careers" },
   { label: "Blog", route: "/blog" },
   { label: "Contact", route: "/contact" },
