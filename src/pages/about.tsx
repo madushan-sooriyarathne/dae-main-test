@@ -1,5 +1,6 @@
 import type { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
+import { getImage } from "@cms/client-utils";
 import {
   getArticles,
   getImageContentBlock,
@@ -29,6 +30,11 @@ interface Props {
   lifestyleSection: ImageContentSectionType;
   historySection: MultiImageContentBlockType;
   sustainabilitySection: ImageContentSectionType;
+  specialitesImages: {
+    safariImage: Image;
+    marinaImage: Image;
+    charterImage: Image;
+  };
   latestArticles: Article[];
 }
 
@@ -39,6 +45,7 @@ const AboutPage: NextPage<Props> = ({
   historySection,
   sustainabilitySection,
   latestArticles,
+  specialitesImages,
 }: Props): JSX.Element => {
   return (
     <Page title="About D.A.E">
@@ -46,7 +53,7 @@ const AboutPage: NextPage<Props> = ({
       <PageSummerySection {...pageSummery} />
       <ImageContentSection {...lifestyleSection} withBg />
       <MultiIMageContentVertical {...historySection} />
-      <SpecialtiesSection />
+      <SpecialtiesSection {...specialitesImages} />
       <ImageContentSection {...sustainabilitySection} />
       <OtherArticlesGrid
         articles={latestArticles}
@@ -73,6 +80,10 @@ const getStaticProps: GetStaticProps = async (): Promise<
     "72uyt5q1K3xzus2kfpinve"
   );
 
+  const safariImage = await getImage("20Fn32FJnP9LUS14EEanO0");
+  const charterImage = await getImage("5YjMYsbLkGLwnNyiDOyw4");
+  const marinaImage = await getImage("5Sda7aBj8AFV7sDNFdSKm2");
+
   const latestArticles = await getArticles(3);
 
   return {
@@ -83,6 +94,11 @@ const getStaticProps: GetStaticProps = async (): Promise<
       historySection,
       sustainabilitySection,
       latestArticles,
+      specialitesImages: {
+        safariImage,
+        charterImage,
+        marinaImage,
+      },
     },
   };
 };

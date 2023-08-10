@@ -3,17 +3,20 @@ import { Button } from "@components/button";
 import { ImageComponent } from "@components/image-component";
 import { PrimaryHeading } from "@components/headings/primary-heading";
 
-const SpecialtiesSection: React.FC = (): JSX.Element => {
+interface Props {
+  safariImage: Image;
+  marinaImage: Image;
+  charterImage: Image;
+
+}
+
+const SpecialtiesSection: React.FC<Props> = ({marinaImage, safariImage, charterImage}): JSX.Element => {
   return (
     <section className="grid auto-rows-min grid-cols-1 lg:grid-cols-2 lg:grid-rows-2 lg:gap-5 lg:px-5">
       <div className="relative aspect-square w-full @container md:aspect-video lg:col-start-1 lg:col-end-2 lg:row-span-2 lg:row-start-1 lg:aspect-auto lg:h-full">
         <div className="absolute inset-0 -z-10">
           <ImageComponent
-            image={{
-              src: "https://images.ctfassets.net/z812u03kxpvy/6PAPhQTaIG5UcIAhithHH2/42442b8ae6bb87567b1d2eba68403cec/dae-fun-runs.jpg",
-              alt: "A Man riding a Jet Ski by D.A.E",
-                blurUrl: "",
-              }}
+            image={safariImage}
             />
           </div>
           <div className="w-ful flex h-full flex-col items-start justify-end gap-y-5 bg-darkOverlay p-4 @md:p-6 @2xl:p-8 @3xl:p-10">
@@ -32,11 +35,7 @@ const SpecialtiesSection: React.FC = (): JSX.Element => {
         <div className="relative aspect-square w-full @container md:aspect-video lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 lg:aspect-auto lg:h-full">
           <div className="absolute inset-0 -z-10">
             <ImageComponent
-              image={{
-                src: "https://images.ctfassets.net/z812u03kxpvy/5FN3VkORVdWlEWxVeuUHEg/0da00dac01adeaafe61afbcb3d840260/dae-marina-services.jpg",
-              alt: "Boat & Jet Ski Storage by D.A.E Marina",
-              blurUrl: "",
-            }}
+              image={marinaImage}
           />
         </div>
         <div className="w-ful flex h-full flex-col items-start justify-end gap-y-5 bg-darkOverlay p-4 @md:p-6 @2xl:p-8 @3xl:p-10">
@@ -55,11 +54,7 @@ const SpecialtiesSection: React.FC = (): JSX.Element => {
       <div className="relative aspect-square w-full @container md:aspect-video lg:col-start-2 lg:col-end-3 lg:row-span-1 lg:row-start-2">
         <div className="absolute inset-0 -z-10">
           <ImageComponent
-            image={{
-              src: "https://images.ctfassets.net/z812u03kxpvy/3VagEjI1rvtFxq4IsCvUkT/ba654e151449e546f2d24a5fd53d8524/dae-marina.jpg",
-              alt: "A Catamaran charter boat by D.A.E Charter - charter.dae.fun",
-              blurUrl: "",
-            }}
+            image={charterImage}
           />
         </div>
         <div className="w-ful flex h-full flex-col items-start justify-end gap-y-5 bg-darkOverlay p-4 @md:p-6 @2xl:p-8 @3xl:p-10">
