@@ -1,10 +1,10 @@
 /** @type {import('next-sitemap').IConfig} */
 
-const siteUrl = "https://dea.fun/";
+const siteUrl = "https://dae.fun/";
 
 module.exports = {
   siteUrl: siteUrl,
-  exclude: ["/404", "/server-sitemap-index.xml"],
+  exclude: ["/404", "/server-sitemap.xml"],
   generateRobotsTxt: true,
   robotsTxtOptions: {
     policies: [
