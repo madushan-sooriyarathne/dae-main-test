@@ -10,7 +10,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const articles = await getArticles();
 
   const articleNodes = articles.map((article) => ({
-    loc: new URL(`/blog/${article.id}`, env.SITE_URL).href,
+    loc: new URL(`/blog/${article.id}`, env.NEXT_PUBLIC_SITE_URL).href,
     lastmod: article.publishedDate,
     changefreq: "monthly",
     priority: 0.7,
