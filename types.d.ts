@@ -57,6 +57,14 @@ declare global {
     };
   };
 
+  type YoutubeVideo = {
+    name: string;
+    id: string;
+    url: string;
+    thumbnail: Image;
+    playlists?: string[];
+  };
+
   type Brand = {
     companyName: string;
     address: string;

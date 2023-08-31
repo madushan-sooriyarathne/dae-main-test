@@ -26,6 +26,7 @@ import type {
   ITextContentBlockFields,
   ITrainingCourseFields,
   IVideoBlockFields,
+  IYoutubeVideoFields,
 } from "@cms/generated/types";
 
 import type { BannerType } from "@layout/common/banner-section";
@@ -44,8 +45,9 @@ import type { CardBlockType } from "@components/card-block";
  * @returns {Promise<Image>} - The image object with the blur hash
  */
 const processContentfulImage = async (image: Asset): Promise<Image> => {
-  if (!image.fields.file.details.image)
+  if (!image.fields.file.details.image) {
     throw new Error("Image is not an image");
+  }
 
   let base64: string;
   const assetUrl: string = getAssetUrl(image);
@@ -445,8 +447,9 @@ export const getJobPost = async (jobId: string): Promise<JobPost> => {
       "fields.id": jobId,
     });
 
-    if (response.items.length < 1 && !response.items[0])
+    if (response.items.length < 1 && !response.items[0]) {
       throw new Error(`no job post entires found for field id: ${jobId}`);
+    }
 
     return {
       ...(response.items[0] as Entry<IJobPostFields>).fields,
@@ -516,8 +519,9 @@ export const getArticle = async (articleId: string): Promise<Article> => {
       "fields.id": articleId,
     });
 
-    if (response.items.length < 1)
+    if (response.items.length < 1) {
       throw new Error(`No articles found for given article id ${articleId}`);
+    }
 
     return {
       ...(response.items[0] as Entry<IArticleFields>).fields,
@@ -546,5 +550,30 @@ export const getLegalDocument = async (
     throw new Error(
       `An error occurred while fetching the legal document entry for given id: ${documentId}`
     );
+  }
+};
+
+export const getYoutublePlaylist = async (
+  playlistId: string,
+  limit?: number
+): Promise<YoutubeVideo[]> => {
+  try {
+    const response = await contentfulClient.getEntries<IYoutubeVideoFields>({
+      content_type: "youtubeVideo",
+      "fields.playlists": playlistId,
+      limit,
+    });
+
+    if (response.items.length < 1) {
+      throw new Error("No youtuble videos found for given playlist");
+    }
+    return await Promise.all(
+      response.items.map(async (vid) => ({
+        ...vid.fields,
+        thumbnail: await processContentfulImage(vid.fields.thumbnail),
+      }))
+    );
+  } catch (error: unknown) {
+    throw new Error("An error occurred while fetching the Youtuble Videos");
   }
 };

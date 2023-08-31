@@ -8,6 +8,7 @@ import {
   getPageSummeryBlock,
   getStats,
   getVideoBlock,
+  getYoutublePlaylist,
 } from "@cms/content-studio";
 
 import { CTASection } from "@layout/common/cta-section";
@@ -26,11 +27,12 @@ import {
 } from "@layout/common/page-summery-section";
 import { StatsGrid } from "@layout/common/stats-grid";
 import { VideoSection } from "@layout/common/video-section";
+import { YoutubePlaylistSection } from "@layout/common/youtuble-playlist-section";
 
 interface Props {
   header: PageHeaderType;
   pageSummery: PageSummerySectionType;
-  video: VideoType;
+  funRunsPlaylist: YoutubeVideo[];
   membershipIntroSection: MultiImageContentBlockType;
   membershipPerksSection: ImageContentSectionType;
   membershipPerks: Stat[];
@@ -40,7 +42,7 @@ interface Props {
 const MembershipPage: NextPage<Props> = ({
   header,
   pageSummery,
-  video,
+  funRunsPlaylist,
   membershipIntroSection,
   membershipPerksSection,
   membershipPerks,
@@ -59,7 +61,7 @@ const MembershipPage: NextPage<Props> = ({
           intent: "primary",
         }}
       />
-      <VideoSection video={video} />
+      <YoutubePlaylistSection videos={funRunsPlaylist} />
       <MultiImageHorizontal
         {...membershipIntroSection}
         button={{
@@ -93,7 +95,7 @@ const getStaticProps: GetStaticProps = async (): Promise<
 > => {
   const header = await getPageHeaderBlock("4psAM0yC3ESZFtW1i2EJrR");
   const pageSummery = await getPageSummeryBlock("2Vs1TMbwaNTDVAa5pu8Heo");
-  const video = await getVideoBlock("7qhvNfQIzCkbZrcKbmCDLk");
+  const funRunsPlaylist = await getYoutublePlaylist("Fun Runs");
 
   const membershipIntroSection = await getMultiImageContentBlock(
     "6i7o3Tcic2wotJjsKJFlFs"
@@ -110,7 +112,7 @@ const getStaticProps: GetStaticProps = async (): Promise<
     props: {
       header,
       pageSummery,
-      video,
+      funRunsPlaylist,
       membershipIntroSection,
       membershipPerksSection,
       membershipPerks,

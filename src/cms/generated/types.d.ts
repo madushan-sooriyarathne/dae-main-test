@@ -692,6 +692,40 @@ export interface IVideoBlock extends Entry<IVideoBlockFields> {
   };
 }
 
+export interface IYoutubeVideoFields {
+  /** Name */
+  name: string;
+
+  /** Id */
+  id: string;
+
+  /** URL */
+  url: string;
+
+  /** Thumbnail */
+  thumbnail: Asset;
+
+  /** Playlist(s) */
+  playlists?: "Fun Runs"[] | undefined;
+}
+
+export interface IYoutubeVideo extends Entry<IYoutubeVideoFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "youtubeVideo";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export type CONTENT_TYPE =
   | "article"
   | "bannerBlock"
@@ -712,7 +746,8 @@ export type CONTENT_TYPE =
   | "testimonial"
   | "textContentBlock"
   | "trainingCourse"
-  | "videoBlock";
+  | "videoBlock"
+  | "youtubeVideo";
 
 export type IEntry =
   | IArticle
@@ -734,7 +769,8 @@ export type IEntry =
   | ITestimonial
   | ITextContentBlock
   | ITrainingCourse
-  | IVideoBlock;
+  | IVideoBlock
+  | IYoutubeVideo;
 
 export type LOCALE_CODE = "en-US";
 
