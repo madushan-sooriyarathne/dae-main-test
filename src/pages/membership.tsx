@@ -7,7 +7,6 @@ import {
   getPageHeaderBlock,
   getPageSummeryBlock,
   getStats,
-  getVideoBlock,
   getYoutublePlaylist,
 } from "@cms/content-studio";
 
@@ -26,7 +25,6 @@ import {
   type PageSummerySectionType,
 } from "@layout/common/page-summery-section";
 import { StatsGrid } from "@layout/common/stats-grid";
-import { VideoSection } from "@layout/common/video-section";
 import { YoutubePlaylistSection } from "@layout/common/youtuble-playlist-section";
 
 interface Props {

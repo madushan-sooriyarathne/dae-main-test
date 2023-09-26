@@ -168,6 +168,28 @@ export const sendJobApplicationNotification = async (
   }
 };
 
+type MembershipNotificationInput = RouterInputs["membership"]["apply"];
+export const sendMembershipNotification = async (
+  data: MembershipNotificationInput
+): Promise<string | null> => {
+  try {
+    const { requestId } = await courierClient.send({
+      message: {
+        to: {},
+        template: "XNPDF5ZRKJ40R9GR3XTWSTJQE03C",
+        data: data,
+      },
+    });
+    if (requestId) {
+      return requestId;
+    } else {
+      return null;
+    }
+  } catch (err: unknown) {
+    return null;
+  }
+};
+
 type JobApplicationAcknowledgementData = {
   name: string;
   email: string;
