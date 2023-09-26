@@ -70,7 +70,7 @@ const EventsPage: NextPage<Props> = ({
           route: "/inquiries?type=events",
           children: "Inquire Now",
           withArrow: true,
-          intent: "white",
+          intent: "primary",
           solid: true,
         }}
       />
