@@ -39,6 +39,7 @@ export const contactRouter = createTRPCRouter({
       const userAcknowledgement = await sendCustomerAcknowledgement({
         name: input.name,
         email: input.email,
+        company: "Debug Auto Exclusive",
       });
 
       if (adminNotification && userAcknowledgement) {

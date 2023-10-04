@@ -49,6 +49,7 @@ export const membershipRouter = createTRPCRouter({
       const userAcknowledgement = await sendCustomerAcknowledgement({
         email: input.email,
         name: input.name,
+        company: "Debug Auto Exclusive",
       });
 
       if (adminNotification && userAcknowledgement) {

@@ -9,7 +9,7 @@ export const sendContactNotification = async (
   try {
     const { requestId } = await courierClient.send({
       message: {
-        to: {},
+        to: { email: "info@dae.fun" },
         template: "JZ6SS7RBQAMXCTPFCNG80ZA9WZ6E",
         data: data,
       },
@@ -32,7 +32,7 @@ export const sendEventsNotification = async (
   try {
     const { requestId } = await courierClient.send({
       message: {
-        to: {},
+        to: { email: "info@dae.fun" },
         template: "N5JM2BNNW7M7E1KEHPW1Z0G767W5",
         data: data,
       },
@@ -54,7 +54,7 @@ export const sendOfferNotification = async (
   try {
     const { requestId } = await courierClient.send({
       message: {
-        to: {},
+        to: { email: "info@dae.fun" },
         template: "8HWK3C87TXMKHEJXV833WX37N88X",
         data: data,
       },
@@ -78,7 +78,7 @@ export const sendTrainingCourseNotification = async (
   try {
     const { requestId } = await courierClient.send({
       message: {
-        to: {},
+        to: { email: "info@dae.fun" },
         template: "WCD69YMND442MNKJVT429K34XFDZ",
         data: data,
       },
@@ -97,6 +97,7 @@ export const sendTrainingCourseNotification = async (
 type AcknowledgementData = {
   name: string;
   email: string;
+  company: string;
 };
 
 export const sendCustomerAcknowledgement = async (
@@ -108,7 +109,7 @@ export const sendCustomerAcknowledgement = async (
         to: {
           email: data.email,
         },
-        template: "",
+        template: "CDSGD6QC6W4VKNQ8TCFP11JQYECR",
         data: data,
       },
     });
@@ -139,7 +140,7 @@ export const sendJobApplicationNotification = async (
   try {
     const { requestId } = await courierClient.send({
       message: {
-        to: {},
+        to: { email: "info@dae.fun" },
         template: "CRRGCQ89GH4XK4KC0YBN4YE6M8GD",
         data: {
           name: data.name,
@@ -175,9 +176,12 @@ export const sendMembershipNotification = async (
   try {
     const { requestId } = await courierClient.send({
       message: {
-        to: {},
+        to: { email: "info@dae.fun" },
         template: "XNPDF5ZRKJ40R9GR3XTWSTJQE03C",
-        data: data,
+        data: {
+          ...data,
+          haveWatercraft: data.ownsAWatercraft ? "Yes" : "No",
+        },
       },
     });
     if (requestId) {
@@ -204,7 +208,7 @@ export const sendJobApplicationAcknowledgement = async (
         to: {
           email: data.email,
         },
-        template: "",
+        template: "RKDZX496BKMX4NPGGS8438W4DD2V",
         data: data,
       },
     });

@@ -42,6 +42,7 @@ export const inquiriesRouter = createTRPCRouter({
       const userAcknowledgement = await sendCustomerAcknowledgement({
         name: input.name,
         email: input.email,
+        company: "Debug Auto Exclusive",
       });
 
       if (adminNotification && userAcknowledgement) {
@@ -101,6 +102,7 @@ export const inquiriesRouter = createTRPCRouter({
       const userAcknowledgement = await sendCustomerAcknowledgement({
         name: input.name,
         email: input.email,
+        company: "Debug Auto Exclusive",
       });
 
       if (adminNotification && userAcknowledgement) {
@@ -168,6 +170,7 @@ export const inquiriesRouter = createTRPCRouter({
       const userAcknowledgement = await sendCustomerAcknowledgement({
         name: input.name,
         email: input.email,
+        company: "Debug Auto Exclusive",
       });
 
       if (adminNotification && userAcknowledgement) {
