@@ -57,8 +57,8 @@ const PageHeader: React.FC<Props> = ({
       </div>
 
       <div className="main-grid-columns grid auto-rows-fr items-end justify-items-start bg-water py-9 md:py-12 lg:absolute lg:inset-0 lg:w-full lg:bg-transparent lg:py-16 ">
-        <div className="col-content mx-auto flex w-[min(100%,_50rem)] flex-col items-start justify-end gap-y-6 lg:mx-0 lg:mr-auto lg:items-start lg:gap-y-9">
-          <DisplayHeading alignment="left" intent="white">
+        <div className="col-content mx-auto flex w-[min(100%,_62.5rem)] flex-col items-center justify-end">
+          <DisplayHeading alignment="center" intent="white">
             {heading}
           </DisplayHeading>
           {button && <Button {...button} />}

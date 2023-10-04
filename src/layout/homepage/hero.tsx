@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
-
 import { AnimatePresence, m, type Variants } from "framer-motion";
 
 import { clamp } from "@utils/base";
@@ -159,7 +158,7 @@ const Hero: React.FC<Props> = ({ video, slides }: Props): JSX.Element => {
               activeSlide === index && (
                 <div
                   key={`slide-${index}`}
-                  className="mx-auto flex w-[min(100%,_50rem)] flex-col items-center justify-end gap-y-9 lg:mx-0 lg:mr-auto lg:items-start [&_h1]:text-center lg:[&_h1]:!text-left [&_p]:text-center lg:[&_p]:!text-left"
+                  className="mx-auto flex w-[min(100%,_62.5rem)] flex-col items-center justify-end gap-y-9"
                 >
                   <div className="flex flex-col items-start justify-end gap-y-2">
                     <m.div
@@ -171,7 +170,7 @@ const Hero: React.FC<Props> = ({ video, slides }: Props): JSX.Element => {
                       custom={0}
                       className="w-full"
                     >
-                      <DisplayHeading intent="white" alignment="left">
+                      <DisplayHeading intent="white" alignment="center">
                         {slide.heading}
                       </DisplayHeading>
                     </m.div>
@@ -185,7 +184,7 @@ const Hero: React.FC<Props> = ({ video, slides }: Props): JSX.Element => {
                     >
                       <Paragraph
                         intent="white"
-                        alignment="left"
+                        alignment="center"
                         className=""
                         titleParagraph
                       >

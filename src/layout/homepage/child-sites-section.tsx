@@ -14,8 +14,8 @@ const ChildSitesSection: React.FC<Props> = ({
   childSites,
 }: Props): JSX.Element => {
   return (
-    <section className="relative isolate ">
-      <div className="grid w-full grid-cols-1 items-start justify-items-start gap-y-4 @container/wrapper md:grid-cols-2 md:grid-rows-2 md:gap-4 md:px-4">
+    <section className="relative isolate -mt-10 md:-mt-14 ">
+      <div className="mx-auto grid w-[min(98.75rem,100%)] grid-cols-1 items-start justify-items-start gap-y-4 @container/wrapper md:grid-cols-2 md:gap-4 md:px-4">
         {childSites.map((sites, index) => (
           <m.div
             className="relative isolate aspect-square w-full border-b border-black/50 @container/block last:border-r-0 lg:aspect-[4/3] xl:border-r"

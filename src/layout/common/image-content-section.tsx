@@ -32,7 +32,7 @@ const ImageContentSection: React.FC<Props> = ({
       <div className="col-full h-full w-full md:col-content lg:col-[content-start_/col-end_4] lg:py-12 lg:pr-12 xl:py-14 xl:pr-14 2xl:py-24 2xl:pr-16">
         <ContentGroup {...contentGroupProps} />
       </div>
-      <div className="col-content aspect-square w-full sm:aspect-[4_/_3] md:aspect-video lg:col-full-end-half lg:aspect-auto lg:h-full xxl:col-content-end-half">
+      <div className="col-content aspect-square w-full sm:aspect-[4_/_3] md:aspect-video lg:col-full-end-half lg:aspect-auto lg:h-full xl:col-content-end-half">
         <ImageComponent image={image} sizes="(max-width: 1024px) 100vw, 50vw" />
       </div>
     </section>
