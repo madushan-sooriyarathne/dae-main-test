@@ -27,7 +27,9 @@ const CompanyValueSection: React.FC<Props> = ({
 
   const handleValueItemClick = (index: number) => {
     setSelectedValue(index);
-    clearInterval(intervalRef.current);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
     intervalRef.current = setInterval(paginate, 7000);
   };
 
