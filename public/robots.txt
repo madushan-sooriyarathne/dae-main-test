@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Disallow: /404
+
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://dae.fun/
+
+# Sitemaps
+Sitemap: https://dae.fun/sitemap.xml
+Sitemap: https://dae.fun/server-sitemap.xml

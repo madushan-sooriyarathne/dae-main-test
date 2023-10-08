@@ -19,7 +19,7 @@ const CompanyValueSection: React.FC<Props> = ({
   values,
 }: Props): JSX.Element => {
   const [selectedValue, setSelectedValue] = useState<number>(0);
-  const intervalRef = useRef<NodeJS.Timer>();
+  const intervalRef = useRef<ReturnType<typeof setInterval>>();
 
   const paginate = useCallback(() => {
     setSelectedValue((prev) => clamp(0, values.length, prev + 1));
